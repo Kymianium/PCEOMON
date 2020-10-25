@@ -1,0 +1,63 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[  ]
+_global_script_class_icons={
+
+}
+
+[application]
+
+config/name="PCEOMON"
+config/description="¡Disfruta de un juego de combates con tu equipo de PCEOMONES!"
+run/main_scene="res://Title/TitleScreen.tscn"
+config/use_custom_user_dir=true
+config/custom_user_dir_name="PCEOMONmetainf"
+config/icon="res://Title/icon.png"
+
+[autoload]
+
+metadata="*res://metadata.gd"
+
+[display]
+
+window/size/width=640
+window/size/height=480
+window/size/resizable=false
+window/stretch/mode="2d"
+window/stretch/aspect="keep"
+
+[importer_defaults]
+
+texture={
+"compress/bptc_ldr": 0,
+"compress/hdr_mode": 0,
+"compress/lossy_quality": 0.7,
+"compress/mode": 0,
+"compress/normal_map": 0,
+"detect_3d": true,
+"flags/anisotropic": false,
+"flags/filter": false,
+"flags/mipmaps": false,
+"flags/repeat": 0,
+"flags/srgb": 2,
+"process/HDR_as_SRGB": false,
+"process/fix_alpha_border": true,
+"process/invert_color": false,
+"process/premult_alpha": false,
+"size_limit": 0,
+"stream": false,
+"svg/scale": 1.0
+}
+
+[rendering]
+
+environment/default_clear_color=Color( 0.215686, 0.207843, 0.364706, 1 )
+environment/default_environment="res://default_env.tres"

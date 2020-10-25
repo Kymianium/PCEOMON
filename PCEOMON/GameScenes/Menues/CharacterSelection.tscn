@@ -1,0 +1,159 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Font/ButtonFont.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Font/VersionFont.tres" type="DynamicFont" id=2]
+[ext_resource path="res://GameScenes/Menues/return_to_title.gd" type="Script" id=3]
+[ext_resource path="res://GameScenes/Menues/Selection/PCEOMONES/Armada.tscn" type="PackedScene" id=4]
+[ext_resource path="res://GameScenes/Menues/Selection/PCEOMONES/Alparko.tscn" type="PackedScene" id=5]
+[ext_resource path="res://GameScenes/Menues/Selection/Locked.tscn" type="PackedScene" id=6]
+
+[node name="Play" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Text&Button" type="VBoxContainer" parent="CenterContainer"]
+margin_left = 50.0
+margin_top = 51.0
+margin_right = 590.0
+margin_bottom = 429.0
+custom_constants/separation = 20
+
+[node name="CharacterSelection" type="Label" parent="CenterContainer/Text&Button"]
+margin_right = 540.0
+margin_bottom = 17.0
+custom_fonts/font = ExtResource( 2 )
+text = "¡Selecciona qué PCEOMONES quieres en tu equipo!"
+align = 1
+
+[node name="Characters" type="HBoxContainer" parent="CenterContainer/Text&Button"]
+margin_top = 37.0
+margin_right = 540.0
+margin_bottom = 117.0
+rect_min_size = Vector2( 100, 80 )
+custom_constants/separation = 20
+alignment = 1
+
+[node name="Armada" parent="CenterContainer/Text&Button/Characters" instance=ExtResource( 4 )]
+margin_left = 20.0
+margin_right = 120.0
+
+[node name="Alparko" parent="CenterContainer/Text&Button/Characters" instance=ExtResource( 5 )]
+margin_left = 140.0
+margin_right = 240.0
+
+[node name="Locked" parent="CenterContainer/Text&Button/Characters" instance=ExtResource( 6 )]
+margin_left = 260.0
+margin_right = 380.0
+rect_rotation = 0.0
+script = null
+
+[node name="Locked2" parent="CenterContainer/Text&Button/Characters" instance=ExtResource( 6 )]
+margin_left = 400.0
+margin_right = 520.0
+rect_rotation = 0.0
+script = null
+
+[node name="Characters2" type="HBoxContainer" parent="CenterContainer/Text&Button"]
+margin_top = 137.0
+margin_right = 540.0
+margin_bottom = 217.0
+rect_min_size = Vector2( 100, 80 )
+custom_constants/separation = 20
+alignment = 1
+
+[node name="Locked" parent="CenterContainer/Text&Button/Characters2" instance=ExtResource( 6 )]
+margin_right = 120.0
+rect_rotation = 0.0
+script = null
+
+[node name="Locked2" parent="CenterContainer/Text&Button/Characters2" instance=ExtResource( 6 )]
+margin_left = 140.0
+margin_right = 260.0
+rect_rotation = 0.0
+script = null
+
+[node name="Locked3" parent="CenterContainer/Text&Button/Characters2" instance=ExtResource( 6 )]
+margin_left = 280.0
+margin_right = 400.0
+rect_rotation = 0.0
+script = null
+
+[node name="Locked4" parent="CenterContainer/Text&Button/Characters2" instance=ExtResource( 6 )]
+margin_left = 420.0
+margin_right = 540.0
+rect_rotation = 0.0
+script = null
+
+[node name="Characters3" type="HBoxContainer" parent="CenterContainer/Text&Button"]
+margin_top = 237.0
+margin_right = 540.0
+margin_bottom = 317.0
+rect_min_size = Vector2( 100, 80 )
+custom_constants/separation = 20
+alignment = 1
+
+[node name="Locked" parent="CenterContainer/Text&Button/Characters3" instance=ExtResource( 6 )]
+margin_right = 120.0
+rect_rotation = 0.0
+script = null
+
+[node name="Locked2" parent="CenterContainer/Text&Button/Characters3" instance=ExtResource( 6 )]
+margin_left = 140.0
+margin_right = 260.0
+rect_rotation = 0.0
+script = null
+
+[node name="Locked3" parent="CenterContainer/Text&Button/Characters3" instance=ExtResource( 6 )]
+margin_left = 280.0
+margin_right = 400.0
+rect_rotation = 0.0
+script = null
+
+[node name="Locked4" parent="CenterContainer/Text&Button/Characters3" instance=ExtResource( 6 )]
+margin_left = 420.0
+margin_right = 540.0
+rect_rotation = 0.0
+script = null
+
+[node name="Miscelaneous" type="HBoxContainer" parent="CenterContainer/Text&Button"]
+margin_top = 337.0
+margin_right = 540.0
+margin_bottom = 378.0
+custom_constants/separation = 20
+alignment = 1
+
+[node name="Back" type="Button" parent="CenterContainer/Text&Button/Miscelaneous"]
+margin_left = 102.0
+margin_right = 202.0
+margin_bottom = 41.0
+custom_fonts/font = ExtResource( 1 )
+text = "Volver"
+
+[node name="Start" type="Button" parent="CenterContainer/Text&Button/Miscelaneous"]
+margin_left = 222.0
+margin_right = 374.0
+margin_bottom = 41.0
+custom_fonts/font = ExtResource( 1 )
+text = "Comenzar"
+
+[node name="Party" type="Label" parent="CenterContainer/Text&Button/Miscelaneous"]
+margin_left = 394.0
+margin_top = 12.0
+margin_right = 438.0
+margin_bottom = 29.0
+custom_fonts/font = ExtResource( 2 )
+text = "Equipo:"
+[connection signal="pressed" from="CenterContainer/Text&Button/Characters/Armada" to="." method="_on_Armada_pressed"]
+[connection signal="pressed" from="CenterContainer/Text&Button/Miscelaneous/Back" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="CenterContainer/Text&Button/Miscelaneous/Start" to="." method="_on_Start_pressed"]

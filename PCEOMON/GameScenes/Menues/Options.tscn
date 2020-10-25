@@ -1,0 +1,51 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Font/ButtonFont.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Font/VersionFont.tres" type="DynamicFont" id=2]
+[ext_resource path="res://GameScenes/Menues/Options.gd" type="Script" id=3]
+
+[node name="Options" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Options" type="VBoxContainer" parent="CenterContainer"]
+margin_left = 161.0
+margin_top = 169.0
+margin_right = 479.0
+margin_bottom = 310.0
+custom_constants/separation = 20
+alignment = 1
+
+[node name="Text" type="Label" parent="CenterContainer/Options"]
+margin_right = 318.0
+margin_bottom = 17.0
+custom_fonts/font = ExtResource( 2 )
+text = "Menú de Opciones"
+align = 1
+
+[node name="Fullscreen" type="CheckButton" parent="CenterContainer/Options"]
+margin_top = 37.0
+margin_right = 318.0
+margin_bottom = 80.0
+custom_fonts/font = ExtResource( 1 )
+text = "Pantalla completa"
+
+[node name="Back" type="Button" parent="CenterContainer/Options"]
+margin_top = 100.0
+margin_right = 318.0
+margin_bottom = 141.0
+custom_fonts/font = ExtResource( 1 )
+text = "Volver"
+[connection signal="toggled" from="CenterContainer/Options/Fullscreen" to="." method="_on_Fullscreen_toggled"]
+[connection signal="pressed" from="CenterContainer/Options/Back" to="." method="_on_Back_pressed"]
