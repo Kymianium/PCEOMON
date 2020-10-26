@@ -1,65 +1,157 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Font/VersionFont.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Font/SmallFont.tres" type="DynamicFont" id=2]
 [ext_resource path="res://Sprites/PCEOMONES/Major/Armada/Armada_avatar.png" type="Texture" id=3]
-[ext_resource path="res://GameScenes/Menues/Selection/SelectPCEOMON.gd" type="Script" id=4]
+[ext_resource path="res://GameScenes/Menues/Selection/PCEOMONInfo.gd" type="Script" id=4]
+[ext_resource path="res://Font/ButtonFont.tres" type="DynamicFont" id=5]
 
 [node name="PCEOMONInfo" type="Control"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
+script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Sprite" type="TextureRect" parent="."]
-margin_left = 276.0
-margin_top = 70.4
-margin_right = 364.0
-margin_bottom = 158.4
+[node name="VBoxGlobal" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 20.0
+margin_top = 20.0
+margin_right = -20.0
+margin_bottom = -20.0
+custom_constants/separation = 20
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MainInfo" type="HBoxContainer" parent="VBoxGlobal"]
+margin_top = 60.0
+margin_right = 600.0
+margin_bottom = 131.0
+custom_constants/separation = 20
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SpriteName" type="VBoxContainer" parent="VBoxGlobal/MainInfo"]
+margin_left = 87.0
+margin_right = 155.0
+margin_bottom = 71.0
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Sprite" type="TextureRect" parent="VBoxGlobal/MainInfo/SpriteName"]
+margin_right = 68.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 50, 50 )
 texture = ExtResource( 3 )
-expand = true
+stretch_mode = 4
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Name" type="Label" parent="."]
-margin_left = 285.0
-margin_top = 40.0
-margin_right = 355.0
-margin_bottom = 60.0
+[node name="Name" type="Label" parent="VBoxGlobal/MainInfo/SpriteName"]
+margin_top = 54.0
+margin_right = 68.0
+margin_bottom = 71.0
 custom_fonts/font = ExtResource( 1 )
 text = "PCEOMON"
+align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Descripcion" type="Label" parent="."]
-margin_left = 34.4915
-margin_top = 213.485
-margin_right = 587.492
-margin_bottom = 383.485
+[node name="Descripcion" type="Label" parent="VBoxGlobal/MainInfo"]
+margin_left = 175.0
+margin_top = 24.0
+margin_right = 513.0
+margin_bottom = 47.0
 custom_fonts/font = ExtResource( 2 )
 text = "Aquí va una increíble cantidad de texto"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Seleccionar" type="Button" parent="."]
-margin_left = 91.999
-margin_top = 393.864
-margin_right = 250.999
-margin_bottom = 434.864
-script = ExtResource( 4 )
+[node name="Miscelaneus" type="HBoxContainer" parent="VBoxGlobal"]
+margin_top = 151.0
+margin_right = 600.0
+margin_bottom = 168.0
+
+[node name="Type" type="Label" parent="VBoxGlobal/Miscelaneus"]
+margin_right = 128.0
+margin_bottom = 17.0
+custom_fonts/font = ExtResource( 1 )
+text = "TIpo Tu puta madre"
+
+[node name="AbilityAttacks" type="VBoxContainer" parent="VBoxGlobal"]
+margin_top = 188.0
+margin_right = 600.0
+margin_bottom = 319.0
+
+[node name="Ability" type="Label" parent="VBoxGlobal/AbilityAttacks"]
+margin_right = 600.0
+margin_bottom = 23.0
+custom_fonts/font = ExtResource( 2 )
+text = "Habilidad: Las pajas"
+
+[node name="Attack1" type="Label" parent="VBoxGlobal/AbilityAttacks"]
+margin_top = 27.0
+margin_right = 600.0
+margin_bottom = 50.0
+custom_fonts/font = ExtResource( 2 )
+text = "Ataque 1: La paja"
+
+[node name="Attack2" type="Label" parent="VBoxGlobal/AbilityAttacks"]
+margin_top = 54.0
+margin_right = 600.0
+margin_bottom = 77.0
+custom_fonts/font = ExtResource( 2 )
+text = "Ataque 2: La paja"
+
+[node name="Attack3" type="Label" parent="VBoxGlobal/AbilityAttacks"]
+margin_top = 81.0
+margin_right = 600.0
+margin_bottom = 104.0
+custom_fonts/font = ExtResource( 2 )
+text = "Ataque 3: La paja"
+
+[node name="Attack4" type="Label" parent="VBoxGlobal/AbilityAttacks"]
+margin_top = 108.0
+margin_right = 600.0
+margin_bottom = 131.0
+custom_fonts/font = ExtResource( 2 )
+text = "Ataque 4: La paja"
+
+[node name="Control" type="HBoxContainer" parent="VBoxGlobal"]
+margin_top = 339.0
+margin_right = 600.0
+margin_bottom = 380.0
+custom_constants/separation = 20
+alignment = 1
+
+[node name="Seleccionar" type="Button" parent="VBoxGlobal/Control"]
+margin_left = 157.0
+margin_right = 322.0
+margin_bottom = 41.0
+custom_fonts/font = ExtResource( 5 )
+text = "Seleccionar"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Volver" type="Button" parent="."]
-margin_left = 389.0
-margin_top = 393.864
-margin_right = 548.0
-margin_bottom = 434.864
+[node name="Volver" type="Button" parent="VBoxGlobal/Control"]
+margin_left = 342.0
+margin_right = 442.0
+margin_bottom = 41.0
+custom_fonts/font = ExtResource( 5 )
+text = "Volver"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+[connection signal="pressed" from="VBoxGlobal/Control/Seleccionar" to="." method="_on_Seleccionar_pressed"]
+[connection signal="pressed" from="VBoxGlobal/Control/Volver" to="." method="_on_Volver_pressed"]

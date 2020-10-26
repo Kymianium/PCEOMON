@@ -26,10 +26,21 @@ func _on_Start_pressed():
 func _on_Armada_pressed():
 	#manage_party("Armada")
 	$"CenterContainer".visible = false
-	$"ArmadaInfo".visible = true
-	pass
+	$"PCEOMONInfo".visible = true
+	$"PCEOMONInfo/VBoxGlobal/MainInfo/SpriteName/Name".text = "Armada"
 
 
 func _on_Alparko_pressed():
-	#manage_party("Alparko")
-	pass
+	#manage_party("Armada")
+	$"CenterContainer".visible = false
+	$"PCEOMONInfo".visible = true
+	$"PCEOMONInfo/VBoxGlobal/MainInfo/SpriteName/Name".text = "Alparko"
+
+
+func _on_PCEOMONInfo_volver():
+	$"CenterContainer".visible = true
+	$"PCEOMONInfo".visible = false
+
+
+func _on_PCEOMONInfo_seleccionar():
+	manage_party($"PCEOMONInfo/VBoxGlobal/MainInfo/SpriteName/Name".text)
