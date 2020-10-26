@@ -14,6 +14,11 @@ func manage_party(pceomon):
 		text = text.replace(' ' + pceomon,"")
 		$"CenterContainer/Text&Button/Miscelaneous/Party".text = text
 	print(metadata.party)
+func change_select_button(pceomon):
+	if pceomon in metadata.party:
+		$"PCEOMONInfo/VBoxGlobal/Control/Seleccionar".text = "Quitar"
+	else:
+		$"PCEOMONInfo/VBoxGlobal/Control/Seleccionar".text = "Seleccionar"
 
 func _on_Button_pressed():
 	get_tree().change_scene("res://Title/TitleScreen.tscn")
@@ -28,6 +33,7 @@ func _on_Armada_pressed():
 	$"CenterContainer".visible = false
 	$"PCEOMONInfo".visible = true
 	$"PCEOMONInfo/VBoxGlobal/MainInfo/SpriteName/Name".text = "Armada"
+	change_select_button("Armada")
 
 
 func _on_Alparko_pressed():
@@ -35,6 +41,7 @@ func _on_Alparko_pressed():
 	$"CenterContainer".visible = false
 	$"PCEOMONInfo".visible = true
 	$"PCEOMONInfo/VBoxGlobal/MainInfo/SpriteName/Name".text = "Alparko"
+	change_select_button("Alparko")
 
 
 func _on_PCEOMONInfo_volver():
@@ -44,3 +51,4 @@ func _on_PCEOMONInfo_volver():
 
 func _on_PCEOMONInfo_seleccionar():
 	manage_party($"PCEOMONInfo/VBoxGlobal/MainInfo/SpriteName/Name".text)
+	change_select_button($"PCEOMONInfo/VBoxGlobal/MainInfo/SpriteName/Name".text)
