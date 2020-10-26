@@ -24,8 +24,12 @@ func _on_Start_pressed():
 
 
 func _on_Armada_pressed():
-	manage_party("Armada")
+	#manage_party("Armada")
+	$"CenterContainer".visible = false
+	$"ArmadaInfo".visible = true
+	pass
 
 
 func _on_Alparko_pressed():
-	manage_party("Alparko")
+	#manage_party("Alparko")
+	pass
