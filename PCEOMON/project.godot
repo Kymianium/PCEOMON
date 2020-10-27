@@ -17,7 +17,7 @@ _global_script_class_icons={
 
 config/name="PCEOMON"
 config/description="¡Disfruta de un juego de combates con tu equipo de PCEOMONES!"
-run/main_scene="res://Title/TitleScreen.tscn"
+run/main_scene="res://Title/Intro.tscn"
 config/use_custom_user_dir=true
 config/custom_user_dir_name="PCEOMONmetainf"
 config/icon="res://Title/icon.png"

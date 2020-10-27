@@ -1,5 +1,7 @@
 extends Control
-
+#Cargamos los sprites de los PCEOMONES
+var armadaS = preload("res://Sprites/PCEOMONES/Major/Armada/Armada_avatar.png")
+var alparkoS = preload("res://Sprites/PCEOMONES/Major/Alparko/Alparko_avatar.png")
 
 # Añade el pceomon a la party si no está y lo elimina si está
 func manage_party(pceomon):
@@ -14,6 +16,7 @@ func manage_party(pceomon):
 		text = text.replace(' ' + pceomon,"")
 		$"CenterContainer/Text&Button/Miscelaneous/Party".text = text
 	print(metadata.party)
+	
 func change_select_button(pceomon):
 	if pceomon in metadata.party:
 		$"PCEOMONInfo/VBoxGlobal/Control/Seleccionar".text = "Quitar"
@@ -33,6 +36,7 @@ func _on_Armada_pressed():
 	$"CenterContainer".visible = false
 	$"PCEOMONInfo".visible = true
 	$"PCEOMONInfo/VBoxGlobal/MainInfo/SpriteName/Name".text = "Armada"
+	$"PCEOMONInfo/VBoxGlobal/MainInfo/SpriteName/Sprite".texture = armadaS
 	change_select_button("Armada")
 
 
@@ -41,7 +45,9 @@ func _on_Alparko_pressed():
 	$"CenterContainer".visible = false
 	$"PCEOMONInfo".visible = true
 	$"PCEOMONInfo/VBoxGlobal/MainInfo/SpriteName/Name".text = "Alparko"
+	$"PCEOMONInfo/VBoxGlobal/MainInfo/SpriteName/Sprite".texture = alparkoS
 	change_select_button("Alparko")
+
 
 
 func _on_PCEOMONInfo_volver():
