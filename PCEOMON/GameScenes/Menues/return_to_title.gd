@@ -31,17 +31,37 @@ func _on_Start_pressed():
 	get_tree().change_scene("res://GameScenes/CombatScenes/CombatTemporary.tscn")
 
 
-func _on_Armada_pressed():
-	#manage_party("Armada")
+func setPCEOMONinfo(name : String, texture, description : String,
+ type : String, ability : String, att1 : String, att2 : String, att3 : String, att4 : String):
 	$"CenterContainer".visible = false
 	$"PCEOMONInfo".visible = true
-	$"PCEOMONInfo/VBoxGlobal/MainInfo/SpriteName/Name".text = "Armada"
-	$"PCEOMONInfo/VBoxGlobal/MainInfo/SpriteName/Sprite".texture = armadaS
-	change_select_button("Armada")
+	$"PCEOMONInfo/VBoxGlobal/MainInfo/SpriteName/Name".text = name
+	$"PCEOMONInfo/VBoxGlobal/MainInfo/SpriteName/Sprite".texture = texture
+	$"PCEOMONInfo/VBoxGlobal/MainInfo/Descripcion".text = description
+	$"PCEOMONInfo/VBoxGlobal/Miscelaneus/Type".text = type
+	$"PCEOMONInfo/VBoxGlobal/AbilityAttacks/Ability".text = ability
+	$"PCEOMONInfo/VBoxGlobal/AbilityAttacks/Attack1".text = att1
+	$"PCEOMONInfo/VBoxGlobal/AbilityAttacks/Attack2".text = att2
+	$"PCEOMONInfo/VBoxGlobal/AbilityAttacks/Attack3".text = att3
+	$"PCEOMONInfo/VBoxGlobal/AbilityAttacks/Attack4".text = att4
+	change_select_button(name)
+
+
+func _on_Armada_pressed():
+	setPCEOMONinfo("Armada", armadaS, "Una auténtica leyenda del PCEO, víctima de una \ngrave adicción a las bebidas alcohólicas y a Bad Bunny.\n @alvaritoarmada en instagram", "Alcohólico",
+	"Rapunzel - Gana un escudo de manera pasiva",
+	"Postureo - Daño químico y baja la precisión de los enemigos.", 
+	"El Quijote - Un caballero hidalgo. Aturde y envenena a un enemigo.", 
+	"Esto no es na - Recupera alcohol en sangre y hace daño químico.", 
+	"¿Un lolete? - Dispara proyectiles y dinamita a todos los enemigos.")
 
 
 func _on_Alparko_pressed():
-	#manage_party("Armada")
+	setPCEOMONinfo("Alparko", alparkoS,"Un capo. Liberal en lo económico. \n Seguidlo en twitter: @putogordo69", "Programador" ,
+	"Peaceful mode - No puede ser atacado hasta no atacar", "/tp - Redirige el daño de un ataque", 
+	"Aspecto ígneo - Incrementa daño del siguiente ataque de un\n PCEOMON", 
+	"/timeset day - Elimina criaturas pasivas",
+	 "/weather clear - Devuelve los stats a su estado original")
 	$"CenterContainer".visible = false
 	$"PCEOMONInfo".visible = true
 	$"PCEOMONInfo/VBoxGlobal/MainInfo/SpriteName/Name".text = "Alparko"

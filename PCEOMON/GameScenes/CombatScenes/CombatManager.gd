@@ -1,21 +1,21 @@
-extends Control
+extends Node2D
 
 
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
 
+func stop_time():
+	pass
+
+func continue_time():
+	pass
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$LogoAnimation.play("QAnimation")
-	$IntroMusic.play()
+	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
-
-
-func _on_LogoAnimation_animation_finished(anim_name):
-	get_tree().change_scene("res://Title/TitleScreen.tscn")

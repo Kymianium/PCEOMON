@@ -92,6 +92,7 @@ text = "TIpo Tu puta madre"
 margin_top = 188.0
 margin_right = 600.0
 margin_bottom = 319.0
+custom_constants/separation = 5
 
 [node name="Ability" type="Label" parent="VBoxGlobal/AbilityAttacks"]
 margin_right = 600.0
