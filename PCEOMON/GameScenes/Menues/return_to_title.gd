@@ -3,19 +3,25 @@ extends Control
 var armadaS = preload("res://Sprites/PCEOMONES/Major/Armada/Armada_avatar.png")
 var alparkoS = preload("res://Sprites/PCEOMONES/Major/Alparko/Alparko_avatar.png")
 
+var paths = { "Armada" : "res://Sprites/PCEOMONES/Major/Armada/Armada.tscn",
+"Alparko" : "res://Sprites/PCEOMONES/Major/Alparko/Alparko.tscn" }
+
 # Añade el pceomon a la party si no está y lo elimina si está
 func manage_party(pceomon):
-	if not (pceomon in metadata.party):
-		metadata.party.append(pceomon)
-		var text = $"CenterContainer/Text&Button/Miscelaneous/Party".text
-		text = text + ' ' + pceomon
-		$"CenterContainer/Text&Button/Miscelaneous/Party".text = text
-	else:
-		metadata.party.erase(pceomon)
-		var text = $"CenterContainer/Text&Button/Miscelaneous/Party".text
-		text = text.replace(' ' + pceomon,"")
-		$"CenterContainer/Text&Button/Miscelaneous/Party".text = text
-	print(metadata.party)
+	if (metadata.party.size() < 5):
+		if not (pceomon in metadata.party):
+			metadata.party.append(pceomon)
+			metadata.party_paths.append(paths[pceomon])
+			var text = $"CenterContainer/MenuDistribution/Miscelaneous/Party".text
+			text = text + ' ' + pceomon
+			$"CenterContainer/MenuDistribution/Miscelaneous/Party".text = text
+		else:
+			metadata.party.erase(pceomon)
+			metadata.party_paths.erase(paths[pceomon])
+			var text = $"CenterContainer/MenuDistribution/Miscelaneous/Party".text	
+			text = text.replace(' ' + pceomon,"")
+			$"CenterContainer/MenuDistribution/Miscelaneous/Party".text = text
+	print(metadata.party, metadata.party_paths)
 	
 func change_select_button(pceomon):
 	if pceomon in metadata.party:
@@ -67,6 +73,8 @@ func _on_Alparko_pressed():
 	$"PCEOMONInfo/VBoxGlobal/MainInfo/SpriteName/Name".text = "Alparko"
 	$"PCEOMONInfo/VBoxGlobal/MainInfo/SpriteName/Sprite".texture = alparkoS
 	change_select_button("Alparko")
+	
+	
 
 
 
