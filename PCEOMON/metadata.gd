@@ -16,3 +16,7 @@ var time_exists : int = 0
 # ESTA VARIABLE ES UN ARRAY DOBLE QUE ALMACENA QUÉ POSICION DEBE DE 
 # TENER CADA PCEOMÓN EN PANTALLA DURANTE EL COMBATE.
 var combat_position = [ [10, 100], [70, 10], [150, 30], [100, 150], [180, 180] ]
+
+# BOOLEANO PARA VER SI ESTAMOS EN FULLSCREEN O NO
+var fullscreen:bool = false
+var first:bool = true

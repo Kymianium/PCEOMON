@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Font/ButtonFont.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Font/VersionFont.tres" type="DynamicFont" id=2]
 [ext_resource path="res://GameScenes/Menues/Options.gd" type="Script" id=3]
+[ext_resource path="res://Font/SmallFont.tres" type="DynamicFont" id=4]
 
 [node name="Options" type="Control"]
 anchor_right = 1.0
@@ -20,32 +21,46 @@ __meta__ = {
 }
 
 [node name="Options" type="VBoxContainer" parent="CenterContainer"]
-margin_left = 161.0
-margin_top = 169.0
-margin_right = 479.0
-margin_bottom = 310.0
+margin_left = 158.0
+margin_top = 173.0
+margin_right = 482.0
+margin_bottom = 306.0
 custom_constants/separation = 20
 alignment = 1
 
 [node name="Text" type="Label" parent="CenterContainer/Options"]
-margin_right = 318.0
+margin_right = 324.0
 margin_bottom = 17.0
 custom_fonts/font = ExtResource( 2 )
 text = "Menú de Opciones"
 align = 1
 
-[node name="Fullscreen" type="CheckButton" parent="CenterContainer/Options"]
+[node name="Fullscreen2" type="HBoxContainer" parent="CenterContainer/Options"]
 margin_top = 37.0
-margin_right = 318.0
-margin_bottom = 80.0
+margin_right = 324.0
+margin_bottom = 72.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FullscreenText" type="Label" parent="CenterContainer/Options/Fullscreen2"]
+margin_right = 246.0
+margin_bottom = 35.0
 custom_fonts/font = ExtResource( 1 )
-text = "Pantalla completa"
+text = "Pantalla completa "
+
+[node name="FulscreenButton" type="Button" parent="CenterContainer/Options/Fullscreen2"]
+margin_left = 250.0
+margin_right = 324.0
+margin_bottom = 35.0
+custom_fonts/font = ExtResource( 4 )
+text = "Activar"
 
 [node name="Back" type="Button" parent="CenterContainer/Options"]
-margin_top = 100.0
-margin_right = 318.0
-margin_bottom = 141.0
+margin_top = 92.0
+margin_right = 324.0
+margin_bottom = 133.0
 custom_fonts/font = ExtResource( 1 )
 text = "Volver"
-[connection signal="toggled" from="CenterContainer/Options/Fullscreen" to="." method="_on_Fullscreen_toggled"]
+[connection signal="pressed" from="CenterContainer/Options/Fullscreen2/FulscreenButton" to="." method="_on_FulscreenButton_pressed"]
 [connection signal="pressed" from="CenterContainer/Options/Back" to="." method="_on_Back_pressed"]
