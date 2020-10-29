@@ -6,6 +6,12 @@ var alparkoS = preload("res://Sprites/PCEOMONES/Major/Alparko/Alparko_avatar.png
 var paths = { "Armada" : "res://Sprites/PCEOMONES/Major/Armada/Armada.tscn",
 "Alparko" : "res://Sprites/PCEOMONES/Major/Alparko/Alparko.tscn" }
 
+func _ready():
+	$CenterContainer/MenuDistribution/Miscelaneous/Party.text = "Equipo: "
+	for pceomon in metadata.party:
+		$CenterContainer/MenuDistribution/Miscelaneous/Party.text = $CenterContainer/MenuDistribution/Miscelaneous/Party.text + ' ' + pceomon
+
+
 # Añade el pceomon a la party si no está y lo elimina si está
 func manage_party(pceomon):
 	if (metadata.party.size() < 5):
