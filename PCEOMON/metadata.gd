@@ -8,6 +8,7 @@ extends Node2D
 # Y LA RUTA A SU OBJETO.
 var party = []
 var party_paths = []
+var avatar_paths = []
 
 # ESTA VARIABLE INDICA CUÁNTOS PCEOMONES ESTÁN ESPERANDO PARA ATACAR,
 # CUANDO SEA DISTINTA DE 0, EL TIEMPO "NO EXISTIRÁ" Y NO TRASCURRIRÁ
@@ -18,5 +19,5 @@ var time_exists : int = 0
 var combat_position = [ [10, 100], [70, 10], [150, 30], [100, 150], [180, 180] ]
 
 # BOOLEANO PARA VER SI ESTAMOS EN FULLSCREEN O NO
-var fullscreen:bool = false
-var first:bool = true
+var fullscreen : bool = false
+var first : bool = true

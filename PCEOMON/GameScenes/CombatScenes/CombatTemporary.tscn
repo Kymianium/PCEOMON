@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://GameScenes/CombatScenes/CombatManager.gd" type="Script" id=1]
+[ext_resource path="res://Font/SmallFont.tres" type="DynamicFont" id=2]
 [ext_resource path="res://Sprites/PCEOMONES/Bosses/GPantanos/GPantanos.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Font/ButtonFont.tres" type="DynamicFont" id=4]
 
 [node name="TurnManager" type="Node2D"]
 script = ExtResource( 1 )
@@ -25,15 +25,119 @@ __meta__ = {
 [node name="CombatGUI" type="HBoxContainer" parent="Combatinterface"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+custom_constants/separation = 10
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="DummyButton" type="Button" parent="Combatinterface/CombatGUI"]
-margin_left = 169.0
-margin_right = 470.0
+[node name="MainOptions" type="VBoxContainer" parent="Combatinterface/CombatGUI"]
+margin_left = 80.0
+margin_right = 163.0
 margin_bottom = 150.0
-custom_fonts/font = ExtResource( 4 )
-text = "PELEA PELEA PELEA"
-[connection signal="pressed" from="Combatinterface/CombatGUI/DummyButton" to="." method="_on_DummyButton_pressed"]
+custom_constants/separation = 10
+alignment = 1
+
+[node name="Fight" type="Button" parent="Combatinterface/CombatGUI/MainOptions"]
+margin_top = 21.0
+margin_right = 83.0
+margin_bottom = 50.0
+custom_fonts/font = ExtResource( 2 )
+text = "Luchar"
+
+[node name="Objects" type="Button" parent="Combatinterface/CombatGUI/MainOptions"]
+margin_top = 60.0
+margin_right = 83.0
+margin_bottom = 89.0
+custom_fonts/font = ExtResource( 2 )
+text = "Objetos"
+
+[node name="Data" type="Button" parent="Combatinterface/CombatGUI/MainOptions"]
+margin_top = 99.0
+margin_right = 83.0
+margin_bottom = 128.0
+custom_fonts/font = ExtResource( 2 )
+text = "Datos"
+
+[node name="Fight" type="VBoxContainer" parent="Combatinterface/CombatGUI"]
+margin_left = 173.0
+margin_right = 559.0
+margin_bottom = 150.0
+alignment = 1
+
+[node name="Avatars" type="HBoxContainer" parent="Combatinterface/CombatGUI/Fight"]
+margin_top = 39.0
+margin_right = 386.0
+margin_bottom = 39.0
+alignment = 1
+
+[node name="Attacks" type="HBoxContainer" parent="Combatinterface/CombatGUI/Fight"]
+margin_top = 43.0
+margin_right = 386.0
+margin_bottom = 111.0
+custom_constants/separation = 10
+
+[node name="Attack1" type="VBoxContainer" parent="Combatinterface/CombatGUI/Fight/Attacks"]
+margin_right = 74.0
+margin_bottom = 68.0
+custom_constants/separation = 10
+alignment = 1
+
+[node name="Attack1" type="Button" parent="Combatinterface/CombatGUI/Fight/Attacks/Attack1"]
+margin_right = 74.0
+margin_bottom = 29.0
+custom_fonts/font = ExtResource( 2 )
+text = "Attack"
+
+[node name="Attack2" type="Button" parent="Combatinterface/CombatGUI/Fight/Attacks/Attack1"]
+margin_top = 39.0
+margin_right = 74.0
+margin_bottom = 68.0
+custom_fonts/font = ExtResource( 2 )
+text = "Attack"
+
+[node name="Attack2" type="VBoxContainer" parent="Combatinterface/CombatGUI/Fight/Attacks"]
+margin_left = 84.0
+margin_right = 158.0
+margin_bottom = 68.0
+custom_constants/separation = 10
+alignment = 1
+
+[node name="Attack 3" type="Button" parent="Combatinterface/CombatGUI/Fight/Attacks/Attack2"]
+margin_right = 74.0
+margin_bottom = 29.0
+custom_fonts/font = ExtResource( 2 )
+text = "Attack"
+
+[node name="Attack4" type="Button" parent="Combatinterface/CombatGUI/Fight/Attacks/Attack2"]
+margin_top = 39.0
+margin_right = 74.0
+margin_bottom = 68.0
+custom_fonts/font = ExtResource( 2 )
+text = "Attack"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Combatinterface/CombatGUI/Fight/Attacks"]
+margin_left = 168.0
+margin_right = 308.0
+margin_bottom = 68.0
+
+[node name="Queue" type="Button" parent="Combatinterface/CombatGUI/Fight/Attacks/VBoxContainer"]
+margin_right = 140.0
+margin_bottom = 29.0
+custom_fonts/font = ExtResource( 2 )
+text = "Cola"
+
+[node name="Trascendence" type="Button" parent="Combatinterface/CombatGUI/Fight/Attacks/VBoxContainer"]
+margin_top = 33.0
+margin_right = 140.0
+margin_bottom = 62.0
+custom_fonts/font = ExtResource( 2 )
+text = "Trascendencia"
+
+[node name="Fusion" type="Button" parent="Combatinterface/CombatGUI/Fight/Attacks"]
+margin_left = 318.0
+margin_right = 386.0
+margin_bottom = 68.0
+custom_fonts/font = ExtResource( 2 )
+text = "Fusión"
+[connection signal="pressed" from="Combatinterface/CombatGUI/Fight/Attacks/Attack1/Attack1" to="." method="_on_Attack1_pressed"]

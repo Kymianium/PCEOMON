@@ -5,6 +5,8 @@ var alparkoS = preload("res://Sprites/PCEOMONES/Major/Alparko/Alparko_avatar.png
 
 var paths = { "Armada" : "res://Sprites/PCEOMONES/Major/Armada/Armada.tscn",
 "Alparko" : "res://Sprites/PCEOMONES/Major/Alparko/Alparko.tscn" }
+var avatar_paths = { "Armada" : "res://Sprites/PCEOMONES/Major/Armada/Armada_avatar.png",
+"Alparko" : "res://Sprites/PCEOMONES/Major/Alparko/Alparko_avatar.png" }
 
 func _ready():
 	$CenterContainer/MenuDistribution/Miscelaneous/Party.text = "Equipo: "
@@ -18,12 +20,14 @@ func manage_party(pceomon):
 		if not (pceomon in metadata.party):
 			metadata.party.append(pceomon)
 			metadata.party_paths.append(paths[pceomon])
+			metadata.avatar_paths.append(avatar_paths[pceomon])
 			var text = $"CenterContainer/MenuDistribution/Miscelaneous/Party".text
 			text = text + ' ' + pceomon
 			$"CenterContainer/MenuDistribution/Miscelaneous/Party".text = text
 		else:
 			metadata.party.erase(pceomon)
 			metadata.party_paths.erase(paths[pceomon])
+			metadata.avatar_paths.erase(avatar_paths[pceomon])
 			var text = $"CenterContainer/MenuDistribution/Miscelaneous/Party".text	
 			text = text.replace(' ' + pceomon,"")
 			$"CenterContainer/MenuDistribution/Miscelaneous/Party".text = text
