@@ -1,7 +1,7 @@
 extends Control
 #Cargamos los sprites de los PCEOMONES
-var armadaS = preload("res://Sprites/PCEOMONES/Major/Armada/Armada_avatar.png")
-var alparkoS = preload("res://Sprites/PCEOMONES/Major/Alparko/Alparko_avatar.png")
+var ArmadaS = preload("res://Sprites/PCEOMONES/Major/Armada/Armada_avatar.png")
+var AlparkoS = preload("res://Sprites/PCEOMONES/Major/Alparko/Alparko_avatar.png")
 
 var paths = { "Armada" : "res://Sprites/PCEOMONES/Major/Armada/Armada.tscn",
 "Alparko" : "res://Sprites/PCEOMONES/Major/Alparko/Alparko.tscn" }
@@ -62,26 +62,33 @@ func setPCEOMONinfo(name : String, texture, description : String,
 	$"PCEOMONInfo/VBoxGlobal/AbilityAttacks/Attack4".text = att4
 	change_select_button(name)
 
+#######################################################################################
+######PARA VER LA ESTRRUCTURA QUE SIGUE EL TXT COMPROBAR EL ARCHIVO ModelInfo.tres######
+#######################################################################################
+func getAndSetInfo(pceomon:String, texture):
+	var file = File.new()
+	file.open("res://GameScenes/Menues/Selection/PCEOMONES/" + pceomon +"Info.txt", File.READ)
+	var name = file.get_line()
+	var description = file.get_line().replace("\\n","\n")
+	var type = file.get_line()
+	var ability = file.get_line()
+	var att1 = file.get_line()
+	var att2 = file.get_line()
+	var att3 = file.get_line()
+	var att4 = file.get_line()
+	setPCEOMONinfo(name, texture, description, type, ability, att1, att2, att3, att4)
+	
 
 func _on_Armada_pressed():
-	setPCEOMONinfo("Armada", armadaS, "Una auténtica leyenda del PCEO, víctima de una \ngrave adicción a las bebidas alcohólicas y a Bad Bunny.\n @alvaritoarmada en instagram", "Alcohólico",
-	"Rapunzel - Gana un escudo de manera pasiva",
-	"Postureo - Daño químico y baja la precisión de los enemigos.", 
-	"El Quijote - Un caballero hidalgo. Aturde y envenena a un enemigo.", 
-	"Esto no es na - Recupera alcohol en sangre y hace daño químico.", 
-	"¿Un lolete? - Dispara proyectiles y dinamita a todos los enemigos.")
+	getAndSetInfo("Armada",ArmadaS)
 
 
 func _on_Alparko_pressed():
-	setPCEOMONinfo("Alparko", alparkoS,"Un capo. Liberal en lo económico. \n Seguidlo en twitter: @putogordo69", "Programador" ,
-	"Peaceful mode - No puede ser atacado hasta no atacar", "/tp - Redirige el daño de un ataque", 
-	"Aspecto ígneo - Incrementa daño del siguiente ataque de un\n PCEOMON", 
-	"/timeset day - Elimina criaturas pasivas",
-	 "/weather clear - Devuelve los stats a su estado original")
+	getAndSetInfo("Alparko",AlparkoS)
 	$"CenterContainer".visible = false
 	$"PCEOMONInfo".visible = true
 	$"PCEOMONInfo/VBoxGlobal/MainInfo/SpriteName/Name".text = "Alparko"
-	$"PCEOMONInfo/VBoxGlobal/MainInfo/SpriteName/Sprite".texture = alparkoS
+	$"PCEOMONInfo/VBoxGlobal/MainInfo/SpriteName/Sprite".texture = AlparkoS
 	change_select_button("Alparko")
 	
 	

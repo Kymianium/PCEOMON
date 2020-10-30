@@ -1,0 +1,8 @@
+Alparko
+Un capo. Liberal en lo económico. \n Seguidlo en twitter: @putogordo69
+Programador
+Peaceful mode - No puede ser atacado hasta no atacar
+/tp - Redirige el daño de un ataque
+Aspecto ígneo - Incrementa daño del siguiente ataque de un\n PCEOMON
+/timeset day - Elimina criaturas pasivas
+/weather clear - Devuelve los stats a su estado original
