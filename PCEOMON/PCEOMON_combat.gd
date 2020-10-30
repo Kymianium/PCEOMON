@@ -1,10 +1,23 @@
 extends Skeleton2D
 
 var foes = []
+var chemicaldmg : int
+var physicaldmg : int
+var psychologycaldmg : int
+var chemicaldfc : int
+var physicaldfc : int
+var psychologycaldfc : int
+var speed : int
 var actual_hp : int
 var max_hp : int
 var actual_stamina : int
 var next_attack_required_stamina : int
+var attack1 : String
+var attack2 : String
+var attack3 : String
+var attack4 : String
+var ability : String
+
 export(String) var avatar_path
 
 signal just_died

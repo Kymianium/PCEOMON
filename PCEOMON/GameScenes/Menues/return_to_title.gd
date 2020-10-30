@@ -76,6 +76,7 @@ func getAndSetInfo(pceomon:String, texture):
 	var att2 = file.get_line()
 	var att3 = file.get_line()
 	var att4 = file.get_line()
+	file.close()
 	setPCEOMONinfo(name, texture, description, type, ability, att1, att2, att3, att4)
 	
 

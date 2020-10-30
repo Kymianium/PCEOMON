@@ -5,6 +5,11 @@ var alcohol
 
 func _ready():
 	name = "Armada"
+	ability = "Rapunzel"
+	attack1 = "Postureo"
+	attack2 = "El Quijote"
+	attack3 = "Esto no es na"
+	attack4 = "¿Un lolete?"
 	._ready()
 	avatar_path = "res://Sprites/PCEOMONES/Major/Armada/Armada_avatar.png"
 	next_attack_required_stamina = 600

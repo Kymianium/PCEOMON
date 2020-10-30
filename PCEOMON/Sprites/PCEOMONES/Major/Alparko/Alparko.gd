@@ -4,6 +4,11 @@ var rng = RandomNumberGenerator.new()
 
 func _ready():
 	name = "Alparko"
+	ability = "Peaceful mode"
+	attack1 = "/tp"
+	attack2 = "Aspecto Ígneo"
+	attack3 = "/timeset day"
+	attack4 = "/weather clear"
 	._ready()
 	max_hp = 1000
 	actual_hp = max_hp
