@@ -5,8 +5,11 @@ var actual_hp : int
 var max_hp : int
 var actual_stamina : int
 var next_attack_required_stamina : int
+export(String) var avatar_path
 
 signal just_died
+signal my_turn
+
 #############################
 ###########PRUEBAS###########
 func _ready():
@@ -16,17 +19,31 @@ func _ready():
 	actual_hp = max_hp
 
 func attack():
-	metadata.time_exists = metadata.time_exists + 1
+	emit_signal("my_turn")
+	metadata.time_exists.append(self)
+	print(metadata.time_exists)
 #############################
+func atk1():
+	pass
+func atk2():
+	pass
+func atk3():
+	pass
+func atk4():
+	pass
+func ability():
+	pass
+
+func end_attack():
+	metadata.time_exists.erase(self)
 
 func _process(_delta):
 	if (actual_hp <= 0):
 		return
 	elif(actual_stamina == next_attack_required_stamina):
-		#metadata.time_exists = false
 		attack()
 		actual_stamina = 0
-	elif (metadata.time_exists == 0):
+	elif (metadata.time_exists.size() == 0):
 		actual_stamina = actual_stamina + 1
 		$"StatsSummary/Stamina".value = actual_stamina*100/next_attack_required_stamina
 
