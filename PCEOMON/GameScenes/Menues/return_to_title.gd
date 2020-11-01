@@ -67,7 +67,8 @@ func setPCEOMONinfo(name : String, texture, description : String,
 #######################################################################################
 func getAndSetInfo(pceomon:String, texture):
 	var file = File.new()
-	file.open("res://GameScenes/Menues/Selection/PCEOMONES/" + pceomon +"Info.txt", File.READ)
+	file.open("res://GameScenes/Menues/Selection/PCEOMONES/" + pceomon +"Info.tres", File.READ)
+	print("Leyendo " + pceomon)
 	var name = file.get_line()
 	var description = file.get_line().replace("\\n","\n")
 	var type = file.get_line()
