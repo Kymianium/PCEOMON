@@ -11,11 +11,7 @@ var paths = { "Armada" : "res://Sprites/PCEOMONES/Major/Armada/Armada.tscn",
 
 func _ready():
 	# $Music.volume_db = metadata.volumevalue
-	$Music.play()
-	if metadata.volumevalue != 0:
-		$Music.volume_db = 0 - (10 -metadata.volumevalue)*5     #Esto de aquí que parece nazi es, de hecho, nazi
-	else :
-		$Music.volume_db = -80
+	$"/root/MainScreenMusicController".play_loop("res://OST/IntroAndMenu/character_selection_screen.ogg", true)
 	$CenterContainer/MenuDistribution/Miscelaneous/Party.text = "Equipo: "
 	for pceomon in metadata.party:
 		$CenterContainer/MenuDistribution/Miscelaneous/Party.text = $CenterContainer/MenuDistribution/Miscelaneous/Party.text + ' ' + pceomon
@@ -46,11 +42,13 @@ func change_select_button(pceomon):
 
 func _on_Button_pressed():
 	get_tree().change_scene("res://Title/TitleScreen.tscn")
+	$"/root/MainScreenMusicController".play_loop("", false)
 
 
 func _on_Start_pressed():
 	if (metadata.party.size()>0):
 		get_tree().change_scene("res://GameScenes/CombatScenes/CombatTemporary.tscn")
+		$"/root/MainScreenMusicController".play_loop("", false)
 	else:
 		pass	#PONER ALGÚN MENSJE ROLLO "NO HAS ELEGIDO PCEOMONES"
 

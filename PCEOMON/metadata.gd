@@ -20,6 +20,3 @@ var combat_position = [ [10, 100], [70, 10], [150, 30], [100, 150], [180, 180] ]
 # BOOLEANO PARA VER SI ESTAMOS EN FULLSCREEN O NO
 var fullscreen : bool = false
 var first : bool = true
-
-#VOLUMEN ACTUAL DEL 0 AL 10
-var volumevalue  = 10

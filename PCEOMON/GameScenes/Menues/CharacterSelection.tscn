@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Font/ButtonFont.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Font/VersionFont.tres" type="DynamicFont" id=2]
@@ -8,7 +8,6 @@
 [ext_resource path="res://GameScenes/Menues/Selection/Locked.tscn" type="PackedScene" id=6]
 [ext_resource path="res://GameScenes/Menues/Selection/PCEOMONInfo.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Font/SmallFont.tres" type="DynamicFont" id=8]
-[ext_resource path="res://OST/IntroAndMenu/character_selection_screen.ogg" type="AudioStream" id=9]
 [ext_resource path="res://Sprites/Miscelaneous/Arrows/RightArrow.png" type="Texture" id=10]
 [ext_resource path="res://Sprites/Miscelaneous/Arrows/LeftArrow.png" type="Texture" id=11]
 [ext_resource path="res://GameScenes/Menues/Selection/PCEOMONES/Minor/MarineraDeCantor.tscn" type="PackedScene" id=12]
@@ -223,9 +222,6 @@ custom_fonts/font = ExtResource( 2 )
 text = "Equipo:"
 
 [node name="PCEOMONInfo" parent="." instance=ExtResource( 7 )]
-
-[node name="Music" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 9 )
 [connection signal="pressed" from="CenterContainer/MenuDistribution/Major/SelectAndNavigate/Column1/Armada" to="." method="_on_Armada_pressed"]
 [connection signal="pressed" from="CenterContainer/MenuDistribution/Major/SelectAndNavigate/Column2/Alparko" to="." method="_on_Alparko_pressed"]
 [connection signal="pressed" from="CenterContainer/MenuDistribution/Minor/Minors/CafeteraComunista" to="." method="_on_CafeteraComunista_pressed"]

@@ -7,7 +7,6 @@ func _ready():
 		$"CenterContainer/Options/Fullscreen2/FulscreenButton".text = "Desactivar"
 	else:
 		$"CenterContainer/Options/Fullscreen2/FulscreenButton".text = "Activar"
-	$"CenterContainer/Options/Volume/VolumeValue".text = str(metadata.volumevalue)
 	
 	
 	"""print("first = " + str(metadata.first))
@@ -39,24 +38,8 @@ func _on_FulscreenButton_pressed():
 		$"CenterContainer/Options/Fullscreen2/FulscreenButton".text = "Desactivar"
 
 
-func _on_minus_pressed():
-	if (metadata.volumevalue != 0):
-		metadata.volumevalue -= 1
-		$"CenterContainer/Options/Volume/VolumeValue".text = str(metadata.volumevalue)
-		for music in $"/root/MainScreenMusicController".get_children():
-			if metadata.volumevalue != 0:
-				music.volume_db -= 5
-			else:
-				music.volume_db = -80
-		
 
 
-func _on_plus_pressed():
-	if (metadata.volumevalue != 10):
-		metadata.volumevalue += 1
-		$"CenterContainer/Options/Volume/VolumeValue".text = str(metadata.volumevalue)
-		for music in $"/root/MainScreenMusicController".get_children():
-			if metadata.volumevalue != 1:
-				music.volume_db += 5
-			else:
-				music.volume_db = -45
+func _on_Volume_value_changed(value):
+	$"/root/MainScreenMusicController".volume = value
+	$"/root/MainScreenMusicController".music_volume(value)
