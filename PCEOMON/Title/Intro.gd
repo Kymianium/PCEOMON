@@ -13,7 +13,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	if Input.is_mouse_button_pressed(1) or Input.is_key_pressed(KEY_SPACE) or Input.is_key_pressed(KEY_ENTER):   # si se pulsa el boton izq del raton o el espacio
 		$LogoAnimation.stop()
 		$IntroMusic.stop()

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/character_selection_screen.ogg-24f11429f9867e28c80e0adfd62c29a5.oggstr"
+
+[deps]
+
+source_file="res://OST/IntroAndMenu/character_selection_screen.ogg"
+dest_files=[ "res://.import/character_selection_screen.ogg-24f11429f9867e28c80e0adfd62c29a5.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

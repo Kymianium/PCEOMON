@@ -1,21 +1,22 @@
 [gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://Sprites/Miscelaneous/Bars/Health/Background.png" type="Texture" id=1]
-[ext_resource path="res://Sprites/Miscelaneous/Bars/Alcohol/Fill.png" type="Texture" id=2]
-[ext_resource path="res://Sprites/Miscelaneous/Bars/Health/Fill.png" type="Texture" id=3]
-[ext_resource path="res://Sprites/PCEOMONES/Major/Example.png" type="Texture" id=4]
-[ext_resource path="res://Sprites/Miscelaneous/Bars/Stamina/Background.png" type="Texture" id=5]
-[ext_resource path="res://Sprites/Miscelaneous/Bars/Stamina/Fill.png" type="Texture" id=6]
-[ext_resource path="res://Sprites/Miscelaneous/Bars/Alcohol/Background.png" type="Texture" id=7]
-[ext_resource path="res://GameScenes/CombatScenes/PCEOMON.gd" type="Script" id=8]
+[ext_resource path="res://PCEOMONES_classes/PCEOMON.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/Miscelaneous/Bars/Stamina/Background.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/Miscelaneous/Bars/Alcohol/Background.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/Miscelaneous/Bars/Health/Background.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/Miscelaneous/Bars/Stamina/Fill.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/Miscelaneous/Bars/Alcohol/Fill.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/PCEOMONES/Major/Example.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/Miscelaneous/Bars/Health/Fill.png" type="Texture" id=8]
+
 
 [node name="PCEOMON" type="Skeleton2D"]
 position = Vector2( 20, 10 )
-script = ExtResource( 8 )
+script = ExtResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 0, 60 )
-texture = ExtResource( 4 )
+texture = ExtResource( 7 )
 centered = false
 
 [node name="StatsSummary" type="CenterContainer" parent="."]
@@ -30,8 +31,8 @@ margin_right = 50.0
 margin_bottom = 50.0
 rect_min_size = Vector2( 50, 50 )
 value = 100.0
-texture_under = ExtResource( 1 )
-texture_progress = ExtResource( 3 )
+texture_under = ExtResource( 4 )
+texture_progress = ExtResource( 8 )
 fill_mode = 4
 radial_initial_angle = 180.0
 nine_patch_stretch = true
@@ -42,8 +43,8 @@ margin_top = 10.0
 margin_right = 40.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 30, 30 )
-texture_under = ExtResource( 5 )
-texture_progress = ExtResource( 6 )
+texture_under = ExtResource( 2 )
+texture_progress = ExtResource( 5 )
 fill_mode = 3
 radial_initial_angle = 180.0
 nine_patch_stretch = true
@@ -55,7 +56,7 @@ margin_top = 15.0
 margin_right = 35.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 20, 20 )
-texture_under = ExtResource( 7 )
-texture_progress = ExtResource( 2 )
+texture_under = ExtResource( 3 )
+texture_progress = ExtResource( 6 )
 radial_initial_angle = 180.0
 nine_patch_stretch = true

@@ -50,14 +50,14 @@ func ability():
 func end_attack():
 	metadata.time_exists.erase(self)
 
-func _process(_delta):
+func _process(delta):
 	if (actual_hp <= 0):
 		return
-	elif(actual_stamina == next_attack_required_stamina):
+	elif(actual_stamina >= next_attack_required_stamina):
 		attack()
 		actual_stamina = 0
 	elif (metadata.time_exists.size() == 0):
-		actual_stamina = actual_stamina + 1
+		actual_stamina = actual_stamina + 3000*delta
 		$"StatsSummary/Stamina".value = actual_stamina*100/next_attack_required_stamina
 
 

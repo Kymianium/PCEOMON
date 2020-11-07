@@ -2,12 +2,20 @@ extends Control
 #Cargamos los sprites de los PCEOMONES
 var ArmadaS = preload("res://Sprites/PCEOMONES/Major/Armada/Armada_avatar.png")
 var AlparkoS = preload("res://Sprites/PCEOMONES/Major/Alparko/Alparko_avatar.png")
+var WeierstrassS = preload("res://Sprites/PCEOMONES/Minor/FuncionDeWeierstrass/FuncionDeWeierstrass_avatar.png")
+var CafeteraS = preload("res://Sprites/PCEOMONES/Minor/CafeteraComunista/CafeteraComunista_avatar.png")
 
 var paths = { "Armada" : "res://Sprites/PCEOMONES/Major/Armada/Armada.tscn",
-"Alparko" : "res://Sprites/PCEOMONES/Major/Alparko/Alparko.tscn" }
+"Alparko" : "res://Sprites/PCEOMONES/Major/Alparko/Alparko.tscn" ,}
 
 
 func _ready():
+	# $Music.volume_db = metadata.volumevalue
+	$Music.play()
+	if metadata.volumevalue != 0:
+		$Music.volume_db = 0 - (10 -metadata.volumevalue)*5     #Esto de aquí que parece nazi es, de hecho, nazi
+	else :
+		$Music.volume_db = -80
 	$CenterContainer/MenuDistribution/Miscelaneous/Party.text = "Equipo: "
 	for pceomon in metadata.party:
 		$CenterContainer/MenuDistribution/Miscelaneous/Party.text = $CenterContainer/MenuDistribution/Miscelaneous/Party.text + ' ' + pceomon
@@ -67,9 +75,9 @@ func setPCEOMONinfo(name : String, texture, description : String,
 #######################################################################################
 func getAndSetInfo(pceomon:String, texture):
 	var file = File.new()
-	file.open("res://GameScenes/Menues/Selection/PCEOMONES/" + pceomon +"Info.tres", File.READ)
+	file.open("res://GameScenes/Menues/Selection/PCEOMONES/Major/" + pceomon +"Info.tres", File.READ)
 	print("Leyendo " + pceomon)
-	var name = file.get_line()
+	var name = file.get_line().replace("\\n","\n")
 	var description = file.get_line().replace("\\n","\n")
 	var type = file.get_line().replace("\\n","\n")
 	var ability = file.get_line().replace("\\n","\n")
@@ -79,7 +87,21 @@ func getAndSetInfo(pceomon:String, texture):
 	var att4 = file.get_line().replace("\\n","\n")
 	file.close()
 	setPCEOMONinfo(name, texture, description, type, ability, att1, att2, att3, att4)
-	
+
+func getAndSetInfoMinor(pceomon: String, texture):
+	var file = File.new()
+	file.open("res://GameScenes/Menues/Selection/PCEOMONES/Minor/" + pceomon +"Info.tres", File.READ)
+	print("Leyendo " + pceomon)
+	var name = file.get_line().replace("\\n","\n")
+	var description = file.get_line().replace("\\n","\n")
+	var type = file.get_line().replace("\\n","\n")
+	var ability = file.get_line().replace("\\n","\n")
+	var att1 = file.get_line().replace("\\n","\n")
+	var att2 = file.get_line().replace("\\n","\n")
+	var att3 = file.get_line().replace("\\n","\n")
+	var att4 = file.get_line().replace("\\n","\n")
+	file.close()
+	setPCEOMONinfo(name, texture, description, type, ability, att1, att2, att3, att4)
 
 func _on_Armada_pressed():
 	getAndSetInfo("Armada",ArmadaS)
@@ -87,15 +109,16 @@ func _on_Armada_pressed():
 
 func _on_Alparko_pressed():
 	getAndSetInfo("Alparko",AlparkoS)
-	$"CenterContainer".visible = false
-	$"PCEOMONInfo".visible = true
-	$"PCEOMONInfo/VBoxGlobal/MainInfo/SpriteName/Name".text = "Alparko"
-	$"PCEOMONInfo/VBoxGlobal/MainInfo/SpriteName/Sprite".texture = AlparkoS
-	change_select_button("Alparko")
+	#$"CenterContainer".visible = false
+	#$"PCEOMONInfo".visible = true
+	#$"PCEOMONInfo/VBoxGlobal/MainInfo/SpriteName/Name".text = "Alparko"
+	#$"PCEOMONInfo/VBoxGlobal/MainInfo/SpriteName/Sprite".texture = AlparkoS
+	#change_select_button("Alparko")
 	
 	
 
-
+func _on_FuncionDeWeierstrass_pressed():
+	getAndSetInfoMinor("FuncionDeWeierstrass", WeierstrassS)
 
 func _on_PCEOMONInfo_volver():
 	$"CenterContainer".visible = true
@@ -105,3 +128,14 @@ func _on_PCEOMONInfo_volver():
 func _on_PCEOMONInfo_seleccionar():
 	manage_party($"PCEOMONInfo/VBoxGlobal/MainInfo/SpriteName/Name".text)
 	change_select_button($"PCEOMONInfo/VBoxGlobal/MainInfo/SpriteName/Name".text)
+
+
+
+
+
+func _on_MarineraDeCantor_pressed():
+	pass # Replace with function body.
+
+
+func _on_CafeteraComunista_pressed():
+	getAndSetInfoMinor("CafeteraComunista",CafeteraS)

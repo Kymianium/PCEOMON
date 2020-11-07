@@ -2,7 +2,7 @@
 
 [ext_resource path="res://LogoSprites/QQIT.png" type="Texture" id=1]
 [ext_resource path="res://LogoSprites/Studios.png" type="Texture" id=2]
-[ext_resource path="res://OST/IntroAndMenu/PCEOMON_intro.wav" type="AudioStream" id=3]
+[ext_resource path="res://OST/IntroAndMenu/PCEOMON_intro.ogg" type="AudioStream" id=3]
 [ext_resource path="res://Title/Intro.gd" type="Script" id=4]
 
 [sub_resource type="Animation" id=1]
