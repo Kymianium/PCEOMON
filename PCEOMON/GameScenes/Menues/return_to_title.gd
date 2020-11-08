@@ -4,9 +4,12 @@ var ArmadaS = preload("res://Sprites/PCEOMONES/Major/Armada/Armada_avatar.png")
 var AlparkoS = preload("res://Sprites/PCEOMONES/Major/Alparko/Alparko_avatar.png")
 var WeierstrassS = preload("res://Sprites/PCEOMONES/Minor/FuncionDeWeierstrass/FuncionDeWeierstrass_avatar.png")
 var CafeteraS = preload("res://Sprites/PCEOMONES/Minor/CafeteraComunista/CafeteraComunista_avatar.png")
+var MarineraDeCantorS = preload("res://Sprites/PCEOMONES/Minor/MarineraDeCantor/MarineraDeCantor_avatar.png")
+var TecladoS = preload("res://Sprites/PCEOMONES/Minor/Teclado/Teclado_avatar.png")
 
 var paths = { "Armada" : "res://Sprites/PCEOMONES/Major/Armada/Armada.tscn",
-"Alparko" : "res://Sprites/PCEOMONES/Major/Alparko/Alparko.tscn" ,}
+"Alparko" : "res://Sprites/PCEOMONES/Major/Alparko/Alparko.tscn" ,
+"Cafetera Comunista" : "res://Sprites/PCEOMONES/Minor/CafeteraComunista/CafeteraComunista.tscn"}
 
 
 func _ready():
@@ -132,7 +135,7 @@ func _on_PCEOMONInfo_seleccionar():
 
 
 func _on_MarineraDeCantor_pressed():
-	pass # Replace with function body.
+	getAndSetInfoMinor("MarineraDeCantor", MarineraDeCantorS)
 
 
 func _on_CafeteraComunista_pressed():

@@ -4,6 +4,7 @@ var scene_path_to_load
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$Animations.play("Logo")
 	$FadeIn.fade_out()
 	$"/root/MainScreenMusicController".play_loop_with_intro("res://OST/IntroAndMenu/titlescreen.ogg", "res://OST/IntroAndMenu/titlescreen_loop.ogg", true)
 	$Menu/CenterRow/Play.grab_focus()

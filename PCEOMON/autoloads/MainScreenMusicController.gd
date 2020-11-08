@@ -17,9 +17,10 @@ func play_loop(looppath : String, begin : bool):
 	else:
 		$Loop.stop()
 
-func music_volume(volume):
-	$Loop.volume_db = volume
-	$MainMenu.volume_db = volume
+func music_volume(db):
+	$Loop.volume_db = db
+	$MainMenu.volume_db = db
+	volume = db
 	
 func play_loop_with_intro(intropath : String, looppath : String, begin : bool):
 	if (looping && begin):
