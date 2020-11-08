@@ -3,10 +3,13 @@ extends Skeleton2D
 var foes = []
 var mates = []
 
+#BUFOS
+var buffs = {"chemicaldmg" : [3,1.4]}
+
 #STATS
-var chemicaldmg : int
-var physicaldmg : int
-var psychologycaldmg : int
+var chemicaldmg : int = 1
+var physicaldmg : int = 1
+var psychologycaldmg : int = 1
 var chemicaldfc : int
 var physicaldfc : int
 var psychologycaldfc : int
@@ -96,3 +99,5 @@ func damage(var damage : int):
 		self.visible = false
 		emit_signal("just_died")
 	
+func buff(var stat : String, var mult:float):
+	pass
