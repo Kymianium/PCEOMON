@@ -12,7 +12,7 @@ func _ready():
 	attack4 = "Chocolate caliente"
 	._ready()
 	avatar_path = "res://Sprites/PCEOMONES/Minor/CafeteraComunista/CafeteraComunista_avatar.png"
-	next_attack_required_stamina = 1200
+	next_attack_required_stamina = 1300
 	
 
 #SOBRE ESTE ATAQUE: TAL COMO ESTÁ CUANDO LA CAFETERA METE CAFÉ A ALGUIEN, LE DURA HASTA QUE SE LO DA A OTRO
@@ -23,4 +23,6 @@ func atk1():
 	mate_with_coffe = rng.randi_range(0,foes.size()-1)
 	mates[mate_with_coffe].next_attack_required_stamina /= 1.5
 	end_attack()
+func atk2():
 	
+	pass

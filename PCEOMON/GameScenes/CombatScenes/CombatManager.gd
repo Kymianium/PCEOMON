@@ -47,6 +47,7 @@ func load_pceomones():
 #func _process(delta):
 #	pass
 func change_interface(turner):
+	#print("Cambiando la interfaz:\n a la de : ",turner.name)
 	info = str(turner.name) + "\n" + 'VIDA : ' + str(turner.actual_hp) + '/' + str(turner.max_hp)
 	$"Combatinterface/CombatGUI/Fight/Attacks/Attack1/Attack1".text = turner.attack1
 	$"Combatinterface/CombatGUI/Fight/Attacks/Attack1/Attack2".text = turner.attack2
@@ -58,13 +59,15 @@ func change_interface(turner):
 
 func _on_Attack1_pressed():
 	if (metadata.time_exists.size() != 0):
-		metadata.time_exists[0].atk1()
+		metadata.time_exists[metadata.time_exists.size()-1].atk1()
+		if (metadata.time_exists.size() != 0):
+			change_interface(metadata.time_exists[metadata.time_exists.size()-1])
 
 
 
 func _on_Attack2_pressed():
 	if (metadata.time_exists.size() != 0):
-		metadata.time_exists[0].atk2()
+		metadata.time_exists[metadata.time_exists.size()-1].atk2()
 
 
 func _on_Attack_3_pressed():

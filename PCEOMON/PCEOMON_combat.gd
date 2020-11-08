@@ -50,6 +50,7 @@ func ability():
 
 func end_attack():
 	metadata.time_exists.erase(self)
+	$"StatsSummary/Stamina".value = 0
 
 func _process(delta):
 	if (actual_hp <= 0):
