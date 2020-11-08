@@ -1,6 +1,7 @@
 extends Skeleton2D
 
 var foes = []
+var mates = []
 var chemicaldmg : int
 var physicaldmg : int
 var psychologycaldmg : int

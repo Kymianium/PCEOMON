@@ -30,11 +30,18 @@ func _ready():
 func load_pceomones():
 	for enemy in $"Enemies".get_children():
 		enemy.foes = []
+		enemy.mates = []
+		for enemy2 in $"Enemies".get_children():
+			if enemy2 != enemy:
+				enemy.mates.append(enemy2)
 	for mate in $"Party".get_children():
 		mate.foes = []
 		for enemy in $"Enemies".get_children():
 			mate.foes.append(enemy)
 			enemy.foes.append(mate)
+		for mate2 in $"Party".get_children():
+			if mate != mate2:
+				mate.mates.append(mate2)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
