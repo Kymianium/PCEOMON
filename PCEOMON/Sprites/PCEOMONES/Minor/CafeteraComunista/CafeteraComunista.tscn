@@ -4,6 +4,7 @@
 [ext_resource path="res://Sprites/PCEOMONES/Minor/CafeteraComunista/CafeteraComunista_sprite.png" type="Texture" id=2]
 
 [node name="PCEOMON" instance=ExtResource( 1 )]
+position = Vector2( 20.6674, 12.0023 )
 
 [node name="Sprite" parent="." index="0"]
 texture = ExtResource( 2 )

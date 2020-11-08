@@ -59,6 +59,8 @@ func change_interface(turner):
 
 func _on_Attack1_pressed():
 	if (metadata.time_exists.size() != 0):
+		if (metadata.time_exists[metadata.time_exists.size()-1].attack1 != $"Combatinterface/CombatGUI/Fight/Attacks/Attack1/Attack1".text):
+				print("ERROR: La interfaz no cuadra con el pceomon que está a la espera de atacar")
 		metadata.time_exists[metadata.time_exists.size()-1].atk1()
 		if (metadata.time_exists.size() != 0):
 			change_interface(metadata.time_exists[metadata.time_exists.size()-1])
@@ -67,14 +69,26 @@ func _on_Attack1_pressed():
 
 func _on_Attack2_pressed():
 	if (metadata.time_exists.size() != 0):
+		if (metadata.time_exists[metadata.time_exists.size()-1].attack1 != $"Combatinterface/CombatGUI/Fight/Attacks/Attack1/Attack1".text):
+				print("ERROR: La interfaz no cuadra con el pceomon que está a la espera de atacar")
 		metadata.time_exists[metadata.time_exists.size()-1].atk2()
+		if (metadata.time_exists.size() != 0):
+			change_interface(metadata.time_exists[metadata.time_exists.size()-1])
 
 
 func _on_Attack_3_pressed():
 	if (metadata.time_exists.size() != 0):
-		metadata.time_exists[0].atk3()
+		if (metadata.time_exists[metadata.time_exists.size()-1].attack1 != $"Combatinterface/CombatGUI/Fight/Attacks/Attack1/Attack1".text):
+				print("ERROR: La interfaz no cuadra con el pceomon que está a la espera de atacar")
+		metadata.time_exists[metadata.time_exists.size()-1].atk3()
+		if (metadata.time_exists.size() != 0):
+			change_interface(metadata.time_exists[metadata.time_exists.size()-1])
 
 
 func _on_Attack4_pressed():
 	if (metadata.time_exists.size() != 0):
-		metadata.time_exists[0].atk4()
+		if (metadata.time_exists[metadata.time_exists.size()-1].attack1 != $"Combatinterface/CombatGUI/Fight/Attacks/Attack1/Attack1".text):
+				print("ERROR: La interfaz no cuadra con el pceomon que está a la espera de atacar")
+		metadata.time_exists[metadata.time_exists.size()-1].atk4()
+		if (metadata.time_exists.size() != 0):
+			change_interface(metadata.time_exists[metadata.time_exists.size()-1])

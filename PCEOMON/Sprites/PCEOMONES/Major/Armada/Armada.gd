@@ -32,7 +32,12 @@ func atk2():
 	#una garrafa de 8 litros de las de paellas, entrando este enemigo en un estado de embriaguez tal que
 	#durante las siguientes rondas perderá parte de su vida debido a las tremendas potas que lanzará
 	#(envenenamiento grave).
-	
+	if ($"StatsSummary/Alcohol".value >= 60):
+		$"StatsSummary/Alcohol".value = $"StatsSummary/Alcohol".value - 60
+		alcohol = $"StatsSummary/Alcohol".value
+		var attacked = foes[rng.randi_range(0,foes.size()-1)]
+		attacked.poison_counter = rng.randi_range(800,1000)
+		end_attack()
 	pass
 
 func atk3():
@@ -49,5 +54,15 @@ func atk4():
 	#¿Un lolete?
 	#Armada va tan borracho que se piensa que está en la grieta del invocador y se abalanza
 	#contra un pceomón enemigo, comenzando a meterle de ostias y rociarle alcohol tóxico lo cual infiere
-	#daño físico y mucho daño químico.
+	#daño físico y mucho daño químico. Además si el enemigo tiene el 20% de la vida o menos, le oneshotea.
+	if ($"StatsSummary/Alcohol".value >= 90):
+		var attacked = foes[rng.randi_range(0,foes.size()-1)]
+		if float(attacked.actual_hp)/attacked.max_hp <= 0.2:
+			attacked.damage(attacked.max_hp)
+		else:
+			foes[rng.randi_range(0,foes.size()-1)].damage(1000)
+		$"StatsSummary/Alcohol".value = $"StatsSummary/Alcohol".value - 90
+		alcohol = $"StatsSummary/Alcohol".value
+		end_attack()
+	
 	pass
