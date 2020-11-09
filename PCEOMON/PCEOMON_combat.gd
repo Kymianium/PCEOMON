@@ -5,6 +5,8 @@ var mates = []
 
 var boss : bool = false
 
+signal just_attacked(user, attack, objective, string)
+
 #STATS
 
 ###
@@ -89,6 +91,7 @@ func _ready():
 
 # HACER UN CASE CON EL SIGUIENTE ATAQUE
 func attack():
+	$"StatsSummary/Stamina".value = 0
 	if(next_attack == 1):
 		atk1()
 	elif(next_attack == 2):
@@ -142,7 +145,7 @@ func _process(delta):
 	elif(actual_stamina >= next_attack_required_stamina):
 		attack()
 		actual_stamina = 0
-	elif (metadata.time_exists.size() == 0):
+	elif (metadata.time_should_run()):
 		delta_acum+=delta
 		if (delta_acum>0.01):
 			delta_acum-=0.01

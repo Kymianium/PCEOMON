@@ -48,7 +48,7 @@ func atk2():
 	alcohol = $"StatsSummary/Alcohol".value
 	var attacked = foes[rng.randi_range(0,foes.size()-1)]
 	attacked.poison_counter = rng.randi_range(800,1000)
-
+	
 func atk3():
 	#Esto no es na`
 	# Armada se bebe una garrafa como si fuera agua, lo cual no solo no le afecta, si no que
@@ -58,6 +58,8 @@ func atk3():
 	next_attack_required_stamina = 700
 	$"StatsSummary/Alcohol".value = $"StatsSummary/Alcohol".value + 20
 	alcohol = $"StatsSummary/Alcohol".value
+	print("He enviado la señal just_attacked")
+	emit_signal("just_attacked", "Armada", "Esto no es na'", "", "[wave] ¡Este hijo de puta quiere emborracharse![/wave]")
 
 func atk4():
 	#¿Un lolete?

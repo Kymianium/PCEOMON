@@ -22,10 +22,21 @@ func _ready():
 		pceo_instance.position.y = metadata.combat_position[i][1]
 		$Party.add_child(pceo_instance)
 	#	pceo_instance.connect("my_turn", self, "change_interface", [pceo_instance])
+		pceo_instance.connect("just_attacked", self, "write_attack_text")
 		avatar = TextureRect.new()
 		avatar.texture = load(pceo_instance.avatar_path)
 		$Combatinterface/CombatGUI/Fight/Avatars.add_child(avatar)
 		load_pceomones()
+
+func write_attack_text(user: String, attack : String, objective : String, string : String):
+	var showmessage
+	metadata.freeze_time = true
+	$DialogueBox.visible = true
+	if(objective == ""):
+		showmessage = "¡" + user + " usó " + attack + "! " + string
+	else:
+		showmessage = "¡" + user + " usó " + attack + "contra " + objective + "! " + string
+	$DialogueBox.message(showmessage)
 
 func load_pceomones():
 	for enemy in $"Enemies".get_children():
@@ -85,3 +96,8 @@ func _process(_delta):
 		change_interface(metadata.time_exists[metadata.time_exists.size()-1])
 	else:
 		make_interface_visible(false)
+
+
+func _on_DialogueBox_input():
+	metadata.freeze_time = false
+	$DialogueBox.visible = false

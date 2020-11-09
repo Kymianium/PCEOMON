@@ -1,0 +1,47 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://GameScenes/CombatScenes/DialogueBox.gd" type="Script" id=1]
+[ext_resource path="res://Font/ButtonFont.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Sprites/Miscelaneous/Menus/DialogBox.png" type="Texture" id=3]
+
+[node name="DialogueBox" type="CenterContainer"]
+margin_top = 305.0
+margin_right = 640.0
+margin_bottom = 480.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background" type="NinePatchRect" parent="."]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 630.0
+margin_bottom = 165.0
+rect_min_size = Vector2( 620, 155 )
+texture = ExtResource( 3 )
+region_rect = Rect2( 0, 0, 50, 50 )
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+
+[node name="Text" type="RichTextLabel" parent="Background"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 610.0
+margin_bottom = 150.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_fonts/mono_font = ExtResource( 2 )
+custom_fonts/bold_italics_font = ExtResource( 2 )
+custom_fonts/italics_font = ExtResource( 2 )
+custom_fonts/bold_font = ExtResource( 2 )
+custom_fonts/normal_font = ExtResource( 2 )
+bbcode_enabled = true
+bbcode_text = "¡Hola [wave amp=100] Paco[/wave]!  Este texto es para recordarte lo   [tornado]hijo de puta[/tornado]   que eres. Te voy a [shake level=20]partir las piernas.[/shake] [rainbow]Maricón.[/rainbow]"
+tab_size = 5
+text = "¡Hola  Paco!  Este texto es para recordarte lo   hijo de puta   que eres. Te voy a partir las piernas. Maricón."
+__meta__ = {
+"_edit_use_anchors_": false
+}

@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://GameScenes/CombatScenes/CombatManager.gd" type="Script" id=1]
 [ext_resource path="res://Font/SmallFont.tres" type="DynamicFont" id=2]
 [ext_resource path="res://Sprites/PCEOMONES/Bosses/GPantanos/GPantanos.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Font/VersionFont.tres" type="DynamicFont" id=4]
+[ext_resource path="res://GameScenes/DialogueBox.tscn" type="PackedScene" id=5]
 
 [node name="TurnManager" type="Node2D"]
 script = ExtResource( 1 )
@@ -148,7 +149,11 @@ margin_right = 386.0
 margin_bottom = 68.0
 custom_fonts/font = ExtResource( 2 )
 text = "Fusión"
+
+[node name="DialogueBox" parent="." instance=ExtResource( 5 )]
+visible = false
 [connection signal="pressed" from="Combatinterface/CombatGUI/Fight/Attacks/Attack1/Attack1" to="." method="_on_Attack1_pressed"]
 [connection signal="pressed" from="Combatinterface/CombatGUI/Fight/Attacks/Attack1/Attack2" to="." method="_on_Attack2_pressed"]
 [connection signal="pressed" from="Combatinterface/CombatGUI/Fight/Attacks/Attack2/Attack 3" to="." method="_on_Attack_3_pressed"]
 [connection signal="pressed" from="Combatinterface/CombatGUI/Fight/Attacks/Attack2/Attack4" to="." method="_on_Attack4_pressed"]
+[connection signal="input" from="DialogueBox" to="." method="_on_DialogueBox_input"]
