@@ -21,7 +21,7 @@ func _ready():
 		pceo_instance.position.x = metadata.combat_position[i][0]
 		pceo_instance.position.y = metadata.combat_position[i][1]
 		$Party.add_child(pceo_instance)
-		pceo_instance.connect("my_turn", self, "change_interface", [pceo_instance])
+	#	pceo_instance.connect("my_turn", self, "change_interface", [pceo_instance])
 		avatar = TextureRect.new()
 		avatar.texture = load(pceo_instance.avatar_path)
 		$Combatinterface/CombatGUI/Fight/Avatars.add_child(avatar)
@@ -54,41 +54,37 @@ func change_interface(turner):
 	$"Combatinterface/CombatGUI/Fight/Attacks/Attack2/Attack 3".text = turner.attack3
 	$"Combatinterface/CombatGUI/Fight/Attacks/Attack2/Attack4".text = turner.attack4
 	$"Combatinterface/CombatGUI/MainOptions/Info".text = info
-	
+func make_interface_visible(visible : bool):
+	$"Combatinterface/CombatGUI/Fight/Attacks/Attack1/Attack1".visible = visible
+	$"Combatinterface/CombatGUI/Fight/Attacks/Attack1/Attack2".visible = visible
+	$"Combatinterface/CombatGUI/Fight/Attacks/Attack2/Attack 3".visible = visible
+	$"Combatinterface/CombatGUI/Fight/Attacks/Attack2/Attack4".visible = visible
+	$"Combatinterface/CombatGUI/MainOptions/Info".visible = visible
 
 
-func _on_Attack1_pressed():
+func _on_Attack1_pressed():	
 	if (metadata.time_exists.size() != 0):
-		if (metadata.time_exists[metadata.time_exists.size()-1].attack1 != $"Combatinterface/CombatGUI/Fight/Attacks/Attack1/Attack1".text):
-				print("ERROR: La interfaz no cuadra con el pceomon que está a la espera de atacar")
-		metadata.time_exists[metadata.time_exists.size()-1].atk1()
-		if (metadata.time_exists.size() != 0):
-			change_interface(metadata.time_exists[metadata.time_exists.size()-1])
-
+#		if (metadata.time_exists[1].attack1 != $"Combatinterface/CombatGUI/Fight/Attacks/Attack1/Attack1".text):
+#				print("ERROR: La interfaz no cuadra con el pceomon que está a la espera de atacar")
+		metadata.time_exists[metadata.time_exists.size()-1].next1()
 
 
 func _on_Attack2_pressed():
 	if (metadata.time_exists.size() != 0):
-		if (metadata.time_exists[metadata.time_exists.size()-1].attack1 != $"Combatinterface/CombatGUI/Fight/Attacks/Attack1/Attack1".text):
-				print("ERROR: La interfaz no cuadra con el pceomon que está a la espera de atacar")
-		metadata.time_exists[metadata.time_exists.size()-1].atk2()
-		if (metadata.time_exists.size() != 0):
-			change_interface(metadata.time_exists[metadata.time_exists.size()-1])
+		metadata.time_exists[metadata.time_exists.size()-1].next2()
 
 
 func _on_Attack_3_pressed():
 	if (metadata.time_exists.size() != 0):
-		if (metadata.time_exists[metadata.time_exists.size()-1].attack1 != $"Combatinterface/CombatGUI/Fight/Attacks/Attack1/Attack1".text):
-				print("ERROR: La interfaz no cuadra con el pceomon que está a la espera de atacar")
-		metadata.time_exists[metadata.time_exists.size()-1].atk3()
-		if (metadata.time_exists.size() != 0):
-			change_interface(metadata.time_exists[metadata.time_exists.size()-1])
-
+		metadata.time_exists[metadata.time_exists.size()-1].next3()
 
 func _on_Attack4_pressed():
 	if (metadata.time_exists.size() != 0):
-		if (metadata.time_exists[metadata.time_exists.size()-1].attack1 != $"Combatinterface/CombatGUI/Fight/Attacks/Attack1/Attack1".text):
-				print("ERROR: La interfaz no cuadra con el pceomon que está a la espera de atacar")
-		metadata.time_exists[metadata.time_exists.size()-1].atk4()
-		if (metadata.time_exists.size() != 0):
-			change_interface(metadata.time_exists[metadata.time_exists.size()-1])
+		metadata.time_exists[metadata.time_exists.size()-1].next4()
+
+func _process(delta):
+	if (metadata.time_exists.size() != 0):
+		make_interface_visible(true)
+		change_interface(metadata.time_exists[metadata.time_exists.size()-1])
+	else:
+		make_interface_visible(false)

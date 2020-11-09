@@ -35,7 +35,6 @@ func manage_party(pceomon):
 			var text = $"CenterContainer/MenuDistribution/Miscelaneous/Party".text	
 			text = text.replace(' ' + pceomon,"")
 			$"CenterContainer/MenuDistribution/Miscelaneous/Party".text = text
-	print(metadata.party, metadata.party_paths)
 	
 func change_select_button(pceomon):
 	if pceomon in metadata.party:
@@ -77,7 +76,6 @@ func setPCEOMONinfo(name : String, texture, description : String,
 func getAndSetInfo(pceomon:String, texture):
 	var file = File.new()
 	file.open("res://GameScenes/Menues/Selection/PCEOMONES/Major/" + pceomon +"Info.tres", File.READ)
-	print("Leyendo " + pceomon)
 	var name = file.get_line().replace("\\n","\n")
 	var description = file.get_line().replace("\\n","\n")
 	var type = file.get_line().replace("\\n","\n")
@@ -92,7 +90,6 @@ func getAndSetInfo(pceomon:String, texture):
 func getAndSetInfoMinor(pceomon: String, texture):
 	var file = File.new()
 	file.open("res://GameScenes/Menues/Selection/PCEOMONES/Minor/" + pceomon +"Info.tres", File.READ)
-	print("Leyendo " + pceomon)
 	var name = file.get_line().replace("\\n","\n")
 	var description = file.get_line().replace("\\n","\n")
 	var type = file.get_line().replace("\\n","\n")

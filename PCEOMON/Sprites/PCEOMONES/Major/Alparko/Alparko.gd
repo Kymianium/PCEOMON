@@ -24,5 +24,6 @@ func damage(var damage:int):
 
 func atk1():
 	foes[rng.randi_range(0,foes.size()-1)].damage(200)
-	end_attack()
-	pass
+
+func atk2():
+	mates[rng.randi_range(0,mates.size()-1)].buff()

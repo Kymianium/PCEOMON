@@ -3,21 +3,63 @@ extends Skeleton2D
 var foes = []
 var mates = []
 
-#BUFOS
-var buffs = {"chemicaldmg" : [3,1.4]}
+var boss : bool = false
 
 #STATS
-var chemicaldmg : int = 1
-var physicaldmg : int = 1
-var psychologycaldmg : int = 1
-var chemicaldfc : int
-var physicaldfc : int
-var psychologycaldfc : int
-var speed : int = 2
+
+###
+#	Los stats son un poco confusos, así que voy a explicarlos por aqui:
+# cuando quieres obtener un stat, hay una función (getstat) que te obtiene
+# el valor del stat. En el array, hay tres valores. El valor que devuelve
+# getstat es (valor1)*valor2+valor3. Esto es:
+#
+#		El valor 1 es el valor "base"
+#
+#		El valor 2 es el valor "multiplicador", proveniente de bufos, etc.
+#
+#		El valor 3 es el valor "sumador", del mismo origen que el multiplicador.
+#
+#	El array de bufos guarda, de manera ordenada, cada uno de los bufos y su
+# duración restante. Este debe disminuir en función del tiempo.
+###
+
+
+var buffs = []
+
+var stats = {"chemicaldmg" : [10, 1, 0], "physicaldmg" : [10, 1, 0], 
+"psychologycaldmg" : [10, 1, 0], "chemicaldfc" : [10, 1, 0],
+"physicaldfc" : [10, 1, 0], "speed" : [10, 1, 0]}
+
+func buff(stat : String, duration : int, product : int, sum : int):
+	var buff = [duration, stat, product, sum]
+	buffs.append(buff)
+	stats[stat][1]*=product
+	stats[stat][2]+=sum
+	
+func getstat(stat : String):
+	var rawstat = stats[stat]
+	return (rawstat[0]*rawstat[1]+rawstat[2])
+
+func update_buffs():
+	var toremove = []
+	var removed = 0
+	for i in range(buffs.size()):
+		buffs[i][0]-=1
+		if (buffs[i][0] == 0):
+			stats[buffs[i][1]][1]/=buffs[i][2]
+			stats[buffs[i][1]][2]-=buffs[i][3]
+			toremove.append(i)
+	for i in toremove:
+		buffs.remove(i-removed)
+		
+	
+
+# VIDA Y ESTAMINA
 var actual_hp : int
 var max_hp : int
 var actual_stamina : int
 var next_attack_required_stamina : int
+var next_attack : int = 0
 
 #ATAQUES Y HABILIDAD
 var attack1 : String
@@ -29,6 +71,7 @@ var ability : String
 #CAMBIOS DE ESTADO
 var poison_counter: int = 0
 const poison_damage : int = 1
+var stun_counter : int = 0
 
 
 export(String) var avatar_path
@@ -43,14 +86,19 @@ signal my_turn
 ###########PRUEBAS###########
 func _ready():
 	actual_stamina = 0
-	next_attack_required_stamina = 10000
 	max_hp = 100
 	actual_hp = max_hp
 
+# HACER UN CASE CON EL SIGUIENTE ATAQUE
 func attack():
-	emit_signal("my_turn")
-	metadata.time_exists.append(self)
-	print(metadata.time_exists)
+	if(next_attack == 1):
+		atk1()
+	elif(next_attack == 2):
+		atk2()
+	elif(next_attack == 3):
+		atk3()
+	else:
+		atk4()
 #############################
 func atk1():
 	pass
@@ -60,17 +108,36 @@ func atk3():
 	pass
 func atk4():
 	pass
-func ability():
-	pass
 
-func end_attack():
+func next1():
+	actual_stamina = 1
+	next_attack = 1
 	metadata.time_exists.erase(self)
-	$"StatsSummary/Stamina".value = 0
+func next2():
+	actual_stamina = 1
+	next_attack = 2
+	metadata.time_exists.erase(self)
+func next3():
+	actual_stamina = 1
+	next_attack = 3
+	metadata.time_exists.erase(self)
+func next4():
+	actual_stamina = 1
+	next_attack = 4
+	metadata.time_exists.erase(self)
+
 
 func _process(delta):
 	if (actual_hp <= 0):
 		return
-
+	elif(actual_stamina==0):
+		if (not boss):
+			emit_signal("my_turn")
+			if (not metadata.time_exists.has(self)):
+				metadata.time_exists.append(self)
+				for i in range(0, metadata.time_exists.size()):
+					print("Posicion " + String(i) + " = " +  metadata.time_exists[i].attack1)
+				print()
 	elif(actual_stamina >= next_attack_required_stamina):
 		attack()
 		actual_stamina = 0
@@ -78,7 +145,7 @@ func _process(delta):
 		delta_acum+=delta
 		if (delta_acum>0.01):
 			delta_acum-=0.01
-			actual_stamina = actual_stamina + speed
+			actual_stamina = actual_stamina + getstat("speed")
 			$"StatsSummary/Stamina".value = actual_stamina*100/next_attack_required_stamina
 			
 			if poison_counter > 0 and actual_hp > poison_damage:
@@ -98,6 +165,4 @@ func damage(var damage : int):
 	if(actual_hp <= 0):
 		self.visible = false
 		emit_signal("just_died")
-	
-func buff(var stat : String, var mult:float):
-	pass
+

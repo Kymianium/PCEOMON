@@ -1,7 +1,6 @@
 extends "res://PCEOMON_combat.gd"
 
 var rng = RandomNumberGenerator.new()
-var mate_with_coffe = null           #compañero que está usando el bufo del café
 
 const lucha_de_clases_dmg = 50
 const chocolate_healing = 40
@@ -21,13 +20,11 @@ func _ready():
 #SOBRE ESTE ATAQUE: TAL COMO ESTÁ: CUANDO LA CAFETERA METE CAFÉ A ALGUIEN, LE DURA HASTA QUE SE LO DA A OTRO
 func atk1():
 	#Café de avellanas, aumenta la velocidad con la que se restaura la stamina
-	if (mate_with_coffe != null):
-		mates[mate_with_coffe].next_attack_required_stamina *= 1.5
-	mate_with_coffe = rng.randi_range(0,foes.size()-1)
-	mates[mate_with_coffe].next_attack_required_stamina /= 1.5
-	end_attack()
+	next_attack_required_stamina = 1000
+	mates[rng.randi_range(0,mates.size()-1)].buff("speed", 1000, 1.5, 0)
 func atk2():
 	#Roba un poco de vida al enemigo con mas porcentaje de vida y le da una parte al aliado con menor porcentaje de vida
+	next_attack_required_stamina = 500
 	var more_healed = null
 	var less_healed = null
 	for enemy in foes:
@@ -38,7 +35,6 @@ func atk2():
 		if (less_healed == null || less_healed.actual_hp/less_healed.max_hp > ally.actual_hp/ally.max_hp):
 			less_healed = ally
 	less_healed.heal(lucha_de_clases_dmg/2)
-	end_attack()
 func atk3():
 	#Hay que aumentar la evasion, eso no se puede hacer por ahora
 	pass
@@ -49,4 +45,3 @@ func atk4():
 		if (less_healed == null || less_healed.actual_hp/less_healed.max_hp > ally.actual_hp/ally.max_hp):
 			less_healed = ally
 	less_healed.heal(chocolate_healing)
-	end_attack()
