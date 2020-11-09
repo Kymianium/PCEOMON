@@ -18,14 +18,21 @@ position = Vector2( 0, 60 )
 texture = ExtResource( 4 )
 centered = false
 
-[node name="StatsSummary" type="CenterContainer" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StatsSummary" type="CenterContainer" parent="HBoxContainer"]
 margin_right = 50.0
 margin_bottom = 50.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HP" type="TextureProgress" parent="StatsSummary"]
+[node name="HP" type="TextureProgress" parent="HBoxContainer/StatsSummary"]
 margin_right = 50.0
 margin_bottom = 50.0
 rect_min_size = Vector2( 50, 50 )
@@ -36,7 +43,7 @@ fill_mode = 4
 radial_initial_angle = 180.0
 nine_patch_stretch = true
 
-[node name="Stamina" type="TextureProgress" parent="StatsSummary"]
+[node name="Stamina" type="TextureProgress" parent="HBoxContainer/StatsSummary"]
 margin_left = 10.0
 margin_top = 10.0
 margin_right = 40.0
@@ -48,7 +55,7 @@ fill_mode = 3
 radial_initial_angle = 180.0
 nine_patch_stretch = true
 
-[node name="Alcohol" type="TextureProgress" parent="StatsSummary"]
+[node name="Alcohol" type="TextureProgress" parent="HBoxContainer/StatsSummary"]
 margin_left = 15.0
 margin_top = 15.0
 margin_right = 35.0

@@ -41,6 +41,8 @@ func write_attack_text(user: String, attack : String, objective : String, string
 		showmessage = "¡" + user + " usó " + attack + " contra " + objective + "! " + string
 	$DialogueBox.message(showmessage)
 
+
+#Incializa los arrays de compañeros y enemigos
 func load_pceomones():
 	for enemy in $"Enemies".get_children():
 		enemy.foes = []

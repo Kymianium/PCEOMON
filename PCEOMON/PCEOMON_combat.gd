@@ -78,7 +78,7 @@ var ability : String
 
 #CAMBIOS DE ESTADO
 var poison_counter: int = 0
-const poison_damage : int = 1
+const poison_damage : int = 50
 var stun_counter : int = 0
 
 
@@ -97,7 +97,7 @@ func _ready():
 
 # HACER UN CASE CON EL SIGUIENTE ATAQUE
 func attack():
-	$"StatsSummary/Stamina".value = 0
+	$"HBoxContainer/StatsSummary/Stamina".value = 0
 	if(next_attack == 1):
 		atk1()
 	elif(next_attack == 2):
@@ -119,25 +119,25 @@ func atk4():
 func next1():
 	actual_stamina = 1
 # warning-ignore:integer_division
-	$"StatsSummary/Stamina".value = actual_stamina*100/next_attack_required_stamina
+	$"HBoxContainer/StatsSummary/Stamina".value = actual_stamina*100/next_attack_required_stamina
 	next_attack = 1
 	metadata.time_exists.erase(self)
 func next2():
 	actual_stamina = 1
 # warning-ignore:integer_division
-	$"StatsSummary/Stamina".value = actual_stamina*100/next_attack_required_stamina
+	$"HBoxContainer/StatsSummary/Stamina".value = actual_stamina*100/next_attack_required_stamina
 	next_attack = 2
 	metadata.time_exists.erase(self)
 func next3():
 	actual_stamina = 1
 # warning-ignore:integer_division
-	$"StatsSummary/Stamina".value = actual_stamina*100/next_attack_required_stamina
+	$"HBoxContainer/StatsSummary/Stamina".value = actual_stamina*100/next_attack_required_stamina
 	next_attack = 3
 	metadata.time_exists.erase(self)
 func next4():
 	actual_stamina = 1
 # warning-ignore:integer_division
-	$"StatsSummary/Stamina".value = actual_stamina*100/next_attack_required_stamina
+	$"HBoxContainer/StatsSummary/Stamina".value = actual_stamina*100/next_attack_required_stamina
 	next_attack = 4
 	metadata.time_exists.erase(self)
 
@@ -157,11 +157,12 @@ func _process(delta):
 			delta_acum-=0.01
 			actual_stamina = actual_stamina + getstat("speed")
 # warning-ignore:integer_division
-			$"StatsSummary/Stamina".value = actual_stamina*100/next_attack_required_stamina
+			$"HBoxContainer/StatsSummary/Stamina".value = actual_stamina*100/next_attack_required_stamina
 			
 			if poison_counter > 0 and actual_hp > poison_damage:
 				poison_counter -= poison_damage
 				if (poison_counter <= 0):
+					$"HBoxContainer/VBoxContainer/Poison".visible = false
 					emit_signal("announcement","El envenenamiento de " + self.name + " ha terminado")
 				self.damage(poison_damage)
 
@@ -171,7 +172,8 @@ func heal(var hp: int):
 	hp = min(actual_hp+hp,max_hp)
 	actual_hp += hp
 # warning-ignore:integer_division
-	$"StatsSummary/HP".value = actual_hp*100/max_hp
+	$"HBoxContainer/StatsSummary/HP".value = actual_hp*100/max_hp
+
 
 
 func damage(var damage : int):
@@ -181,10 +183,14 @@ func damage(var damage : int):
 		return 0
 	actual_hp = actual_hp - damage
 # warning-ignore:integer_division
-	$"StatsSummary/HP".value = actual_hp*100/max_hp
+	$"HBoxContainer/StatsSummary/HP".value = actual_hp*100/max_hp
 	if(actual_hp <= 0):
 		self.visible = false
 		emit_signal("just_died", self)
 		return 2
 	return 1
+	
+func poison(var damage : int):
+	poison_counter = damage
+	$"HBoxContainer/VBoxContainer/Poison".visible = true
 
