@@ -26,9 +26,9 @@ var boss : bool = false
 
 var buffs = []
 
-var stats = {"chemicaldmg" : [10, 1, 0], "physicaldmg" : [10, 1, 0], 
-"psychologycaldmg" : [10, 1, 0], "chemicaldfc" : [10, 1, 0],
-"physicaldfc" : [10, 1, 0], "speed" : [10, 1, 0]}
+var stats = {"chemicaldmg" : [5, 1, 0], "physicaldmg" : [5, 1, 0], 
+"psychologycaldmg" : [5, 1, 0], "chemicaldfc" : [5, 1, 0],
+"physicaldfc" : [5, 1, 0], "speed" : [5, 1, 0]}
 
 func buff(stat : String, duration : int, product : int, sum : int):
 	var buff = [duration, stat, product, sum]
@@ -58,7 +58,7 @@ func update_buffs():
 var actual_hp : int
 var max_hp : int
 var actual_stamina : int
-var next_attack_required_stamina : int
+var next_attack_required_stamina : int = 10
 var next_attack : int = 0
 
 #ATAQUES Y HABILIDAD
@@ -80,8 +80,6 @@ var delta_acum: float = 0
 
 
 signal just_died
-signal my_turn
-
 #############################
 ###########PRUEBAS###########
 func _ready():
@@ -111,18 +109,26 @@ func atk4():
 
 func next1():
 	actual_stamina = 1
+# warning-ignore:integer_division
+	$"StatsSummary/Stamina".value = actual_stamina*100/next_attack_required_stamina
 	next_attack = 1
 	metadata.time_exists.erase(self)
 func next2():
 	actual_stamina = 1
+# warning-ignore:integer_division
+	$"StatsSummary/Stamina".value = actual_stamina*100/next_attack_required_stamina
 	next_attack = 2
 	metadata.time_exists.erase(self)
 func next3():
 	actual_stamina = 1
+# warning-ignore:integer_division
+	$"StatsSummary/Stamina".value = actual_stamina*100/next_attack_required_stamina
 	next_attack = 3
 	metadata.time_exists.erase(self)
 func next4():
 	actual_stamina = 1
+# warning-ignore:integer_division
+	$"StatsSummary/Stamina".value = actual_stamina*100/next_attack_required_stamina
 	next_attack = 4
 	metadata.time_exists.erase(self)
 
@@ -130,22 +136,19 @@ func next4():
 func _process(delta):
 	if (actual_hp <= 0):
 		return
-	elif(actual_stamina==0):
-		if (not boss):
-			emit_signal("my_turn")
-			if (not metadata.time_exists.has(self)):
-				metadata.time_exists.append(self)
-				for i in range(0, metadata.time_exists.size()):
-					print("Posicion " + String(i) + " = " +  metadata.time_exists[i].attack1)
-				print()
+	elif(actual_stamina==0 and not boss):
+		if (not metadata.time_exists.has(self)):
+			metadata.time_exists.append(self)
 	elif(actual_stamina >= next_attack_required_stamina):
 		attack()
 		actual_stamina = 0
 	elif (metadata.time_exists.size() == 0):
 		delta_acum+=delta
 		if (delta_acum>0.01):
+			print(attack1 + " progresa")
 			delta_acum-=0.01
 			actual_stamina = actual_stamina + getstat("speed")
+# warning-ignore:integer_division
 			$"StatsSummary/Stamina".value = actual_stamina*100/next_attack_required_stamina
 			
 			if poison_counter > 0 and actual_hp > poison_damage:
@@ -154,13 +157,16 @@ func _process(delta):
 
 
 func heal(var hp: int):
+# warning-ignore:narrowing_conversion
 	hp = min(actual_hp+hp,max_hp)
 	actual_hp += hp
+# warning-ignore:integer_division
 	$"StatsSummary/HP".value = actual_hp*100/max_hp
 
 
 func damage(var damage : int):
 	actual_hp = actual_hp - damage
+# warning-ignore:integer_division
 	$"StatsSummary/HP".value = actual_hp*100/max_hp
 	if(actual_hp <= 0):
 		self.visible = false

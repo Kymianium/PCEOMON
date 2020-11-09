@@ -82,7 +82,7 @@ func _on_Attack4_pressed():
 	if (metadata.time_exists.size() != 0):
 		metadata.time_exists[metadata.time_exists.size()-1].next4()
 
-func _process(delta):
+func _process(_delta):
 	if (metadata.time_exists.size() != 0):
 		make_interface_visible(true)
 		change_interface(metadata.time_exists[metadata.time_exists.size()-1])

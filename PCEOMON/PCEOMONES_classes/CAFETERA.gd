@@ -17,14 +17,25 @@ func _ready():
 	next_attack_required_stamina = 1300
 	
 
+func next1():
+	next_attack_required_stamina = 500
+	.next1()
+func next2():
+	next_attack_required_stamina = 300
+	.next2()
+
+func next4():
+	next_attack_required_stamina = 200
+	.next4()
+
 #SOBRE ESTE ATAQUE: TAL COMO ESTÁ: CUANDO LA CAFETERA METE CAFÉ A ALGUIEN, LE DURA HASTA QUE SE LO DA A OTRO
 func atk1():
 	#Café de avellanas, aumenta la velocidad con la que se restaura la stamina
-	next_attack_required_stamina = 1000
+
 	mates[rng.randi_range(0,mates.size()-1)].buff("speed", 1000, 1.5, 0)
 func atk2():
 	#Roba un poco de vida al enemigo con mas porcentaje de vida y le da una parte al aliado con menor porcentaje de vida
-	next_attack_required_stamina = 500
+
 	var more_healed = null
 	var less_healed = null
 	for enemy in foes:

@@ -12,16 +12,21 @@ func _ready():
 	attack4 = "¿Un lolete?"
 	._ready()
 	avatar_path = "res://Sprites/PCEOMONES/Major/Armada/Armada_avatar.png"
-	next_attack_required_stamina = 600
 	
 func next1():
 	if ($"StatsSummary/Alcohol".value >= 50):
+		next_attack_required_stamina = 200
 		.next1()
 func next2():
 	if ($"StatsSummary/Alcohol".value >= 60):
+		next_attack_required_stamina = 200
 		.next2()
+func next3():
+	next_attack_required_stamina = 150
+	.next3()
 func next4():
 	if ($"StatsSummary/Alcohol".value >= 90):
+		next_attack_required_stamina = 300
 		.next4()
 func atk1():
 	#Postureo
