@@ -14,13 +14,13 @@ texture = ExtResource( 1 )
 margin_right = 100.0
 
 [node name="HP" parent="StatsSummary" index="0"]
-margin_left = 24.0
-margin_right = 74.0
+margin_left = 25.0
+margin_right = 75.0
 
 [node name="Stamina" parent="StatsSummary" index="1"]
-margin_left = 34.0
-margin_right = 64.0
+margin_left = 35.0
+margin_right = 65.0
 
 [node name="Alcohol" parent="StatsSummary" index="2"]
-margin_left = 39.0
-margin_right = 59.0
+margin_left = 40.0
+margin_right = 60.0
