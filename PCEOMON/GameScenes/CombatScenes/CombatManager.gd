@@ -54,12 +54,9 @@ func change_interface(turner):
 	$"Combatinterface/CombatGUI/Fight/Attacks/Attack2/Attack 3".text = turner.attack3
 	$"Combatinterface/CombatGUI/Fight/Attacks/Attack2/Attack4".text = turner.attack4
 	$"Combatinterface/CombatGUI/MainOptions/Info".text = info
+	
 func make_interface_visible(visible : bool):
-	$"Combatinterface/CombatGUI/Fight/Attacks/Attack1/Attack1".visible = visible
-	$"Combatinterface/CombatGUI/Fight/Attacks/Attack1/Attack2".visible = visible
-	$"Combatinterface/CombatGUI/Fight/Attacks/Attack2/Attack 3".visible = visible
-	$"Combatinterface/CombatGUI/Fight/Attacks/Attack2/Attack4".visible = visible
-	$"Combatinterface/CombatGUI/MainOptions/Info".visible = visible
+	$"Combatinterface/CombatGUI".visible = visible
 
 
 func _on_Attack1_pressed():	

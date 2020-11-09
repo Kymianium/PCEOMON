@@ -145,7 +145,6 @@ func _process(delta):
 	elif (metadata.time_exists.size() == 0):
 		delta_acum+=delta
 		if (delta_acum>0.01):
-			print(attack1 + " progresa")
 			delta_acum-=0.01
 			actual_stamina = actual_stamina + getstat("speed")
 # warning-ignore:integer_division
