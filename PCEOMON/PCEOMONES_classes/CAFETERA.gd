@@ -1,6 +1,6 @@
 extends "res://PCEOMON_combat.gd"
 
-var rng = RandomNumberGenerator.new()
+
 
 const lucha_de_clases_dmg = 50
 const chocolate_healing = 40
@@ -28,11 +28,14 @@ func next4():
 	next_attack_required_stamina = 200
 	.next4()
 
-#SOBRE ESTE ATAQUE: TAL COMO ESTÁ: CUANDO LA CAFETERA METE CAFÉ A ALGUIEN, LE DURA HASTA QUE SE LO DA A OTRO
+
 func atk1():
 	#Café de avellanas, aumenta la velocidad con la que se restaura la stamina
-
-	mates[rng.randi_range(0,mates.size()-1)].buff("speed", 1000, 1.5, 0)
+	
+	var selected_mate = mates[rng.randi_range(0,mates.size()-1)]
+	selected_mate.buff("speed", 1000, 1.5, 0)
+	emit_signal("just_attacked", "La cafetera comunista", "Café de avellana", "", "Con este manjar, " + selected_mate.name + " ahora va más [wave]rápido[/wave]")
+	
 func atk2():
 	#Roba un poco de vida al enemigo con mas porcentaje de vida y le da una parte al aliado con menor porcentaje de vida
 
@@ -46,8 +49,10 @@ func atk2():
 		if (less_healed == null || less_healed.actual_hp/less_healed.max_hp > ally.actual_hp/ally.max_hp):
 			less_healed = ally
 	less_healed.heal(lucha_de_clases_dmg/2)
+	emit_signal("just_attacked","La cafetera comunista", "Lucha de clases", more_healed.name,"¡El poder de Lenin ha sanado a " + less_healed.name + "!")
 func atk3():
-	#Hay que aumentar la evasion, eso no se puede hacer por ahora
+	self.buff("evasion", 1000, 0.8, 0)
+	emit_signal("just_attacked","La cafetera comunista", "Reunión de algebristas","","La cafetera se esconde entre profesores. ¡Aumenta su evasión!")
 	pass
 func atk4():
 	#Sana al aliado más herido (por porcentajes)
@@ -56,3 +61,4 @@ func atk4():
 		if (less_healed == null || less_healed.actual_hp/less_healed.max_hp > ally.actual_hp/ally.max_hp):
 			less_healed = ally
 	less_healed.heal(chocolate_healing)
+	emit_signal("just_attacked","La cafetera comunista","Chocolate caliente","","El chocolate caliente revitaliza a " + less_healed.name)

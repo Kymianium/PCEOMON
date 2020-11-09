@@ -1,6 +1,6 @@
 extends "res://PCEOMON_combat.gd"
 
-var rng = RandomNumberGenerator.new()
+
 var peaceful:bool = false
 
 func _ready():

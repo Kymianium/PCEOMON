@@ -1,6 +1,5 @@
 extends "res://PCEOMON_combat.gd"
 
-var rng = RandomNumberGenerator.new()
 
 func _ready():
 	boss = true

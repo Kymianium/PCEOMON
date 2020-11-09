@@ -5,7 +5,10 @@ var mates = []
 
 var boss : bool = false
 
+var rng = RandomNumberGenerator.new()
+
 signal just_attacked(user, attack, objective, string)
+signal announcement(announce)
 
 #STATS
 
@@ -23,6 +26,9 @@ signal just_attacked(user, attack, objective, string)
 #
 #	El array de bufos guarda, de manera ordenada, cada uno de los bufos y su
 # duración restante. Este debe disminuir en función del tiempo.
+#
+#	La evasión siempre decrece cuando mejora, es decir su multiplicador tendrá que ser 0 < x < 1
+#	y nunca será un bufo de suma. Además cuanto mayor sea el multiplicador, menor será el bufo.
 ###
 
 
@@ -30,7 +36,7 @@ var buffs = []
 
 var stats = {"chemicaldmg" : [5, 1, 0], "physicaldmg" : [5, 1, 0], 
 "psychologycaldmg" : [5, 1, 0], "chemicaldfc" : [5, 1, 0],
-"physicaldfc" : [5, 1, 0], "speed" : [5, 1, 0]}
+"physicaldfc" : [5, 1, 0], "speed" : [5, 1, 0], "evasion" : [1,1,0]}
 
 func buff(stat : String, duration : int, product : int, sum : int):
 	var buff = [duration, stat, product, sum]
@@ -81,7 +87,7 @@ export(String) var avatar_path
 var delta_acum: float = 0
 
 
-signal just_died
+signal just_died(pceomon)
 #############################
 ###########PRUEBAS###########
 func _ready():
@@ -155,6 +161,8 @@ func _process(delta):
 			
 			if poison_counter > 0 and actual_hp > poison_damage:
 				poison_counter -= poison_damage
+				if (poison_counter <= 0):
+					emit_signal("announcement","El envenenamiento de " + self.name + " ha terminado")
 				self.damage(poison_damage)
 
 
@@ -167,10 +175,16 @@ func heal(var hp: int):
 
 
 func damage(var damage : int):
+	
+	if rng.randf() > getstat("evasion"):
+		emit_signal("announcement","El ataque falló")
+		return 0
 	actual_hp = actual_hp - damage
 # warning-ignore:integer_division
 	$"StatsSummary/HP".value = actual_hp*100/max_hp
 	if(actual_hp <= 0):
 		self.visible = false
-		emit_signal("just_died")
+		emit_signal("just_died", self)
+		return 2
+	return 1
 

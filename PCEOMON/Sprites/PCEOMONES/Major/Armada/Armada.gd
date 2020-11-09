@@ -1,6 +1,6 @@
 extends "res://PCEOMON_combat.gd"
 
-var rng = RandomNumberGenerator.new()
+
 var alcohol
 
 func _ready():
@@ -17,6 +17,8 @@ func next1():
 	if ($"StatsSummary/Alcohol".value >= 50):
 		next_attack_required_stamina = 200
 		.next1()
+	else:
+		emit_signal("announcement","No tienes suficiente alcohol en sangre para eso, zagal")
 func next2():
 	if ($"StatsSummary/Alcohol".value >= 60):
 		next_attack_required_stamina = 200
@@ -36,6 +38,8 @@ func atk1():
 	foes[rng.randi_range(0,foes.size()-1)].damage(500)
 	$"StatsSummary/Alcohol".value = $"StatsSummary/Alcohol".value - 50
 	alcohol = $"StatsSummary/Alcohol".value
+	emit_signal("just_attacked", "Armada", "Postureo", "", "Esta pa [rainbow] mejores amigos [/rainbow]")
+	
 	
 func atk2():
 	#El Quijote
@@ -48,6 +52,7 @@ func atk2():
 	alcohol = $"StatsSummary/Alcohol".value
 	var attacked = foes[rng.randi_range(0,foes.size()-1)]
 	attacked.poison_counter = rng.randi_range(800,1000)
+	emit_signal("just_attacked", "Armada", "Quijote", attacked.name, "¡Hijo puta el que se deje algo! " + attacked.name + " va muy ciego")
 	
 func atk3():
 	#Esto no es na`
@@ -73,3 +78,4 @@ func atk4():
 		foes[rng.randi_range(0,foes.size()-1)].damage(1000)
 	$"StatsSummary/Alcohol".value = $"StatsSummary/Alcohol".value - 90
 	alcohol = $"StatsSummary/Alcohol".value
+	emit_signal("just_attacked", "Armada", "¿Un lolete?", attacked.name, "Se pensaba que era [shake]un minion de la grieta[/shake]")

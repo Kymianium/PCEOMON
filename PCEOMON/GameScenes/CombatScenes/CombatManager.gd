@@ -23,19 +23,22 @@ func _ready():
 		$Party.add_child(pceo_instance)
 	#	pceo_instance.connect("my_turn", self, "change_interface", [pceo_instance])
 		pceo_instance.connect("just_attacked", self, "write_attack_text")
+		pceo_instance.connect("just_died", self, "pceomon_died")
+		pceo_instance.connect("announcement", self, "incoming_announcement")
 		avatar = TextureRect.new()
 		avatar.texture = load(pceo_instance.avatar_path)
 		$Combatinterface/CombatGUI/Fight/Avatars.add_child(avatar)
 		load_pceomones()
 
 func write_attack_text(user: String, attack : String, objective : String, string : String):
+	print("Llega la señal just_attacked")
 	var showmessage
 	metadata.freeze_time = true
 	$DialogueBox.visible = true
 	if(objective == ""):
 		showmessage = "¡" + user + " usó " + attack + "! " + string
 	else:
-		showmessage = "¡" + user + " usó " + attack + "contra " + objective + "! " + string
+		showmessage = "¡" + user + " usó " + attack + " contra " + objective + "! " + string
 	$DialogueBox.message(showmessage)
 
 func load_pceomones():
@@ -97,6 +100,23 @@ func _process(_delta):
 	else:
 		make_interface_visible(false)
 
+func pceomon_died(pceomon):
+	if pceomon.boss:
+		for mate in $"Party".get_children():
+			mate.foes.erase(pceomon)
+		for enemy in $"Enemies".get_children():
+			enemy.mates.erase(pceomon)
+	else:
+		for mate in $"Party".get_children():
+			mate.mates.erase(pceomon)
+		for enemy in $"Enemies".get_children():
+			enemy.foes.erase(pceomon)
+			print(pceomon.name , " elimado de la lista de ", enemy.name)
+
+func incoming_announcement(announce):
+	metadata.freeze_time = true
+	$DialogueBox.visible = true
+	$DialogueBox.message(announce)
 
 func _on_DialogueBox_input():
 	metadata.freeze_time = false
