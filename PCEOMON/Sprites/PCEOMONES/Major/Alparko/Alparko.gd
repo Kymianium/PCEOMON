@@ -1,9 +1,10 @@
-extends "res://PCEOMON_combat.gd"
+extends "res://PCEOMONES_classes/PCEOMON.gd"
 
 
 var peaceful:bool = false
 
 func _ready():
+	arrow = $Arrow
 	name = "Alparko"
 	ability = "Peaceful mode"
 	attack1 = "/tp"

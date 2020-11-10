@@ -5,6 +5,3 @@
 
 [node name="PCEOMON" instance=ExtResource( 2 )]
 script = ExtResource( 1 )
-
-[node name="Alcohol" parent="StatsSummary" index="2"]
-visible = true

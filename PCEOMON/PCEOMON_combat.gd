@@ -3,13 +3,16 @@ extends Skeleton2D
 var foes = []
 var mates = []
 
+var target = 0
+var selecting : bool = false
+
 var boss : bool = false
 
 var rng = RandomNumberGenerator.new()
 
 signal just_attacked(user, attack, objective, string)
 signal announcement(announce)
-
+signal target_selected
 #STATS
 
 ###
@@ -86,6 +89,14 @@ export(String) var avatar_path
 
 var delta_acum: float = 0
 
+##################SEÑALES MISCELÁNEAS
+#	Sirven para cosas turbias. Cada una debe de ir acompañada de su correspondiente
+# comentario.
+# Paco hijo de puta.
+
+var arrow #Esta es la flecha que apunta al PCEOMÓN
+
+
 
 signal just_died(pceomon)
 #############################
@@ -94,6 +105,19 @@ func _ready():
 	actual_stamina = 0
 	max_hp = 100
 	actual_hp = max_hp
+
+func _input(event):
+	
+	if(selecting):
+		if event is InputEventKey:
+			if event.scancode == KEY_ENTER:		#El event.pressed es para
+			# que solo se ejecute al pulsarlo
+				emit_signal("target_selected")
+			if event.scancode == KEY_LEFT and event.pressed:
+				change_selected(false)
+			if event.scancode == KEY_RIGHT and event.pressed:
+				change_selected(true)
+
 
 # HACER UN CASE CON EL SIGUIENTE ATAQUE
 func attack():
@@ -193,4 +217,44 @@ func damage(var damage : int):
 func poison(var damage : int):
 	poison_counter = damage
 	$"HBoxContainer/VBoxContainer/Poison".visible = true
-
+	
+	# FUNCIÓN PARA SELECCIONAR UN PCEOMON ALIADO 
+func select(var allied : bool):
+	target = 0
+	selecting = true
+	if allied:
+		mates[target].arrow.visible = true
+		yield(self, "target_selected")
+		mates[target].arrow.visible = false
+		selecting = false
+		return mates[target]
+	else:
+		foes[target].arrow.visible = true
+		foes[target].arrow.visible = false
+		yield(self, "target_selected")
+		selecting = false
+		return foes[target]
+	
+		
+func change_selected(var forward : bool):
+	if mates[target].arrow.visible:
+		mates[target].arrow.visible = false
+		if forward:
+			target+=1
+			target=target%mates.size()
+		else:
+			target-=1
+			if target==-1:
+				target=mates.size()-1
+		mates[target].arrow.visible = true
+	elif foes[target].arrow.visible:
+		foes[target].arrow.visible = false
+		if forward:
+			target+=1
+			target=target%foes.size()
+		else:
+			target-=1
+			if target==-1:
+				target=foes.size()-1
+		foes[target].arrow.visible = true
+	

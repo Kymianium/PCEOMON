@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Sprites/Miscelaneous/Bars/Health/Background.png" type="Texture" id=1]
 [ext_resource path="res://Sprites/Miscelaneous/Bars/Alcohol/Fill.png" type="Texture" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://Sprites/Miscelaneous/Bars/Stamina/Fill.png" type="Texture" id=6]
 [ext_resource path="res://Sprites/Miscelaneous/Bars/Alcohol/Background.png" type="Texture" id=7]
 [ext_resource path="res://Sprites/PCEOMONES/Major/Armada/Armada.gd" type="Script" id=8]
+[ext_resource path="res://Sprites/Miscelaneous/Arrows/AlliedArrow.png" type="Texture" id=9]
 
 [node name="PCEOMON" type="Skeleton2D"]
 position = Vector2( 20, 10 )
@@ -16,6 +17,13 @@ script = ExtResource( 8 )
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 0, 60 )
 texture = ExtResource( 4 )
+centered = false
+
+[node name="Arrow" type="Sprite" parent="."]
+visible = false
+position = Vector2( 89.09, 126.818 )
+rotation = 3.14159
+texture = ExtResource( 9 )
 centered = false
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]

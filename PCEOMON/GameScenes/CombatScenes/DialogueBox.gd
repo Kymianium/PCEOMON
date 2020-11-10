@@ -7,7 +7,7 @@ var deltacum : float = 0
 var drawspeed : float = 0.02
 
 func _input(event):
-	if event is InputEventKey or (event is InputEventMouseButton and not (event.pressed)):
+	if (event is InputEventKey and event.scancode == KEY_ENTER) or (event is InputEventMouseButton and not (event.pressed)):
 		emit_signal("input")
 
 func message(message : String):

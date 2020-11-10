@@ -6,12 +6,6 @@ var pceo_instance
 var avatar : TextureRect
 var info : String
 
-func stop_time():
-	pass
-
-func continue_time():
-	pass
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	###TEMPORAL, METER ENEMIGOS
@@ -39,7 +33,10 @@ func write_attack_text(user: String, attack : String, objective : String, string
 		showmessage = "¡" + user + " usó " + attack + "! " + string
 	else:
 		showmessage = "¡" + user + " usó " + attack + " contra " + objective + "! " + string
+	make_interface_visible(false)
 	$DialogueBox.message(showmessage)
+
+
 
 
 #Incializa los arrays de compañeros y enemigos
@@ -116,6 +113,7 @@ func pceomon_died(pceomon):
 			print(pceomon.name , " elimado de la lista de ", enemy.name)
 
 func incoming_announcement(announce):
+	make_interface_visible(false)
 	metadata.freeze_time = true
 	$DialogueBox.visible = true
 	$DialogueBox.message(announce)
@@ -123,3 +121,4 @@ func incoming_announcement(announce):
 func _on_DialogueBox_input():
 	metadata.freeze_time = false
 	$DialogueBox.visible = false
+	make_interface_visible(true)

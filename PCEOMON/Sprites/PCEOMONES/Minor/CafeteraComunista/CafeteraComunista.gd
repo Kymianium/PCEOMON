@@ -1,7 +1,7 @@
-extends "res://PCEOMON_combat.gd"
+extends "res://PCEOMONES_classes/PCEOMON.gd"
 
 
-
+var selected_mate = null
 const lucha_de_clases_dmg = 50
 const chocolate_healing = 40
 
@@ -19,6 +19,8 @@ func _ready():
 
 func next1():
 	next_attack_required_stamina = 500
+	emit_signal("announcement", "Selecciona al PCEOMÓN falto de [shake level=20] cafeína [/shake]")
+	selected_mate = yield(select(true), "completed")
 	.next1()
 func next2():
 	next_attack_required_stamina = 300
@@ -31,10 +33,8 @@ func next4():
 
 func atk1():
 	#Café de avellanas, aumenta la velocidad con la que se restaura la stamina
-	
-	var selected_mate = mates[rng.randi_range(0,mates.size()-1)]
 	selected_mate.buff("speed", 1000, 1.5, 0)
-	emit_signal("just_attacked", "La cafetera comunista", "Café de avellana", "", "Con este manjar, " + selected_mate.name + " ahora va más [wave]rápido[/wave]")
+	emit_signal("just_attacked", "La cafetera comunista", "Café de avellana", "", "Con este manjar, " + selected_mate.name + " ahora va más [tornado freq=5]rápido[/tornado]")
 	
 func atk2():
 	#Roba un poco de vida al enemigo con mas porcentaje de vida y le da una parte al aliado con menor porcentaje de vida

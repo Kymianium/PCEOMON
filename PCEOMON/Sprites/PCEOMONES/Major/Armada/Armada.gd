@@ -1,9 +1,10 @@
-extends "res://PCEOMON_combat.gd"
+extends "res://PCEOMONES_classes/PCEOMON.gd"
 
 
 var alcohol
 
 func _ready():
+	arrow = $Arrow
 	name = "Armada"
 	ability = "Rapunzel"
 	attack1 = "Postureo"
