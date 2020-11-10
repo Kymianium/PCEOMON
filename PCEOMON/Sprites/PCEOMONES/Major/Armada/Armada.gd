@@ -4,6 +4,7 @@ extends "res://PCEOMONES_classes/PCEOMON.gd"
 var alcohol
 
 func _ready():
+	$HBoxContainer/StatsSummary/Shield.value = 0
 	arrow = $Arrow
 	name = "Armada"
 	ability = "Rapunzel"

@@ -21,6 +21,7 @@ run/main_scene="res://Title/Intro.tscn"
 config/use_custom_user_dir=true
 config/custom_user_dir_name="PCEOMONmetainf"
 config/icon="res://Title/icon.png"
+config/windows_native_icon="res://Title/icon.ico"
 
 [autoload]
 

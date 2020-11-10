@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://PCEOMONES_classes/PCEOMON.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/Miscelaneous/Bars/Stamina/Background.png" type="Texture" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://Sprites/Miscelaneous/States/aturdimiento.png" type="Texture" id=9]
 [ext_resource path="res://Sprites/Miscelaneous/States/envenenamiento.png" type="Texture" id=10]
 [ext_resource path="res://Sprites/Miscelaneous/Arrows/AlliedArrow.png" type="Texture" id=11]
+[ext_resource path="res://Sprites/Miscelaneous/Bars/Health/Shield.png" type="Texture" id=12]
 
 [node name="PCEOMON" type="Skeleton2D"]
 position = Vector2( 20, 10 )
@@ -42,6 +43,16 @@ rect_min_size = Vector2( 50, 50 )
 value = 100.0
 texture_under = ExtResource( 4 )
 texture_progress = ExtResource( 8 )
+fill_mode = 4
+radial_initial_angle = 180.0
+nine_patch_stretch = true
+
+[node name="Shield" type="TextureProgress" parent="HBoxContainer/StatsSummary"]
+margin_right = 50.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 50, 50 )
+value = 50.0
+texture_progress = ExtResource( 12 )
 fill_mode = 4
 radial_initial_angle = 180.0
 nine_patch_stretch = true
