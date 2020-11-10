@@ -41,5 +41,9 @@ func _on_FulscreenButton_pressed():
 
 
 func _on_Volume_value_changed(value):
-	$"/root/MainScreenMusicController".volume = value
-	$"/root/MainScreenMusicController".music_volume(value)
+	if (value == -30):
+		$"/root/MainScreenMusicController".volume = -80
+		$"/root/MainScreenMusicController".music_volume(-80)
+	else:
+		$"/root/MainScreenMusicController".volume = value
+		$"/root/MainScreenMusicController".music_volume(value)
