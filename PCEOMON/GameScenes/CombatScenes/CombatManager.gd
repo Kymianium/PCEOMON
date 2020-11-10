@@ -5,6 +5,7 @@ var pceomon
 var pceo_instance
 var avatar : TextureRect
 var info : String
+signal ended_text
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -25,7 +26,10 @@ func _ready():
 		load_pceomones()
 
 func write_attack_text(user: String, attack : String, objective : String, string : String):
+	if $DialogueBox.visible == true:
+		yield(self,"ended_text")
 	print("Llega la señal just_attacked")
+		
 	var showmessage
 	metadata.freeze_time = true
 	$DialogueBox.visible = true
@@ -121,4 +125,5 @@ func incoming_announcement(announce):
 func _on_DialogueBox_input():
 	metadata.freeze_time = false
 	$DialogueBox.visible = false
-	make_interface_visible(true)
+	#make_interface_visible(true)
+	emit_signal("ended_text")
