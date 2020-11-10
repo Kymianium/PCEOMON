@@ -75,7 +75,7 @@ func setPCEOMONinfo(name : String, texture, description : String,
 #######################################################################################
 func getAndSetInfo(pceomon:String, texture):
 	var file = File.new()
-	file.open("res://GameScenes/Menues/Selection/PCEOMONES/Major/" + pceomon +"Info.tres", File.READ)
+	file.open("res://GameScenes/Menues/Selection/PCEOMONES/Major/" + pceomon +"Info.txt", File.READ)
 	var name = file.get_line().replace("\\n","\n")
 	var description = file.get_line().replace("\\n","\n")
 	var type = file.get_line().replace("\\n","\n")
@@ -89,7 +89,7 @@ func getAndSetInfo(pceomon:String, texture):
 
 func getAndSetInfoMinor(pceomon: String, texture):
 	var file = File.new()
-	file.open("res://GameScenes/Menues/Selection/PCEOMONES/Minor/" + pceomon +"Info.tres", File.READ)
+	file.open("res://GameScenes/Menues/Selection/PCEOMONES/Minor/" + pceomon +"Info.txt", File.READ)
 	var name = file.get_line().replace("\\n","\n")
 	var description = file.get_line().replace("\\n","\n")
 	var type = file.get_line().replace("\\n","\n")
@@ -137,3 +137,7 @@ func _on_MarineraDeCantor_pressed():
 
 func _on_CafeteraComunista_pressed():
 	getAndSetInfoMinor("CafeteraComunista",CafeteraS)
+
+
+func _on_Teclado_pressed():
+	getAndSetInfoMinor("Teclado",TecladoS)

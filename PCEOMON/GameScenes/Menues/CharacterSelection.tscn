@@ -224,6 +224,7 @@ text = "Equipo:"
 [node name="PCEOMONInfo" parent="." instance=ExtResource( 7 )]
 [connection signal="pressed" from="CenterContainer/MenuDistribution/Major/SelectAndNavigate/Column1/Armada" to="." method="_on_Armada_pressed"]
 [connection signal="pressed" from="CenterContainer/MenuDistribution/Major/SelectAndNavigate/Column2/Alparko" to="." method="_on_Alparko_pressed"]
+[connection signal="pressed" from="CenterContainer/MenuDistribution/Minor/Minors/Teclado" to="." method="_on_Teclado_pressed"]
 [connection signal="pressed" from="CenterContainer/MenuDistribution/Minor/Minors/CafeteraComunista" to="." method="_on_CafeteraComunista_pressed"]
 [connection signal="pressed" from="CenterContainer/MenuDistribution/Minor/Minors/MarineraDeCantor" to="." method="_on_MarineraDeCantor_pressed"]
 [connection signal="pressed" from="CenterContainer/MenuDistribution/Minor/Minors/FuncionDeWeierstrass" to="." method="_on_FuncionDeWeierstrass_pressed"]
