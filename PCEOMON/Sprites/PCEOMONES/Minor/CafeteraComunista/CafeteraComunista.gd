@@ -1,4 +1,4 @@
-extends "res://PCEOMONES_classes/PCEOMON.gd"
+extends "res://PCEOMON_combat.gd"
 
 
 var selected_mate = null

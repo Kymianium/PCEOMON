@@ -43,19 +43,28 @@ signal sprite_pressed(name,boss)
 
 var buffs = []
 
-var stats = {"chemicaldmg" : [5, 1, 0], "physicaldmg" : [5, 1, 0], 
-"psychologycaldmg" : [5, 1, 0], "chemicaldfc" : [5, 1, 0],
-"physicaldfc" : [5, 1, 0], "speed" : [5, 1, 0], "evasion" : [1,1,0]}
+var max_permanent_buff = 4
 
-func buff(stat : String, duration : int, product : int, sum : int):
+var stats = {"chemicaldmg" : [5, 1, 0, 1], "physicaldmg" : [5, 1, 0, 1], 
+"psychologycaldmg" : [5, 1, 0, 1], "chemicaldfc" : [5, 1, 0, 1],
+"physicaldfc" : [5, 1, 0, 1], "psychologycaldfc" :  [5, 1, 0, 1], 
+"speed" : [5, 1, 0, 1], "evasion" : [1, 1, 0, 1]}
+
+func buff(stat : String, duration : int, product : float, sum : int):
 	var buff = [duration, stat, product, sum]
 	buffs.append(buff)
 	stats[stat][1]*=product
 	stats[stat][2]+=sum
 	
+func permanent_buff(stat : String, product : float, sum : int):
+	stats[stat][0]+=sum
+	stats[stat][3]*=product
+	if stats[stat][3]>max_permanent_buff:
+		stats[stat][3]=max_permanent_buff
+	
 func getstat(stat : String):
 	var rawstat = stats[stat]
-	return (rawstat[0]*rawstat[1]+rawstat[2])
+	return (rawstat[0]*rawstat[1]*rawstat[3]+rawstat[2])
 
 func update_buffs():
 	var toremove = []
@@ -111,6 +120,8 @@ func _ready():
 	actual_stamina = 0
 	max_hp = 100
 	actual_hp = max_hp
+	arrow = $Arrow
+	$HBoxContainer/StatsSummary/Shield.value = 0
 
 func _input(event):
 	
@@ -129,12 +140,13 @@ func target_selected(pceomon,boss):
 	if (selecting and (not boss) == selecting_allied):
 		if (selecting_allied):
 			for mate in range(mates.size()):
+				mates[mate].arrow.visible = false
 				if (mates[mate] == pceomon):
 					target = mate
-					emit_signal("target_selected")
-					return
+					emit_signal("target_selected")					
 		else:
 			for enemy in range(foes.size()):
+				foes[target].arrow.visible = false
 				if (foes[enemy] == pceomon):
 					target = enemy
 					emit_signal("target_selected")

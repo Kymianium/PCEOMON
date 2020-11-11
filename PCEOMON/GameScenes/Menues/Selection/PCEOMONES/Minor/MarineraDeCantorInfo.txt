@@ -1,7 +1,8 @@
 Marinera de Cantor
 Marinera de la región\nLa anchoa tiene medida nula pero no es numerable.
+Menor
 
-Mov 1
+No numerable - ¡Rompe\ntus límites! ¡Ahora puedes subir\ntus estadísticas aún más!
 Mov 2
 Mov 3
 Mov 4

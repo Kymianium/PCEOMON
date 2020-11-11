@@ -1,4 +1,4 @@
-extends "res://PCEOMONES_classes/PCEOMON.gd"
+extends "res://PCEOMONES_classes/Alcoholic.gd"
 
 
 var alcohol
