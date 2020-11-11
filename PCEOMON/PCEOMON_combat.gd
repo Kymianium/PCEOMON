@@ -5,14 +5,20 @@ var mates = []
 
 var target = 0
 var selecting : bool = false
+var selecting_allied: bool = false
 
 var boss : bool = false
+
+var manager
 
 var rng = RandomNumberGenerator.new()
 
 signal just_attacked(user, attack, objective, string)
 signal announcement(announce)
+signal permanent_announcement(announce)
 signal target_selected
+signal target_selected_by_key
+signal sprite_pressed(name,boss)
 #STATS
 
 ###
@@ -119,6 +125,25 @@ func _input(event):
 				change_selected(true)
 
 
+func target_selected(pceomon,boss):
+	if (selecting and (not boss) == selecting_allied):
+		if (selecting_allied):
+			for mate in range(mates.size()):
+				if (mates[mate] == pceomon):
+					target = mate
+					emit_signal("target_selected")
+					return
+		else:
+			for enemy in range(foes.size()):
+				if (foes[enemy] == pceomon):
+					target = enemy
+					emit_signal("target_selected")
+					return
+
+
+
+
+
 # HACER UN CASE CON EL SIGUIENTE ATAQUE
 func attack():
 	$"HBoxContainer/StatsSummary/Stamina".value = 0
@@ -222,6 +247,7 @@ func poison(var damage : int):
 func select(var allied : bool):
 	target = 0
 	selecting = true
+	selecting_allied = allied
 	if allied:
 		mates[target].arrow.visible = true
 		yield(self, "target_selected")
@@ -257,4 +283,11 @@ func change_selected(var forward : bool):
 			if target==-1:
 				target=foes.size()-1
 		foes[target].arrow.visible = true
-	
+		
+
+
+
+
+func _on_SpriteContainer_sprite_pressed():
+	print("eo")
+	emit_signal("sprite_pressed",self,boss)

@@ -5,10 +5,16 @@ signal input
 var characters : int = 0
 var deltacum : float = 0
 var drawspeed : float = 0.02
+var permanent_dialog : bool = false
 
 func _input(event):
-	if (event is InputEventKey and event.scancode == KEY_ENTER) or (event is InputEventMouseButton and not (event.pressed)):
+	if (event is InputEventKey and event.scancode == KEY_ENTER) or (event is InputEventMouseButton and not (permanent_dialog) and not (event.pressed)):
 		emit_signal("input")
+
+func set_permanent_dialog(value : bool):
+	permanent_dialog = value
+	
+
 
 func message(message : String):
 	$Background/Text.set_bbcode(message)

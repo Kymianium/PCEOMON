@@ -126,6 +126,7 @@ func _on_PCEOMONInfo_volver():
 func _on_PCEOMONInfo_seleccionar():
 	manage_party($"PCEOMONInfo/VBoxGlobal/MainInfo/SpriteName/Name".text)
 	change_select_button($"PCEOMONInfo/VBoxGlobal/MainInfo/SpriteName/Name".text)
+	_on_PCEOMONInfo_volver()
 
 
 

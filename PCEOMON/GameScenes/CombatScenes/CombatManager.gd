@@ -6,6 +6,9 @@ var pceo_instance
 var avatar : TextureRect
 var info : String
 signal ended_text
+signal pceomon_pressed(pceomon,boss)
+
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -20,6 +23,11 @@ func _ready():
 		pceo_instance.connect("just_attacked", self, "write_attack_text")
 		pceo_instance.connect("just_died", self, "pceomon_died")
 		pceo_instance.connect("announcement", self, "incoming_announcement")
+		pceo_instance.connect("permanent_announcement",self,"incoming_permanent_announcement")
+		pceo_instance.connect("sprite_pressed",self,"pceomon_pressed")
+		pceo_instance.connect("target_selected",self,"_on_DialogueBox_input")
+		self.connect("pceomon_pressed",pceo_instance,"target_selected")
+		pceo_instance.manager = self
 		avatar = TextureRect.new()
 		avatar.texture = load(pceo_instance.avatar_path)
 		$Combatinterface/CombatGUI/Fight/Avatars.add_child(avatar)
@@ -116,6 +124,14 @@ func pceomon_died(pceomon):
 			enemy.foes.erase(pceomon)
 			print(pceomon.name , " elimado de la lista de ", enemy.name)
 
+
+func pceomon_pressed(pceomon,boss):
+	emit_signal("pceomon_pressed",pceomon,boss)
+
+func incoming_permanent_announcement(announce):
+	$DialogueBox.set_permanent_dialog(true)
+	incoming_announcement(announce)
+
 func incoming_announcement(announce):
 	make_interface_visible(false)
 	metadata.freeze_time = true
@@ -127,3 +143,6 @@ func _on_DialogueBox_input():
 	$DialogueBox.visible = false
 	#make_interface_visible(true)
 	emit_signal("ended_text")
+	$DialogueBox.set_permanent_dialog(false)
+	
+	

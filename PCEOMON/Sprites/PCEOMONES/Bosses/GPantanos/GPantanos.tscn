@@ -7,14 +7,13 @@
 [node name="PCEOMON" instance=ExtResource( 2 )]
 script = ExtResource( 3 )
 
-[node name="Sprite" parent="." index="0"]
-texture = ExtResource( 1 )
-
-[node name="HBoxContainer" parent="." index="1"]
+[node name="HBoxContainer" parent="." index="0"]
 margin_left = 20.0
 margin_right = 86.0
 margin_bottom = 50.0
 
-[node name="Poison" parent="HBoxContainer/VBoxContainer" index="1"]
-margin_top = 0.0
-margin_bottom = 12.0
+[node name="Sprite" parent="SpriteContainer" index="0"]
+texture = ExtResource( 1 )
+
+[node name="Hitbox" parent="SpriteContainer" index="1"]
+position = Vector2( 52.6054, 153.258 )
