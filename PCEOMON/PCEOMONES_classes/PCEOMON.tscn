@@ -17,7 +17,7 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 25.0686, 49.5706 )
 
-[node name="PCEOMON" type="Skeleton2D"]
+[node name="PCEOMON" type="Node2D"]
 position = Vector2( 20, 10 )
 script = ExtResource( 1 )
 
@@ -80,12 +80,13 @@ texture_progress = ExtResource( 6 )
 radial_initial_angle = 180.0
 nine_patch_stretch = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+[node name="Status" type="VBoxContainer" parent="HBoxContainer"]
+visible = false
 margin_left = 54.0
 margin_right = 54.0
 margin_bottom = 50.0
 
-[node name="Confusion" type="TextureRect" parent="HBoxContainer/VBoxContainer"]
+[node name="Confusion" type="TextureRect" parent="HBoxContainer/Status"]
 visible = false
 margin_right = 12.0
 margin_bottom = 12.0
@@ -93,7 +94,7 @@ rect_min_size = Vector2( 12, 12 )
 texture = ExtResource( 9 )
 expand = true
 
-[node name="Poison" type="TextureRect" parent="HBoxContainer/VBoxContainer"]
+[node name="Poison" type="TextureRect" parent="HBoxContainer/Status"]
 visible = false
 margin_right = 12.0
 margin_bottom = 12.0

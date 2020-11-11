@@ -19,13 +19,13 @@ func _ready():
 		pceo_instance.position.x = metadata.combat_position[i][0]
 		pceo_instance.position.y = metadata.combat_position[i][1]
 		$Party.add_child(pceo_instance)
-	#	pceo_instance.connect("my_turn", self, "change_interface", [pceo_instance])
 		pceo_instance.connect("just_attacked", self, "write_attack_text")
 		pceo_instance.connect("just_died", self, "pceomon_died")
 		pceo_instance.connect("announcement", self, "incoming_announcement")
 		pceo_instance.connect("permanent_announcement",self,"incoming_permanent_announcement")
 		pceo_instance.connect("sprite_pressed",self,"pceomon_pressed")
 		pceo_instance.connect("target_selected",self,"_on_DialogueBox_input")
+		pceo_instance.connect("particle", self, "draw_particle")
 		self.connect("pceomon_pressed",pceo_instance,"target_selected")
 		pceo_instance.manager = self
 		avatar = TextureRect.new()
@@ -145,4 +145,9 @@ func _on_DialogueBox_input():
 	emit_signal("ended_text")
 	$DialogueBox.set_permanent_dialog(false)
 	
-	
+func draw_particle(path, posx, posy):
+	var particle = load(path)
+	var  particle_instance = particle.instance()
+	particle_instance.position.x = posx
+	particle_instance.position.y = posy
+	$".".add_child(particle_instance)

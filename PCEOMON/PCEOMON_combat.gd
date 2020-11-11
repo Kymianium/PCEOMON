@@ -1,4 +1,4 @@
-extends Skeleton2D
+extends Node2D
 #ARRAYS ENEMIGOS/ALIADOS
 var foes = []
 var mates = []
@@ -6,6 +6,7 @@ var mates = []
 var target = 0
 var selecting : bool = false
 var selecting_allied: bool = false
+
 
 var boss : bool = false
 
@@ -17,8 +18,8 @@ signal just_attacked(user, attack, objective, string)
 signal announcement(announce)
 signal permanent_announcement(announce)
 signal target_selected
-signal target_selected_by_key
 signal sprite_pressed(name,boss)
+signal particle(path, posx, posy)
 #STATS
 
 ###
@@ -223,7 +224,7 @@ func _process(delta):
 			if poison_counter > 0 and actual_hp > poison_damage:
 				poison_counter -= poison_damage
 				if (poison_counter <= 0):
-					$"HBoxContainer/VBoxContainer/Poison".visible = false
+					$"HBoxContainer/Status/Poison".visible = false
 					emit_signal("announcement","El envenenamiento de " + self.name + " ha terminado")
 				self.damage(poison_damage)
 
@@ -260,7 +261,7 @@ func damage(var damage : int):
 	
 func poison(var damage : int):
 	poison_counter = damage
-	$"HBoxContainer/VBoxContainer/Poison".visible = true
+	$"HBoxContainer/Status/Poison".visible = true
 	
 	# FUNCIÓN PARA SELECCIONAR UN PCEOMON ALIADO 
 func select(var allied : bool):
