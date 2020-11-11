@@ -41,11 +41,11 @@ func atk1():
 	#Armada alza en alto su móvil y graba un instastory lo cual hace que los enemigos entren en
 	#estado de baile desenfrenado. A mitad del baile, Armada se convierte en una fuente de pota y hace	
 	#daño químico a todos los que bailan.
-	foes[rng.randi_range(0,foes.size()-1)].damage(500)
+	var attacked = rng.randi_range(0,foes.size()-1)
+	var damage_done = foes[attacked].damage(500)
 	$"HBoxContainer/StatsSummary/Alcohol".value = $"HBoxContainer/StatsSummary/Alcohol".value - 50
 	alcohol = $"HBoxContainer/StatsSummary/Alcohol".value
-	emit_signal("just_attacked", "Armada", "Postureo", "", "Esta pa [rainbow] mejores amigos [/rainbow]")
-	
+	unicast_damage(damage_done,foes[attacked].name,"Postureo","Esta pa [rainbow] mejores amigos [/rainbow].")
 	
 func atk2():
 	#El Quijote

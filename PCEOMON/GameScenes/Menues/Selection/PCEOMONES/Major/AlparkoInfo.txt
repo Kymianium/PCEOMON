@@ -2,7 +2,7 @@ Alparko
 Un capo. Liberal en lo económico. \n Seguidlo en twitter: @putogordo69
 Programador
 Peaceful mode - No puede ser atacado hasta no atacar
-/tp - Redirige el daño de un ataque
-Aspecto ígneo - Incrementa daño del siguiente ataque de un\n PCEOMON
-/timeset day - Elimina criaturas pasivas
+/tp - Aumenta la evasión de un PCEOMON
+Aspecto ígneo - Incrementa el daño físico de un PCEOMON
+Protección - Aumenta todas las defensas de un PCEOMON
 /weather clear - Devuelve los stats a su estado original

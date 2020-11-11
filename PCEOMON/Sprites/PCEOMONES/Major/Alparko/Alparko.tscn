@@ -1,76 +1,11 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Sprites/Miscelaneous/Bars/Health/Background.png" type="Texture" id=1]
-[ext_resource path="res://Sprites/Miscelaneous/Bars/Alcohol/Fill.png" type="Texture" id=2]
-[ext_resource path="res://Sprites/Miscelaneous/Bars/Health/Fill.png" type="Texture" id=3]
+[ext_resource path="res://PCEOMONES_classes/Programmer.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Sprites/PCEOMONES/Major/Alparko/Alparko_sprite.png" type="Texture" id=4]
-[ext_resource path="res://Sprites/Miscelaneous/Bars/Stamina/Background.png" type="Texture" id=5]
-[ext_resource path="res://Sprites/Miscelaneous/Bars/Stamina/Fill.png" type="Texture" id=6]
-[ext_resource path="res://Sprites/Miscelaneous/Bars/Alcohol/Background.png" type="Texture" id=7]
 [ext_resource path="res://Sprites/PCEOMONES/Major/Alparko/Alparko.gd" type="Script" id=8]
-[ext_resource path="res://Sprites/Miscelaneous/Arrows/AlliedArrow.png" type="Texture" id=9]
 
-[node name="PCEOMON" type="Skeleton2D"]
-position = Vector2( 20, 10 )
+[node name="PCEOMON" instance=ExtResource( 1 )]
 script = ExtResource( 8 )
 
-[node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 0, 60 )
+[node name="Sprite" parent="SpriteContainer" index="0"]
 texture = ExtResource( 4 )
-centered = false
-
-[node name="Arrow" type="Sprite" parent="."]
-visible = false
-position = Vector2( 75.5953, 122.366 )
-rotation = 3.14159
-texture = ExtResource( 9 )
-centered = false
-
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="StatsSummary" type="CenterContainer" parent="HBoxContainer"]
-margin_right = 50.0
-margin_bottom = 50.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="HP" type="TextureProgress" parent="HBoxContainer/StatsSummary"]
-margin_right = 50.0
-margin_bottom = 50.0
-rect_min_size = Vector2( 50, 50 )
-value = 100.0
-texture_under = ExtResource( 1 )
-texture_progress = ExtResource( 3 )
-fill_mode = 4
-radial_initial_angle = 180.0
-nine_patch_stretch = true
-
-[node name="Stamina" type="TextureProgress" parent="HBoxContainer/StatsSummary"]
-margin_left = 10.0
-margin_top = 10.0
-margin_right = 40.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 30, 30 )
-texture_under = ExtResource( 5 )
-texture_progress = ExtResource( 6 )
-fill_mode = 3
-radial_initial_angle = 180.0
-nine_patch_stretch = true
-
-[node name="Alcohol" type="TextureProgress" parent="HBoxContainer/StatsSummary"]
-visible = false
-margin_left = 15.0
-margin_top = 15.0
-margin_right = 35.0
-margin_bottom = 35.0
-rect_min_size = Vector2( 20, 20 )
-texture_under = ExtResource( 7 )
-texture_progress = ExtResource( 2 )
-radial_initial_angle = 180.0
-nine_patch_stretch = true

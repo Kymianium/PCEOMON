@@ -224,11 +224,18 @@ func heal(var hp: int):
 	$"HBoxContainer/StatsSummary/HP".value = actual_hp*100/max_hp
 
 
+func unicast_damage(var damage_done, var dst : String, var attack : String, var description : String):
+	if (damage_done > 0):
+		emit_signal("just_attacked",self.name,attack,dst,description)
+	else:
+		emit_signal("just_attacked",self.name,attack,dst,"Pero ha fallado")
+		
+	
+
 
 func damage(var damage : int):
 	
 	if rng.randf() > getstat("evasion"):
-		emit_signal("announcement","El ataque falló")
 		return 0
 	actual_hp = actual_hp - damage
 # warning-ignore:integer_division
