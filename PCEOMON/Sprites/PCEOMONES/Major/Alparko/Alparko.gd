@@ -2,7 +2,6 @@ extends "res://PCEOMONES_classes/R4.gd"
 
 
 var peaceful:bool = false
-var selected_mate = null
 
 
 func _ready():

@@ -1,11 +1,11 @@
 extends "res://PCEOMONES_classes/Alcoholic.gd"
 
 
-var alcohol
-
 func _ready():
 	$HBoxContainer/StatsSummary/Shield.value = 0
 	arrow = $Arrow
+	maxalcohol = 500
+	alcohol = 0
 	name = "Armada"
 	ability = "Rapunzel"
 	attack1 = "Postureo"
@@ -16,13 +16,17 @@ func _ready():
 	avatar_path = "res://Sprites/PCEOMONES/Major/Armada/Armada_avatar.png"
 	
 func next1():
-	if ($"HBoxContainer/StatsSummary/Alcohol".value >= 50):
+	if (alcohol >= 50):
 		next_attack_required_stamina = 200
+		emit_signal("permanent_announcement", "¿A quién le quieres enviar tu instastory?")
+		selected_foe = yield(select(false), "completed")
 		.next1()
 	else:
 		emit_signal("announcement","No tienes suficiente alcohol en sangre para eso, zagal")
 func next2():
-	if ($"HBoxContainer/StatsSummary/Alcohol".value >= 60):
+	if (alcohol >= 80):
+		emit_signal("permanent_announcement", "Un caballero hidalgo... ¿Quién lo dijo?")
+		selected_foe = yield(select(false), "completed")
 		next_attack_required_stamina = 200
 		.next2()
 	else:
@@ -31,8 +35,10 @@ func next3():
 	next_attack_required_stamina = 150
 	.next3()
 func next4():
-	if ($"HBoxContainer/StatsSummary/Alcohol".value >= 90):
+	if (alcohol >= 400):
 		next_attack_required_stamina = 300
+		emit_signal("permanent_announcement", "ESTOY EN LA GRIETA. MATAR. MATAR.                               [shake level=30 freq = 1]MATAR. [/shake]")
+		selected_foe = yield(select(false), "completed")
 		.next4()
 	else:
 		emit_signal("announcement","No tienes suficiente alcohol en sangre para eso, zagal")
@@ -41,11 +47,12 @@ func atk1():
 	#Armada alza en alto su móvil y graba un instastory lo cual hace que los enemigos entren en
 	#estado de baile desenfrenado. A mitad del baile, Armada se convierte en una fuente de pota y hace	
 	#daño químico a todos los que bailan.
-	var attacked = rng.randi_range(0,foes.size()-1)
-	var damage_done = foes[attacked].damage(500)
-	$"HBoxContainer/StatsSummary/Alcohol".value = $"HBoxContainer/StatsSummary/Alcohol".value - 50
-	alcohol = $"HBoxContainer/StatsSummary/Alcohol".value
-	unicast_damage(damage_done,foes[attacked].name,"Postureo","Esta pa [rainbow] mejores amigos [/rainbow].")
+	var damage_done = selected_foe.take_chemical_damage(calculate_chemical_damage(500, 0.5))
+	alcohol-=50
+	if alcohol>maxalcohol:
+		alcohol=maxalcohol
+	$"HBoxContainer/StatsSummary/Alcohol".value = float(alcohol)/maxalcohol *100
+	unicast_damage(damage_done,selected_foe.name,"Postureo","Esta pa [rainbow] mejores amigos [/rainbow].")
 	
 func atk2():
 	#El Quijote
@@ -54,11 +61,12 @@ func atk2():
 	#una garrafa de 8 litros de las de paellas, entrando este enemigo en un estado de embriaguez tal que
 	#durante las siguientes rondas perderá parte de su vida debido a las tremendas potas que lanzará
 	#(envenenamiento grave).
-	$"HBoxContainer/StatsSummary/Alcohol".value = $"HBoxContainer/StatsSummary/Alcohol".value - 60
-	alcohol = $"HBoxContainer/StatsSummary/Alcohol".value
-	var attacked = foes[rng.randi_range(0,foes.size()-1)]
-	attacked.poison(rng.randi_range(800,1000))
-	emit_signal("just_attacked", "Armada", "Quijote", attacked.name, "¡Hijo puta el que se deje algo! " + attacked.name + " va muy ciego")
+	alcohol-=80
+	if alcohol>maxalcohol:
+		alcohol=maxalcohol
+	$"HBoxContainer/StatsSummary/Alcohol".value = float(alcohol)/maxalcohol *100
+	selected_foe.poison(rng.randi_range(800,1000))
+	emit_signal("just_attacked", "Armada", "Quijote", selected_foe.name, "¡Hijo puta el que se deje algo! " + selected_foe.name + " va muy ciego")
 	
 func atk3():
 	#Esto no es na`
@@ -67,8 +75,8 @@ func atk3():
 	#profiere velocidad de ataque, daño químico y evasión. Armada termina su ataque lanzando un soberbio
 	#eructo que infringe daño químico. Recupera alcohol en sangre.
 	next_attack_required_stamina = 700
-	$"HBoxContainer/StatsSummary/Alcohol".value = $"HBoxContainer/StatsSummary/Alcohol".value + 20
-	alcohol = $"HBoxContainer/StatsSummary/Alcohol".value
+	alcohol+=200
+	$"HBoxContainer/StatsSummary/Alcohol".value = float(alcohol)/maxalcohol *100
 	print("He enviado la señal just_attacked")
 	emit_signal("just_attacked", "Armada", "Esto no es na'", "", "[wave] ¡Este hijo de puta quiere emborracharse![/wave]")
 
@@ -77,11 +85,12 @@ func atk4():
 	#Armada va tan borracho que se piensa que está en la grieta del invocador y se abalanza
 	#contra un pceomón enemigo, comenzando a meterle de ostias y rociarle alcohol tóxico lo cual infiere
 	#daño físico y mucho daño químico. Además si el enemigo tiene el 20% de la vida o menos, le oneshotea.
-	var attacked = foes[rng.randi_range(0,foes.size()-1)]
-	if float(attacked.actual_hp)/attacked.max_hp <= 0.2:
-		attacked.damage(attacked.max_hp)
+	if float(selected_foe.actual_hp)/selected_foe.max_hp <= 0.2:
+		selected_foe.damage(selected_foe.max_hp)
 	else:
-		foes[rng.randi_range(0,foes.size()-1)].damage(1000)
-	$"HBoxContainer/StatsSummary/Alcohol".value = $"HBoxContainer/StatsSummary/Alcohol".value - 90
-	alcohol = $"HBoxContainer/StatsSummary/Alcohol".value
-	emit_signal("just_attacked", "Armada", "¿Un lolete?", attacked.name, "Se pensaba que era [shake]un minion de la grieta[/shake]")
+		selected_foe.damage(1000)
+	alcohol-=400
+	if alcohol>maxalcohol:
+		alcohol=maxalcohol
+	$"HBoxContainer/StatsSummary/Alcohol".value = float(alcohol)/maxalcohol *100
+	emit_signal("just_attacked", "Armada", "¿Un lolete?", selected_foe.name, "Se pensaba que era [shake]un minion de la grieta[/shake]")

@@ -2,7 +2,6 @@ extends "res://PCEOMON_combat.gd"
 
 var CoffeeParticle = "res://Sprites/PCEOMONES/Minor/CafeteraComunista/CoffeeParticle.tscn"
 
-var selected_mate = null
 const lucha_de_clases_dmg = 50
 const chocolate_healing = 40
 
@@ -35,7 +34,7 @@ func next4():
 func atk1():
 	#Café de avellanas, aumenta la velocidad con la que se restaura la stamina
 	selected_mate.buff("speed", 1000, 1.5, 0)
-	emit_signal("particle", CoffeeParticle, selected_mate.position.x+25, selected_mate.position.y+75)
+	emit_signal("particle", CoffeeParticle, selected_mate.position.x+25, selected_mate.position.y+100)
 	emit_signal("just_attacked", "La cafetera comunista", "Café de avellana", "", "Con este manjar, " + selected_mate.name + " ahora va más [tornado freq=5]rápido[/tornado]")
 	
 func atk2():

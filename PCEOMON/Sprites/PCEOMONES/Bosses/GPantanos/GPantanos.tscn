@@ -12,6 +12,10 @@ margin_left = 20.0
 margin_right = 86.0
 margin_bottom = 50.0
 
+[node name="Arrow" parent="." index="1"]
+position = Vector2( -10, 150 )
+rotation = 0.0
+
 [node name="Sprite" parent="SpriteContainer" index="0"]
 texture = ExtResource( 1 )
 

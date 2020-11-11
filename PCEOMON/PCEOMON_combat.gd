@@ -6,6 +6,8 @@ var mates = []
 var target = 0
 var selecting : bool = false
 var selecting_allied: bool = false
+var selected_mate = null
+var selected_foe = null
 
 
 var boss : bool = false
@@ -243,11 +245,26 @@ func unicast_damage(var damage_done, var dst : String, var attack : String, var 
 	else:
 		emit_signal("just_attacked",self.name,attack,dst,"Pero ha fallado")
 		
-	
+func calculate_chemical_damage(var attack_damage : int, var scalation : float):
+	return attack_damage+(scalation*getstat("chemicaldmg"))
 
+func take_chemical_damage(var damage):
+	return damage(damage/(1+getstat("chemicaldfc")/100))
+
+func calculate_physical_damage(var attack_damage : int, var scalation : float):
+	return attack_damage+(scalation*getstat("physicaldmg"))
+
+func take_physical_damage(var damage):
+	return damage(damage/(1+getstat("physicaldfc")/100))
+	
+func calculate_phychological_damage(var attack_damage : int, var scalation : float):
+	return attack_damage+(scalation*getstat("phychologicaldmg"))
+
+func take_phychological_damage(var damage):
+	return damage(damage/(1+getstat("phychologicaldfc")/100))
+	
 
 func damage(var damage : int):
-	
 	if rng.randf() > getstat("evasion"):
 		return 0
 	actual_hp = actual_hp - damage
@@ -276,8 +293,8 @@ func select(var allied : bool):
 		return mates[target]
 	else:
 		foes[target].arrow.visible = true
-		foes[target].arrow.visible = false
 		yield(self, "target_selected")
+		foes[target].arrow.visible = false
 		selecting = false
 		return foes[target]
 	
@@ -305,9 +322,5 @@ func change_selected(var forward : bool):
 		foes[target].arrow.visible = true
 		
 
-
-
-
 func _on_SpriteContainer_sprite_pressed():
-	print("eo")
 	emit_signal("sprite_pressed",self,boss)

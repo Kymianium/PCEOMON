@@ -1,4 +1,4 @@
 extends "res://PCEOMON_combat.gd"
 
-var mana
-var maxmana
+var alcohol
+var maxalcohol
