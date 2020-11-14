@@ -1,8 +1,8 @@
 Marinera de Cantor
 Marinera de la región\nLa anchoa tiene medida nula pero no es numerable.
 Menor
-
-No numerable - ¡Rompe\ntus límites! ¡Ahora puedes subir\ntus estadísticas aún más!
-Mov 2
-Mov 3
-Mov 4
+No numerable - ¡Rompe tus límites! ¡Puedes subir\ntus estadísticas aún más!
+Ensaladillado - Llena de ensaladilla a un enemigo. Reduce su velocidad
+Medida nula - No hay por dónde pillarte. Aumenta tu evasión.
+Rosquilla puntiaguda - Haces daño físico a un enemigo.
+Aperitivo - Aumenta todas las características de un aliado.\nMuere en el proceso.
