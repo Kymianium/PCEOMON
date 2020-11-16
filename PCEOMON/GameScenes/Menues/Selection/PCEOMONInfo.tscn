@@ -29,9 +29,9 @@ __meta__ = {
 }
 
 [node name="MainInfo" type="HBoxContainer" parent="VBoxGlobal"]
-margin_top = 58.0
+margin_top = 33.0
 margin_right = 600.0
-margin_bottom = 129.0
+margin_bottom = 104.0
 custom_constants/separation = 20
 alignment = 1
 __meta__ = {
@@ -78,9 +78,9 @@ __meta__ = {
 }
 
 [node name="Miscelaneus" type="HBoxContainer" parent="VBoxGlobal"]
-margin_top = 149.0
+margin_top = 124.0
 margin_right = 600.0
-margin_bottom = 166.0
+margin_bottom = 141.0
 
 [node name="Type" type="Label" parent="VBoxGlobal/Miscelaneus"]
 margin_right = 128.0
@@ -89,49 +89,114 @@ custom_fonts/font = ExtResource( 1 )
 text = "TIpo Tu puta madre"
 
 [node name="AbilityAttacks" type="VBoxContainer" parent="VBoxGlobal"]
-margin_top = 186.0
+margin_top = 161.0
 margin_right = 600.0
-margin_bottom = 321.0
-custom_constants/separation = 5
+margin_bottom = 346.0
+custom_constants/separation = 10
 
-[node name="Ability" type="Label" parent="VBoxGlobal/AbilityAttacks"]
+[node name="Ability" type="HBoxContainer" parent="VBoxGlobal/AbilityAttacks"]
 margin_right = 600.0
-margin_bottom = 23.0
+margin_bottom = 29.0
+custom_constants/separation = 10
+
+[node name="AbName" type="Button" parent="VBoxGlobal/AbilityAttacks/Ability"]
+margin_right = 86.0
+margin_bottom = 29.0
 custom_fonts/font = ExtResource( 2 )
-text = "Habilidad: Las pajas"
+text = "Habilidad"
 
-[node name="Attack1" type="Label" parent="VBoxGlobal/AbilityAttacks"]
-margin_top = 28.0
-margin_right = 600.0
-margin_bottom = 51.0
+[node name="AbDesc" type="Label" parent="VBoxGlobal/AbilityAttacks/Ability"]
+margin_left = 96.0
+margin_top = 3.0
+margin_right = 182.0
+margin_bottom = 26.0
 custom_fonts/font = ExtResource( 2 )
-text = "Ataque 1: La paja"
+text = "Las pajas"
 
-[node name="Attack2" type="Label" parent="VBoxGlobal/AbilityAttacks"]
-margin_top = 56.0
+[node name="Attack1" type="HBoxContainer" parent="VBoxGlobal/AbilityAttacks"]
+margin_top = 39.0
 margin_right = 600.0
-margin_bottom = 79.0
-custom_fonts/font = ExtResource( 2 )
-text = "Ataque 2: La paja"
+margin_bottom = 68.0
+custom_constants/separation = 10
 
-[node name="Attack3" type="Label" parent="VBoxGlobal/AbilityAttacks"]
-margin_top = 84.0
+[node name="At1Name" type="Button" parent="VBoxGlobal/AbilityAttacks/Attack1"]
+margin_right = 90.0
+margin_bottom = 29.0
+custom_fonts/font = ExtResource( 2 )
+text = "Ataque 1"
+
+[node name="At1Desc" type="Label" parent="VBoxGlobal/AbilityAttacks/Attack1"]
+margin_left = 100.0
+margin_top = 3.0
+margin_right = 166.0
+margin_bottom = 26.0
+custom_fonts/font = ExtResource( 2 )
+text = "La paja"
+
+[node name="Attack2" type="HBoxContainer" parent="VBoxGlobal/AbilityAttacks"]
+margin_top = 78.0
 margin_right = 600.0
 margin_bottom = 107.0
-custom_fonts/font = ExtResource( 2 )
-text = "Ataque 3: La paja"
+custom_constants/separation = 10
 
-[node name="Attack4" type="Label" parent="VBoxGlobal/AbilityAttacks"]
-margin_top = 112.0
-margin_right = 600.0
-margin_bottom = 135.0
+[node name="At2Name" type="Button" parent="VBoxGlobal/AbilityAttacks/Attack2"]
+margin_right = 94.0
+margin_bottom = 29.0
 custom_fonts/font = ExtResource( 2 )
-text = "Ataque 4: La paja"
+text = "Ataque 2"
+
+[node name="At2Desc" type="Label" parent="VBoxGlobal/AbilityAttacks/Attack2"]
+margin_left = 104.0
+margin_top = 3.0
+margin_right = 170.0
+margin_bottom = 26.0
+custom_fonts/font = ExtResource( 2 )
+text = "La paja"
+
+[node name="Attack3" type="HBoxContainer" parent="VBoxGlobal/AbilityAttacks"]
+margin_top = 117.0
+margin_right = 600.0
+margin_bottom = 146.0
+custom_constants/separation = 10
+
+[node name="At3Name" type="Button" parent="VBoxGlobal/AbilityAttacks/Attack3"]
+margin_right = 94.0
+margin_bottom = 29.0
+custom_fonts/font = ExtResource( 2 )
+text = "Ataque 3"
+
+[node name="At3Desc" type="Label" parent="VBoxGlobal/AbilityAttacks/Attack3"]
+margin_left = 104.0
+margin_top = 3.0
+margin_right = 170.0
+margin_bottom = 26.0
+custom_fonts/font = ExtResource( 2 )
+text = "La paja"
+
+[node name="Attack4" type="HBoxContainer" parent="VBoxGlobal/AbilityAttacks"]
+margin_top = 156.0
+margin_right = 600.0
+margin_bottom = 185.0
+custom_constants/separation = 10
+
+[node name="At4Name" type="Button" parent="VBoxGlobal/AbilityAttacks/Attack4"]
+margin_right = 95.0
+margin_bottom = 29.0
+custom_fonts/font = ExtResource( 2 )
+text = "Ataque 4"
+
+[node name="At4Desc" type="Label" parent="VBoxGlobal/AbilityAttacks/Attack4"]
+margin_left = 105.0
+margin_top = 3.0
+margin_right = 171.0
+margin_bottom = 26.0
+custom_fonts/font = ExtResource( 2 )
+text = "La paja"
 
 [node name="Control" type="HBoxContainer" parent="VBoxGlobal"]
-margin_top = 341.0
+margin_top = 366.0
 margin_right = 600.0
-margin_bottom = 382.0
+margin_bottom = 407.0
 custom_constants/separation = 20
 alignment = 1
 
@@ -154,5 +219,67 @@ text = "Volver"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="RequestedData" type="VBoxContainer" parent="."]
+visible = false
+margin_left = 18.0
+margin_top = 44.0
+margin_right = 615.0
+margin_bottom = 429.0
+custom_constants/separation = 30
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite&Name" type="HBoxContainer" parent="RequestedData"]
+margin_right = 597.0
+margin_bottom = 50.0
+custom_constants/separation = 20
+alignment = 1
+
+[node name="Sprite" type="TextureRect" parent="RequestedData/Sprite&Name"]
+margin_left = 230.0
+margin_right = 280.0
+margin_bottom = 50.0
+texture = ExtResource( 3 )
+
+[node name="Name" type="Label" parent="RequestedData/Sprite&Name"]
+margin_left = 300.0
+margin_top = 13.0
+margin_right = 366.0
+margin_bottom = 36.0
+custom_fonts/font = ExtResource( 2 )
+text = "La paja"
+
+[node name="Data" type="Label" parent="RequestedData"]
+margin_top = 80.0
+margin_right = 597.0
+margin_bottom = 103.0
+size_flags_vertical = 2
+custom_fonts/font = ExtResource( 2 )
+text = "Que buena data me diste amigo pero no recuerdo haber preguntado"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="RequestedData"]
+margin_top = 344.0
+margin_right = 597.0
+margin_bottom = 385.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Back" type="Button" parent="RequestedData/HBoxContainer"]
+margin_left = 248.0
+margin_right = 348.0
+margin_bottom = 41.0
+size_flags_vertical = 9
+custom_fonts/font = ExtResource( 5 )
+text = "Volver"
+[connection signal="pressed" from="VBoxGlobal/AbilityAttacks/Ability/AbName" to="." method="_on_AbName_pressed"]
+[connection signal="pressed" from="VBoxGlobal/AbilityAttacks/Attack1/At1Name" to="." method="_on_At1Name_pressed"]
+[connection signal="pressed" from="VBoxGlobal/AbilityAttacks/Attack2/At2Name" to="." method="_on_At2Name_pressed"]
+[connection signal="pressed" from="VBoxGlobal/AbilityAttacks/Attack3/At3Name" to="." method="_on_At3Name_pressed"]
+[connection signal="pressed" from="VBoxGlobal/AbilityAttacks/Attack4/At4Name" to="." method="_on_At4Name_pressed"]
 [connection signal="pressed" from="VBoxGlobal/Control/Seleccionar" to="." method="_on_Seleccionar_pressed"]
 [connection signal="pressed" from="VBoxGlobal/Control/Volver" to="." method="_on_Volver_pressed"]
+[connection signal="pressed" from="RequestedData/HBoxContainer/Back" to="." method="_on_Data_Volver_pressed"]

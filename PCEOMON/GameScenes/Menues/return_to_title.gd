@@ -84,13 +84,47 @@ func getAndSetInfo(pceomon:String, texture):
 	var name = file.get_line().replace("\\n","\n")
 	var description = file.get_line().replace("\\n","\n")
 	var type = file.get_line().replace("\\n","\n")
-	var ability = file.get_line().replace("\\n","\n")
-	var att1 = file.get_line().replace("\\n","\n")
-	var att2 = file.get_line().replace("\\n","\n")
-	var att3 = file.get_line().replace("\\n","\n")
-	var att4 = file.get_line().replace("\\n","\n")
+	var abilityname = file.get_line().replace("\\n","\n")
+	var abilityminidesc = file.get_line().replace("\\n","\n")
+	var abilitydesc = file.get_line().replace("\\n","\n")
+	var att1name = file.get_line().replace("\\n","\n")
+	var att1minidesc = file.get_line().replace("\\n","\n")
+	var att1desc = file.get_line().replace("\\n","\n")
+	var att2name = file.get_line().replace("\\n","\n")
+	var att2minidesc = file.get_line().replace("\\n","\n")
+	var att2desc = file.get_line().replace("\\n","\n")
+	var att3name = file.get_line().replace("\\n","\n")
+	var att3minidesc = file.get_line().replace("\\n","\n")
+	var att3desc = file.get_line().replace("\\n","\n")
+	var att4name = file.get_line().replace("\\n","\n")
+	var att4minidesc = file.get_line().replace("\\n","\n")
+	var att4desc = file.get_line().replace("\\n","\n")
 	file.close()
-	setPCEOMONinfo(name, texture, description, type, ability, att1, att2, att3, att4)
+	$"CenterContainer".visible = false
+	$"PCEOMONInfo".visible = true
+	$"PCEOMONInfo/VBoxGlobal".visible = true
+	$"PCEOMONInfo/RequestedData".visible = false
+	$"PCEOMONInfo/VBoxGlobal/MainInfo/SpriteName/Name".text = name
+	$"PCEOMONInfo/VBoxGlobal/MainInfo/SpriteName/Sprite".texture = texture
+	$"PCEOMONInfo/VBoxGlobal/MainInfo/Descripcion".text = description
+	$"PCEOMONInfo/VBoxGlobal/Miscelaneus/Type".text = type
+	$"PCEOMONInfo/VBoxGlobal/AbilityAttacks/Ability/AbName".text = abilityname
+	$"PCEOMONInfo/VBoxGlobal/AbilityAttacks/Attack1/At1Name".text = att1name
+	$"PCEOMONInfo/VBoxGlobal/AbilityAttacks/Attack2/At2Name".text = att2name
+	$"PCEOMONInfo/VBoxGlobal/AbilityAttacks/Attack3/At3Name".text = att3name
+	$"PCEOMONInfo/VBoxGlobal/AbilityAttacks/Attack4/At4Name".text = att4name
+	$"PCEOMONInfo/VBoxGlobal/AbilityAttacks/Ability/AbDesc".text = abilityminidesc
+	$"PCEOMONInfo/VBoxGlobal/AbilityAttacks/Attack1/At1Desc".text = att1minidesc
+	$"PCEOMONInfo/VBoxGlobal/AbilityAttacks/Attack2/At2Desc".text = att2minidesc
+	$"PCEOMONInfo/VBoxGlobal/AbilityAttacks/Attack3/At3Desc".text = att3minidesc
+	$"PCEOMONInfo/VBoxGlobal/AbilityAttacks/Attack4/At4Desc".text = att4minidesc
+	$"PCEOMONInfo".AbDesc = abilitydesc
+	$"PCEOMONInfo".At1Desc = att1desc
+	$"PCEOMONInfo".At2Desc = att2desc
+	$"PCEOMONInfo".At3Desc = att3desc
+	$"PCEOMONInfo".At4Desc = att4desc
+	change_select_button(name)
+	#setPCEOMONinfo(name, texture, description, type, ability, att1, att2, att3, att4)
 
 func getAndSetInfoMinor(pceomon: String, texture):
 	var file = File.new()

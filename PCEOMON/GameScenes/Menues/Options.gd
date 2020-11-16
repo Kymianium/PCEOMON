@@ -7,7 +7,10 @@ func _ready():
 		$"CenterContainer/Options/Fullscreen2/FulscreenButton".text = "Desactivar"
 	else:
 		$"CenterContainer/Options/Fullscreen2/FulscreenButton".text = "Activar"
-	
+	if $"/root/MainScreenMusicController".volume == -80:
+		$CenterContainer/Options/Music/Volume.value = -30
+	else:
+		$CenterContainer/Options/Music/Volume.value = $"/root/MainScreenMusicController".volume
 	
 	"""print("first = " + str(metadata.first))
 	if metadata.first:

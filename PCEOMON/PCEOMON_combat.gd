@@ -242,7 +242,7 @@ func heal(var hp: int):
 func unicast_damage(var damage_done, var dst : String, var attack : String, var description : String):
 	if (damage_done > 0):
 		emit_signal("just_attacked",self.name,attack,dst,description)
-	else:
+	elif damage_done == 0:
 		emit_signal("just_attacked",self.name,attack,dst,"Pero ha fallado")
 		
 func calculate_chemical_damage(var attack_damage : int, var scalation : float):
