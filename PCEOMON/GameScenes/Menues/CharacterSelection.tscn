@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Font/ButtonFont.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Font/VersionFont.tres" type="DynamicFont" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://GameScenes/Menues/Selection/Locked.tscn" type="PackedScene" id=6]
 [ext_resource path="res://GameScenes/Menues/Selection/PCEOMONInfo.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Font/SmallFont.tres" type="DynamicFont" id=8]
+[ext_resource path="res://GameScenes/Menues/Selection/PCEOMONES/Major/Chito.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Sprites/Miscelaneous/Arrows/RightArrow.png" type="Texture" id=10]
 [ext_resource path="res://Sprites/Miscelaneous/Arrows/LeftArrow.png" type="Texture" id=11]
 [ext_resource path="res://GameScenes/Menues/Selection/PCEOMONES/Minor/MarineraDeCantor.tscn" type="PackedScene" id=12]
@@ -67,8 +68,8 @@ custom_constants/separation = 20
 alignment = 1
 
 [node name="LeftArrowContainer" type="VBoxContainer" parent="CenterContainer/MenuDistribution/Major/SelectAndNavigate"]
-margin_left = 100.0
-margin_right = 145.0
+margin_left = 30.0
+margin_right = 75.0
 margin_bottom = 158.0
 alignment = 1
 
@@ -84,8 +85,8 @@ texture_focused = ExtResource( 11 )
 stretch_mode = 3
 
 [node name="Column1" type="VBoxContainer" parent="CenterContainer/MenuDistribution/Major/SelectAndNavigate"]
-margin_left = 165.0
-margin_right = 285.0
+margin_left = 95.0
+margin_right = 215.0
 margin_bottom = 158.0
 
 [node name="Armada" parent="CenterContainer/MenuDistribution/Major/SelectAndNavigate/Column1" instance=ExtResource( 4 )]
@@ -100,8 +101,8 @@ rect_rotation = 0.0
 script = null
 
 [node name="Column2" type="VBoxContainer" parent="CenterContainer/MenuDistribution/Major/SelectAndNavigate"]
-margin_left = 305.0
-margin_right = 425.0
+margin_left = 235.0
+margin_right = 355.0
 margin_bottom = 158.0
 
 [node name="Alparko" parent="CenterContainer/MenuDistribution/Major/SelectAndNavigate/Column2" instance=ExtResource( 5 )]
@@ -115,9 +116,25 @@ margin_bottom = 158.0
 rect_rotation = 0.0
 script = null
 
+[node name="Column3" type="VBoxContainer" parent="CenterContainer/MenuDistribution/Major/SelectAndNavigate"]
+margin_left = 375.0
+margin_right = 495.0
+margin_bottom = 158.0
+
+[node name="Chito" parent="CenterContainer/MenuDistribution/Major/SelectAndNavigate/Column3" instance=ExtResource( 9 )]
+margin_right = 120.0
+margin_bottom = 77.0
+
+[node name="Locked4" parent="CenterContainer/MenuDistribution/Major/SelectAndNavigate/Column3" instance=ExtResource( 6 )]
+margin_top = 81.0
+margin_right = 120.0
+margin_bottom = 158.0
+rect_rotation = 0.0
+script = null
+
 [node name="RightArrowContainer" type="VBoxContainer" parent="CenterContainer/MenuDistribution/Major/SelectAndNavigate"]
-margin_left = 445.0
-margin_right = 490.0
+margin_left = 515.0
+margin_right = 560.0
 margin_bottom = 158.0
 alignment = 1
 
@@ -224,6 +241,7 @@ text = "Equipo:"
 [node name="PCEOMONInfo" parent="." instance=ExtResource( 7 )]
 [connection signal="pressed" from="CenterContainer/MenuDistribution/Major/SelectAndNavigate/Column1/Armada" to="." method="_on_Armada_pressed"]
 [connection signal="pressed" from="CenterContainer/MenuDistribution/Major/SelectAndNavigate/Column2/Alparko" to="." method="_on_Alparko_pressed"]
+[connection signal="pressed" from="CenterContainer/MenuDistribution/Major/SelectAndNavigate/Column3/Chito" to="." method="_on_Chito_pressed"]
 [connection signal="pressed" from="CenterContainer/MenuDistribution/Minor/Minors/Teclado" to="." method="_on_Teclado_pressed"]
 [connection signal="pressed" from="CenterContainer/MenuDistribution/Minor/Minors/CafeteraComunista" to="." method="_on_CafeteraComunista_pressed"]
 [connection signal="pressed" from="CenterContainer/MenuDistribution/Minor/Minors/MarineraDeCantor" to="." method="_on_MarineraDeCantor_pressed"]

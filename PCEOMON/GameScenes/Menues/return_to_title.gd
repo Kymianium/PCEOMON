@@ -1,7 +1,12 @@
 extends Control
 #Cargamos los sprites de los PCEOMONES
+
+##############################
+## HACER ESTO AUTOMÁTICO
+##############################
 var ArmadaS = preload("res://Sprites/PCEOMONES/Major/Armada/Armada_avatar.png")
 var AlparkoS = preload("res://Sprites/PCEOMONES/Major/Alparko/Alparko_avatar.png")
+var ChitoS = preload("res://Sprites/PCEOMONES/Major/Chito/Chito_avatar.png")
 var WeierstrassS = preload("res://Sprites/PCEOMONES/Minor/FuncionDeWeierstrass/FuncionDeWeierstrass_avatar.png")
 var CafeteraS = preload("res://Sprites/PCEOMONES/Minor/CafeteraComunista/CafeteraComunista_avatar.png")
 var MarineraDeCantorS = preload("res://Sprites/PCEOMONES/Minor/MarineraDeCantor/MarineraDeCantor_avatar.png")
@@ -142,3 +147,7 @@ func _on_CafeteraComunista_pressed():
 
 func _on_Teclado_pressed():
 	getAndSetInfoMinor("Teclado",TecladoS)
+
+
+func _on_Chito_pressed():
+	getAndSetInfo("Chito",ChitoS)
