@@ -234,8 +234,7 @@ func _process(delta):
 
 func heal(var hp: int):
 # warning-ignore:narrowing_conversion
-	hp = min(actual_hp+hp,max_hp)
-	actual_hp += hp
+	actual_hp = min(actual_hp+hp,max_hp)
 # warning-ignore:integer_division
 	$"HBoxContainer/StatsSummary/HP".value = actual_hp*100/max_hp
 

@@ -1,7 +1,9 @@
 extends "res://PCEOMON_combat.gd"
 
 var CoffeeParticle = "res://Sprites/PCEOMONES/Minor/CafeteraComunista/CoffeeParticle.tscn"
-
+var ChocolateParticle = "res://Sprites/PCEOMONES/Minor/CafeteraComunista/ChocolateHeal.tscn"
+var CommunismDeb = "res://Sprites/PCEOMONES/Minor/CafeteraComunista/ComunismDebuff.tscn"
+var CommunismBuf = "res://Sprites/PCEOMONES/Minor/CafeteraComunista/ComunismHeal.tscn"
 const lucha_de_clases_dmg = 50
 const chocolate_healing = 40
 
@@ -57,6 +59,8 @@ func atk2():
 			if (less_healed == null || less_healed.actual_hp/less_healed.max_hp > ally.actual_hp/ally.max_hp):
 				less_healed = ally
 		less_healed.heal(lucha_de_clases_dmg/2)
+		emit_signal("particle", CommunismBuf, less_healed.position.x+25, less_healed.position.y+100)
+		emit_signal("particle", CommunismDeb, more_healed.position.x+25, more_healed.position.y+100)		
 		emit_signal("just_attacked","La cafetera comunista", "Lucha de clases", more_healed.name,"¡El poder de Lenin ha sanado a " + less_healed.name + "!")
 	else:
 		print("No ha hecho daño")
@@ -71,4 +75,5 @@ func atk4():
 		if (less_healed == null || less_healed.actual_hp/less_healed.max_hp > ally.actual_hp/ally.max_hp):
 			less_healed = ally
 	less_healed.heal(chocolate_healing)
+	emit_signal("particle", ChocolateParticle, less_healed.position.x+25, less_healed.position.y+100)
 	emit_signal("just_attacked","La cafetera comunista","Chocolate caliente","","El chocolate caliente revitaliza a " + less_healed.name)
