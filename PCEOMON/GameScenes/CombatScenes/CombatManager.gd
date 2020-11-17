@@ -32,6 +32,9 @@ func _ready():
 		avatar.texture = load(pceo_instance.avatar_path)
 		$Combatinterface/CombatGUI/Fight/Avatars.add_child(avatar)
 		load_pceomones()
+	for enemy in $"Enemies".get_children():
+		enemy.connect("sprite_pressed",self,"pceomon_pressed")
+		self.connect("pceomon_pressed",enemy,"target_selected")
 
 func write_attack_text(user: String, attack : String, objective : String, string : String):
 	if $DialogueBox.visible == true:
