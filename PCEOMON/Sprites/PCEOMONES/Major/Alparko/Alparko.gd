@@ -12,6 +12,7 @@ func _ready():
 	attack2 = "Aspecto Ígneo"
 	attack3 = "Protección"
 	attack4 = "/weather clear"
+	type = "Programador"
 	._ready()
 	max_hp = 1000
 	actual_hp = max_hp

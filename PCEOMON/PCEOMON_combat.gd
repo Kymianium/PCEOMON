@@ -90,7 +90,8 @@ var actual_stamina : int
 var next_attack_required_stamina : int = 10
 var next_attack : int = 0
 
-#ATAQUES Y HABILIDAD
+#ATAQUES, HABILIDAD Y TIPO
+var type : String
 var attack1 : String
 var attack2 : String
 var attack3 : String

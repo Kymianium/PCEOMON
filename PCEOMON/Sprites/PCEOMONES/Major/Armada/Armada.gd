@@ -12,6 +12,7 @@ func _ready():
 	attack2 = "El Quijote"
 	attack3 = "Esto no es na"
 	attack4 = "¿Un lolete?"
+	type = "Alcohólico"
 	._ready()
 	avatar_path = "res://Sprites/PCEOMONES/Major/Armada/Armada_avatar.png"
 	

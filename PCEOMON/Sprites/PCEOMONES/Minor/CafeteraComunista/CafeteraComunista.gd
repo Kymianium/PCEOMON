@@ -12,6 +12,7 @@ func _ready():
 	attack2 = "Lucha de clases"
 	attack3 = "Reunión de algebristas"
 	attack4 = "Chocolate caliente"
+	type = "Menor"
 	._ready()
 	avatar_path = "res://Sprites/PCEOMONES/Minor/CafeteraComunista/CafeteraComunista_avatar.png"
 	next_attack_required_stamina = 1300
@@ -25,6 +26,10 @@ func next1():
 func next2():
 	next_attack_required_stamina = 300
 	.next2()
+
+func next3():
+	next_attack_required_stamina = 200
+	.next3()
 
 func next4():
 	next_attack_required_stamina = 200

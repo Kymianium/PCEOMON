@@ -2,10 +2,20 @@ Cafetera Comunista
 Responsable de los aprobados en matemáticas.\nPunto de encuentro en los descansos.\n"No odias los lunes, odias al captalismo"
 Menor
 
-Café de avellana - Un aliado recupera stamina rápido
-Lucha de clases - Iguala la vida de aliados
-Reunión del departamento de álgebra - Aumenta la evasión.
-Chocolate caliente - Recupera vida a un aliado
+
+
+Café de avellana
+Un aliado recupera stamina rápido
+
+Lucha de clases
+Iguala la vida de aliados
+
+Reunión del departamento de álgebra
+Aumenta la evasión.
+
+Chocolate caliente
+Recupera vida a un aliado
+
 
 
 
