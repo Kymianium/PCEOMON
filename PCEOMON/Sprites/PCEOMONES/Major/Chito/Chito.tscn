@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://PCEOMONES_classes/Gym.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Sprites/PCEOMONES/Major/Chito/Chito_sprite.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/PCEOMONES/Major/Chito/Chito.gd" type="Script" id=3]
+
+[node name="PCEOMON" instance=ExtResource( 1 )]
+script = ExtResource( 3 )
+
+[node name="Sprite" parent="SpriteContainer" index="0"]
+texture = ExtResource( 2 )

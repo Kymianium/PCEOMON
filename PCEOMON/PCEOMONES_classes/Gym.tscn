@@ -1,7 +1,18 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://PCEOMONES_classes/PCEOMON.tscn" type="PackedScene" id=1]
 [ext_resource path="res://PCEOMONES_classes/Gym.gd" type="Script" id=2]
+[ext_resource path="res://Sprites/Miscelaneous/Bars/Anger/Background.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/Miscelaneous/Bars/Anger/Fill.png" type="Texture" id=4]
 
 [node name="PCEOMON" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
+
+[node name="Anger" type="TextureProgress" parent="HBoxContainer/StatsSummary" index="4"]
+margin_left = 15.0
+margin_top = 15.0
+margin_right = 35.0
+margin_bottom = 35.0
+value = 100.0
+texture_under = ExtResource( 3 )
+texture_progress = ExtResource( 4 )

@@ -50,11 +50,10 @@ func atk1():
 	#daño químico a todos los que bailan.
 	var damage_done = selected_foe.take_chemical_damage(calculate_chemical_damage(500, 0.5))
 	alcohol-=50
-	if alcohol>maxalcohol:
-		alcohol=maxalcohol
 	$"HBoxContainer/StatsSummary/Alcohol".value = float(alcohol)/maxalcohol *100
 	unicast_damage(damage_done,selected_foe.name,"Postureo","Esta pa [rainbow] mejores amigos [/rainbow].")
-	
+	emit_signal("attacked", self, selected_foe, calculate_chemical_damage(500, 0.5),CHEMICAL_DMG)
+	emit_signal("status", self, [selected_foe], POISON)
 func atk2():
 	#El Quijote
 	#Armada lanza al aire la pregunta ¿Qué era el quijote? Al primer enemigo que conteste &quot;Un
@@ -63,12 +62,10 @@ func atk2():
 	#durante las siguientes rondas perderá parte de su vida debido a las tremendas potas que lanzará
 	#(envenenamiento grave).
 	alcohol-=80
-	if alcohol>maxalcohol:
-		alcohol=maxalcohol
 	$"HBoxContainer/StatsSummary/Alcohol".value = float(alcohol)/maxalcohol *100
 	selected_foe.poison(rng.randi_range(800,1000))
 	emit_signal("just_attacked", "Armada", "Quijote", selected_foe.name, "¡Hijo puta el que se deje algo! " + selected_foe.name + " va muy ciego")
-	
+	emit_signal("status", self, [selected_foe], POISON)
 func atk3():
 	#Esto no es na`
 	# Armada se bebe una garrafa como si fuera agua, lo cual no solo no le afecta, si no que
@@ -77,6 +74,8 @@ func atk3():
 	#eructo que infringe daño químico. Recupera alcohol en sangre.
 	next_attack_required_stamina = 700
 	alcohol+=200
+	if alcohol>maxalcohol:
+		alcohol=maxalcohol
 	$"HBoxContainer/StatsSummary/Alcohol".value = float(alcohol)/maxalcohol *100
 	print("He enviado la señal just_attacked")
 	emit_signal("just_attacked", "Armada", "Esto no es na'", "", "[wave] ¡Este hijo de puta quiere emborracharse![/wave]")
@@ -86,12 +85,17 @@ func atk4():
 	#Armada va tan borracho que se piensa que está en la grieta del invocador y se abalanza
 	#contra un pceomón enemigo, comenzando a meterle de ostias y rociarle alcohol tóxico lo cual infiere
 	#daño físico y mucho daño químico. Además si el enemigo tiene el 20% de la vida o menos, le oneshotea.
+	var tried_to_deal 
+	var damage
 	if float(selected_foe.actual_hp)/selected_foe.max_hp <= 0.2:
 		selected_foe.damage(selected_foe.max_hp)
+		tried_to_deal = selected_foe.max_hp
+		damage = TRUE_DMG
 	else:
-		selected_foe.damage(1000)
+		tried_to_deal = calculate_physical_damage(1000,1)
+		damage = PHYSICAL_DMG
+		selected_foe.take_physical_damage(tried_to_deal)
 	alcohol-=400
-	if alcohol>maxalcohol:
-		alcohol=maxalcohol
 	$"HBoxContainer/StatsSummary/Alcohol".value = float(alcohol)/maxalcohol *100
 	emit_signal("just_attacked", "Armada", "¿Un lolete?", selected_foe.name, "Se pensaba que era [shake]un minion de la grieta[/shake]")
+	emit_signal("attacked", self, [selected_foe], tried_to_deal, damage)

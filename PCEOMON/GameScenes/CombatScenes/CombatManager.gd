@@ -31,10 +31,14 @@ func _ready():
 		avatar = TextureRect.new()
 		avatar.texture = load(pceo_instance.avatar_path)
 		$Combatinterface/CombatGUI/Fight/Avatars.add_child(avatar)
-		load_pceomones()
 	for enemy in $"Enemies".get_children():
 		enemy.connect("sprite_pressed",self,"pceomon_pressed")
 		self.connect("pceomon_pressed",enemy,"target_selected")
+	load_pceomones()
+	for gym in $"Party".get_children():
+		if (gym.type == "Gym"):
+			gym.select_combat("¡Selecciona el objetivo de " + gym.name + "!", false)
+			
 
 func write_attack_text(user: String, attack : String, objective : String, string : String):
 	if $DialogueBox.visible == true:
@@ -125,7 +129,7 @@ func pceomon_died(pceomon):
 			mate.mates.erase(pceomon)
 		for enemy in $"Enemies".get_children():
 			enemy.foes.erase(pceomon)
-			print(pceomon.name , " elimado de la lista de ", enemy.name)
+			print(pceomon.name , " eliminado de la lista de ", enemy.name)
 
 
 func pceomon_pressed(pceomon,boss):

@@ -61,35 +61,44 @@ func atk3():
 		unicast_damage(damage_done,selected_enemy.name,"Ctrl+V","Control+Pota")
 	elif tipo_robado == "Programador":
 		var tipoataque = rng.randi(2)
+		var tipo
 		if tipoataque == 0:
-			selected_ally.buff("chemicaldmg",2000,1.2,0)
+			tipo = CHEMICAL_DMG
 		elif tipoataque == 1:
-			selected_ally.buff("physicaldmg",2000,1.2,0)
+			tipo = PHYSICAL_DMG
 		elif tipoataque == 2:
-			selected_ally.buff("psychologycaldmg",2000,1.2,0)
+			tipo = PSYCHOLOGYCAL_DMG
+		selected_ally.buff(tipo,2000,1.2,0)
 		emit_signal("just_attacked",self.name,"Ctrl+V","","NO COMPILA")
+		emit_signal("buffed", self, [selected_ally], tipo)
 	elif tipo_robado == "Menor":
 		for ally in mates:
-			ally.heal(100)
+			ally.heal(calculate_chemical_damage(80,0.2))
 		emit_signal("just_attacked",self.name,"Ctrl+V","","Cuídense mis panas")
+		emit_signal("healed", self, [mates], calculate_chemical_damage(80,0.2))
 	elif tipo_robado == "Gym":
 		var damage_done = selected_enemy.take_physical_damage(calculate_chemical_damage(200, 1))
 		unicast_damage(damage_done,selected_enemy.name,"Ctrl+V","Te copio y te pego")
+		emit_signal("attacked", self, [selected_enemy], calculate_chemical_damage(200, 1))
 	elif tipo_robado == "R4":
 		var tipodef = rng.randi(2)
+		var defensa
 		if tipodef == 0:
-			selected_ally.buff("chemicaldfc",2000,1.2,0)
+			defensa = CHEMICAL_DFC
 		elif tipodef == 1:
-			selected_ally.buff("physicaldfc",2000,1.2,0)
+			defensa = PHYSICAL_DFC
 		elif tipodef == 2:
-			selected_ally.buff("psychologycaldfc",2000,1.2,0)
+			defensa = PSYCHOLOGYCAL_DFC
+		selected_ally.buff(defensa,2000,1.2,0)
 		emit_signal("just_attacked",self.name,"Ctrl+V","","Una dimensión más, [shake level=10]poder infinito[/shake]")
+		emit_signal("buffed", self, [selected_ally], defensa)
 	elif tipo_robado == "Ceronaturalista":
 		for enemy in foes:
-			enemy.buff("speed",2000,1.5,0)
+			enemy.buff(EVASION,2000,1.5,0)
 		for ally in mates:
-			ally.buff("speed",2000,1.5,0)
-		self.buff("speed",2000,1.5,0)
+			ally.buff(EVASION,2000,1.5,0)
+		self.buff(EVASION,2000,1.5,0)
+		emit_signal("buffed", self, [foes, mates, self], EVASION)
 		emit_signal("just_attacked",self.name,"Ctrl+V","","Ahora nadie tiene una velocidad natural")
 	elif false:
 		pass

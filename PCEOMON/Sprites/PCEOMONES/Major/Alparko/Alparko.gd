@@ -1,7 +1,7 @@
 extends "res://PCEOMONES_classes/R4.gd"
 
 
-var peaceful:bool = false
+var peaceful : bool = false
 
 
 func _ready():
@@ -52,16 +52,21 @@ func damage(var damage:int):
 func atk1():
 	selected_mate.buff("evasion", 5000, 0.5, 0)
 	emit_signal("just_attacked", "Alparko", "/tp", "", "¡Cómo se mueve el hijo de puta de [shake level=10]" + selected_mate.name + "![/shake]")
-
+	emit_signal("buffed", self, [selected_mate], EVASION)
+	
 func atk2():
-	selected_mate.permanent_buff("physicaldmg", 1.2, 0)
+	selected_mate.permanent_buff(PHYSICAL_DMG, 1.2, 0)
 	emit_signal("just_attacked", "Alparko", "Aspecto Ígneo", "", "Ahora " + selected_mate.name + " es  [tornado]ÍGNEO.[/tornado]")
+	emit_signal("buffed", self, [selected_mate], PHYSICAL_DMG)
 
 func atk3():
-	selected_mate.permanent_buff("physicaldfc", 1.1, 0)
-	selected_mate.permanent_buff("chemicaldfc", 1.1, 0)
-	selected_mate.permanent_buff("psychologycaldfc", 1.1, 0)
+	selected_mate.permanent_buff(PHYSICAL_DFC, 1.1, 0)
+	selected_mate.permanent_buff(CHEMICAL_DFC, 1.1, 0)
+	selected_mate.permanent_buff(PSYCHOLOGYCAL_DFC, 1.1, 0)
 	emit_signal("just_attacked", "Alparko", "Protección", "", "¡" + selected_mate.name + " tiene una piel de hierro!")
+	emit_signal("buffed", self, [selected_mate], PHYSICAL_DFC)
+	emit_signal("buffed", self, [selected_mate], CHEMICAL_DFC)
+	emit_signal("buffed", self, [selected_mate], PSYCHOLOGYCAL_DFC)
 func atk4():
 	for pceomon in mates:
 		for buff in pceomon.buffs:

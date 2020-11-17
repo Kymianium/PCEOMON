@@ -6,7 +6,7 @@ Al matar a un PCEOMÓN, aumenta su ataque\n y su velocidad.
 Poco más que añadir. El hijo de puta tiene los dedos rápidos.
 Placaje
 Placa a un objetivo, ralentizándolo y haciendo\n daño físico.
-Si la habilidad se ha visto potenciada por Cheat Meal, en lugar de \nralentizar, lo aturdirá. Además, hace más daño físico. 
+Si la habilidad se ha visto potenciada por Cheat Meal, en lugar de \nralentizar, lo aturdirá. Además, hace más daño físico.\nEsta habilidad cambia el objetivo de Chito.
 Cheat Meal
 Potencia el siguiente ataque y recupera stamina.
 Los macarras, mucho ojito. Chito recupera su ira habitual y potencia\nel siguiente ataque.

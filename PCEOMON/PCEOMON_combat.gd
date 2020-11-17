@@ -10,20 +10,41 @@ var selected_mate = null
 var selected_foe = null
 
 
+const CHEMICAL_DMG = 0
+const PHYSICAL_DMG = 1
+const PSYCHOLOGYCAL_DMG = 2
+const TRUE_DMG = 3
+const CHEMICAL_DFC = 4
+const PHYSICAL_DFC = 5
+const PSYCHOLOGYCAL_DFC = 6
+const SPEED = 7
+const EVASION = 8
+const STUN = 9
+const POISON = 10
+
+
+
 var boss : bool = false
 
 var manager
 
 var rng = RandomNumberGenerator.new()
 
-signal just_attacked(user, attack, objective, damage, string)
+signal just_attacked(user, attack, objective, string)
+# warning-ignore:unused_signal						
+signal attacked(user, target, damage, damage_type)
+signal status(user, target, status)
+####
+# DAMAGE TYPE
+####
 # warning-ignore:unused_signal
-signal just_buffed(user, target, stat)
+signal buffed(user, target, stat)
 # warning-ignore:unused_signal
-signal just_shielded(user, target, amount)
+signal shielded(user, target, amount)
 # warning-ignore:unused_signal
-signal just_healed(user, target, amount)
-signal just_died(pceomon)
+signal healed(user, target, amount)
+# warning-ignore:unused_signal
+signal died(pceomon)
 signal announcement(announce)
 # warning-ignore:unused_signal
 signal permanent_announcement(announce)
@@ -57,24 +78,24 @@ var buffs = []
 
 var max_permanent_buff = 4
 
-var stats = {"chemicaldmg" : [5, 1, 0, 1], "physicaldmg" : [5, 1, 0, 1], 
-"psychologycaldmg" : [5, 1, 0, 1], "chemicaldfc" : [5, 1, 0, 1],
-"physicaldfc" : [5, 1, 0, 1], "psychologycaldfc" :  [5, 1, 0, 1], 
-"speed" : [5, 1, 0, 1], "evasion" : [1, 1, 0, 1]}
+var stats = {CHEMICAL_DMG : [5, 1, 0, 1], PHYSICAL_DMG : [5, 1, 0, 1], 
+PSYCHOLOGYCAL_DMG : [5, 1, 0, 1], CHEMICAL_DFC : [5, 1, 0, 1],
+PHYSICAL_DFC : [5, 1, 0, 1], PSYCHOLOGYCAL_DFC :  [5, 1, 0, 1], 
+SPEED : [5, 1, 0, 1], EVASION : [1, 1, 0, 1]}
 
-func buff(stat : String, duration : int, product : float, sum : int):
+func buff(stat : int, duration : int, product : float, sum : int):
 	var buff = [duration, stat, product, sum]
 	buffs.append(buff)
 	stats[stat][1]*=product
 	stats[stat][2]+=sum
 	
-func permanent_buff(stat : String, product : float, sum : int):
+func permanent_buff(stat : int, product : float, sum : int):
 	stats[stat][0]+=sum
 	stats[stat][3]*=product
 	if stats[stat][3]>max_permanent_buff:
 		stats[stat][3]=max_permanent_buff
 	
-func getstat(stat : String):
+func getstat(stat : int):
 	var rawstat = stats[stat]
 	return (rawstat[0]*rawstat[1]*rawstat[3]+rawstat[2])
 
@@ -128,6 +149,7 @@ var arrow #Esta es la flecha que apunta al PCEOMÓN
 #############################
 ###########PRUEBAS###########
 func _ready():
+	arrow = $Arrow
 	actual_stamina = 0
 	max_hp = 100
 	actual_hp = max_hp
@@ -226,9 +248,9 @@ func _process(delta):
 		actual_stamina = 0
 	elif (metadata.time_should_run()):
 		delta_acum+=delta
-		if (delta_acum>0.01):
-			delta_acum-=0.01
-			actual_stamina = actual_stamina + getstat("speed")
+		if (delta_acum>0.1):
+			delta_acum-=0.1
+			actual_stamina = actual_stamina + getstat(SPEED)
 # warning-ignore:integer_division
 			$"HBoxContainer/StatsSummary/Stamina".value = actual_stamina*100/next_attack_required_stamina
 			
@@ -254,26 +276,26 @@ func unicast_damage(var damage_done, var dst : String, var attack : String, var 
 		emit_signal("just_attacked",self.name,attack,dst,"Pero ha fallado")
 		
 func calculate_chemical_damage(var attack_damage : int, var scalation : float):
-	return attack_damage+(scalation*getstat("chemicaldmg"))
+	return attack_damage+(scalation*getstat(CHEMICAL_DMG))
 
 func take_chemical_damage(var damage):
-	return damage(damage/(1+getstat("chemicaldfc")/100))
+	return damage(damage/(1+getstat(CHEMICAL_DFC)/100))
 
 func calculate_physical_damage(var attack_damage : int, var scalation : float):
-	return attack_damage+(scalation*getstat("physicaldmg"))
+	return attack_damage+(scalation*getstat(PHYSICAL_DMG))
 
 func take_physical_damage(var damage):
-	return damage(damage/(1+getstat("physicaldfc")/100))
+	return damage(damage/(1+getstat(PHYSICAL_DFC)/100))
 	
 func calculate_phychological_damage(var attack_damage : int, var scalation : float):
-	return attack_damage+(scalation*getstat("phychologicaldmg"))
+	return attack_damage+(scalation*getstat(PSYCHOLOGYCAL_DMG))
 
 func take_phychological_damage(var damage):
-	return damage(damage/(1+getstat("phychologicaldfc")/100))
+	return damage(damage/(1+getstat(PSYCHOLOGYCAL_DFC)/100))
 	
 
 func damage(var damage : int):
-	if rng.randf() > getstat("evasion"):
+	if rng.randf() > getstat(EVASION):
 		return 0
 	actual_hp = actual_hp - damage
 # warning-ignore:integer_division
@@ -332,3 +354,7 @@ func change_selected(var forward : bool):
 
 func _on_SpriteContainer_sprite_pressed():
 	emit_signal("sprite_pressed",self,boss)
+	
+func select_combat(var message : String, var ally : bool):
+	emit_signal("permanent_announcement", message)
+	selected_foe = yield(select(ally), "completed")

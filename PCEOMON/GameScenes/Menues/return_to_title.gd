@@ -15,7 +15,8 @@ var TecladoS = preload("res://Sprites/PCEOMONES/Minor/Teclado/Teclado_avatar.png
 var paths = { "Armada" : "res://Sprites/PCEOMONES/Major/Armada/Armada.tscn",
 "Alparko" : "res://Sprites/PCEOMONES/Major/Alparko/Alparko.tscn" ,
 "Cafetera Comunista" : "res://Sprites/PCEOMONES/Minor/CafeteraComunista/CafeteraComunista.tscn",
-"Teclado" : "res://Sprites/PCEOMONES/Minor/Teclado/Teclado.tscn"}
+"Teclado" : "res://Sprites/PCEOMONES/Minor/Teclado/Teclado.tscn",
+"Chito" : "res://Sprites/PCEOMONES/Major/Chito/Chito.tscn"}
 
 
 func _ready():
