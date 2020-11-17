@@ -17,14 +17,19 @@ var manager
 var rng = RandomNumberGenerator.new()
 
 signal just_attacked(user, attack, objective, damage, string)
+# warning-ignore:unused_signal
 signal just_buffed(user, target, stat)
+# warning-ignore:unused_signal
 signal just_shielded(user, target, amount)
+# warning-ignore:unused_signal
 signal just_healed(user, target, amount)
 signal just_died(pceomon)
 signal announcement(announce)
+# warning-ignore:unused_signal
 signal permanent_announcement(announce)
 signal target_selected
 signal sprite_pressed(name,boss)
+# warning-ignore:unused_signal
 signal particle(path, posx, posy)
 #STATS
 
@@ -142,6 +147,7 @@ func _input(event):
 				change_selected(true)
 
 
+# warning-ignore:shadowed_variable
 func target_selected(pceomon,boss):
 	if (selecting and (not boss) == selecting_allied):
 		if (selecting_allied):

@@ -91,8 +91,8 @@ func atk3():
 			ally.buff("speed",2000,1.5,0)
 		self.buff("speed",2000,1.5,0)
 		emit_signal("just_attacked",self.name,"Ctrl+V","","Ahora nadie tiene una velocidad natural")
-	elif 
-
+	elif false:
+		pass
 
 
 
