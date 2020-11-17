@@ -1,23 +1,18 @@
 Cafetera Comunista
 Responsable de los aprobados en matemáticas.\nPunto de encuentro en los descansos.\n"No odias los lunes, odias al captalismo"
 Menor
-
-
-
+Día de reponer
+Cada cierta cantidad de tiempo, alguien llega a\n reponerla.
+Cuando se repone, aumenta drásticamente su velocidad\n temporalmente.
 Café de avellana
 Un aliado recupera stamina rápido
-
+Café de avellana. Ámalo, ódialo, sea como sea es una deidad.\nTu velocidad se ve incrementada.
 Lucha de clases
-Iguala la vida de aliados
-
+Ajusta la vida de un aliado y un enemigo.
+Daña al enemigo con más vida y cura al aliado más dañado.
 Reunión del departamento de álgebra
 Aumenta la evasión.
-
+Puto departamento de álgebra. Siempre lo odié.
 Chocolate caliente
 Recupera vida a un aliado
-
-
-
-
-Esta parte ya no se lee, un saludo.
-Una heroína de la lucha de clases y de los aprobados en matemáticas.\nAlumos y profesores se reúnen en torno a ella en los descansos.\nEn un lado se lee:"No odias los lunes, odias al captalismo"
+¿Alguien se pide un chocolate caliente? Qué cringe...

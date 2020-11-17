@@ -3,16 +3,16 @@ Una auténtica leyenda del PCEO, víctima de una \ngrave adicción a las bebidas
 Alcohólico
 Rapunzel
 Gana un escudo de manera pasiva
-Con su larga cabellera, Armada se protege de los ataques enemigos,\npoco a poco su escudo se regenera
+Con su larga cabellera, Armada se protege de los ataques enemigos,\npoco a poco su escudo se regenera.
 Postureo
 Daño químico y baja la precisión de los enemigos.
-Historia pa los mejos y pota para el que pille por medio
+Historia pa los mejos y pota para el que pille por medio. Infringe\ndaño químico a un enemigo seleccionable.
 El Quijote
 Un caballero hidalgo. Aturde y envenena a un enemigo.
-Quien diga algo pilla
+Envenena a un objetivo enemigo.
 Esto no es na
 Recupera alcohol en sangre y hace daño químico.
-La garrafa de 8l pa dentro
+Garrafón de 8 litros, Armada respeta menos a su hígado que a sus\nenemigos. Aumenta su daño químico temporalmente.
 ¿Un lolete?
 Dispara proyectiles y dinamita a un enemigo.\nSi el enemigo está débil, lo rematará
-El si que sabe farmear minions
+El sí que sabe farmear. Infringe daño físico a un enemigo, si \nestá por debajo del 20% de la vida, lo matará y\ndañará psicológicamente a sus aliados.

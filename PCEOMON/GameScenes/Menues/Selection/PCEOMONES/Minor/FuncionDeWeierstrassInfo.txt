@@ -1,8 +1,18 @@
 Función de Weierstrass
 La toques donde la toques, te pinchas.\n Continua pero no derivable.\n Soltera pero nunca sola.
 Menor
-Pincho - La función de weierstrass se adhiere a tres\naliados aleatorios, haciendo que sus atacantes\nvean reflejado su daño.
-
-
-
-
+Pincho
+La función de weierstrass se adhiere a un aliado.\n Ahora pincha. 
+Devuelve un porcentaje del daño físico que recibe el aliado.\nDon't mess with Weierstrass.
+No derivable
+Este curioso hecho daña psicolóogicamente a los\nenemigos.
+Qué cojones, ¿continua y no derivable? Debo haberme vuelto\nloco. Es que normal que haga daño psicológico...
+rip
+rip
+bad ending
+rip
+rip
+bad ending
+rip
+rip
+bad ending

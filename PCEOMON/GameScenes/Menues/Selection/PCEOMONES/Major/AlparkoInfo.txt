@@ -1,8 +1,18 @@
 Alparko
 Un capo. Liberal en lo económico. \n Seguidlo en twitter: @putogordo69
 Programador
-Peaceful mode - No puede ser atacado hasta no atacar
-/tp - Aumenta la evasión de un PCEOMON
-Aspecto ígneo - Incrementa el daño físico de un PCEOMON
-Protección - Aumenta todas las defensas de un PCEOMON
-/weather clear - Devuelve los stats a su estado original
+Peaceful mode
+No puede ser atacado hasta no atacar
+Alparko juega en peaceful. Sólamente puede ser atacado si\n previamente, él ha usado un ataque o bien ha pasado una \ndeterminada cantidad de tiempo.
+/tp
+Aumenta la evasión de un PCEOMON
+Selecciona a un aliado y se une a la Villa Oculta de la Hoja.\n Se tpea y aumenta su evasión frente a los ataques.
+Aspecto ígneo
+Incrementa el daño físico de un PCEOMON o\n ataca a un enemigo.
+Si selecciona a un aliado, aumenta permanentemente su daño\nfísico. Si selecciona a un enemigo, le hace daño físico\n y lo envenena.
+Protección
+Aumenta todas las defensas de un PCEOMON
+Un aumento permanente de todas las defensas. Mucho ojito con esto.
+/weather clear
+Devuelve los stats a su estado original
+A tomar por culo todos los bufos, permanentes o temporales.
