@@ -16,7 +16,11 @@ var manager
 
 var rng = RandomNumberGenerator.new()
 
-signal just_attacked(user, attack, objective, string)
+signal just_attacked(user, attack, objective, damage, string)
+signal just_buffed(user, target, stat)
+signal just_shielded(user, target, amount)
+signal just_healed(user, target, amount)
+signal just_died(pceomon)
 signal announcement(announce)
 signal permanent_announcement(announce)
 signal target_selected
@@ -116,8 +120,6 @@ var delta_acum: float = 0
 var arrow #Esta es la flecha que apunta al PCEOMÓN
 
 
-
-signal just_died(pceomon)
 #############################
 ###########PRUEBAS###########
 func _ready():
