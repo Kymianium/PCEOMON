@@ -4,15 +4,15 @@ Menor
 Pincho
 La función de weierstrass se adhiere a un aliado.\n Ahora pincha. 
 Devuelve un porcentaje del daño físico que recibe el aliado.\nDon't mess with Weierstrass.
-No derivable
-Este curioso hecho daña psicolóogicamente a los\nenemigos.
-Qué cojones, ¿continua y no derivable? Debo haberme vuelto\nloco. Es que normal que haga daño psicológico...
-rip
-rip
-bad ending
-rip
-rip
-bad ending
-rip
-rip
-bad ending
+Confusión
+Un PCEOMÓN enemigo pierde la concentración\ny su estamina vuelve a ser cero.
+Qué cojones, ¿continua y no derivable? Debo haberme vuelto\nloco. ¡Mierda! ¡¿Por dónde iba?!
+Paranoia
+Un PCEOMON enemigo ve reducida su\ndefensa psicológica.
+No pueden comprenderlo. Ahora se sienten pequeños en el\nmundo. Los ataques psíquicos serán más eficaces.
+Extenuar
+Extenúa a un PCEOMÓN, aturdiéndolo cada vez más.\nSi lo extenúa lo suficiente, pierde el conocimiento.
+Tal cual como suena. Si se usa repetidas veces contra un\nmismo objetivo, este quedará inconsciente.
+Terror nocturno
+Daño psicológico intenso a objetivos\nsin conocimiento.
+La función de Weierstrass se te aparece en sueños.\nEl peor spin off de Elm Street que podías imaginar.
