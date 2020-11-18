@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Sprites/PCEOMONES/Minor/Cafetera Comunista/ParticleSample.tscn" type="PackedScene" id=1]
+
+
+[node name="Particle" instance=ExtResource( 1 )]

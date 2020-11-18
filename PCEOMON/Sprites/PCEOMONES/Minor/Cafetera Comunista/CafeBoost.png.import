@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/ChocolateHeal.png-c26c71239edd8c8aea7f81daf06f5abb.stex"
+path="res://.import/CafeBoost.png-9baac56ac50a9a6e686dc4ae0f7969a7.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/PCEOMONES/Minor/CafeteraComunista/ChocolateHeal.png"
-dest_files=[ "res://.import/ChocolateHeal.png-c26c71239edd8c8aea7f81daf06f5abb.stex" ]
+source_file="res://Sprites/PCEOMONES/Minor/Cafetera Comunista/CafeBoost.png"
+dest_files=[ "res://.import/CafeBoost.png-9baac56ac50a9a6e686dc4ae0f7969a7.stex" ]
 
 [params]
 

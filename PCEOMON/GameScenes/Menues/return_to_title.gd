@@ -1,24 +1,6 @@
 extends Control
 #Cargamos los sprites de los PCEOMONES
 
-##############################
-## HACER ESTO AUTOMÁTICO
-##############################
-var ArmadaS = preload("res://Sprites/PCEOMONES/Major/Armada/Armada_avatar.png")
-var AlparkoS = preload("res://Sprites/PCEOMONES/Major/Alparko/Alparko_avatar.png")
-var ChitoS = preload("res://Sprites/PCEOMONES/Major/Chito/Chito_avatar.png")
-var WeierstrassS = preload("res://Sprites/PCEOMONES/Minor/FuncionDeWeierstrass/FuncionDeWeierstrass_avatar.png")
-var CafeteraS = preload("res://Sprites/PCEOMONES/Minor/CafeteraComunista/CafeteraComunista_avatar.png")
-var MarineraDeCantorS = preload("res://Sprites/PCEOMONES/Minor/MarineraDeCantor/MarineraDeCantor_avatar.png")
-var TecladoS = preload("res://Sprites/PCEOMONES/Minor/Teclado/Teclado_avatar.png")
-
-var paths = { "Armada" : "res://Sprites/PCEOMONES/Major/Armada/Armada.tscn",
-"Alparko" : "res://Sprites/PCEOMONES/Major/Alparko/Alparko.tscn" ,
-"Cafetera Comunista" : "res://Sprites/PCEOMONES/Minor/CafeteraComunista/CafeteraComunista.tscn",
-"Teclado" : "res://Sprites/PCEOMONES/Minor/Teclado/Teclado.tscn",
-"Chito" : "res://Sprites/PCEOMONES/Major/Chito/Chito.tscn"}
-
-
 func _ready():
 	# $Music.volume_db = metadata.volumevalue
 	$"/root/MainScreenMusicController".play_loop("res://OST/IntroAndMenu/character_selection_screen.ogg", true)
@@ -29,16 +11,26 @@ func _ready():
 
 # Añade el pceomon a la party si no está y lo elimina si está
 func manage_party(pceomon):
+	var minor = false
+	if $PCEOMONInfo/VBoxGlobal/Miscelaneus/Type.text == "Menor":
+		minor = true
 	if (metadata.party.size() < 5):
 		if not (pceomon in metadata.party):
 			metadata.party.append(pceomon)
-			metadata.party_paths.append(paths[pceomon])
+			if not minor:
+				metadata.party_paths.append("res://Sprites/PCEOMONES/Major/" + pceomon + "/" + pceomon +".tscn")
+			else:
+				metadata.party_paths.append("res://Sprites/PCEOMONES/Minor/" + pceomon + "/" + pceomon +".tscn")
 			var text = $"CenterContainer/MenuDistribution/Miscelaneous/Party".text
 			text = text + ' ' + pceomon
 			$"CenterContainer/MenuDistribution/Miscelaneous/Party".text = text
 		else:
 			metadata.party.erase(pceomon)
-			metadata.party_paths.erase(paths[pceomon])
+			if not minor:
+				metadata.party_paths.erase("res://Sprites/PCEOMONES/Major/" + pceomon + "/" + pceomon +".tscn")
+			else:
+				metadata.party_paths.erase("res://Sprites/PCEOMONES/Minor/" + pceomon + "/" + pceomon +".tscn")
+
 			var text = $"CenterContainer/MenuDistribution/Miscelaneous/Party".text	
 			text = text.replace(' ' + pceomon,"")
 			$"CenterContainer/MenuDistribution/Miscelaneous/Party".text = text
@@ -80,7 +72,8 @@ func setPCEOMONinfo(name : String, texture, description : String,
 #######################################################################################
 ######PARA VER LA ESTRRUCTURA QUE SIGUE EL TXT COMPROBAR EL ARCHIVO ModelInfo.tres######
 #######################################################################################
-func getAndSetInfo(pceomon:String, texture):
+func getAndSetInfo(pceomon:String):
+	var texture = load("res://Sprites/PCEOMONES/Major/" + pceomon + "/" + pceomon + "_avatar.png")
 	var file = File.new()
 	file.open("res://GameScenes/Menues/Selection/PCEOMONES/Major/" + pceomon +"Info.txt", File.READ)
 	var name = file.get_line().replace("\\n","\n")
@@ -129,7 +122,8 @@ func getAndSetInfo(pceomon:String, texture):
 	change_select_button(name)
 	#setPCEOMONinfo(name, texture, description, type, ability, att1, att2, att3, att4)
 
-func getAndSetInfoMinor(pceomon: String, texture):
+func getAndSetInfoMinor(pceomon: String):
+	var texture = load("res://Sprites/PCEOMONES/Minor/" + pceomon + "/" + pceomon + "_avatar.png")
 	var file = File.new()
 	file.open("res://GameScenes/Menues/Selection/PCEOMONES/Minor/" + pceomon +"Info.txt", File.READ)
 	var name = file.get_line().replace("\\n","\n")
@@ -178,11 +172,11 @@ func getAndSetInfoMinor(pceomon: String, texture):
 	change_select_button(name)
 
 func _on_Armada_pressed():
-	getAndSetInfo("Armada",ArmadaS)
+	getAndSetInfo("Armada")
 
 
 func _on_Alparko_pressed():
-	getAndSetInfo("Alparko",AlparkoS)
+	getAndSetInfo("Alparko")
 	#$"CenterContainer".visible = false
 	#$"PCEOMONInfo".visible = true
 	#$"PCEOMONInfo/VBoxGlobal/MainInfo/SpriteName/Name".text = "Alparko"
@@ -192,7 +186,7 @@ func _on_Alparko_pressed():
 	
 
 func _on_FuncionDeWeierstrass_pressed():
-	getAndSetInfoMinor("FuncionDeWeierstrass", WeierstrassS)
+	getAndSetInfoMinor("FuncionDeWeierstrass")
 
 func _on_PCEOMONInfo_volver():
 	$"CenterContainer".visible = true
@@ -209,16 +203,16 @@ func _on_PCEOMONInfo_seleccionar():
 
 
 func _on_MarineraDeCantor_pressed():
-	getAndSetInfoMinor("MarineraDeCantor", MarineraDeCantorS)
+	getAndSetInfoMinor("MarineraDeCantor")
 
 
 func _on_CafeteraComunista_pressed():
-	getAndSetInfoMinor("CafeteraComunista",CafeteraS)
+	getAndSetInfoMinor("CafeteraComunista")
 
 
 func _on_Teclado_pressed():
-	getAndSetInfoMinor("Teclado",TecladoS)
+	getAndSetInfoMinor("Teclado")
 
 
 func _on_Chito_pressed():
-	getAndSetInfo("Chito",ChitoS)
+	getAndSetInfo("Chito")

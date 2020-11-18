@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://GameScenes/Menues/Selection/PCEOMON.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Sprites/PCEOMONES/Minor/CafeteraComunista/CafeteraComunista_avatar.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/PCEOMONES/Minor/Cafetera Comunista/CafeteraComunista_avatar.png" type="Texture" id=2]
 
 [node name="PCEOMON" instance=ExtResource( 1 )]
 
