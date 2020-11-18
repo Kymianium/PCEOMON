@@ -185,6 +185,24 @@ func _on_Alparko_pressed():
 	
 	
 
+func change_PCEOMON_button(pceomon):
+	if pceomon == "Armada" or pceomon == "Alparko" or pceomon == "Chito":
+		if pceomon == "Armada":
+			$"CenterContainer/MenuDistribution/Major/SelectAndNavigate/Column1/Armada".change_button(pceomon,true)
+		elif pceomon == "Alparko":
+			$"CenterContainer/MenuDistribution/Major/SelectAndNavigate/Column2/Alparko".change_button(pceomon,true)
+		elif pceomon == "Chito":
+			$"CenterContainer/MenuDistribution/Major/SelectAndNavigate/Column3/Chito".change_button(pceomon,true)
+	elif pceomon == "Teclado" or pceomon == "Cafetera Comunista" or pceomon == "Marinera de Cantor" or pceomon == "Función de Weierstrass":
+		if pceomon == "Cafetera Comunista":
+			$"CenterContainer/MenuDistribution/Minor/Minors/CafeteraComunista".change_button("CafeteraComunista",false)
+		if pceomon == "Teclado":
+			$"CenterContainer/MenuDistribution/Minor/Minors/Teclado".change_button("Teclado",false)
+		if pceomon == "Función de Weierstrass":
+			$"CenterContainer/MenuDistribution/Minor/Minors/FuncionDeWeierstrass".change_button("FuncionDeWeierstrass",false)
+		if pceomon == "Marinera de Cantor":
+			$"CenterContainer/MenuDistribution/Minor/Minors/MarineraDeCantor".change_button("MarineraDeCantor",false)
+
 func _on_FuncionDeWeierstrass_pressed():
 	getAndSetInfoMinor("FuncionDeWeierstrass")
 
@@ -196,6 +214,7 @@ func _on_PCEOMONInfo_volver():
 func _on_PCEOMONInfo_seleccionar():
 	manage_party($"PCEOMONInfo/VBoxGlobal/MainInfo/SpriteName/Name".text)
 	change_select_button($"PCEOMONInfo/VBoxGlobal/MainInfo/SpriteName/Name".text)
+	change_PCEOMON_button($"PCEOMONInfo/VBoxGlobal/MainInfo/SpriteName/Name".text)
 	_on_PCEOMONInfo_volver()
 
 
