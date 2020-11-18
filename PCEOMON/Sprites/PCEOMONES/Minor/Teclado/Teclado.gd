@@ -48,7 +48,7 @@ func next3():
 		selected_enemy = yield(select(false), "completed")
 	elif tipo_robado == "Programador":
 		emit_signal("permanent_announcement","Selecciona al aliado que quieras [tornado]potenciar[/tornado].")
-		selected_enemy = yield(select(true), "completed")
+		selected_ally = yield(select(true), "completed")
 	elif tipo_robado == "Gym":
 		emit_signal("permanent_announcement","ESTOY HIPERTRÓFICO")
 		selected_enemy = yield(select(false), "completed")

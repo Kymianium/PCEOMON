@@ -1,11 +1,11 @@
-Marinera de Cantor
+Marinera De Cantor
 Marinera de la región\nLa anchoa tiene medida nula pero no es numerable.
 Menor
 No numerable
 ¡Rompe tus límites! ¡Puedes subir\ntus estadísticas aún más!
 Las estadísticas de los PCEOMONES ven su límite de mejora\nincrementado.
 Ensaladillado\n
-Llena de ensaladilla a un enemigo. Reduce su velocidad
+Llena de ensaladilla a un enemigo. Reduce su velocidad y\nhace daño químico.
 Si bien la reducción de velocidad no es permanente, es de\nlarga duración.
 Medida nula
 No hay por dónde pillarte. Aumenta la evasión de un aliado.

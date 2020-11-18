@@ -4,12 +4,12 @@ Programador
 Peaceful mode
 No puede ser atacado hasta no atacar
 Alparko juega en peaceful. Sólamente puede ser atacado si\n previamente, él ha usado un ataque o bien ha pasado una \ndeterminada cantidad de tiempo.
-/tp
-Aumenta la evasión de un PCEOMON
-Selecciona a un aliado y se une a la Villa Oculta de la Hoja.\n Se tpea y aumenta su evasión frente a los ataques.
+/kill
+Daña psicológicamente a un PCEOMÓN
+Este ataque tiene un 0.01% de probabilidad de MATAR al\nPCEOMÓN sobre el que se usa. En caso de no lograrlo, hará\ndaño psicológico igualmente.
 Aspecto ígneo
-Incrementa el daño físico de un PCEOMON o\n ataca a un enemigo.
-Si selecciona a un aliado, aumenta permanentemente su daño\nfísico. Si selecciona a un enemigo, le hace daño físico\n y lo envenena.
+Incrementa el daño físico de un PCEOMON.
+Encanta a un aliado, aumentando permanentemente su daño\nfísico.
 Protección
 Aumenta todas las defensas de un PCEOMON
 Un aumento permanente de todas las defensas. Mucho ojito con esto.

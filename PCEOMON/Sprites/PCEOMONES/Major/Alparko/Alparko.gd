@@ -8,7 +8,7 @@ func _ready():
 	arrow = $Arrow
 	name = "Alparko"
 	ability = "Peaceful mode"
-	attack1 = "/tp"
+	attack1 = "/kill"
 	attack2 = "Aspecto Ígneo"
 	attack3 = "Protección"
 	attack4 = "/weather clear"
@@ -20,9 +20,9 @@ func _ready():
 	next_attack_required_stamina = 1000
 
 func next1():
-	next_attack_required_stamina = 200
-	emit_signal("permanent_announcement", "Selecciona al PCEOMÓN al que quieres hacer tp")
-	selected_mate = yield(select(true), "completed")
+	next_attack_required_stamina = 500
+	emit_signal("permanent_announcement", "Selecciona al PCEOMÓN al que quieres hacer /kill")
+	selected_foe = yield(select(false), "completed")
 	.next1()
 
 func next2():
@@ -47,12 +47,21 @@ func next4():
 func damage(var damage:int):
 	if (not peaceful):
 		.damage(damage)
+	else:
+		 return 0
 
 
 func atk1():
-	selected_mate.buff(EVASION, 5000, 0.5, 0)
-	emit_signal("just_attacked", "Alparko", "/tp", "", "¡Cómo se mueve el hijo de puta de [shake level=10]" + selected_mate.name + "![/shake]")
-	emit_signal("buffed", self, [selected_mate], EVASION)
+	var chance = rng.randi() % 10000
+	var damage_done
+	if (chance==69):
+		damage_done = selected_foe.damage(selected_foe.max_hp)
+		emit_signal("just_attacked", "Alparko", "/kill", selected_foe.name, "\n\t [shake level=50 rate=1] EL TOQUE DE LA MUERTE [/shake]\n [fade start=4 length=28] Señor Stark, no me encuentro muy bien...[/fade]")
+		emit_signal("attacked", self, [selected_foe],[selected_foe.max_hp], TRUE_DMG)
+		return
+	damage_done = make_damage(selected_foe, 300, 0.3, PSYCHOLOGYCAL_DMG)
+	unicast_damage(damage_done,selected_foe.name,"/kill","¡OOF, ESO ESTUVO CERCA!")
+	emit_signal("attacked", self, [selected_foe],[damage_done], PSYCHOLOGYCAL_DMG)
 	
 func atk2():
 	selected_mate.permanent_buff(PHYSICAL_DMG, 1.2, 0)

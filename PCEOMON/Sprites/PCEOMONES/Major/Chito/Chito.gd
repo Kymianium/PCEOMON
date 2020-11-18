@@ -1,6 +1,7 @@
 extends "res://PCEOMONES_classes/Gym.gd"
 
 var binded_ally = null
+var powerup = false
 const binded_buff = 1.2
 # Declare member variables here. Examples:
 # var a = 2

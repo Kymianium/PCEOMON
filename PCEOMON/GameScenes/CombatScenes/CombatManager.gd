@@ -4,6 +4,7 @@ extends Node2D
 var pceomon
 var pceo_instance
 var avatar : TextureRect
+var avatars = {}
 var info : String
 signal ended_text
 signal pceomon_pressed(pceomon,boss)
@@ -31,6 +32,7 @@ func _ready():
 		pceo_instance.manager = self
 		avatar = TextureRect.new()
 		avatar.texture = load(pceo_instance.avatar_path)
+		avatars[pceo_instance]=avatar
 		$Combatinterface/CombatGUI/Fight/Avatars.add_child(avatar)
 	for enemy in $"Enemies".get_children():
 		enemy.connect("sprite_pressed",self,"pceomon_pressed")
@@ -126,6 +128,8 @@ func pceomon_died(pceomon):
 		for enemy in $"Enemies".get_children():
 			enemy.mates.erase(pceomon)
 	else:
+		
+		avatars[pceomon].visible = false
 		for mate in $"Party".get_children():
 			mate.mates.erase(pceomon)
 		for enemy in $"Enemies".get_children():
@@ -162,6 +166,7 @@ func draw_particle(path, posx, posy):
 
 
 func revive(pceomon):
+	avatars[pceomon].visible = true
 	for enemy in $"Enemies".get_children():
 		enemy.foes.append(pceomon)
 	for mate in $"Party".get_children():

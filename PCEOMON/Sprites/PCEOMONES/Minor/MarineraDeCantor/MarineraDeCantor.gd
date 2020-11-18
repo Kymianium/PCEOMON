@@ -10,9 +10,9 @@ func _ready():
 	name = "Marinera de Cantor"
 	ability = "No numerable"
 	attack1 = "Ensaladillado"
-	attack2 = "Lucha de clases"
-	attack3 = "Reunión de algebristas"
-	attack4 = "Chocolate caliente"
+	attack2 = "Medida nula"
+	attack3 = "Rosquillazo"
+	attack4 = "Aperitivo"
 	type = "Menor"
 	._ready()
 	avatar_path = "res://Sprites/PCEOMONES/Minor/CafeteraComunista/CafeteraComunista_avatar.png"
@@ -22,61 +22,50 @@ func _ready():
 func next1():
 	next_attack_required_stamina = 500
 	emit_signal("permanent_announcement", "¡Selecciona a quién hay que ensaladillar!")
-	selected_mate = yield(select(true), "completed")
+	selected_foe= yield(select(false), "completed")
 	.next1()
 func next2():
 	next_attack_required_stamina = 300
+	emit_signal("permanent_announcement", "¡Selecciona quién tiene medida nula!")
+	selected_mate = yield(select(true), "completed")
 	.next2()
 
 func next3():
-	next_attack_required_stamina = 200
+	next_attack_required_stamina = 400
+	emit_signal("permanent_announcement", "Alguien se va a llevar un rosquillazo...")
+	selected_foe = yield(select(false), "completed")
 	.next3()
 
 func next4():
-	next_attack_required_stamina = 200
+	next_attack_required_stamina = 2000
+	emit_signal("permanent_announcement", "Moriré... Por ti...")
+	selected_mate = yield(select(true), "completed")
 	.next4()
 
 
 func atk1():
-	#Café de avellanas, aumenta la velocidad con la que se restaura la stamina
-	selected_mate.buff(SPEED, 1000, 1.5, 0)
-	emit_signal("particle", CoffeeParticle, selected_mate.position.x+25, selected_mate.position.y+100)
-	emit_signal("just_attacked", "La cafetera comunista", "Café de avellana", "", "Con este manjar, " + selected_mate.name + " ahora va más [tornado freq=5]rápido[/tornado]")
-	emit_signal("buffed", self, [selected_mate], SPEED)
+	var damage_done = make_damage(selected_foe, 100, 0.3, CHEMICAL_DMG)
+	unicast_damage(damage_done,selected_foe.name,"Ensaladillado","¡Mayonesa, huevo, zanahora, yo qué coño sé! ¡Sufre mamón!")
+	selected_foe.buff(SPEED, 10000, 0.6, 0)
+	emit_signal("buffed", self, [selected_foe], SPEED)
+	emit_signal("attacked", self, [selected_foe],[damage_done], PSYCHOLOGYCAL_DMG)
 	
 func atk2():
-	#Roba un poco de vida al enemigo con mas porcentaje de vida y le da una parte al aliado con menor porcentaje de vida
-
-	var more_healed = null
-	var less_healed = null
-	var damage_done : int = 0
-	for enemy in foes:
-		if (more_healed == null || enemy.actual_hp/enemy.max_hp > more_healed.actual_hp/more_healed.max_hp):
-			more_healed = enemy
-	damage_done = make_damage(more_healed,100,0.5,PSYCHOLOGYCAL_DMG)
-	if (damage_done != 0):
-		for ally in mates:
-			if (less_healed == null || less_healed.actual_hp/less_healed.max_hp > ally.actual_hp/ally.max_hp):
-				less_healed = ally
-		less_healed.heal(damage_done/2)
-		emit_signal("particle", CommunismBuf, less_healed.position.x+25, less_healed.position.y+100)
-		emit_signal("particle", CommunismDeb, more_healed.position.x+25, more_healed.position.y+100)		
-		emit_signal("just_attacked","La cafetera comunista", "Lucha de clases", more_healed.name,"¡El poder de Lenin ha sanado a " + less_healed.name + "!")
-		emit_signal("attacked", self, [more_healed], [damage_done], PSYCHOLOGYCAL_DMG)
-		emit_signal("healed", self, [less_healed], [damage_done/2])
-	else:
-		emit_signal("just_attacked",self.name,"Lucha de clases", more_healed.name,"Pero ha fallado, el comunismo no funciona")
+	selected_mate.buff(EVASION, 3000, 0.5, 0)
+	emit_signal("just_attacked", self.name, "Medida nula", "", "¿¡Dónde se ha metido " + selected_mate.name + "!?")
+	emit_signal("buffed", self, [selected_mate], EVASION)
 func atk3():
-	self.buff(EVASION, 1000, 0.8, 0)
-	emit_signal("just_attacked","La cafetera comunista", "Reunión de algebristas","","La cafetera se esconde entre profesores. ¡Aumenta su evasión!")
-	emit_signal("buffed", self, self, EVASION)
+	var damage_done = make_damage(selected_foe, 100, 0.2, PHYSICAL_DMG)
+	unicast_damage(damage_done,selected_foe.name,"Rosquillazo","... Em... Sí, bueno... Le dió un rosquillazo. Don't mess with Cantor, I guess.")
+	emit_signal("attacked", self, [selected_foe], [damage_done],PHYSICAL_DMG)
 func atk4():
-	#Sana al aliado más herido (por porcentajes)
-	var less_healed = null
-	for ally in mates:
-		if (less_healed == null || less_healed.actual_hp/less_healed.max_hp > ally.actual_hp/ally.max_hp):
-			less_healed = ally
-	less_healed.heal(calculate_chemical_damage(30,0.3))
-	emit_signal("particle", ChocolateParticle, less_healed.position.x+25, less_healed.position.y+100)
-	emit_signal("just_attacked","La cafetera comunista","Chocolate caliente","","El chocolate caliente revitaliza a " + less_healed.name)
-	emit_signal("healed", self, [less_healed], [calculate_chemical_damage(30,0.3)])
+	selected_mate.permanent_buff(CHEMICAL_DMG, 1.5, 50)
+	selected_mate.permanent_buff(PHYSICAL_DMG, 1.5, 50)
+	selected_mate.permanent_buff(PSYCHOLOGYCAL_DMG, 1.5, 50)
+	selected_mate.permanent_buff(CHEMICAL_DFC, 1.5, 50)
+	selected_mate.permanent_buff(PHYSICAL_DFC, 1.5, 50)
+	selected_mate.permanent_buff(PSYCHOLOGYCAL_DFC, 1.5, 50)
+	selected_mate.permanent_buff(SPEED, 1.5, 0)
+	damage(max_hp)
+	emit_signal("just_attacked",self.name,"Aperitivo","","D.E.P., Marinera de Cantor. Siempre guardaremos un huequito de medida nula para ti en nuestro corazón <3")
+	emit_signal("buffed", self, selected_mate, [CHEMICAL_DFC, CHEMICAL_DMG, PHYSICAL_DFC, PHYSICAL_DMG, PSYCHOLOGYCAL_DFC, PSYCHOLOGYCAL_DMG, SPEED])
