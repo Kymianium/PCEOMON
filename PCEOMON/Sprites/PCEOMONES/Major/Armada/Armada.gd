@@ -48,12 +48,11 @@ func atk1():
 	#Armada alza en alto su móvil y graba un instastory lo cual hace que los enemigos entren en
 	#estado de baile desenfrenado. A mitad del baile, Armada se convierte en una fuente de pota y hace	
 	#daño químico a todos los que bailan.
-	var damage_done = selected_foe.take_chemical_damage(calculate_chemical_damage(500, 0.5))
+	var damage_done = make_damage(selected_foe,500,0.5,CHEMICAL_DMG)
 	alcohol-=50
 	$"HBoxContainer/StatsSummary/Alcohol".value = float(alcohol)/maxalcohol *100
 	unicast_damage(damage_done,selected_foe.name,"Postureo","Esta pa [rainbow] mejores amigos [/rainbow].")
-	emit_signal("attacked", self, selected_foe, calculate_chemical_damage(500, 0.5),CHEMICAL_DMG)
-	emit_signal("status", self, [selected_foe], POISON)
+	emit_signal("attacked", self, [selected_foe], [damage_done],CHEMICAL_DMG)
 func atk2():
 	#El Quijote
 	#Armada lanza al aire la pregunta ¿Qué era el quijote? Al primer enemigo que conteste &quot;Un
@@ -85,17 +84,15 @@ func atk4():
 	#Armada va tan borracho que se piensa que está en la grieta del invocador y se abalanza
 	#contra un pceomón enemigo, comenzando a meterle de ostias y rociarle alcohol tóxico lo cual infiere
 	#daño físico y mucho daño químico. Además si el enemigo tiene el 20% de la vida o menos, le oneshotea.
-	var tried_to_deal 
 	var damage
+	var damage_done
 	if float(selected_foe.actual_hp)/selected_foe.max_hp <= 0.2:
-		selected_foe.damage(selected_foe.max_hp)
-		tried_to_deal = selected_foe.max_hp
+		damage_done = selected_foe.damage(selected_foe.max_hp)
 		damage = TRUE_DMG
 	else:
-		tried_to_deal = calculate_physical_damage(1000,1)
 		damage = PHYSICAL_DMG
-		selected_foe.take_physical_damage(tried_to_deal)
+		damage_done = make_damage(selected_foe,1000,1,PHYSICAL_DMG)
 	alcohol-=400
 	$"HBoxContainer/StatsSummary/Alcohol".value = float(alcohol)/maxalcohol *100
-	emit_signal("just_attacked", "Armada", "¿Un lolete?", selected_foe.name, "Se pensaba que era [shake]un minion de la grieta[/shake]")
-	emit_signal("attacked", self, [selected_foe], tried_to_deal, damage)
+	unicast_damage(damage_done,selected_foe.name,"¿Un lolete?","Se pensaba que era [shake]un minion de la grieta[/shake]")
+	emit_signal("attacked", self, [selected_foe], [damage_done], damage)

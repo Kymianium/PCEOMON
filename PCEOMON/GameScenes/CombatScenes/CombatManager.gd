@@ -20,12 +20,13 @@ func _ready():
 		pceo_instance.position.y = metadata.combat_position[i][1]
 		$Party.add_child(pceo_instance)
 		pceo_instance.connect("just_attacked", self, "write_attack_text")
-		pceo_instance.connect("just_died", self, "pceomon_died")
+		pceo_instance.connect("died", self, "pceomon_died")
 		pceo_instance.connect("announcement", self, "incoming_announcement")
 		pceo_instance.connect("permanent_announcement",self,"incoming_permanent_announcement")
 		pceo_instance.connect("sprite_pressed",self,"pceomon_pressed")
 		pceo_instance.connect("target_selected",self,"_on_DialogueBox_input")
 		pceo_instance.connect("particle", self, "draw_particle")
+		pceo_instance.connect("revive",self,"revive")
 		self.connect("pceomon_pressed",pceo_instance,"target_selected")
 		pceo_instance.manager = self
 		avatar = TextureRect.new()
@@ -158,3 +159,10 @@ func draw_particle(path, posx, posy):
 	particle_instance.position.x = posx
 	particle_instance.position.y = posy
 	$".".add_child(particle_instance)
+
+
+func revive(pceomon):
+	for enemy in $"Enemies".get_children():
+		enemy.foes.append(pceomon)
+	for mate in $"Party".get_children():
+		mate.mates.append(pceomon)

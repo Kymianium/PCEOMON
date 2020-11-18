@@ -52,6 +52,7 @@ signal target_selected
 signal sprite_pressed(name,boss)
 # warning-ignore:unused_signal
 signal particle(path, posx, posy)
+signal revive(pceomon)
 #STATS
 
 ###
@@ -261,12 +262,19 @@ func _process(delta):
 					emit_signal("announcement","El envenenamiento de " + self.name + " ha terminado")
 				self.damage(poison_damage)
 
+func revive(hp):
+	actual_hp = hp
+	emit_signal("revive",self)
+
 
 func heal(var hp: int):
-# warning-ignore:narrowing_conversion
-	actual_hp = min(actual_hp+hp,max_hp)
-# warning-ignore:integer_division
-	$"HBoxContainer/StatsSummary/HP".value = actual_hp*100/max_hp
+	if (actual_hp == 0):
+		revive(hp)
+	else:
+	# warning-ignore:narrowing_conversion
+		actual_hp = min(actual_hp+hp,max_hp)
+	# warning-ignore:integer_division
+		$"HBoxContainer/StatsSummary/HP".value = actual_hp*100/max_hp
 
 
 func unicast_damage(var damage_done, var dst : String, var attack : String, var description : String):
@@ -274,7 +282,16 @@ func unicast_damage(var damage_done, var dst : String, var attack : String, var 
 		emit_signal("just_attacked",self.name,attack,dst,description)
 	elif damage_done == 0:
 		emit_signal("just_attacked",self.name,attack,dst,"Pero ha fallado")
-		
+
+
+func make_damage(attacked,dmg,scalation,dmg_type):
+	if (dmg_type == PHYSICAL_DMG):
+		return attacked.take_physical_damage(calculate_physical_damage(dmg,scalation))
+	if (dmg_type == PSYCHOLOGYCAL_DMG):
+		return attacked.take_psychological_damage(calculate_psychological_damage(dmg,scalation))
+	if (dmg_type == CHEMICAL_DMG):
+		return attacked.take_chemical_damage(calculate_chemical_damage(dmg,scalation))
+
 func calculate_chemical_damage(var attack_damage : int, var scalation : float):
 	return attack_damage+(scalation*getstat(CHEMICAL_DMG))
 
@@ -287,10 +304,10 @@ func calculate_physical_damage(var attack_damage : int, var scalation : float):
 func take_physical_damage(var damage):
 	return damage(damage/(1+getstat(PHYSICAL_DFC)/100))
 	
-func calculate_phychological_damage(var attack_damage : int, var scalation : float):
+func calculate_psychological_damage(var attack_damage : int, var scalation : float):
 	return attack_damage+(scalation*getstat(PSYCHOLOGYCAL_DMG))
 
-func take_phychological_damage(var damage):
+func take_psychological_damage(var damage):
 	return damage(damage/(1+getstat(PSYCHOLOGYCAL_DFC)/100))
 	
 
@@ -302,9 +319,9 @@ func damage(var damage : int):
 	$"HBoxContainer/StatsSummary/HP".value = actual_hp*100/max_hp
 	if(actual_hp <= 0):
 		self.visible = false
-		emit_signal("just_died", self)
-		return 2
-	return 1
+		emit_signal("died", self)
+		actual_hp = 0
+	return damage
 	
 func poison(var damage : int):
 	poison_counter = damage
@@ -357,4 +374,7 @@ func _on_SpriteContainer_sprite_pressed():
 	
 func select_combat(var message : String, var ally : bool):
 	emit_signal("permanent_announcement", message)
-	selected_foe = yield(select(ally), "completed")
+	if ally:
+		selected_mate = yield(select(ally), "completed")
+	else:
+		selected_foe = yield(select(ally), "completed")

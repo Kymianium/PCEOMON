@@ -41,8 +41,9 @@ func next4():
 	#LOS ATAQUES ESTÁN SIN PROGRAMAR
 	
 func atk1():
-	unicast_damage(selected_foe.take_physical_damage(calculate_physical_damage(100, 0.5)),selected_foe.name,"Placaje","¡La puta madre! Eso tuvo que doler...")
-	emit_signal("attacked", self, selected_foe, calculate_physical_damage(100, 0.5),PHYSICAL_DMG)
+	var damage_done = make_damage(selected_foe, 100, 0.5, PHYSICAL_DMG)
+	unicast_damage(damage_done,selected_foe.name,"Placaje","¡La puta madre! Eso tuvo que doler...")
+	emit_signal("attacked", self, [selected_foe], [damage_done],PHYSICAL_DMG)
 func atk2():
 	anger=min(anger+30,max_anger)
 	$HBoxContainer/StatsSummary/Anger.value = (100*anger)/max_anger
@@ -52,21 +53,17 @@ func atk3():
 	emit_signal("just_attacked", "Chito", "Besito en la boca", "", "La pasión se siente en el ambiente entre Chito y " + selected_mate.name + "... ¡Dejadles intimidad!")
 
 func atk4():
-	var tried_to_deal 
+	var damage_done
 	var damage
-	if float(selected_foe.actual_hp) < calculate_physical_damage(1000, 1):
-		selected_foe.damage(selected_foe.max_hp)
-		tried_to_deal = selected_foe.max_hp
+	if selected_foe.actual_hp < calculate_physical_damage(1000, 1):
+		damage_done = selected_foe.damage(selected_foe.max_hp)
 		damage = TRUE_DMG
 	else:
-		tried_to_deal = calculate_physical_damage(1000,1)
 		damage = PHYSICAL_DMG
-		selected_foe.take_physical_damage(tried_to_deal)
-	if damage==PHYSICAL_DMG:
-		unicast_damage(selected_foe.take_physical_damage(tried_to_deal),selected_foe.name,"911","Hoy cierran los aeropuertos y colapsan las torres.")
-	else:
-		unicast_damage(selected_foe.damage(tried_to_deal),selected_foe.name,"911","Hoy cierran los aeropuertos y colapsan las torres.")
-	emit_signal("attacked", self, [selected_foe], tried_to_deal, damage)
+		damage_done = make_damage(selected_foe,1000,1,PHYSICAL_DMG)
+	unicast_damage(damage_done,selected_foe.name,"911","Hoy cierran los aeropuertos y colapsan las torres")
+	emit_signal("attacked", self, [selected_foe], [damage_done], damage)
+
 
 
 

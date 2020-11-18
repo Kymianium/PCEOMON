@@ -50,7 +50,7 @@ func damage(var damage:int):
 
 
 func atk1():
-	selected_mate.buff("evasion", 5000, 0.5, 0)
+	selected_mate.buff(EVASION, 5000, 0.5, 0)
 	emit_signal("just_attacked", "Alparko", "/tp", "", "¡Cómo se mueve el hijo de puta de [shake level=10]" + selected_mate.name + "![/shake]")
 	emit_signal("buffed", self, [selected_mate], EVASION)
 	

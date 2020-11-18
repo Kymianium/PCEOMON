@@ -4,6 +4,10 @@ var tipo_robado = null
 var selected_enemy
 var selected_ally
 
+##CONTROL + Z
+var damage = null
+var attacked = null
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	name = "Teclado"
@@ -16,9 +20,18 @@ func _ready():
 	._ready()
 	avatar_path = "res://Sprites/PCEOMONES/Minor/Teclado/Teclado_avatar.png"
 	next_attack_required_stamina = 1300
+	for enemy in foes:
+		enemy.connect("attacked",self,"enemy_attacked")
+
+
+func enemy_attacked(attacker, attacked, damage, type):
+	self.damage = damage
+	self.attacked = attacked
+
 
 func next1():
-	emit_signal("announcement","Ataque no implementado")
+	next_attack_required_stamina = 400
+	.next1()
 
 func next2():
 	next_attack_required_stamina = 500
@@ -52,13 +65,28 @@ func next4():
 #func _process(delta):
 #	pass
 
+
+func atk1():
+	if (damage != null):
+		for i in range(attacked.size()):
+			attacked[i].heal(damage[i])
+		emit_signal("just_attacked",self.name,"Ctrl+Z","","Aquí no ha pasado nada...")
+		emit_signal("healed",self,attacked,damage)
+		damage = null
+		attacked = null
+	else:
+		emit_signal("just_attacked",self.name,"Ctrl+Z","","¡Pero no había nada que deshacer!")
+	
+
+
 func atk2():
 	tipo_robado = selected_enemy.type
 
 func atk3():
 	if tipo_robado == "Alcohólico":
-		var damage_done = selected_enemy.take_chemical_damage(calculate_chemical_damage(200, 1))
+		var damage_done = make_damage(selected_enemy,200,1,CHEMICAL_DMG)
 		unicast_damage(damage_done,selected_enemy.name,"Ctrl+V","Control+Pota")
+		emit_signal("attacked",self,[selected_enemy],[damage_done],CHEMICAL_DMG)
 	elif tipo_robado == "Programador":
 		var tipoataque = rng.randi(2)
 		var tipo
@@ -75,11 +103,14 @@ func atk3():
 		for ally in mates:
 			ally.heal(calculate_chemical_damage(80,0.2))
 		emit_signal("just_attacked",self.name,"Ctrl+V","","Cuídense mis panas")
-		emit_signal("healed", self, [mates], calculate_chemical_damage(80,0.2))
+		var healed = []
+		for mate in mates:			##ESTA COLOCADA ES PARA QUE SE HAGA UNA LISTA CON LA MISMA LONG QUE MATES
+			healed.append(calculate_chemical_damage(80,0.2))
+		emit_signal("healed", self, [mates], healed)
 	elif tipo_robado == "Gym":
-		var damage_done = selected_enemy.take_physical_damage(calculate_chemical_damage(200, 1))
+		var damage_done =  make_damage(selected_enemy,200,1,PHYSICAL_DMG)
 		unicast_damage(damage_done,selected_enemy.name,"Ctrl+V","Te copio y te pego")
-		emit_signal("attacked", self, [selected_enemy], calculate_chemical_damage(200, 1))
+		emit_signal("attacked", self, [selected_enemy], [damage_done], PHYSICAL_DMG)
 	elif tipo_robado == "R4":
 		var tipodef = rng.randi(2)
 		var defensa
