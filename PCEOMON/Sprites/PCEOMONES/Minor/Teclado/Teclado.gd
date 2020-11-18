@@ -48,7 +48,7 @@ func next3():
 		selected_enemy = yield(select(false), "completed")
 	elif tipo_robado == "Programador":
 		emit_signal("permanent_announcement","Selecciona al aliado que quieras [tornado]potenciar[/tornado].")
-		selected_enemy = yield(select(false), "completed")
+		selected_enemy = yield(select(true), "completed")
 	elif tipo_robado == "Gym":
 		emit_signal("permanent_announcement","ESTOY HIPERTRÓFICO")
 		selected_enemy = yield(select(false), "completed")
@@ -88,7 +88,7 @@ func atk3():
 		unicast_damage(damage_done,selected_enemy.name,"Ctrl+V","Control+Pota")
 		emit_signal("attacked",self,[selected_enemy],[damage_done],CHEMICAL_DMG)
 	elif tipo_robado == "Programador":
-		var tipoataque = rng.randi(2)
+		var tipoataque = rng.randi()%3
 		var tipo
 		if tipoataque == 0:
 			tipo = CHEMICAL_DMG
@@ -112,7 +112,7 @@ func atk3():
 		unicast_damage(damage_done,selected_enemy.name,"Ctrl+V","Te copio y te pego")
 		emit_signal("attacked", self, [selected_enemy], [damage_done], PHYSICAL_DMG)
 	elif tipo_robado == "R4":
-		var tipodef = rng.randi(2)
+		var tipodef = rng.randi() % 3
 		var defensa
 		if tipodef == 0:
 			defensa = CHEMICAL_DFC
