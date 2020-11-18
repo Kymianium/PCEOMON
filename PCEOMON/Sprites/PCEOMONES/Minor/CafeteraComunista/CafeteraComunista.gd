@@ -8,7 +8,7 @@ var CommunismBuf = "res://Sprites/PCEOMONES/Minor/CafeteraComunista/ComunismHeal
 
 func _ready():
 	name = "Cafetera Comunista"
-	ability = ""
+	ability = "Reponer"
 	attack1 = "Café de avellana"
 	attack2 = "Lucha de clases"
 	attack3 = "Reunión de algebristas"

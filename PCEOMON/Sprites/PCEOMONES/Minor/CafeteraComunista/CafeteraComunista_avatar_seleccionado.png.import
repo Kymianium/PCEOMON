@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/CafeteraComunista_avatar_seleccionado.png-4575109772dfce9ad4f1a2802595175d.stex"
+path="res://.import/CafeteraComunista_avatar_seleccionado.png-3d0ce74530fb1d7571bcd1fc281588c5.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/PCEOMONES/Minor/Cafetera Comunista/CafeteraComunista_avatar_seleccionado.png"
-dest_files=[ "res://.import/CafeteraComunista_avatar_seleccionado.png-4575109772dfce9ad4f1a2802595175d.stex" ]
+source_file="res://Sprites/PCEOMONES/Minor/CafeteraComunista/CafeteraComunista_avatar_seleccionado.png"
+dest_files=[ "res://.import/CafeteraComunista_avatar_seleccionado.png-3d0ce74530fb1d7571bcd1fc281588c5.stex" ]
 
 [params]
 
