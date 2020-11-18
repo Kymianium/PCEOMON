@@ -14,26 +14,24 @@ func manage_party(pceomon):
 	var minor = false
 	if $PCEOMONInfo/VBoxGlobal/Miscelaneus/Type.text == "Menor":
 		minor = true
-	if (metadata.party.size() < 5):
-		if not (pceomon in metadata.party):
-			metadata.party.append(pceomon)
-			if not minor:
-				metadata.party_paths.append("res://Sprites/PCEOMONES/Major/" + pceomon + "/" + pceomon +".tscn")
-			else:
-				metadata.party_paths.append("res://Sprites/PCEOMONES/Minor/" + pceomon + "/" + pceomon +".tscn")
-			var text = $"CenterContainer/MenuDistribution/Miscelaneous/Party".text
-			text = text + ' ' + pceomon
-			$"CenterContainer/MenuDistribution/Miscelaneous/Party".text = text
+	if not (pceomon in metadata.party):
+		metadata.party.append(pceomon)
+		if not minor:
+			metadata.party_paths.append("res://Sprites/PCEOMONES/Major/" + pceomon + "/" + pceomon +".tscn")
 		else:
-			metadata.party.erase(pceomon)
-			if not minor:
-				metadata.party_paths.erase("res://Sprites/PCEOMONES/Major/" + pceomon + "/" + pceomon +".tscn")
-			else:
-				metadata.party_paths.erase("res://Sprites/PCEOMONES/Minor/" + pceomon + "/" + pceomon +".tscn")
-
-			var text = $"CenterContainer/MenuDistribution/Miscelaneous/Party".text	
-			text = text.replace(' ' + pceomon,"")
-			$"CenterContainer/MenuDistribution/Miscelaneous/Party".text = text
+			metadata.party_paths.append("res://Sprites/PCEOMONES/Minor/" + pceomon + "/" + pceomon +".tscn")
+		var text = $"CenterContainer/MenuDistribution/Miscelaneous/Party".text
+		text = text + ' ' + pceomon
+		$"CenterContainer/MenuDistribution/Miscelaneous/Party".text = text
+	else:
+		metadata.party.erase(pceomon)
+		if not minor:
+			metadata.party_paths.erase("res://Sprites/PCEOMONES/Major/" + pceomon + "/" + pceomon +".tscn")
+		else:
+			metadata.party_paths.erase("res://Sprites/PCEOMONES/Minor/" + pceomon + "/" + pceomon +".tscn")
+		var text = $"CenterContainer/MenuDistribution/Miscelaneous/Party".text	
+		text = text.replace(' ' + pceomon,"")
+		$"CenterContainer/MenuDistribution/Miscelaneous/Party".text = text
 	
 func change_select_button(pceomon):
 	if pceomon in metadata.party:
@@ -213,11 +211,11 @@ func change_PCEOMON_button(pceomon):
 
 
 func _on_PCEOMONInfo_seleccionar():
-	manage_party($"PCEOMONInfo/VBoxGlobal/MainInfo/SpriteName/Name".text.replace(" ",""))
-	change_select_button($"PCEOMONInfo/VBoxGlobal/MainInfo/SpriteName/Name".text.replace(" ",""))
-	change_PCEOMON_button($"PCEOMONInfo/VBoxGlobal/MainInfo/SpriteName/Name".text.replace(" ",""))
-	_on_PCEOMONInfo_volver()
-
+	if ((metadata.party.size() < 5) or ($"PCEOMONInfo/VBoxGlobal/MainInfo/SpriteName/Name".text.replace(" ","") in metadata.party)):
+		manage_party($"PCEOMONInfo/VBoxGlobal/MainInfo/SpriteName/Name".text.replace(" ",""))
+		change_select_button($"PCEOMONInfo/VBoxGlobal/MainInfo/SpriteName/Name".text.replace(" ",""))
+		change_PCEOMON_button($"PCEOMONInfo/VBoxGlobal/MainInfo/SpriteName/Name".text.replace(" ",""))
+		_on_PCEOMONInfo_volver()
 
 
 
