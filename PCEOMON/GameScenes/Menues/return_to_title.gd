@@ -119,7 +119,7 @@ func getAndSetInfo(pceomon:String):
 	$"PCEOMONInfo".At3Desc = att3desc
 	$"PCEOMONInfo".At4Desc = att4desc
 	$"PCEOMONInfo/RequestedData/SpriteName/Sprite".texture = texture
-	change_select_button(name)
+	change_select_button(name.replace(" ", ""))
 	#setPCEOMONinfo(name, texture, description, type, ability, att1, att2, att3, att4)
 
 func getAndSetInfoMinor(pceomon: String):
@@ -169,7 +169,7 @@ func getAndSetInfoMinor(pceomon: String):
 	$"PCEOMONInfo".At3Desc = att3desc
 	$"PCEOMONInfo".At4Desc = att4desc
 	$"PCEOMONInfo/RequestedData/SpriteName/Sprite".texture = texture
-	change_select_button(name)
+	change_select_button(name.replace(" ", ""))
 
 func _on_Armada_pressed():
 	getAndSetInfo("Armada")
@@ -192,10 +192,30 @@ func _on_PCEOMONInfo_volver():
 	$"CenterContainer".visible = true
 	$"PCEOMONInfo".visible = false
 
+#Funcion que cambia el sprite del PCEOMON seleccionado a blanco y negro o a color si se deselecciona
+func change_PCEOMON_button(pceomon):
+	if !($PCEOMONInfo/VBoxGlobal/Miscelaneus/Type.text == "Menor"):
+		if pceomon == "Armada":
+			$"CenterContainer/MenuDistribution/Major/SelectAndNavigate/Column1/Armada".change_button(pceomon,true)
+		elif pceomon == "Alparko":
+			$"CenterContainer/MenuDistribution/Major/SelectAndNavigate/Column2/Alparko".change_button(pceomon,true)
+		elif pceomon == "Chito":
+			$"CenterContainer/MenuDistribution/Major/SelectAndNavigate/Column3/Chito".change_button(pceomon,true)
+	else:
+		if pceomon == "CafeteraComunista":
+			$"CenterContainer/MenuDistribution/Minor/Minors/CafeteraComunista".change_button("CafeteraComunista",false)
+		if pceomon == "Teclado":
+			$"CenterContainer/MenuDistribution/Minor/Minors/Teclado".change_button("Teclado",false)
+		if pceomon == "FuncióndeWeierstrass":
+			$"CenterContainer/MenuDistribution/Minor/Minors/FuncionDeWeierstrass".change_button("FuncionDeWeierstrass",false)
+		if pceomon == "MarineraDeCantor":
+			$"CenterContainer/MenuDistribution/Minor/Minors/MarineraDeCantor".change_button("MarineraDeCantor",false)
+
 
 func _on_PCEOMONInfo_seleccionar():
 	manage_party($"PCEOMONInfo/VBoxGlobal/MainInfo/SpriteName/Name".text.replace(" ",""))
 	change_select_button($"PCEOMONInfo/VBoxGlobal/MainInfo/SpriteName/Name".text.replace(" ",""))
+	change_PCEOMON_button($"PCEOMONInfo/VBoxGlobal/MainInfo/SpriteName/Name".text.replace(" ",""))
 	_on_PCEOMONInfo_volver()
 
 

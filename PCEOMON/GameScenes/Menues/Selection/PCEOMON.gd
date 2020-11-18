@@ -10,12 +10,8 @@ func change_button(pceomon:String, major:bool):
 	var texture_pceomon
 	var texture_pceomon_byn
 	var nombre_real = pceomon
-	if pceomon == "MarineraDeCantor":
-		nombre_real = "Marinera de Cantor"
-	if pceomon == "CafeteraComunista":
-		nombre_real = "Cafetera Comunista"
 	if pceomon == "FuncionDeWeierstrass":
-		nombre_real = "Función de Weierstrass"
+		nombre_real = "FuncióndeWeierstrass"
 	if major:
 		texture_pceomon = load("res://Sprites/PCEOMONES/Major/" + pceomon + "/" + pceomon +"_avatar.png")
 		texture_pceomon_byn = load("res://Sprites/PCEOMONES/Major/" + pceomon + "/" + pceomon +"_avatar_seleccionado.png")
