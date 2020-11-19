@@ -80,40 +80,40 @@ func atk4():
 	for pceomon in mates:
 		for buff in pceomon.buffs:
 			buff[0] = 0
-		pceomon.stats["chemicaldmg"][2]=0
-		pceomon.stats["chemicaldmg"][3]=1
-		pceomon.stats["physicaldmg"][2]=0
-		pceomon.stats["physicaldmg"][3]=1
-		pceomon.stats["psychologycaldmg"][2]=0
-		pceomon.stats["psychologycaldmg"][3]=1
-		pceomon.stats["chemicaldfc"][2]=0
-		pceomon.stats["chemicaldfc"][3]=1
-		pceomon.stats["physicaldfc"][2]=0
-		pceomon.stats["physicaldfc"][3]=1
-		pceomon.stats["psychologycaldfc"][2]=0
-		pceomon.stats["psychologycaldfc"][3]=1
-		pceomon.stats["speed"][2]=0
-		pceomon.stats["speed"][3]=1
-		pceomon.stats["evasion"][2]=0
-		pceomon.stats["evasion"][3]=1
+		pceomon.stats[CHEMICAL_DMG][2]=0
+		pceomon.stats[CHEMICAL_DMG][3]=1
+		pceomon.stats[PHYSICAL_DMG][2]=0
+		pceomon.stats[PHYSICAL_DMG][3]=1
+		pceomon.stats[PSYCHOLOGYCAL_DMG][2]=0
+		pceomon.stats[PSYCHOLOGYCAL_DMG][3]=1
+		pceomon.stats[CHEMICAL_DFC][2]=0
+		pceomon.stats[CHEMICAL_DFC][3]=1
+		pceomon.stats[PHYSICAL_DFC][2]=0
+		pceomon.stats[PHYSICAL_DFC][3]=1
+		pceomon.stats[PSYCHOLOGYCAL_DFC][2]=0
+		pceomon.stats[PSYCHOLOGYCAL_DFC][3]=1
+		pceomon.stats[SPEED][2]=0
+		pceomon.stats[SPEED][3]=1
+		pceomon.stats[EVASION][2]=0
+		pceomon.stats[EVASION][3]=1
 	for pceomon in foes:
 		for buff in pceomon.buffs:
 			buff[0] = 0
-		pceomon.stats["chemicaldmg"][2]=0
-		pceomon.stats["chemicaldmg"][3]=1
-		pceomon.stats["physicaldmg"][2]=0
-		pceomon.stats["physicaldmg"][3]=1
-		pceomon.stats["psychologycaldmg"][2]=0
-		pceomon.stats["psychologycaldmg"][3]=1
-		pceomon.stats["chemicaldfc"][2]=0
-		pceomon.stats["chemicaldfc"][3]=1
-		pceomon.stats["physicaldfc"][2]=0
-		pceomon.stats["physicaldfc"][3]=1
-		pceomon.stats["psychologycaldfc"][2]=0
-		pceomon.stats["psychologycaldfc"][3]=1
-		pceomon.stats["speed"][2]=0
-		pceomon.stats["speed"][3]=1
-		pceomon.stats["evasion"][2]=0
-		pceomon.stats["evasion"][3]=1
+		pceomon.stats[CHEMICAL_DMG][2]=0
+		pceomon.stats[CHEMICAL_DMG][3]=1
+		pceomon.stats[PHYSICAL_DMG][2]=0
+		pceomon.stats[PHYSICAL_DMG][3]=1
+		pceomon.stats[PSYCHOLOGYCAL_DMG][2]=0
+		pceomon.stats[PSYCHOLOGYCAL_DMG][3]=1
+		pceomon.stats[CHEMICAL_DFC][2]=0
+		pceomon.stats[CHEMICAL_DFC][3]=1
+		pceomon.stats[PHYSICAL_DFC][2]=0
+		pceomon.stats[PHYSICAL_DFC][3]=1
+		pceomon.stats[PSYCHOLOGYCAL_DFC][2]=0
+		pceomon.stats[PSYCHOLOGYCAL_DFC][3]=1
+		pceomon.stats[SPEED][2]=0
+		pceomon.stats[SPEED][3]=1
+		pceomon.stats[EVASION][2]=0
+		pceomon.stats[EVASION][3]=1
 		
 	emit_signal("just_attacked", "Alparko", "/weather clear", "", "¡A tomar por culo los bufos!")
