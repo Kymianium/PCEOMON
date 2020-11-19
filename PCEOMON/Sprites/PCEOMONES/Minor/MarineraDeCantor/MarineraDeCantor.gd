@@ -1,10 +1,5 @@
 extends "res://PCEOMON_combat.gd"
 
-var CoffeeParticle = "res://Sprites/PCEOMONES/Minor/CafeteraComunista/CoffeeParticle.tscn"
-var ChocolateParticle = "res://Sprites/PCEOMONES/Minor/CafeteraComunista/ChocolateHeal.tscn"
-var CommunismDeb = "res://Sprites/PCEOMONES/Minor/CafeteraComunista/ComunismDebuff.tscn"
-var CommunismBuf = "res://Sprites/PCEOMONES/Minor/CafeteraComunista/ComunismHeal.tscn"
-
 
 func _ready():
 	name = "Marinera de Cantor"
@@ -15,7 +10,7 @@ func _ready():
 	attack4 = "Aperitivo"
 	type = "Menor"
 	._ready()
-	avatar_path = "res://Sprites/PCEOMONES/Minor/CafeteraComunista/CafeteraComunista_avatar.png"
+	avatar_path = "res://Sprites/PCEOMONES/Minor/MarineraDeCantor/MarineraDeCantor_avatar.png"
 	next_attack_required_stamina = 1300
 	
 
