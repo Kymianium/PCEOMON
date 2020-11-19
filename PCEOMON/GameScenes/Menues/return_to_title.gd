@@ -1,6 +1,8 @@
 extends Control
 #Cargamos los sprites de los PCEOMONES
 
+var avatars = {}
+
 func _ready():
 	# $Music.volume_db = metadata.volumevalue
 	$"/root/MainScreenMusicController".play_loop("res://OST/IntroAndMenu/character_selection_screen.ogg", true)
@@ -11,9 +13,17 @@ func _ready():
 
 # Añade el pceomon a la party si no está y lo elimina si está
 func manage_party(pceomon):
+	var avatar = TextureRect.new()
 	var minor = false
 	if $PCEOMONInfo/VBoxGlobal/Miscelaneus/Type.text == "Menor":
 		minor = true
+	if !minor:
+		avatar.texture = load("res://Sprites/PCEOMONES/Major/" + pceomon + "/" + pceomon + "_avatar.png")
+	if minor:
+		if pceomon == "FuncióndeWeierstrass":
+			avatar.texture = load("res://Sprites/PCEOMONES/Minor/FuncionDeWeierstrass/FuncionDeWeierstrass_avatar.png")
+		else:
+			avatar.texture = load("res://Sprites/PCEOMONES/Minor/" + pceomon + "/" + pceomon + "_avatar.png")
 	if not (pceomon in metadata.party):
 		metadata.party.append(pceomon)
 		if not minor:
@@ -23,16 +33,19 @@ func manage_party(pceomon):
 		var text = $"CenterContainer/MenuDistribution/Miscelaneous/Party".text
 		text = text + ' ' + pceomon
 		$"CenterContainer/MenuDistribution/Miscelaneous/Party".text = text
+		$"CenterContainer/MenuDistribution/Miscelaneous/Avatars".add_child(avatar)
+		avatars[pceomon] = avatar
 	else:
 		metadata.party.erase(pceomon)
 		if not minor:
 			metadata.party_paths.erase("res://Sprites/PCEOMONES/Major/" + pceomon + "/" + pceomon +".tscn")
 		else:
 			metadata.party_paths.erase("res://Sprites/PCEOMONES/Minor/" + pceomon + "/" + pceomon +".tscn")
-		var text = $"CenterContainer/MenuDistribution/Miscelaneous/Party".text	
+		var text = $"CenterContainer/MenuDistribution/Miscelaneous/Party".text
 		text = text.replace(' ' + pceomon,"")
 		$"CenterContainer/MenuDistribution/Miscelaneous/Party".text = text
-	
+		$"CenterContainer/MenuDistribution/Miscelaneous/Avatars".remove_child(avatars[pceomon])
+
 func change_select_button(pceomon):
 	if pceomon in metadata.party:
 		$"PCEOMONInfo/VBoxGlobal/Control/Seleccionar".text = "Quitar"
