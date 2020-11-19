@@ -93,10 +93,6 @@ func getAndSetInfo(pceomon:String):
 	var att4minidesc = file.get_line().replace("\\n","\n")
 	var att4desc = file.get_line().replace("\\n","\n")
 	file.close()
-	$"CenterContainer".visible = false
-	$"PCEOMONInfo".visible = true
-	$"PCEOMONInfo/VBoxGlobal".visible = true
-	$"PCEOMONInfo/RequestedData".visible = false
 	$"PCEOMONInfo/VBoxGlobal/MainInfo/SpriteName/Name".text = name
 	$"PCEOMONInfo/VBoxGlobal/MainInfo/SpriteName/Sprite".texture = texture
 	$"PCEOMONInfo/VBoxGlobal/MainInfo/Descripcion".text = description
@@ -118,6 +114,16 @@ func getAndSetInfo(pceomon:String):
 	$"PCEOMONInfo".At4Desc = att4desc
 	$"PCEOMONInfo/RequestedData/SpriteName/Sprite".texture = texture
 	change_select_button(name.replace(" ", ""))
+	#Puede parecer que en las siguientes lineas hay un mareo increíble, pero de esta forma
+	#se soluciona un bug que hace que el texto no se centre (ni ide de por qué)
+	$"CenterContainer".visible = false
+	$"PCEOMONInfo".visible = true
+	$"PCEOMONInfo/VBoxGlobal".visible = true
+	$"PCEOMONInfo/RequestedData".visible = false
+	$"CenterContainer".visible = true
+	$"PCEOMONInfo".visible = false
+	$"CenterContainer".visible = false
+	$"PCEOMONInfo".visible = true
 	#setPCEOMONinfo(name, texture, description, type, ability, att1, att2, att3, att4)
 
 func getAndSetInfoMinor(pceomon: String):
@@ -143,10 +149,6 @@ func getAndSetInfoMinor(pceomon: String):
 	var att4minidesc = file.get_line().replace("\\n","\n")
 	var att4desc = file.get_line().replace("\\n","\n")
 	file.close()
-	$"CenterContainer".visible = false
-	$"PCEOMONInfo".visible = true
-	$"PCEOMONInfo/VBoxGlobal".visible = true
-	$"PCEOMONInfo/RequestedData".visible = false
 	$"PCEOMONInfo/VBoxGlobal/MainInfo/SpriteName/Name".text = name
 	$"PCEOMONInfo/VBoxGlobal/MainInfo/SpriteName/Sprite".texture = texture
 	$"PCEOMONInfo/VBoxGlobal/MainInfo/Descripcion".text = description
@@ -168,6 +170,17 @@ func getAndSetInfoMinor(pceomon: String):
 	$"PCEOMONInfo".At4Desc = att4desc
 	$"PCEOMONInfo/RequestedData/SpriteName/Sprite".texture = texture
 	change_select_button(name.replace(" ", ""))
+	#Puede parecer que en las siguientes lineas hay un mareo increíble, pero de esta forma
+	#se soluciona un bug que hace que el texto no se centre (ni ide de por qué)
+	$"CenterContainer".visible = false
+	$"PCEOMONInfo".visible = true
+	$"PCEOMONInfo/VBoxGlobal".visible = true
+	$"PCEOMONInfo/RequestedData".visible = false
+	$"CenterContainer".visible = true
+	$"PCEOMONInfo".visible = false
+	$"CenterContainer".visible = false
+	$"PCEOMONInfo".visible = true
+
 
 func _on_Armada_pressed():
 	getAndSetInfo("Armada")
