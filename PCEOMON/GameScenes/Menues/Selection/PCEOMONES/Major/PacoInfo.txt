@@ -1,0 +1,18 @@
+Paco
+
+R4
+Oriolano
+Tiene una pequeña probabilidad de esquivar un ataque.
+Hundido entre las profundidas del Segura, los ataques de los enemigos no pueden alcanzarle.
+¡Es hora de marchar!
+Saca a los oponentes de Orihuela. Causa daño psicológico.
+Paco se va repentinamente, dejando solos a los oponentes que están en Orihuela. Solos y confusos, vuelven al mundo real.
+Inundar
+Introduce a un enemigo en la Orihuela inundada.
+Un torrente de agua se abalanza sobre uno de los enemigos, que se ve arrastrado hasta lo más profundo de la Vega Baja. Ahora, solo podrá tener como objetivo a Paco.
+F por Álgebra
+Aumenta las defensas de Paco.
+Paco se queja de que va a suspender, pero aprueba de todas formas. Se viene arriba y aumentan todos sus tipos de defensa.
+No hacer jal
+Carga un ataque poderoso, pero no lo lanza\nhasta dentro de unos turnos.
+Tras preparar un ataque devastador, Paco se olvida de su existencia. Dentro de una cantidad aleatoria de turnos, Paco se acrodará de que lo tiene por ahí y lo usará.
