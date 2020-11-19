@@ -4,7 +4,6 @@
 [ext_resource path="res://GameScenes/Menues/Selection/PCEOMON.tscn" type="PackedScene" id=2]
 
 [node name="PCEOMON" instance=ExtResource( 2 )]
-minor = false
 
 [node name="Sprite" parent="." index="0"]
 texture_normal = ExtResource( 1 )
@@ -15,3 +14,6 @@ texture_focused = ExtResource( 1 )
 
 [node name="Name" parent="." index="1"]
 text = "Paco"
+
+[node name="MajorMinor" parent="." index="2"]
+text = "Major"

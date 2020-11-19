@@ -1,6 +1,5 @@
 extends VBoxContainer
 
-export var minor = true
 
 signal pressed()
 # Called when the node enters the scene tree for the first time.
@@ -18,10 +17,10 @@ func _ready():
 	if $Name.text == "Marinera":
 		nombre_carpeta = "MarineraDeCantor"
 		nombre_real = "MarineraDeCantor"
-	if minor == false:
+	if $MajorMinor.text == "Major":
 		texture_pceomon = load("res://Sprites/PCEOMONES/Major/" + nombre_carpeta + "/" + nombre_carpeta +"_avatar.png")
 		texture_pceomon_byn = load("res://Sprites/PCEOMONES/Major/" + nombre_carpeta + "/" + nombre_carpeta +"_avatar_seleccionado.png")
-	elif minor == true:
+	elif $MajorMinor.text == "Minor":
 		texture_pceomon = load("res://Sprites/PCEOMONES/Minor/" + nombre_carpeta + "/" + nombre_carpeta +"_avatar.png")
 		texture_pceomon_byn = load("res://Sprites/PCEOMONES/Minor/" + nombre_carpeta + "/" + nombre_carpeta +"_avatar_seleccionado.png")
 	if !(nombre_real in metadata.party):

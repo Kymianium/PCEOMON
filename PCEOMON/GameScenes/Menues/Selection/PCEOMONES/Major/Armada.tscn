@@ -3,7 +3,9 @@
 [ext_resource path="res://GameScenes/Menues/Selection/PCEOMON.tscn" type="PackedScene" id=1]
 
 [node name="PCEOMON" instance=ExtResource( 1 )]
-minor = false
 
 [node name="Name" parent="." index="1"]
 text = "Armada"
+
+[node name="MajorMinor" parent="." index="2"]
+text = "Major"
