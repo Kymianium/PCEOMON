@@ -14,3 +14,6 @@ texture_focused = ExtResource( 2 )
 
 [node name="Name" parent="." index="1"]
 text = "Teclado"
+
+[node name="MajorMinor" parent="." index="2"]
+text = "Minor"
