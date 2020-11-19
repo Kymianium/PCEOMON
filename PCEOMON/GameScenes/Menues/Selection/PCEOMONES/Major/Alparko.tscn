@@ -4,6 +4,7 @@
 [ext_resource path="res://Sprites/PCEOMONES/Major/Alparko/Alparko_avatar.png" type="Texture" id=2]
 
 [node name="PCEOMON" instance=ExtResource( 1 )]
+minor = false
 
 [node name="Sprite" parent="." index="0"]
 texture_normal = ExtResource( 2 )
@@ -14,6 +15,3 @@ texture_focused = ExtResource( 2 )
 
 [node name="Name" parent="." index="1"]
 text = "Alparko"
-
-[node name="MajorMinor" parent="." index="2"]
-text = "Major"
