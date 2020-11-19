@@ -6,3 +6,6 @@
 
 [node name="Name" parent="." index="1"]
 text = "Armada"
+
+[node name="MajorMinor" parent="." index="2"]
+text = "Major"
