@@ -28,3 +28,7 @@ func _on_FadeIn_fade_out_finished():
 
 func _on_Play_pressed():
 	$"/root/MainScreenMusicController".play_loop_with_intro("","",false)
+
+
+func _on_Exit_pressed():
+	get_tree().quit()

@@ -11,7 +11,11 @@ signal pceomon_pressed(pceomon,boss)
 
 
 
-# Called when the node enters the scene tree for the first time.
+func _input(event):
+	if event.is_action_pressed("ui_cancel"):
+		get_tree().quit()
+
+
 func _ready():
 	###TEMPORAL, METER ENEMIGOS
 	for i in range(0, metadata.party.size()):

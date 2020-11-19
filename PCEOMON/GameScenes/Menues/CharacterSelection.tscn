@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Font/ButtonFont.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Font/VersionFont.tres" type="DynamicFont" id=2]
@@ -15,6 +15,7 @@
 [ext_resource path="res://GameScenes/Menues/Selection/PCEOMONES/Minor/CafeteraComunista.tscn" type="PackedScene" id=13]
 [ext_resource path="res://GameScenes/Menues/Selection/PCEOMONES/Minor/Teclado.tscn" type="PackedScene" id=14]
 [ext_resource path="res://GameScenes/Menues/Selection/PCEOMONES/Minor/FuncionDeWeierstrass.tscn" type="PackedScene" id=15]
+[ext_resource path="res://GameScenes/Menues/Selection/PCEOMONES/Major/Paco.tscn" type="PackedScene" id=16]
 
 [node name="Play" type="Control"]
 anchor_right = 1.0
@@ -68,8 +69,8 @@ custom_constants/separation = 20
 alignment = 1
 
 [node name="LeftArrowContainer" type="VBoxContainer" parent="CenterContainer/MenuDistribution/Major/SelectAndNavigate"]
-margin_left = 30.0
-margin_right = 75.0
+margin_left = 40.0
+margin_right = 85.0
 margin_bottom = 158.0
 alignment = 1
 
@@ -85,24 +86,22 @@ texture_focused = ExtResource( 11 )
 stretch_mode = 3
 
 [node name="Column1" type="VBoxContainer" parent="CenterContainer/MenuDistribution/Major/SelectAndNavigate"]
-margin_left = 95.0
-margin_right = 215.0
+margin_left = 105.0
+margin_right = 205.0
 margin_bottom = 158.0
 
 [node name="Armada" parent="CenterContainer/MenuDistribution/Major/SelectAndNavigate/Column1" instance=ExtResource( 4 )]
-margin_right = 120.0
+margin_right = 100.0
 margin_bottom = 77.0
 
-[node name="Locked" parent="CenterContainer/MenuDistribution/Major/SelectAndNavigate/Column1" instance=ExtResource( 6 )]
+[node name="Paco" parent="CenterContainer/MenuDistribution/Major/SelectAndNavigate/Column1" instance=ExtResource( 16 )]
 margin_top = 81.0
-margin_right = 120.0
+margin_right = 100.0
 margin_bottom = 158.0
-rect_rotation = 0.0
-script = null
 
 [node name="Column2" type="VBoxContainer" parent="CenterContainer/MenuDistribution/Major/SelectAndNavigate"]
-margin_left = 235.0
-margin_right = 355.0
+margin_left = 225.0
+margin_right = 345.0
 margin_bottom = 158.0
 
 [node name="Alparko" parent="CenterContainer/MenuDistribution/Major/SelectAndNavigate/Column2" instance=ExtResource( 5 )]
@@ -117,8 +116,8 @@ rect_rotation = 0.0
 script = null
 
 [node name="Column3" type="VBoxContainer" parent="CenterContainer/MenuDistribution/Major/SelectAndNavigate"]
-margin_left = 375.0
-margin_right = 495.0
+margin_left = 365.0
+margin_right = 485.0
 margin_bottom = 158.0
 
 [node name="Chito" parent="CenterContainer/MenuDistribution/Major/SelectAndNavigate/Column3" instance=ExtResource( 9 )]
@@ -133,8 +132,8 @@ rect_rotation = 0.0
 script = null
 
 [node name="RightArrowContainer" type="VBoxContainer" parent="CenterContainer/MenuDistribution/Major/SelectAndNavigate"]
-margin_left = 515.0
-margin_right = 560.0
+margin_left = 505.0
+margin_right = 550.0
 margin_bottom = 158.0
 alignment = 1
 
@@ -240,6 +239,7 @@ text = "Equipo:"
 
 [node name="PCEOMONInfo" parent="." instance=ExtResource( 7 )]
 [connection signal="pressed" from="CenterContainer/MenuDistribution/Major/SelectAndNavigate/Column1/Armada" to="." method="_on_Armada_pressed"]
+[connection signal="pressed" from="CenterContainer/MenuDistribution/Major/SelectAndNavigate/Column1/Paco" to="." method="_on_Paco_pressed"]
 [connection signal="pressed" from="CenterContainer/MenuDistribution/Major/SelectAndNavigate/Column2/Alparko" to="." method="_on_Alparko_pressed"]
 [connection signal="pressed" from="CenterContainer/MenuDistribution/Major/SelectAndNavigate/Column3/Chito" to="." method="_on_Chito_pressed"]
 [connection signal="pressed" from="CenterContainer/MenuDistribution/Minor/Minors/Teclado" to="." method="_on_Teclado_pressed"]

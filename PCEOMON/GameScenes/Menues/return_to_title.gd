@@ -234,3 +234,7 @@ func _on_Teclado_pressed():
 
 func _on_Chito_pressed():
 	getAndSetInfo("Chito")
+
+
+func _on_Paco_pressed():
+	pass # Replace with function body.
