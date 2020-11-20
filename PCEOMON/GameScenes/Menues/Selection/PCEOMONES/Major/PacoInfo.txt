@@ -5,7 +5,7 @@ Oriolano
 Tiene una pequeña probabilidad de esquivar un ataque.
 Hundido entre las profundidas del Segura, los ataques de los enemigos no pueden alcanzarle.
 ¡Es hora de marchar!
-Saca a los oponentes de Orihuela. Causa daño psicológico.
+Saca a los oponentes de Orihuela.\nCausa daño psicológico.
 Paco se va repentinamente, dejando solos a los oponentes que están en Orihuela. Solos y confusos, vuelven al mundo real.
 Inundar
 Introduce a un enemigo en la Orihuela inundada.

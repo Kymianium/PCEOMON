@@ -223,6 +223,8 @@ func change_PCEOMON_button(pceomon):
 			$"CenterContainer/MenuDistribution/Major/SelectAndNavigate/Column2/Alparko".change_button(pceomon,true)
 		elif pceomon == "Chito":
 			$"CenterContainer/MenuDistribution/Major/SelectAndNavigate/Column3/Chito".change_button(pceomon,true)
+		elif pceomon == "Paco":
+			$"CenterContainer/MenuDistribution/Major/SelectAndNavigate/Column1/Paco".change_button(pceomon,true)
 	else:
 		if pceomon == "CafeteraComunista":
 			$"CenterContainer/MenuDistribution/Minor/Minors/CafeteraComunista".change_button("CafeteraComunista",false)
@@ -261,4 +263,4 @@ func _on_Chito_pressed():
 
 
 func _on_Paco_pressed():
-	pass # Replace with function body.
+	getAndSetInfo("Paco")
