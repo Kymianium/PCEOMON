@@ -20,6 +20,7 @@ func trap(pceomon):
 	pceomon.foes = new_foes
 	pceomon.dimension.erase(null)
 	pceomon.dimension.append(name)
+	#print("Hemos cambiado de dim y ha quedado como " + str(pceomon.mates) + str(pceomon.foes))
 	emit_signal("dimension_changed",pceomon)
 
 func release(pceomon):

@@ -1,6 +1,7 @@
 extends Node2D
 
 
+var adjusted_interface: bool = false
 var pceomon
 var pceo_instance
 var avatar : TextureRect
@@ -35,7 +36,7 @@ func _ready():
 		pceo_instance.connect("revive",self,"revive")
 		self.connect("pceomon_pressed",pceo_instance,"target_selected")
 		if (pceo_instance.type == "R4"):
-			pceo_instance.connect("dimension_changed",self,"adjust_dimension")
+			#pceo_instance.connect("dimension_changed",self,"adjust_dimension")
 			pceo_instance.connect("release_pceomon",self,"release_pceomon")
 		pceo_instance.manager = self
 		avatar = TextureRect.new()
@@ -119,44 +120,59 @@ func make_interface_visible(visible : bool):
 
 
 func adjust_dimension(pceomon):
+	print("Cambiamos dimensionnes")
+	print("Las del combat = " + str(showing_dimensions))
+	print("Las de "+pceomon.name+" = " + str(pceomon.dimension))
 	if (showing_dimensions == pceomon.dimension):
+		print("las dimensiones estan bien")
 		return
 	for enemy in $"Enemies".get_children():
 		enemy.visible = false
 		for dim in enemy.dimension:
 			if showing_dimensions.has(dim):
 				enemy.visible = true
+				print("vamos a mostrar a " + enemy.name)
 	for mate in $"Party".get_children():
 		mate.visible = false
 		for dim in mate.dimension:
 			if showing_dimensions.has(dim):
 				mate.visible = true
+				print("vamos a mostrar a " + mate.name)
 
 func _on_Attack1_pressed():	
 	if (metadata.time_exists.size() != 0):
 #		if (metadata.time_exists[1].attack1 != $"Combatinterface/CombatGUI/Fight/Attacks/Attack1/Attack1".text):
 #				print("ERROR: La interfaz no cuadra con el pceomon que está a la espera de atacar")
 		metadata.time_exists[metadata.time_exists.size()-1].next1()
+		adjusted_interface = false
 
 
 func _on_Attack2_pressed():
 	if (metadata.time_exists.size() != 0):
 		metadata.time_exists[metadata.time_exists.size()-1].next2()
+		adjusted_interface = false
 
 
 func _on_Attack_3_pressed():
 	if (metadata.time_exists.size() != 0):
 		metadata.time_exists[metadata.time_exists.size()-1].next3()
+		adjusted_interface = false
 
 func _on_Attack4_pressed():
 	if (metadata.time_exists.size() != 0):
 		metadata.time_exists[metadata.time_exists.size()-1].next4()
+		adjusted_interface = false
 
 func _process(_delta):
-	if (metadata.time_exists.size() != 0):
+	#print(str(adjusted_interface) + str(metadata.time_exists.size()))
+	if (metadata.time_exists.size() != 0 ):
 		make_interface_visible(true)
+		#print(metadata.time_exists[metadata.time_exists.size()-1].name)
 		change_interface(metadata.time_exists[metadata.time_exists.size()-1])
-		adjust_dimension(metadata.time_exists[metadata.time_exists.size()-1])
+		if not adjusted_interface:
+			print(metadata.time_exists[metadata.time_exists.size()-1].name)
+			adjust_dimension(metadata.time_exists[metadata.time_exists.size()-1])
+			adjusted_interface = true
 	else:
 		make_interface_visible(false)
 

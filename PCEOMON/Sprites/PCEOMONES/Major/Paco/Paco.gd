@@ -17,6 +17,10 @@ func _ready():
 	attack3 = "F por Álgebra"
 	attack4 = "No hacer jal"
 	type = "R4"
+	dimension.append("Paco")
+	if not dimension.has(null):
+		dimension.append(null)
+	print("lista paco = " + str(dimension))
 	._ready()
 	avatar_path = "res://Sprites/PCEOMONES/Major/Paco/Paco_avatar.png"
 
@@ -35,11 +39,21 @@ func next2():
 		emit_signal("announcement","Selecciona un PCEOMON que esté en Orihuela")
 		selected_foe = yield(select(false), "completed")
 	.next2()
+func next3():
+	next_attack_required_stamina = 800
+	.next3()
 
 
 func atk1():
-	
+	release(selected_foe)
+	emit_signal("just_attacked","Paco","Es hora de marchar",selected_foe.name,"Paco ha abandonado a su suerte a " + selected_foe.name)
 
+func atk2():
+	trap(selected_foe)
+	emit_signal("just_attacked","Paco","Inundar",selected_foe.name,"Un torrente de agua arrastra a " + selected_foe.name + " a las profundidas de [tornado]Orihuela[/tornado]")
+
+func ark3():
+	emit_signal("just_attacked","nada","","","")
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
