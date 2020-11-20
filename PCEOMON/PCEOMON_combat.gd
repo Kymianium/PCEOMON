@@ -133,6 +133,7 @@ var ability : String
 var poison_counter: int = 0
 const poison_damage : int = 50
 var stun_counter : int = 0
+var dimension = [null]
 
 
 export(String) var avatar_path
@@ -173,13 +174,13 @@ func _input(event):
 # warning-ignore:shadowed_variable
 func target_selected(pceomon,boss):
 	if (selecting and (not boss) == selecting_allied):
-		if (selecting_allied):
+		if (selecting_allied and mates.has(pceomon)):
 			for mate in range(mates.size()):
 				mates[mate].arrow.visible = false
 				if (mates[mate] == pceomon):
 					target = mate
 					emit_signal("target_selected")					
-		else:
+		elif (not selecting_allied and foes.has(pceomon)):
 			for enemy in range(foes.size()):
 				foes[target].arrow.visible = false
 				if (foes[enemy] == pceomon):

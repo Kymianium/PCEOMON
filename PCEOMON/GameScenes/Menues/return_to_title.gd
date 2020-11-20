@@ -80,9 +80,7 @@ func setPCEOMONinfo(name : String, texture, description : String,
 	$"PCEOMONInfo/VBoxGlobal/AbilityAttacks/Attack4".text = att4
 	change_select_button(name)
 
-#######################################################################################
-######PARA VER LA ESTRRUCTURA QUE SIGUE EL TXT COMPROBAR EL ARCHIVO ModelInfo.tres######
-#######################################################################################
+
 func getAndSetInfo(pceomon:String):
 	var texture = load("res://Sprites/PCEOMONES/Major/" + pceomon + "/" + pceomon + "_avatar.png")
 	var file = File.new()
@@ -184,7 +182,7 @@ func getAndSetInfoMinor(pceomon: String):
 	$"PCEOMONInfo/RequestedData/SpriteName/Sprite".texture = texture
 	change_select_button(name.replace(" ", ""))
 	#Puede parecer que en las siguientes lineas hay un mareo increíble, pero de esta forma
-	#se soluciona un bug que hace que el texto no se centre (ni ide de por qué)
+	#se soluciona un bug que hace que el texto no se centre (ni idea de por qué)
 	$"CenterContainer".visible = false
 	$"PCEOMONInfo".visible = true
 	$"PCEOMONInfo/VBoxGlobal".visible = true

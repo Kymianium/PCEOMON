@@ -6,6 +6,7 @@ var pceo_instance
 var avatar : TextureRect
 var avatars = {}
 var info : String
+var showing_dimensions = [null] 
 signal ended_text
 signal pceomon_pressed(pceomon,boss)
 
@@ -33,6 +34,9 @@ func _ready():
 		pceo_instance.connect("particle", self, "draw_particle")
 		pceo_instance.connect("revive",self,"revive")
 		self.connect("pceomon_pressed",pceo_instance,"target_selected")
+		if (pceo_instance.type == "R4"):
+			pceo_instance.connect("dimension_changed",self,"adjust_dimension")
+			pceo_instance.connect("release_pceomon",self,"release_pceomon")
 		pceo_instance.manager = self
 		avatar = TextureRect.new()
 		avatar.texture = load(pceo_instance.avatar_path)
@@ -82,6 +86,22 @@ func load_pceomones():
 			if mate != mate2:
 				mate.mates.append(mate2)
 
+func release_pceomon(pceomon,releaser):
+	pceomon.dimension.erase(releaser.name)
+	pceomon.append(null)
+	var new_mates = []
+	var new_foes = []
+	for enemy in $"Enemies".get_children():
+		if (enemy.actual_hp > 0 and enemy.dimension.has(null)):
+			new_foes.append(enemy)
+	for mate in $"Party".get_children():
+		if (mate.actual_hp > 0 and mate.dimension.has(null)):
+			new_mates.append(mate)
+	pceomon.foes = new_foes
+	pceomon.mates = new_mates
+	adjust_dimension(releaser) 
+
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
@@ -97,6 +117,20 @@ func change_interface(turner):
 func make_interface_visible(visible : bool):
 	$"Combatinterface/CombatGUI".visible = visible
 
+
+func adjust_dimension(pceomon):
+	if (showing_dimensions == pceomon.dimension):
+		return
+	for enemy in $"Enemies".get_children():
+		enemy.visible = false
+		for dim in enemy.dimension:
+			if showing_dimensions.has(dim):
+				enemy.visible = true
+	for mate in $"Party".get_children():
+		mate.visible = false
+		for dim in mate.dimension:
+			if showing_dimensions.has(dim):
+				mate.visible = true
 
 func _on_Attack1_pressed():	
 	if (metadata.time_exists.size() != 0):
@@ -122,6 +156,7 @@ func _process(_delta):
 	if (metadata.time_exists.size() != 0):
 		make_interface_visible(true)
 		change_interface(metadata.time_exists[metadata.time_exists.size()-1])
+		adjust_dimension(metadata.time_exists[metadata.time_exists.size()-1])
 	else:
 		make_interface_visible(false)
 
