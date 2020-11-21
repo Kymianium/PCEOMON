@@ -44,7 +44,7 @@ func _ready():
 		avatar = TextureRect.new()
 		avatar.texture = load(pceo_instance.avatar_path)
 		avatars[pceo_instance]=avatar
-		$Combatinterface/CombatGUI/Fight/Avatars.add_child(avatar)
+		#$Combatinterface/CombatGUI/Fight/Avatars.add_child(avatar)
 	for enemy in $"Enemies".get_children():
 		dimensions[0].append(enemy)
 		enemy.connect("sprite_pressed",self,"pceomon_pressed")
@@ -118,6 +118,7 @@ func release_pceomon(pceomon,releaser):
 #	pass
 func change_interface(turner):
 	#print("Cambiando la interfaz:\n a la de : ",turner.name)
+	$Combatinterface/CombatGUI/Fight/Avatar.texture = load(turner.avatar_path)
 	info = str(turner.name) + "\n" + 'VIDA : ' + str(turner.actual_hp) + '/' + str(turner.max_hp)
 	$"Combatinterface/CombatGUI/Fight/Attacks/Attack1/Attack1".text = turner.attack1
 	$"Combatinterface/CombatGUI/Fight/Attacks/Attack1/Attack2".text = turner.attack2

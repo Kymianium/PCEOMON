@@ -79,10 +79,16 @@ margin_right = 559.0
 margin_bottom = 175.0
 alignment = 1
 
-[node name="Avatars" type="HBoxContainer" parent="Combatinterface/CombatGUI/Fight"]
+[node name="Avatar" type="TextureRect" parent="Combatinterface/CombatGUI/Fight"]
 margin_top = 51.0
 margin_right = 386.0
 margin_bottom = 51.0
+
+[node name="Avatars" type="HBoxContainer" parent="Combatinterface/CombatGUI/Fight"]
+visible = false
+margin_top = 53.0
+margin_right = 386.0
+margin_bottom = 53.0
 alignment = 1
 
 [node name="Attacks" type="HBoxContainer" parent="Combatinterface/CombatGUI/Fight"]
