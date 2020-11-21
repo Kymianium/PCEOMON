@@ -3,8 +3,10 @@ extends "res://PCEOMON_combat.gd"
 var anger_acum = 0
 var anger = 10000
 var max_anger = 10000
-	
+var movement_manager
+
 func _ready():
+	movement_manager = get_node("Movement")
 	type = "Gym"
 	._ready()
 		
@@ -38,3 +40,12 @@ func _process(delta):
 					emit_signal("announcement","El envenenamiento de " + self.name + " ha terminado")
 				self.damage(poison_damage)
 	
+func move():
+	#var position : Vector2
+	#position = gym.selected_foe.position
+	#position.x = position.x - 50
+	var vector = selected_foe.position
+	vector.x -=50
+	vector.y += 30
+	movement_manager.interpolate_property(self, "position", self.position, vector, 2.0, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
+	movement_manager.start()

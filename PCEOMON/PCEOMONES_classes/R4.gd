@@ -10,6 +10,7 @@ func ready():
 func trap(pceomon):
 	var new_foes = []
 	var new_mates = []
+	# TO DO cambiar las dimensiones
 	for enemy in pceomon.foes:
 		if enemy.dimension.has(name):
 			new_foes.append(enemy)

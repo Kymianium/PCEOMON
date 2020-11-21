@@ -49,7 +49,8 @@ func _ready():
 	load_pceomones()
 	for gym in $"Party".get_children():
 		if (gym.type == "Gym"):
-			gym.select_combat("¡Selecciona el objetivo de " + gym.name + "!", false)
+			yield(gym.select_combat("¡Selecciona el objetivo de " + gym.name + "!", false), "completed")
+			gym.move()
 			
 
 func write_attack_text(user: String, attack : String, objective : String, string : String):

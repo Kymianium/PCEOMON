@@ -16,3 +16,5 @@ margin_bottom = 35.0
 value = 100.0
 texture_under = ExtResource( 3 )
 texture_progress = ExtResource( 4 )
+
+[node name="Movement" type="Tween" parent="." index="3"]

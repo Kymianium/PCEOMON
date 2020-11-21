@@ -52,7 +52,7 @@ func atk2():
 	trap(selected_foe)
 	emit_signal("just_attacked","Paco","Inundar",selected_foe.name,"Un torrente de agua arrastra a " + selected_foe.name + " a las profundidas de [tornado]Orihuela[/tornado]")
 
-func ark3():
+func atk3():
 	emit_signal("just_attacked","nada","","","")
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

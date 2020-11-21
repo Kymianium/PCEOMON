@@ -151,7 +151,6 @@ var arrow #Esta es la flecha que apunta al PCEOMÓN
 #############################
 ###########PRUEBAS###########
 func _ready():
-	arrow = $Arrow
 	actual_stamina = 0
 	max_hp = 100
 	actual_hp = max_hp

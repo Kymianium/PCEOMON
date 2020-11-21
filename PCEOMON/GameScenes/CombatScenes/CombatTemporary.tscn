@@ -130,18 +130,18 @@ margin_bottom = 68.0
 custom_fonts/font = ExtResource( 2 )
 text = "Attack"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Combatinterface/CombatGUI/Fight/Attacks"]
+[node name="Trascendence&Queue" type="VBoxContainer" parent="Combatinterface/CombatGUI/Fight/Attacks"]
 margin_left = 168.0
 margin_right = 308.0
 margin_bottom = 68.0
 
-[node name="Queue" type="Button" parent="Combatinterface/CombatGUI/Fight/Attacks/VBoxContainer"]
+[node name="Queue" type="Button" parent="Combatinterface/CombatGUI/Fight/Attacks/Trascendence&Queue"]
 margin_right = 140.0
 margin_bottom = 29.0
 custom_fonts/font = ExtResource( 2 )
 text = "Cola"
 
-[node name="Trascendence" type="Button" parent="Combatinterface/CombatGUI/Fight/Attacks/VBoxContainer"]
+[node name="Trascendence" type="Button" parent="Combatinterface/CombatGUI/Fight/Attacks/Trascendence&Queue"]
 margin_top = 33.0
 margin_right = 140.0
 margin_bottom = 62.0
