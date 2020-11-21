@@ -2,9 +2,10 @@ extends "res://PCEOMON_combat.gd"
 
 signal dimension_changed(pceomon)
 signal release_pceomon(pceomon,releaser)
+var own_dimension
 
 func ready():
-	dimension.append(name)
+#	dimension.append(name)
 	.ready()
 
 func trap(pceomon):

@@ -2,6 +2,7 @@ extends Node2D
 #ARRAYS ENEMIGOS/ALIADOS
 var foes = []
 var mates = []
+var dimension = []
 
 var target = 0
 var selecting : bool = false
@@ -133,7 +134,6 @@ var ability : String
 var poison_counter: int = 0
 const poison_damage : int = 50
 var stun_counter : int = 0
-var dimension = [null]
 
 
 export(String) var avatar_path

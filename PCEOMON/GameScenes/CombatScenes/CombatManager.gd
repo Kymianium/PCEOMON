@@ -7,10 +7,10 @@ var pceo_instance
 var avatar : TextureRect
 var avatars = {}
 var info : String
-var showing_dimensions = [null] 
-signal ended_text
+var dimensions = []   # La dimensión 0 contiene a todos los PCEOMONES, mientras
+#que las siguientes dimensiones son las dimensiones de cada R4
 signal pceomon_pressed(pceomon,boss)
-
+signal ended_text
 
 
 func _input(event):
@@ -19,12 +19,14 @@ func _input(event):
 
 
 func _ready():
+	dimensions.append([])
 	###TEMPORAL, METER ENEMIGOS
 	for i in range(0, metadata.party.size()):
 		pceomon = load(metadata.party_paths[i])
 		pceo_instance = pceomon.instance()
 		pceo_instance.position.x = metadata.combat_position[i][0]
 		pceo_instance.position.y = metadata.combat_position[i][1]
+		dimensions[0].append(pceo_instance)
 		$Party.add_child(pceo_instance)
 		pceo_instance.connect("just_attacked", self, "write_attack_text")
 		pceo_instance.connect("died", self, "pceomon_died")
@@ -44,14 +46,21 @@ func _ready():
 		avatars[pceo_instance]=avatar
 		$Combatinterface/CombatGUI/Fight/Avatars.add_child(avatar)
 	for enemy in $"Enemies".get_children():
+		dimensions[0].append(enemy)
 		enemy.connect("sprite_pressed",self,"pceomon_pressed")
 		self.connect("pceomon_pressed",enemy,"target_selected")
 	load_pceomones()
-	for gym in $"Party".get_children():
-		if (gym.type == "Gym"):
-			yield(gym.select_combat("¡Selecciona el objetivo de " + gym.name + "!", false), "completed")
-			gym.move()
-			
+	#Iniciamos los gyms y los R4
+	for pceo in $"Party".get_children():
+		if (pceo.type == "Gym"):
+			yield(pceo.select_combat("¡Selecciona el objetivo de " + pceo.name + "!", false), "completed")
+			pceo.move()
+		if (pceo.type == "R4"):
+			dimensions.append([pceo])
+	#Iniciamos los R4
+	for i in range(1, dimensions.size()):
+		dimensions[i][0].own_dimension = dimensions[i]
+	
 
 func write_attack_text(user: String, attack : String, objective : String, string : String):
 	if $DialogueBox.visible == true:
@@ -121,25 +130,26 @@ func make_interface_visible(visible : bool):
 
 
 func adjust_dimension(pceomon):
-	print("Cambiamos dimensionnes")
-	print("Las del combat = " + str(showing_dimensions))
-	print("Las de "+pceomon.name+" = " + str(pceomon.dimension))
-	if (showing_dimensions == pceomon.dimension):
-		print("las dimensiones estan bien")
-		return
-	showing_dimensions = pceomon.dimension.duplicate()
-	for enemy in $"Enemies".get_children():
-		enemy.visible = false
-		for dim in enemy.dimension:
-			if showing_dimensions.has(dim):
-				enemy.visible = true
-				print("vamos a mostrar a " + enemy.name)
-	for mate in $"Party".get_children():
-		mate.visible = false
-		for dim in mate.dimension:
-			if showing_dimensions.has(dim):
-				mate.visible = true
-				print("vamos a mostrar a " + mate.name)
+#	print("Cambiamos dimensionnes")
+#	print("Las del combat = " + str(showing_dimensions))
+#	print("Las de "+pceomon.name+" = " + str(pceomon.dimension))
+#	if (showing_dimensions == pceomon.dimension):
+#		print("las dimensiones estan bien")
+#		return
+#	showing_dimensions = pceomon.dimension.duplicate()
+#	for enemy in $"Enemies".get_children():
+#		enemy.visible = false
+#		for dim in enemy.dimension:
+#			if showing_dimensions.has(dim):
+#				enemy.visible = true
+#				print("vamos a mostrar a " + enemy.name)
+#	for mate in $"Party".get_children():
+#		mate.visible = false
+#		for dim in mate.dimension:
+#			if showing_dimensions.has(dim):
+#				mate.visible = true
+#				print("vamos a mostrar a " + mate.name)
+	pass
 
 func _on_Attack1_pressed():	
 	if (metadata.time_exists.size() != 0):

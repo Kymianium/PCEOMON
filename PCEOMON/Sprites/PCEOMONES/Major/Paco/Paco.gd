@@ -17,10 +17,10 @@ func _ready():
 	attack3 = "F por Álgebra"
 	attack4 = "No hacer jal"
 	type = "R4"
-	dimension.append("Paco")
-	if not dimension.has(null):
-		dimension.append(null)
-	print("lista paco = " + str(dimension))
+#	dimension.append("Paco")
+	#if not dimension.has(null):
+	#	dimension.append(null)
+	#print("lista paco = " + str(dimension))
 	._ready()
 	avatar_path = "res://Sprites/PCEOMONES/Major/Paco/Paco_avatar.png"
 
