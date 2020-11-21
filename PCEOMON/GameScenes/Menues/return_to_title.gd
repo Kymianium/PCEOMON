@@ -6,9 +6,23 @@ var avatars = {}
 func _ready():
 	# $Music.volume_db = metadata.volumevalue
 	$"/root/MainScreenMusicController".play_loop("res://OST/IntroAndMenu/character_selection_screen.ogg", true)
+	
 	$CenterContainer/MenuDistribution/Miscelaneous/Party.text = "Equipo: "
 	for pceomon in metadata.party:
 		$CenterContainer/MenuDistribution/Miscelaneous/Party.text = $CenterContainer/MenuDistribution/Miscelaneous/Party.text + ' ' + pceomon
+		var avatar = TextureRect.new()
+		var minor = false
+		if $PCEOMONInfo/VBoxGlobal/Miscelaneus/Type.text == "Menor":
+			minor = true
+		if !minor:
+			avatar.texture = load("res://Sprites/PCEOMONES/Major/" + pceomon + "/" + pceomon + "_avatar.png")
+		if minor:
+			if pceomon == "FuncióndeWeierstrass":
+				avatar.texture = load("res://Sprites/PCEOMONES/Minor/FuncionDeWeierstrass/FuncionDeWeierstrass_avatar.png")
+			else:
+				avatar.texture = load("res://Sprites/PCEOMONES/Minor/" + pceomon + "/" + pceomon + "_avatar.png")
+		$"CenterContainer/MenuDistribution/Miscelaneous/Avatars".add_child(avatar)
+		avatars[pceomon] = avatar
 
 
 # Añade el pceomon a la party si no está y lo elimina si está
