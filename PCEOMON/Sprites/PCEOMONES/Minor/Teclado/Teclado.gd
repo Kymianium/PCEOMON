@@ -36,7 +36,7 @@ func next1():
 func next2():
 	next_attack_required_stamina = 500
 	emit_signal("permanent_announcement", "Selecciona a un PCEOMÓN para [shake]copiarle el ataque[/shake]")
-	selected_enemy = yield(select(true), "completed")
+	selected_both = yield(select(BOTH), "completed")
 	.next2()
 
 func next3():
@@ -45,16 +45,16 @@ func next3():
 		return
 	elif tipo_robado == "Alcohólico":
 		emit_signal("permanent_announcement", "[wave]Ugh, no voy muy bien.\n¡Hombre, pero si es ...[/wave]")
-		selected_enemy = yield(select(false), "completed")
+		selected_enemy = yield(select(ENEMY), "completed")
 	elif tipo_robado == "Programador":
 		emit_signal("permanent_announcement","Selecciona al aliado que quieras [tornado]potenciar[/tornado].")
-		selected_ally = yield(select(true), "completed")
+		selected_ally = yield(select(ALLY), "completed")
 	elif tipo_robado == "Gym":
 		emit_signal("permanent_announcement","ESTOY HIPERTRÓFICO")
-		selected_enemy = yield(select(false), "completed")
+		selected_enemy = yield(select(ENEMY), "completed")
 	elif tipo_robado == "R4":
 		emit_signal("permanent_announcement","Ahora veo todo desde una nueva perspectiva, mejor protejo a...")
-		selected_ally = yield(select(true), "completed")
+		selected_ally = yield(select(ALLY), "completed")
 	next_attack_required_stamina = 200
 	.next3()
 		
@@ -80,7 +80,7 @@ func atk1():
 
 
 func atk2():
-	tipo_robado = selected_enemy.type
+	tipo_robado = selected_both.type
 
 func atk3():
 	if tipo_robado == "Alcohólico":

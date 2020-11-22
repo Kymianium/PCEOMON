@@ -17,24 +17,24 @@ func _ready():
 func next1():
 	next_attack_required_stamina = 500
 	emit_signal("permanent_announcement", "¡Selecciona a quién hay que ensaladillar!")
-	selected_foe= yield(select(false), "completed")
+	selected_foe= yield(select(ENEMY), "completed")
 	.next1()
 func next2():
 	next_attack_required_stamina = 300
 	emit_signal("permanent_announcement", "¡Selecciona quién tiene medida nula!")
-	selected_mate = yield(select(true), "completed")
+	selected_mate = yield(select(ALLY), "completed")
 	.next2()
 
 func next3():
 	next_attack_required_stamina = 400
 	emit_signal("permanent_announcement", "Alguien se va a llevar un rosquillazo...")
-	selected_foe = yield(select(false), "completed")
+	selected_foe = yield(select(ENEMY), "completed")
 	.next3()
 
 func next4():
 	next_attack_required_stamina = 2000
 	emit_signal("permanent_announcement", "Moriré... Por ti...")
-	selected_mate = yield(select(true), "completed")
+	selected_mate = yield(select(ALLY), "completed")
 	.next4()
 
 
@@ -63,4 +63,4 @@ func atk4():
 	selected_mate.permanent_buff(SPEED, 1.5, 0)
 	damage(max_hp)
 	emit_signal("just_attacked",self.name,"Aperitivo","","D.E.P., Marinera de Cantor. Siempre guardaremos un huequito de medida nula para ti en nuestro corazón <3")
-	emit_signal("buffed", self, selected_mate, [CHEMICAL_DFC, CHEMICAL_DMG, PHYSICAL_DFC, PHYSICAL_DMG, PSYCHOLOGYCAL_DFC, PSYCHOLOGYCAL_DMG, SPEED])
+	emit_signal("buffed", self, [selected_mate], [CHEMICAL_DFC, CHEMICAL_DMG, PHYSICAL_DFC, PHYSICAL_DMG, PSYCHOLOGYCAL_DFC, PSYCHOLOGYCAL_DMG, SPEED])

@@ -1,14 +1,16 @@
 extends Node2D
 #ARRAYS ENEMIGOS/ALIADOS
-var foes = []
-var mates = []
-var dimension = []
+var foes = []	#Array de los enemigos
+var mates = []	#Array de los aliados
+var select_candidates = []	#Array de los "candidatos a elección". Esto es útil
+#cuando hay que seleccionar o bien aliados, o bien enemigos, o bien ambos.
+var dimension = []	#Array con todos los PCEOMONES "alcanzables" por este.
 
 var target = 0
 var selecting : bool = false
-var selecting_allied: bool = false
 var selected_mate = null
 var selected_foe = null
+var selected_both = null
 
 
 const CHEMICAL_DMG = 0
@@ -22,6 +24,10 @@ const SPEED = 7
 const EVASION = 8
 const STUN = 9
 const POISON = 10
+
+const ALLY = 30
+const ENEMY = 31
+const BOTH = 32
 
 
 
@@ -158,7 +164,6 @@ func _ready():
 	$HBoxContainer/StatsSummary/Shield.value = 0
 
 func _input(event):
-	
 	if(selecting):
 		if event is InputEventKey:
 			if event.scancode == KEY_ENTER:		#El event.pressed es para
@@ -172,20 +177,27 @@ func _input(event):
 
 # warning-ignore:shadowed_variable
 func target_selected(pceomon,boss):
-	if (selecting and (not boss) == selecting_allied):
-		if (selecting_allied and mates.has(pceomon)):
-			for mate in range(mates.size()):
-				mates[mate].arrow.visible = false
-				if (mates[mate] == pceomon):
-					target = mate
-					emit_signal("target_selected")					
-		elif (not selecting_allied and foes.has(pceomon)):
-			for enemy in range(foes.size()):
-				foes[target].arrow.visible = false
-				if (foes[enemy] == pceomon):
-					target = enemy
-					emit_signal("target_selected")
-					return
+	var chosen
+	for candidate in select_candidates.size():
+		select_candidates[candidate].arrow.visible = false
+		if (select_candidates[candidate] == pceomon):
+			chosen = candidate
+	target = chosen
+	emit_signal("target_selected")
+#	if (selecting and (not boss) == selecting_allied):
+#		if (selecting_allied and mates.has(pceomon)):
+#			for mate in range(mates.size()):
+#				mates[mate].arrow.visible = false
+#				if (mates[mate] == pceomon):
+#					target = mate
+#					emit_signal("target_selected")
+#		elif (not selecting_allied and foes.has(pceomon)):
+#			for enemy in range(foes.size()):
+#				foes[target].arrow.visible = false
+#				if (foes[enemy] == pceomon):
+#					target = enemy
+#					emit_signal("target_selected")
+#					return
 
 
 
@@ -328,53 +340,58 @@ func poison(var damage : int):
 	$"HBoxContainer/Status/Poison".visible = true
 	
 	# FUNCIÓN PARA SELECCIONAR UN PCEOMON ALIADO 
-func select(var allied : bool):
+	
+func select(var identity):
 	target = 0
 	selecting = true
-	selecting_allied = allied
-	if allied:
-		mates[target].arrow.visible = true
+	select_candidates = []
+	if identity == ALLY:
+		select_candidates += mates #SI HACES ESTO, GODOT LE AÑADE AL PRIMER ARRAY
+		#LOS ELEMENTOS DEL SEGUNDO, RE LOCO MI REY
+		select_candidates[target].arrow.visible = true
+		print("Seleccionando aliado")
 		yield(self, "target_selected")
-		mates[target].arrow.visible = false
+		select_candidates[target].arrow.visible = false
 		selecting = false
-		return mates[target]
+		return select_candidates[target]
+	elif identity == ENEMY:
+		print("Seleccionando enemigo")
+		select_candidates += foes
+		select_candidates[target].arrow.visible = true
+		yield(self, "target_selected")
+		select_candidates[target].arrow.visible = false
+		selecting = false
+		return select_candidates[target]
 	else:
-		foes[target].arrow.visible = true
+		print("Seleccionando lo que me salga de los cojones")
+		select_candidates += mates
+		select_candidates += foes
+		select_candidates[target].arrow.visible = true
 		yield(self, "target_selected")
-		foes[target].arrow.visible = false
+		select_candidates[target].arrow.visible = false
 		selecting = false
-		return foes[target]
-	
+		return select_candidates[target]
 		
 func change_selected(var forward : bool):
-	if mates[target].arrow.visible:
-		mates[target].arrow.visible = false
-		if forward:
-			target+=1
-			target=target%mates.size()
-		else:
-			target-=1
-			if target==-1:
-				target=mates.size()-1
-		mates[target].arrow.visible = true
-	elif foes[target].arrow.visible:
-		foes[target].arrow.visible = false
-		if forward:
-			target+=1
-			target=target%foes.size()
-		else:
-			target-=1
-			if target==-1:
-				target=foes.size()-1
-		foes[target].arrow.visible = true
-		
+	select_candidates[target].arrow.visible = false
+	if forward:
+		target+=1
+		target=target%select_candidates.size()
+	else:
+		target-=1
+		if target==-1:
+			target=select_candidates.size()-1
+	select_candidates[target].arrow.visible = true
 
 func _on_SpriteContainer_sprite_pressed():
 	emit_signal("sprite_pressed",self,boss)
 	
-func select_combat(var message : String, var ally : bool):
+func select_combat(var message : String, var target):
 	emit_signal("permanent_announcement", message)
-	if ally:
-		selected_mate = yield(select(ally), "completed")
+	if target == ALLY:
+		selected_mate = yield(select(ALLY), "completed")
+	elif target == ENEMY:
+		selected_foe = yield(select(ENEMY), "completed")
 	else:
-		selected_foe = yield(select(ally), "completed")
+		selected_both = yield(select(BOTH), "completed")
+	

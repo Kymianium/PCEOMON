@@ -2,6 +2,7 @@ extends "res://PCEOMON_combat.gd"
 
 
 func _ready():
+	type = "Programador"
 	boss = true
 	attack1 = "SOY GPANTANOS"
 	actual_stamina = 1

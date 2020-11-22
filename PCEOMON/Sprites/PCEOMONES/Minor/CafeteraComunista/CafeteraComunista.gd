@@ -22,7 +22,7 @@ func _ready():
 func next1():
 	next_attack_required_stamina = 500
 	emit_signal("permanent_announcement", "Selecciona al PCEOMÓN falto de [shake level=20] cafeína [/shake]")
-	selected_mate = yield(select(true), "completed")
+	selected_mate = yield(select(ALLY), "completed")
 	.next1()
 func next2():
 	next_attack_required_stamina = 300

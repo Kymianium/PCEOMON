@@ -26,18 +26,18 @@ func _ready():
 
 func next1():
 	next_attack_required_stamina = 300
-	selected_foe = yield(select(false), "completed")
+	selected_foe = yield(select(ENEMY), "completed")
 	while (not selected_foe.dimension.has("Paco")):
 		emit_signal("announcement","Selecciona un PCEOMON que no esté en Orihuela")
-		selected_foe = yield(select(false), "completed")
+		selected_foe = yield(select(ENEMY), "completed")
 	.next1()
 
 func next2():
 	next_attack_required_stamina = 300
-	selected_foe = yield(select(false), "completed")
+	selected_foe = yield(select(ENEMY), "completed")
 	while (selected_foe.dimension.has("Paco")):
 		emit_signal("announcement","Selecciona un PCEOMON que esté en Orihuela")
-		selected_foe = yield(select(false), "completed")
+		selected_foe = yield(select(ENEMY), "completed")
 	.next2()
 func next3():
 	next_attack_required_stamina = 800

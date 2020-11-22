@@ -20,14 +20,14 @@ func next1():
 	if (alcohol >= 50):
 		next_attack_required_stamina = 200
 		emit_signal("permanent_announcement", "¿A quién le quieres enviar tu instastory?")
-		selected_foe = yield(select(false), "completed")
+		selected_foe = yield(select(ENEMY), "completed")
 		.next1()
 	else:
 		emit_signal("announcement","No tienes suficiente alcohol en sangre para eso, zagal")
 func next2():
 	if (alcohol >= 80):
 		emit_signal("permanent_announcement", "Un caballero hidalgo... ¿Quién lo dijo?")
-		selected_foe = yield(select(false), "completed")
+		selected_foe = yield(select(ENEMY), "completed")
 		next_attack_required_stamina = 200
 		.next2()
 	else:
@@ -39,7 +39,7 @@ func next4():
 	if (alcohol >= 400):
 		next_attack_required_stamina = 300
 		emit_signal("permanent_announcement", "ESTOY EN LA GRIETA. MATAR. MATAR.                               [shake level=30 freq = 1]MATAR. [/shake]")
-		selected_foe = yield(select(false), "completed")
+		selected_foe = yield(select(ENEMY), "completed")
 		.next4()
 	else:
 		emit_signal("announcement","No tienes suficiente alcohol en sangre para eso, zagal")
@@ -76,7 +76,6 @@ func atk3():
 	if alcohol>maxalcohol:
 		alcohol=maxalcohol
 	$"HBoxContainer/StatsSummary/Alcohol".value = float(alcohol)/maxalcohol *100
-	print("He enviado la señal just_attacked")
 	emit_signal("just_attacked", "Armada", "Esto no es na'", "", "[wave] ¡Este hijo de puta quiere emborracharse![/wave]")
 
 func atk4():

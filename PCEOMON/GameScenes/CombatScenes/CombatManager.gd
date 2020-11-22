@@ -53,7 +53,7 @@ func _ready():
 	#Iniciamos los gyms y los R4
 	for pceo in $"Party".get_children():
 		if (pceo.type == "Gym"):
-			yield(pceo.select_combat("¡Selecciona el objetivo de " + pceo.name + "!", false), "completed")
+			yield(pceo.select_combat("¡Selecciona el objetivo de " + pceo.name + "!", pceo.ENEMY), "completed")
 			pceo.move()
 		if (pceo.type == "R4"):
 			dimensions.append([pceo])

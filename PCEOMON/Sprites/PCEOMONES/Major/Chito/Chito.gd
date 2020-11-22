@@ -24,7 +24,7 @@ func _ready():
 	
 func next1():
 	next_attack_required_stamina = 300
-	select_combat("¿A quién hay que [shake level=10] partirle[/shake] las piernas?", false)
+	select_combat("¿A quién hay que [shake level=10] partirle[/shake] las piernas?", ENEMY)
 	.next1()
 func next2():
 	next_attack_required_stamina = 400
@@ -32,7 +32,7 @@ func next2():
 	
 func next3():
 	next_attack_required_stamina = 250
-	select_combat("Uy... ¿Quién es el travieso me ha guiñado un ojo? :)", true)
+	select_combat("Uy... ¿Quién es el travieso me ha guiñado un ojo? :)", ALLY)
 	.next3()
 func next4():
 	next_attack_required_stamina = 1000
