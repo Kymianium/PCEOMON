@@ -39,9 +39,9 @@ func _ready():
 		pceo_instance.connect("particle", self, "draw_particle")
 		pceo_instance.connect("revive",self,"revive")
 		self.connect("pceomon_pressed",pceo_instance,"target_selected")
-		if (pceo_instance.type == "R4"):
-			pceo_instance.connect("dimension_changed",self,"adjust_dimension")
-			pceo_instance.connect("release_pceomon",self,"release_pceomon")
+#		if (pceo_instance.type == "R4"):
+#			pceo_instance.connect("dimension_changed",self,"adjust_dimension")
+#			pceo_instance.connect("release_pceomon",self,"release_pceomon")
 		pceo_instance.manager = self
 		avatar = TextureRect.new()
 		avatar.texture = load(pceo_instance.avatar_path)

@@ -26,18 +26,12 @@ func _ready():
 
 func next1():
 	next_attack_required_stamina = 300
-	selected_foe = yield(select(ENEMY), "completed")
-	while (not selected_foe.dimension.has("Paco")):
-		emit_signal("announcement","Selecciona un PCEOMON que no esté en Orihuela")
-		selected_foe = yield(select(ENEMY), "completed")
+	select_combat("Selecciona un PCEOMON que esté en Orihuela", BOTH)
 	.next1()
 
 func next2():
 	next_attack_required_stamina = 300
-	selected_foe = yield(select(ENEMY), "completed")
-	while (selected_foe.dimension.has("Paco")):
-		emit_signal("announcement","Selecciona un PCEOMON que esté en Orihuela")
-		selected_foe = yield(select(ENEMY), "completed")
+	select_combat("Selecciona un PCEOMON que no esté en Orihuela", BOTH)
 	.next2()
 func next3():
 	next_attack_required_stamina = 800
@@ -46,11 +40,11 @@ func next3():
 
 func atk1():
 	release(selected_foe)
-	emit_signal("just_attacked","Paco","Es hora de marchar",selected_foe.name,"Paco ha abandonado a su suerte a " + selected_foe.name)
+	emit_signal("just_attacked","Paco","Es hora de marchar",selected_both.name,"Paco ha abandonado a su suerte a " + selected_both.name)
 
 func atk2():
 	trap(selected_foe)
-	emit_signal("just_attacked","Paco","Inundar",selected_foe.name,"Un torrente de agua arrastra a " + selected_foe.name + " a las profundidas de [tornado]Orihuela[/tornado]")
+	emit_signal("just_attacked","Paco","Inundar",selected_both.name,"Un torrente de agua arrastra a " + selected_both.name + " a las profundidas de [tornado]Orihuela[/tornado]")
 
 func atk3():
 	emit_signal("just_attacked","nada","","","")
