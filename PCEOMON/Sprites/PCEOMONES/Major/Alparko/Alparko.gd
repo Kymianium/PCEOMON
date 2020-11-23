@@ -57,12 +57,12 @@ func atk1():
 	unicast_damage(300,0.3, PSYCHOLOGYCAL_DMG, targets,"/kill","¡OOF, ESO ESTUVO CERCA!")
 	
 func atk2():
-	permanent_buff(target[0], PHYSICAL_DMG, 1.2, 0)
+	permanent_buff(targets, PHYSICAL_DMG, 1.2, 0)
 	emit_signal("just_attacked", "Alparko", "Aspecto Ígneo", "", "Ahora " + targets[0].name + " es  [tornado]ÍGNEO.[/tornado]")
 	
 
 func atk3():
-	permanent_buff(targets[0], [PHYSICAL_DFC, CHEMICAL_DFC, PSYCHOLOGYCAL_DFC], 1.1, 0)
+	permanent_buff(targets, [PHYSICAL_DFC, CHEMICAL_DFC, PSYCHOLOGYCAL_DFC], 1.1, 0)
 	emit_signal("just_attacked", "Alparko", "Protección", "", "¡" + targets[0].name + " tiene una piel de hierro!")
 	
 func atk4():

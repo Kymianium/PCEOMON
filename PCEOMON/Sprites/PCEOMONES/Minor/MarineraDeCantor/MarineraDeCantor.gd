@@ -16,25 +16,21 @@ func _ready():
 
 func next1():
 	next_attack_required_stamina = 500
-	emit_signal("permanent_announcement", "¡Selecciona a quién hay que ensaladillar!")
-	targets.append(yield(select(ENEMY), "completed"))
+	yield(select_combat("¡Selecciona a quién hay que ensaladillar!",ENEMY), "completed")
 	.next1()
 func next2():
 	next_attack_required_stamina = 300
-	emit_signal("permanent_announcement", "¡Selecciona quién tiene medida nula!")
-	targets.append(yield(select(ALLY), "completed"))
+	yield(select_combat("¡Selecciona quién tiene medida nula!",ALLY), "completed")
 	.next2()
 
 func next3():
 	next_attack_required_stamina = 400
-	emit_signal("permanent_announcement", "Alguien se va a llevar un rosquillazo...")
-	targets.append(yield(select(ENEMY), "completed"))
+	yield(select_combat("Alguien se va a llevar un rosquillazo...",ENEMY), "completed")
 	.next3()
 
 func next4():
 	next_attack_required_stamina = 2000
-	emit_signal("permanent_announcement", "Moriré... Por ti...")
-	targets.append(yield(select(ALLY), "completed"))
+	yield(select_combat("Moriré... Por ti...",ALLY), "completed")
 	.next4()
 
 

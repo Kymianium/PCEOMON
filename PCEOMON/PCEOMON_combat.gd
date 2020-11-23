@@ -98,6 +98,7 @@ func buff(target, stat : int, duration : int, product : float, sum : int):
 	emit_signal("buffed", self, target, stat, duration, product, sum)
 	
 func permanent_buff(target, buffstat, product : float, sum : int):
+	print(target)
 	for tar in target:
 		for stat in buffstat:
 			tar.stats[stat][0]+=sum

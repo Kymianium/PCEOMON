@@ -35,8 +35,9 @@ func next1():
 
 func next2():
 	next_attack_required_stamina = 500
-	emit_signal("permanent_announcement", "Selecciona a un PCEOMÓN para [shake]copiarle el ataque[/shake]")
-	targets.append(yield(select(BOTH), "completed"))
+#	emit_signal("permanent_announcement", "Selecciona a un PCEOMÓN para [shake]copiarle el ataque[/shake]")
+#	targets.append(yield(select(BOTH), "completed"))
+	yield(select_combat("Selecciona a un PCEOMÓN para [shake]copiarle el ataque[/shake]",BOTH), "completed")
 	.next2()
 
 func next3():
@@ -44,17 +45,21 @@ func next3():
 		emit_signal("announcement","¡Roba primero un ataque!")
 		return
 	elif tipo_robado == "Alcohólico":
-		emit_signal("permanent_announcement", "[wave]Ugh, no voy muy bien.\n¡Hombre, pero si es ...[/wave]")
-		targets.append(yield(select(ENEMY), "completed"))
+#		emit_signal("permanent_announcement", "[wave]Ugh, no voy muy bien.\n¡Hombre, pero si es ...[/wave]")
+#		targets.append(yield(select(ENEMY), "completed"))
+		yield(select_combat("[wave]Ugh, no voy muy bien.\n¡Hombre, pero si es ...[/wave]",ENEMY), "completed")
 	elif tipo_robado == "Programador":
-		emit_signal("permanent_announcement","Selecciona al aliado que quieras [tornado]potenciar[/tornado].")
-		targets = yield(select(ALLY), "completed")
+#		emit_signal("permanent_announcement","Selecciona al aliado que quieras [tornado]potenciar[/tornado].")
+#		targets = yield(select(ALLY), "completed")
+		yield(select_combat("Selecciona al aliado que quieras [tornado]potenciar[/tornado].",ALLY), "completed")
 	elif tipo_robado == "Gym":
-		emit_signal("permanent_announcement","ESTOY HIPERTRÓFICO")
-		targets.append(yield(select(ENEMY), "completed"))
+#		emit_signal("permanent_announcement","ESTOY HIPERTRÓFICO")
+#		targets.append(yield(select(ENEMY), "completed"))
+		yield(select_combat("ESTOY HIPERTRÓFICO",ENEMY), "completed")
 	elif tipo_robado == "R4":
-		emit_signal("permanent_announcement","Ahora veo todo desde una nueva perspectiva, mejor protejo a...")
-		targets.append(yield(select(ALLY), "completed"))
+#		emit_signal("permanent_announcement","Ahora veo todo desde una nueva perspectiva, mejor protejo a...")
+#		targets.append(yield(select(ALLY), "completed"))
+		yield(select_combat("Ahora veo todo desde una nueva perspectiva, mejor protejo a...",ALLY), "completed")
 	next_attack_required_stamina = 200
 	.next3()
 		

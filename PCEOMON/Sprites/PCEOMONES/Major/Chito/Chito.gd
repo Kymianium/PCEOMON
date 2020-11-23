@@ -48,7 +48,7 @@ func atk2():
 	$HBoxContainer/StatsSummary/Anger.value = (100*anger)/max_anger
 	emit_signal("just_attacked", "Chito", "Cheat Meal", "", "¡AQUÍ LLEGAN LOS [wave][rainbow] MACARRAS DEL PODER! [/rainbow][/wave]")
 func atk3():
-	binded_ally = target[0]
+	binded_ally = targets[0]
 	emit_signal("just_attacked", "Chito", "Besito en la boca", "", "La pasión se siente en el ambiente entre Chito y " + binded_ally.name + "... ¡Dejadles intimidad!")
 
 func atk4():

@@ -36,7 +36,7 @@ func next3():
 func next4():
 	if (alcohol >= 400):
 		next_attack_required_stamina = 300
-		targets.append(yield(select_combat("ESTOY EN LA GRIETA. MATAR. MATAR.                               [shake level=30 freq = 1]MATAR. [/shake]", ENEMY), "completed"))
+		yield(select_combat("ESTOY EN LA GRIETA. MATAR. MATAR.                               [shake level=30 freq = 1]MATAR. [/shake]", ENEMY), "completed")
 		.next4()
 	else:
 		emit_signal("announcement","No tienes suficiente alcohol en sangre para eso, zagal")
@@ -58,7 +58,7 @@ func atk2():
 	alcohol-=80
 	$"HBoxContainer/StatsSummary/Alcohol".value = float(alcohol)/maxalcohol *100
 	poison(targets,rng.randi_range(800,1000))
-	emit_signal("just_attacked", "Armada", "Quijote", targets[0].name, "¡Hijo puta el que se deje algo! " + target[0].name + " va muy ciego")
+	emit_signal("just_attacked", "Armada", "Quijote", targets[0].name, "¡Hijo puta el que se deje algo! " + targets[0].name + " va muy ciego")
 
 func atk3():
 	#Esto no es na`
@@ -80,7 +80,7 @@ func atk4():
 	#daño físico y mucho daño químico. Además si el enemigo tiene el 20% de la vida o menos, le oneshotea.
 	var damage
 	var damage_done
-	if float(targets[0].actual_hp)/target[0].max_hp <= 0.2:
+	if float(targets[0].actual_hp)/targets[0].max_hp <= 0.2:
 		unicast_damage(targets[0].max_hp,0, TRUE_DMG, targets,"¿Un lolete?","¡El lugar está lleno de [shake]VÍSCERAS[/shake]!")
 		alcohol-=400
 		$"HBoxContainer/StatsSummary/Alcohol".value = float(alcohol)/maxalcohol *100
