@@ -8,9 +8,7 @@ var select_candidates = []	#Array de los "candidatos a elección". Esto es útil
 
 var target = 0
 var selecting : bool = false
-var selected_mate = null
-var selected_foe = null
-var selected_both = null
+var targets = []
 
 
 const CHEMICAL_DMG = 0
@@ -45,7 +43,7 @@ signal status(user, target, status)
 # DAMAGE TYPE
 ####
 # warning-ignore:unused_signal
-signal buffed(user, target, stat)
+signal buffed(user, target, stat, duration, product, sum)
 # warning-ignore:unused_signal
 signal shielded(user, target, amount)
 # warning-ignore:unused_signal
@@ -91,17 +89,22 @@ PSYCHOLOGYCAL_DMG : [5, 1, 0, 1], CHEMICAL_DFC : [5, 1, 0, 1],
 PHYSICAL_DFC : [5, 1, 0, 1], PSYCHOLOGYCAL_DFC :  [5, 1, 0, 1], 
 SPEED : [5, 1, 0, 1], EVASION : [1, 1, 0, 1]}
 
-func buff(stat : int, duration : int, product : float, sum : int):
+func buff(target, stat : int, duration : int, product : float, sum : int):
 	var buff = [duration, stat, product, sum]
-	buffs.append(buff)
-	stats[stat][1]*=product
-	stats[stat][2]+=sum
+	for tar in target:
+		tar.buffs.append(buff)
+		tar.stats[stat][1]*=product
+		tar.stats[stat][2]+=sum
+	emit_signal("buffed", self, target, stat, duration, product, sum)
 	
-func permanent_buff(stat : int, product : float, sum : int):
-	stats[stat][0]+=sum
-	stats[stat][3]*=product
-	if stats[stat][3]>max_permanent_buff:
-		stats[stat][3]=max_permanent_buff
+func permanent_buff(target, buffstat, product : float, sum : int):
+	for tar in target:
+		for stat in buffstat:
+			tar.stats[stat][0]+=sum
+			tar.stats[stat][3]*=product
+			if tar.stats[stat][3]>max_permanent_buff:
+				tar.stats[stat][3]=max_permanent_buff
+	emit_signal("buffed", self, target, buffstat, 0, product, sum)
 	
 func getstat(stat : int):
 	var rawstat = stats[stat]
@@ -205,6 +208,7 @@ func target_selected(pceomon,boss):
 
 # HACER UN CASE CON EL SIGUIENTE ATAQUE
 func attack():
+	actual_stamina = 0
 	$"HBoxContainer/StatsSummary/Stamina".value = 0
 	if(next_attack == 1):
 		atk1()
@@ -214,6 +218,7 @@ func attack():
 		atk3()
 	else:
 		atk4()
+	targets = []
 #############################
 func atk1():
 	pass
@@ -258,7 +263,6 @@ func _process(delta):
 			metadata.time_exists.append(self)
 	elif(actual_stamina >= next_attack_required_stamina):
 		attack()
-		actual_stamina = 0
 	elif (metadata.time_should_run()):
 		delta_acum+=delta
 		if (delta_acum>0.1):
@@ -279,21 +283,40 @@ func revive(hp):
 	emit_signal("revive",self)
 
 
-func heal(var hp: int):
-	if (actual_hp == 0):
-		revive(hp)
+
+func heal(healed, hp):
+	for hd in healed:
+		if (hd.actual_hp == 0):
+			hd.revive(hp)
+		else:
+		# warning-ignore:narrowing_conversion
+			hd.actual_hp = min(hd.actual_hp+hp,hd.max_hp)
+		# warning-ignore:integer_division
+			hd.recalculate_hp()
+	emit_signal("healed", self, healed, hp)
+
+func recalculate_hp():
+	$"HBoxContainer/StatsSummary/HP".value = actual_hp*100/max_hp
+
+func unicast_damage(var damage_amount, var scalation, var damage_type, var dst, var attack : String, var description : String):
+	var failed : bool = true
+	var damages = []
+	var last_damage
+	print(targets)
+	for tar in dst:
+		if tar!=null:	#arreglar
+			last_damage = make_damage(tar, damage_amount, scalation, damage_type)
+			damages.append(last_damage)
+			if last_damage!=0:
+				failed = false
+	if (not failed):
+		for ind in range(dst.size()):
+			emit_signal("just_attacked",self.name,attack,dst[ind].name,description)
+		emit_signal("attacked",self,dst,damages,damage_type)
 	else:
-	# warning-ignore:narrowing_conversion
-		actual_hp = min(actual_hp+hp,max_hp)
-	# warning-ignore:integer_division
-		$"HBoxContainer/StatsSummary/HP".value = actual_hp*100/max_hp
-
-
-func unicast_damage(var damage_done, var dst : String, var attack : String, var description : String):
-	if (damage_done > 0):
-		emit_signal("just_attacked",self.name,attack,dst,description)
-	elif damage_done == 0:
-		emit_signal("just_attacked",self.name,attack,dst,"Pero ha fallado")
+		for ind in range(dst.size()):
+			emit_signal("just_attacked",self.name,attack,dst[ind].name,"Pero ha fallado")
+		emit_signal("attacked",self,dst,damages,damage_type)
 
 
 func make_damage(attacked,dmg,scalation,dmg_type):
@@ -335,10 +358,14 @@ func damage(var damage : int):
 		actual_hp = 0
 	return damage
 	
-func poison(var damage : int):
-	poison_counter = damage
+func poison(target, damage : int):
+	for tar in target:
+		tar.poison_counter = damage
+		tar.make_poison_visible()
+	emit_signal("status", self, target, POISON)
+
+func make_poison_visible():
 	$"HBoxContainer/Status/Poison".visible = true
-	
 	# FUNCIÓN PARA SELECCIONAR UN PCEOMON ALIADO 
 	
 func select(var identity):
@@ -389,9 +416,9 @@ func _on_SpriteContainer_sprite_pressed():
 func select_combat(var message : String, var target):
 	emit_signal("permanent_announcement", message)
 	if target == ALLY:
-		selected_mate = yield(select(ALLY), "completed")
+		targets.append(yield(select(ALLY), "completed"))
 	elif target == ENEMY:
-		selected_foe = yield(select(ENEMY), "completed")
+		targets.append(yield(select(ENEMY), "completed"))
 	else:
-		selected_both = yield(select(BOTH), "completed")
+		targets.append(yield(select(BOTH), "completed"))
 	

@@ -55,7 +55,8 @@ func _ready():
 	#Iniciamos los gyms y los R4
 	for pceo in $"Party".get_children():
 		if (pceo.type == "Gym"):
-			yield(pceo.select_combat("¡Selecciona el objetivo de " + pceo.name + "!", pceo.ENEMY), "completed")
+			incoming_permanent_announcement("¡Selecciona el objetivo de " + pceo.name + "!")
+			pceo.selected_foe = yield(pceo.select(pceo.ENEMY), "completed")
 			pceo.move()
 	
 

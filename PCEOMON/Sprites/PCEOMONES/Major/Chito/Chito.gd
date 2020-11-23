@@ -42,29 +42,22 @@ func next4():
 	#LOS ATAQUES ESTÁN SIN PROGRAMAR
 	
 func atk1():
-	var damage_done = make_damage(selected_foe, 100, 0.5, PHYSICAL_DMG)
-	unicast_damage(damage_done,selected_foe.name,"Placaje","¡La puta madre! Eso tuvo que doler...")
-	emit_signal("attacked", self, [selected_foe], [damage_done],PHYSICAL_DMG)
+	unicast_damage(100,0.5, PHYSICAL_DMG, targets,"Placaje","¡La puta madre! Eso tuvo que doler...")
 func atk2():
 	anger=min(anger+30,max_anger)
 	$HBoxContainer/StatsSummary/Anger.value = (100*anger)/max_anger
 	emit_signal("just_attacked", "Chito", "Cheat Meal", "", "¡AQUÍ LLEGAN LOS [wave][rainbow] MACARRAS DEL PODER! [/rainbow][/wave]")
 func atk3():
-	binded_ally = selected_mate
-	emit_signal("just_attacked", "Chito", "Besito en la boca", "", "La pasión se siente en el ambiente entre Chito y " + selected_mate.name + "... ¡Dejadles intimidad!")
+	binded_ally = target[0]
+	emit_signal("just_attacked", "Chito", "Besito en la boca", "", "La pasión se siente en el ambiente entre Chito y " + binded_ally.name + "... ¡Dejadles intimidad!")
 
 func atk4():
-	var damage_done
-	var damage
 	if selected_foe.actual_hp < calculate_physical_damage(1000, 1):
-		damage_done = selected_foe.damage(selected_foe.max_hp)
-		damage = TRUE_DMG
+		unicast_damage(selected_foe.max_hp,0, TRUE_DMG, targets,"911","Hoy cierran los aeropuertos y colapsan las torres")
+		return
 	else:
-		damage = PHYSICAL_DMG
-		damage_done = make_damage(selected_foe,1000,1,PHYSICAL_DMG)
-	unicast_damage(damage_done,selected_foe.name,"911","Hoy cierran los aeropuertos y colapsan las torres")
-	emit_signal("attacked", self, [selected_foe], [damage_done], damage)
-
+		unicast_damage(selected_foe.max_hp,0, TRUE_DMG, targets,"911","Hoy cierran los aeropuertos y colapsan las torres")
+		return
 
 
 

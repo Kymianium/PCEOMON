@@ -39,12 +39,12 @@ func next3():
 
 
 func atk1():
-	release(selected_foe)
-	emit_signal("just_attacked","Paco","Es hora de marchar",selected_both.name,"Paco ha abandonado a su suerte a " + selected_both.name)
+	release(targets[0])
+	emit_signal("just_attacked","Paco","Es hora de marchar",targets[0].name,"Paco ha abandonado a su suerte a " + targets[0].name)
 
 func atk2():
-	trap(selected_foe)
-	emit_signal("just_attacked","Paco","Inundar",selected_both.name,"Un torrente de agua arrastra a " + selected_both.name + " a las profundidas de [tornado]Orihuela[/tornado]")
+	trap(targets[0])
+	emit_signal("just_attacked","Paco","Inundar",targets[0].name,"Un torrente de agua arrastra a " + targets[0].name + " a las profundidas de [tornado]Orihuela[/tornado]")
 
 func atk3():
 	emit_signal("just_attacked","nada","","","")

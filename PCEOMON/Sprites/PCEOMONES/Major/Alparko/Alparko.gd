@@ -21,20 +21,17 @@ func _ready():
 
 func next1():
 	next_attack_required_stamina = 500
-	emit_signal("permanent_announcement", "Selecciona al PCEOMÓN al que quieres hacer /kill")
-	selected_foe = yield(select(ENEMY), "completed")
+	yield(select_combat("Selecciona al PCEOMÓN al que quieres hacer /kill",ENEMY), "completed")
 	.next1()
 
 func next2():
 	next_attack_required_stamina = 200
-	emit_signal("permanent_announcement", "Selecciona al PCEOMÓN [tornado]ÍGNEO.[/tornado]")
-	selected_mate = yield(select(ALLY), "completed")
+	yield(select_combat("Selecciona al PCEOMÓN [tornado]ÍGNEO.[/tornado]",ALLY), "completed")
 	.next2()
 
 func next3():
 	next_attack_required_stamina = 300
-	emit_signal("permanent_announcement", "Selecciona al PCEOMÓN al que quieres proteger")
-	selected_mate = yield(select(ALLY), "completed")
+	yield(select_combat("Selecciona al PCEOMÓN al que quieres proteger", ALLY), "completed")
 	.next3()
 
 func next4():
@@ -52,30 +49,22 @@ func damage(var damage:int):
 
 
 func atk1():
-	var chance = rng.randi() % 10000
+	var chance = rng.randi() % 500
 	var damage_done
 	if (chance==69):
-		damage_done = selected_foe.damage(selected_foe.max_hp)
-		emit_signal("just_attacked", "Alparko", "/kill", selected_foe.name, "\n\t [shake level=50 rate=1] EL TOQUE DE LA MUERTE [/shake]\n [fade start=4 length=28] Señor Stark, no me encuentro muy bien...[/fade]")
-		emit_signal("attacked", self, [selected_foe],[selected_foe.max_hp], TRUE_DMG)
+		unicast_damage(targets[0].max_hp,0, TRUE_DMG, targets,"/kill","[shake level = 20] ¡A TU CASA, GORDA PUTA![/shake]")
 		return
-	damage_done = make_damage(selected_foe, 300, 0.3, PSYCHOLOGYCAL_DMG)
-	unicast_damage(damage_done,selected_foe.name,"/kill","¡OOF, ESO ESTUVO CERCA!")
-	emit_signal("attacked", self, [selected_foe],[damage_done], PSYCHOLOGYCAL_DMG)
+	unicast_damage(300,0.3, PSYCHOLOGYCAL_DMG, targets,"/kill","¡OOF, ESO ESTUVO CERCA!")
 	
 func atk2():
-	selected_mate.permanent_buff(PHYSICAL_DMG, 1.2, 0)
-	emit_signal("just_attacked", "Alparko", "Aspecto Ígneo", "", "Ahora " + selected_mate.name + " es  [tornado]ÍGNEO.[/tornado]")
-	emit_signal("buffed", self, [selected_mate], PHYSICAL_DMG)
+	permanent_buff(target[0], PHYSICAL_DMG, 1.2, 0)
+	emit_signal("just_attacked", "Alparko", "Aspecto Ígneo", "", "Ahora " + targets[0].name + " es  [tornado]ÍGNEO.[/tornado]")
+	
 
 func atk3():
-	selected_mate.permanent_buff(PHYSICAL_DFC, 1.1, 0)
-	selected_mate.permanent_buff(CHEMICAL_DFC, 1.1, 0)
-	selected_mate.permanent_buff(PSYCHOLOGYCAL_DFC, 1.1, 0)
-	emit_signal("just_attacked", "Alparko", "Protección", "", "¡" + selected_mate.name + " tiene una piel de hierro!")
-	emit_signal("buffed", self, [selected_mate], PHYSICAL_DFC)
-	emit_signal("buffed", self, [selected_mate], CHEMICAL_DFC)
-	emit_signal("buffed", self, [selected_mate], PSYCHOLOGYCAL_DFC)
+	permanent_buff(targets[0], [PHYSICAL_DFC, CHEMICAL_DFC, PSYCHOLOGYCAL_DFC], 1.1, 0)
+	emit_signal("just_attacked", "Alparko", "Protección", "", "¡" + targets[0].name + " tiene una piel de hierro!")
+	
 func atk4():
 	for pceomon in mates:
 		for buff in pceomon.buffs:

@@ -4,6 +4,7 @@ var anger_acum = 0
 var anger = 10000
 var max_anger = 10000
 var movement_manager
+var selected_foe
 
 func _ready():
 	movement_manager = get_node("Movement")
