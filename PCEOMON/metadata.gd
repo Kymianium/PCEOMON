@@ -8,6 +8,10 @@ extends Node2D
 # Y LA RUTA A SU OBJETO.
 var party = []
 var party_paths = []
+var dimensions = {} #ESTO CONTIENE LAS "DIMENSIONES" QUE HAY EN EL JUEGO,
+# DE MODO QUE LOS R4 FUNCIONEN BIEN. La "llave" es el nombre del PCEOMÓN que
+# tiene el mapa y los valores es un array que contiene a los pceomones que están
+# dentro.
 
 # ESTA VARIABLE INDICA CUÁNTOS PCEOMONES ESTÁN ESPERANDO PARA ATACAR,
 # CUANDO SU TAMAÑO SEA DISTINTO DE 0, EL TIEMPO "NO EXISTIRÁ" Y NO TRASCURRIRÁ
@@ -25,4 +29,4 @@ var combat_position = [ [10, 100], [70, 10], [150, 30], [100, 150], [180, 180] ]
 
 # BOOLEANO PARA VER SI ESTAMOS EN FULLSCREEN O NO
 var fullscreen : bool = false
-var first : bool = true
+var first : bool = true # Esto se usa...?

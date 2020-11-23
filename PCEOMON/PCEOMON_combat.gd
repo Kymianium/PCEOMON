@@ -4,7 +4,7 @@ var foes = []	#Array de los enemigos
 var mates = []	#Array de los aliados
 var select_candidates = []	#Array de los "candidatos a elección". Esto es útil
 #cuando hay que seleccionar o bien aliados, o bien enemigos, o bien ambos.
-var dimension = []	#Array con todos los PCEOMONES "alcanzables" por este.
+
 
 var target = 0
 var selecting : bool = false
@@ -33,7 +33,7 @@ const BOTH = 32
 
 var boss : bool = false
 
-var manager
+var manager	#Esta función contiene al combat manager
 
 var rng = RandomNumberGenerator.new()
 

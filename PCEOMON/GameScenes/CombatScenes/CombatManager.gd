@@ -7,8 +7,10 @@ var pceo_instance
 var avatar : TextureRect
 var avatars = {}
 var info : String
-var dimensions = []   # La dimensión 0 contiene a todos los PCEOMONES, mientras
-#que las siguientes dimensiones son las dimensiones de cada R4
+
+
+
+
 signal pceomon_pressed(pceomon,boss)
 signal ended_text
 
@@ -19,14 +21,14 @@ func _input(event):
 
 
 func _ready():
-	dimensions.append([])
+	metadata.dimensions["default"] = [] # es algo así?
 	###TEMPORAL, METER ENEMIGOS
 	for i in range(0, metadata.party.size()):
 		pceomon = load(metadata.party_paths[i])
 		pceo_instance = pceomon.instance()
 		pceo_instance.position.x = metadata.combat_position[i][0]
 		pceo_instance.position.y = metadata.combat_position[i][1]
-		dimensions[0].append(pceo_instance)
+		metadata.dimensions["default"].append(pceo_instance)
 		$Party.add_child(pceo_instance)
 		pceo_instance.connect("just_attacked", self, "write_attack_text")
 		pceo_instance.connect("died", self, "pceomon_died")
@@ -46,7 +48,7 @@ func _ready():
 		avatars[pceo_instance]=avatar
 		#$Combatinterface/CombatGUI/Fight/Avatars.add_child(avatar)
 	for enemy in $"Enemies".get_children():
-		dimensions[0].append(enemy)
+		metadata.dimensions["default"].append(enemy)
 		enemy.connect("sprite_pressed",self,"pceomon_pressed")
 		self.connect("pceomon_pressed",enemy,"target_selected")
 	load_pceomones()
@@ -55,11 +57,6 @@ func _ready():
 		if (pceo.type == "Gym"):
 			yield(pceo.select_combat("¡Selecciona el objetivo de " + pceo.name + "!", pceo.ENEMY), "completed")
 			pceo.move()
-		if (pceo.type == "R4"):
-			dimensions.append([pceo])
-	#Iniciamos los R4
-	for i in range(1, dimensions.size()):
-		dimensions[i][0].own_dimension = dimensions[i]
 	
 
 func write_attack_text(user: String, attack : String, objective : String, string : String):
@@ -97,21 +94,6 @@ func load_pceomones():
 			if mate != mate2:
 				mate.mates.append(mate2)
 
-func release_pceomon(pceomon,releaser):
-	pceomon.dimension.erase(releaser.name)
-	pceomon.dimension.append(null)
-	var new_mates = []
-	var new_foes = []
-	for enemy in $"Enemies".get_children():
-		if (enemy.actual_hp > 0 and enemy.dimension.has(null)):
-			new_foes.append(enemy)
-	for mate in $"Party".get_children():
-		if (mate.actual_hp > 0 and mate.dimension.has(null)):
-			new_mates.append(mate)
-	pceomon.foes = new_foes
-	pceomon.mates = new_mates
-	adjust_dimension(releaser) 
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
@@ -130,27 +112,54 @@ func make_interface_visible(visible : bool):
 	$"Combatinterface/CombatGUI".visible = visible
 
 
-func adjust_dimension(pceomon):
-#	print("Cambiamos dimensionnes")
-#	print("Las del combat = " + str(showing_dimensions))
-#	print("Las de "+pceomon.name+" = " + str(pceomon.dimension))
-#	if (showing_dimensions == pceomon.dimension):
-#		print("las dimensiones estan bien")
-#		return
-#	showing_dimensions = pceomon.dimension.duplicate()
-#	for enemy in $"Enemies".get_children():
-#		enemy.visible = false
-#		for dim in enemy.dimension:
-#			if showing_dimensions.has(dim):
-#				enemy.visible = true
-#				print("vamos a mostrar a " + enemy.name)
-#	for mate in $"Party".get_children():
-#		mate.visible = false
-#		for dim in mate.dimension:
-#			if showing_dimensions.has(dim):
-#				mate.visible = true
-#				print("vamos a mostrar a " + mate.name)
-	pass
+func adjust_dimension(dimension, pceomon):
+	for pceomones in metadata.dimensions["default"]:
+		if pceomon in pceomones.mates:
+			pceomones.mates.erase(pceomon)
+		elif pceomon in pceomones.foes:
+			pceomones.foes.erase(pceomon)
+	if pceomon in $Party.get_children():
+		for pceomones in metadata.dimensions[dimension]:
+			if pceomones in $Party.get_children():
+				pceomon.mates.append(pceomones)
+				pceomones.foes.append(pceomon)
+			else:
+				pceomon.foes.append(pceomones)
+				pceomones.mates.append(pceomon)
+	else:
+		for pceomones in metadata.dimensions[dimension]:
+			if pceomones in $Enemies.get_children():
+				pceomon.mates.append(pceomones)
+				pceomones.foes.append(pceomon)
+			else:
+				pceomon.foes.append(pceomones)
+				pceomones.mates.append(pceomon)
+
+func release_pceomon(dimension, pceomon):
+	if pceomon in metadata.dimensions[dimension]:
+		for pceomones in metadata.dimensions[dimension]:
+			if pceomon in pceomones.mates:
+				pceomones.mates.erase(pceomon)
+			elif pceomon in pceomones.foes:
+				pceomones.foes.erase(pceomon)
+		if pceomon in $Party.get_children():
+			for pceomones in metadata.dimensions["default"]:
+				if pceomones in $Party.get_children():
+					pceomon.mates.append(pceomones)
+					pceomones.foes.append(pceomon)
+				else:
+					pceomon.foes.append(pceomones)
+					pceomones.mates.append(pceomon)
+		else:
+			for pceomones in metadata.dimensions[dimension]:
+				if pceomones in $Enemies.get_children():
+					pceomon.mates.append(pceomones)
+					pceomones.foes.append(pceomon)
+				else:
+					pceomon.foes.append(pceomones)
+					pceomones.mates.append(pceomon)
+
+
 
 func _on_Attack1_pressed():	
 	if (metadata.time_exists.size() != 0):
@@ -182,9 +191,9 @@ func _process(_delta):
 		make_interface_visible(true)
 		#print(metadata.time_exists[metadata.time_exists.size()-1].name)
 		change_interface(metadata.time_exists[metadata.time_exists.size()-1])
-		if adjusted_interface != metadata.time_exists.size():
-			print(metadata.time_exists[metadata.time_exists.size()-1].name)
-			adjust_dimension(metadata.time_exists[metadata.time_exists.size()-1])
+		if adjusted_interface != metadata.time_exists.size(): 
+#			print(metadata.time_exists[metadata.time_exists.size()-1].name)
+#			adjust_dimension(metadata.time_exists[metadata.time_exists.size()-1])
 			adjusted_interface = metadata.time_exists.size()
 	else:
 		make_interface_visible(false)
