@@ -1,8 +1,15 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Font/ButtonFont.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Font/SmallFont.tres" type="DynamicFont" id=2]
 [ext_resource path="res://Title/Tutorials/TutorialIndex.gd" type="Script" id=3]
+[ext_resource path="res://Sprites/Miscelaneous/Bars/Alcohol/Fill.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/Miscelaneous/Bars/Stamina/Fill.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/Miscelaneous/Bars/Health/Background.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/Miscelaneous/Bars/Stamina/Background.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/Miscelaneous/Bars/Alcohol/Background.png" type="Texture" id=8]
+[ext_resource path="res://Sprites/Miscelaneous/Bars/Health/Fill.png" type="Texture" id=9]
+[ext_resource path="res://Sprites/PCEOMONES/Major/Armada/Armada_sprite.png" type="Texture" id=10]
 
 [node name="Tutorials" type="Control"]
 anchor_right = 1.0
@@ -20,38 +27,87 @@ __meta__ = {
 }
 
 [node name="Index" type="VBoxContainer" parent="TutorialsAndText"]
-margin_right = 320.0
+margin_left = 10.0
+margin_right = 310.0
 margin_bottom = 480.0
-rect_min_size = Vector2( 320, 440 )
+rect_min_size = Vector2( 300, 440 )
+alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Combat" type="Button" parent="TutorialsAndText/Index"]
-margin_right = 320.0
-margin_bottom = 41.0
+margin_top = 62.0
+margin_right = 300.0
+margin_bottom = 103.0
 custom_fonts/font = ExtResource( 1 )
 text = "Cómo combatir"
 flat = true
 
+[node name="Attacks" type="Button" parent="TutorialsAndText/Index"]
+margin_top = 107.0
+margin_right = 300.0
+margin_bottom = 148.0
+custom_fonts/font = ExtResource( 1 )
+text = "Ataques/habilidades"
+flat = true
+
 [node name="Types" type="Button" parent="TutorialsAndText/Index"]
-margin_top = 45.0
-margin_right = 320.0
-margin_bottom = 86.0
+margin_top = 152.0
+margin_right = 300.0
+margin_bottom = 193.0
 custom_fonts/font = ExtResource( 1 )
 text = "Tipos de PCEOMÓN"
 flat = true
 
+[node name="Status" type="Button" parent="TutorialsAndText/Index"]
+margin_top = 197.0
+margin_right = 300.0
+margin_bottom = 238.0
+custom_fonts/font = ExtResource( 1 )
+text = "Cambios de estado"
+flat = true
+
+[node name="Stats" type="Button" parent="TutorialsAndText/Index"]
+margin_top = 242.0
+margin_right = 300.0
+margin_bottom = 283.0
+custom_fonts/font = ExtResource( 1 )
+text = "Estadísticas"
+flat = true
+
+[node name="Fusion" type="Button" parent="TutorialsAndText/Index"]
+margin_top = 287.0
+margin_right = 300.0
+margin_bottom = 328.0
+custom_fonts/font = ExtResource( 1 )
+text = "Fusión PCEOMÓN"
+flat = true
+
+[node name="Trascendence" type="Button" parent="TutorialsAndText/Index"]
+margin_top = 332.0
+margin_right = 300.0
+margin_bottom = 373.0
+custom_fonts/font = ExtResource( 1 )
+text = "Trascendencias"
+flat = true
+
+[node name="Objects" type="Button" parent="TutorialsAndText/Index"]
+margin_top = 377.0
+margin_right = 300.0
+margin_bottom = 418.0
+custom_fonts/font = ExtResource( 1 )
+text = "Objetos"
+flat = true
+
 [node name="Tutorial" type="VBoxContainer" parent="TutorialsAndText"]
-margin_left = 324.0
-margin_right = 624.0
+margin_left = 304.0
+margin_right = 604.0
 margin_bottom = 480.0
 
 [node name="Text" type="RichTextLabel" parent="TutorialsAndText/Tutorial"]
-margin_left = 10.0
-margin_top = 10.0
-margin_right = 310.0
-margin_bottom = 430.0
+margin_right = 300.0
+margin_bottom = 480.0
 rect_min_size = Vector2( 300, 420 )
 size_flags_horizontal = 7
 size_flags_vertical = 3
@@ -69,6 +125,79 @@ text = "
 
 
              ¡Selecciona un tutorial!"
+
+[node name="Combat" type="Control" parent="TutorialsAndText/Tutorial"]
+visible = false
+margin_top = 480.0
+margin_right = 300.0
+margin_bottom = 480.0
+
+[node name="VerticalContainter" type="VBoxContainer" parent="TutorialsAndText/Tutorial/Combat"]
+margin_top = 10.0
+margin_right = 300.0
+margin_bottom = 434.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PCEOMONES" type="HBoxContainer" parent="TutorialsAndText/Tutorial/Combat/VerticalContainter"]
+margin_right = 300.0
+margin_bottom = 100.0
+alignment = 1
+
+[node name="HP" type="TextureProgress" parent="TutorialsAndText/Tutorial/Combat/VerticalContainter/PCEOMONES"]
+margin_left = 69.0
+margin_right = 119.0
+margin_bottom = 100.0
+value = 50.0
+texture_under = ExtResource( 6 )
+texture_progress = ExtResource( 9 )
+fill_mode = 4
+radial_initial_angle = 180.0
+
+[node name="Stamina" type="TextureProgress" parent="TutorialsAndText/Tutorial/Combat/VerticalContainter/PCEOMONES"]
+margin_left = 123.0
+margin_right = 153.0
+margin_bottom = 100.0
+texture_under = ExtResource( 7 )
+texture_progress = ExtResource( 5 )
+fill_mode = 3
+
+[node name="Alcohol" type="TextureProgress" parent="TutorialsAndText/Tutorial/Combat/VerticalContainter/PCEOMONES"]
+margin_left = 157.0
+margin_right = 177.0
+margin_bottom = 100.0
+texture_under = ExtResource( 8 )
+texture_progress = ExtResource( 4 )
+
+[node name="PCEOMON" type="TextureRect" parent="TutorialsAndText/Tutorial/Combat/VerticalContainter/PCEOMONES"]
+margin_left = 181.0
+margin_right = 231.0
+margin_bottom = 100.0
+texture = ExtResource( 10 )
+
+[node name="Text" type="RichTextLabel" parent="TutorialsAndText/Tutorial/Combat/VerticalContainter"]
+margin_top = 104.0
+margin_right = 300.0
+margin_bottom = 424.0
+rect_min_size = Vector2( 300, 320 )
+size_flags_horizontal = 7
+size_flags_vertical = 3
+custom_fonts/mono_font = ExtResource( 2 )
+custom_fonts/bold_italics_font = ExtResource( 2 )
+custom_fonts/italics_font = ExtResource( 2 )
+custom_fonts/bold_font = ExtResource( 1 )
+custom_fonts/normal_font = ExtResource( 2 )
+text = "   PCEOMÓN no es exactamente un juego de combates tradicional.
+
+   El disco verde (tu vida) decrecerá con cada ataque. Si llega a cero, el PCEOMÓN estará fuera de combate. Si todos tus PCEOMONES están fuera de combate, se acaba el combate.
+ 
+   El siguiente disco (amarillo) es la stamina. Cada ataque consume una determinada cantidad de stamina. Cuando seleccionas un ataque, tu PCEOMÓN deberá cargar su stamina, y sólo entonces atacará. Generalmente, los ataques más poderosos consumirán una mayor cantidad de stamina.
+
+   Algunos PCEOMONES también tienen unas barras particulares. Encontrarás más información en \"Tipos de PCEOMÓN\""
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Exit" type="Button" parent="."]
 margin_left = 218.814
