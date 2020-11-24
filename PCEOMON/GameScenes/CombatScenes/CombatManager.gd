@@ -39,9 +39,10 @@ func _ready():
 		pceo_instance.connect("particle", self, "draw_particle")
 		pceo_instance.connect("revive",self,"revive")
 		self.connect("pceomon_pressed",pceo_instance,"target_selected")
-#		if (pceo_instance.type == "R4"):
-#			pceo_instance.connect("dimension_changed",self,"adjust_dimension")
-#			pceo_instance.connect("release_pceomon",self,"release_pceomon")
+		if (pceo_instance.type == "R4"):
+			metadata.dimensions[pceo_instance.name] = [pceo_instance]
+			pceo_instance.connect("dimension_changed",self,"adjust_dimension")
+			pceo_instance.connect("release_pceomon",self,"release_pceomon")
 		pceo_instance.manager = self
 		avatar = TextureRect.new()
 		avatar.texture = load(pceo_instance.avatar_path)
@@ -121,6 +122,9 @@ func make_interface_visible(visible : bool):
 
 
 func adjust_dimension(dimension, pceomon):
+	pceomon.foes = []
+	pceomon.mates = []
+	metadata.dimensions["default"].erase(pceomon)
 	for pceomones in metadata.dimensions["default"]:
 		if pceomon in pceomones.mates:
 			pceomones.mates.erase(pceomon)
@@ -130,21 +134,25 @@ func adjust_dimension(dimension, pceomon):
 		for pceomones in metadata.dimensions[dimension]:
 			if pceomones in $Party.get_children():
 				pceomon.mates.append(pceomones)
-				pceomones.foes.append(pceomon)
+				pceomones.mates.append(pceomon)
 			else:
 				pceomon.foes.append(pceomones)
-				pceomones.mates.append(pceomon)
+				pceomones.foes.append(pceomon)
 	else:
 		for pceomones in metadata.dimensions[dimension]:
 			if pceomones in $Enemies.get_children():
 				pceomon.mates.append(pceomones)
-				pceomones.foes.append(pceomon)
+				pceomones.mates.append(pceomon)
 			else:
 				pceomon.foes.append(pceomones)
-				pceomones.mates.append(pceomon)
+				pceomones.foes.append(pceomon)
+	metadata.dimensions[dimension].append(pceomon)
 
 func release_pceomon(dimension, pceomon):
+	pceomon.foes = []
+	pceomon.mates = []
 	if pceomon in metadata.dimensions[dimension]:
+		metadata.dimensions[dimension].erase(pceomon)
 		for pceomones in metadata.dimensions[dimension]:
 			if pceomon in pceomones.mates:
 				pceomones.mates.erase(pceomon)
@@ -154,18 +162,18 @@ func release_pceomon(dimension, pceomon):
 			for pceomones in metadata.dimensions["default"]:
 				if pceomones in $Party.get_children():
 					pceomon.mates.append(pceomones)
-					pceomones.foes.append(pceomon)
+					pceomones.mates.append(pceomon)
 				else:
 					pceomon.foes.append(pceomones)
-					pceomones.mates.append(pceomon)
+					pceomones.foes.append(pceomon)
 		else:
 			for pceomones in metadata.dimensions[dimension]:
 				if pceomones in $Enemies.get_children():
 					pceomon.mates.append(pceomones)
-					pceomones.foes.append(pceomon)
+					pceomones.mates.append(pceomon)
 				else:
 					pceomon.foes.append(pceomones)
-					pceomones.mates.append(pceomon)
+					pceomones.foes.append(pceomon)
 
 
 

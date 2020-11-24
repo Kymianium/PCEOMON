@@ -430,11 +430,24 @@ func _on_SpriteContainer_sprite_pressed():
 	emit_signal("sprite_pressed",self,boss)
 	
 func select_combat(var message : String, var target):
-	emit_signal("permanent_announcement", message)
 	if target == ALLY:
-		targets.append(yield(select(ALLY), "completed"))
+		if mates != []:
+			emit_signal("permanent_announcement", message)
+			targets.append(yield(select(ALLY), "completed"))
+		else:
+			emit_signal("announcement", "No hay aliados para seleccionar")
+			next_attack_required_stamina = 1
 	elif target == ENEMY:
-		targets.append(yield(select(ENEMY), "completed"))
-	else:
-		targets.append(yield(select(BOTH), "completed"))
+		if foes != []:
+			emit_signal("permanent_announcement", message)
+			targets.append(yield(select(ENEMY), "completed"))
+		else:
+			emit_signal("announcement", "No hay enemigos para seleccionar")
+			next_attack_required_stamina = 1
+	elif target == BOTH:
+		if foes != [] and mates != []:
+			emit_signal("permanent_announcement", message)
+			targets.append(yield(select(BOTH), "completed"))
+		else:
+			emit_signal("announcement", "No hay aliados ni enemigos para seleccionar")
 	
