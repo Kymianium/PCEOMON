@@ -4,9 +4,9 @@
 [ext_resource path="res://Title/Buttons/MenuButton.gd" type="Script" id=2]
 
 [node name="Menu Button" type="Button"]
-margin_right = 12.0
+margin_right = 150.0
 margin_bottom = 62.0
-rect_min_size = Vector2( 200, 50 )
+rect_min_size = Vector2( 150, 50 )
 flat = true
 script = ExtResource( 2 )
 __meta__ = {
@@ -16,7 +16,8 @@ __meta__ = {
 [node name="Label" type="Label" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_min_size = Vector2( 200, 50 )
+margin_bottom = -12.0
+rect_min_size = Vector2( 150, 50 )
 custom_fonts/font = ExtResource( 1 )
 custom_colors/font_color_shadow = Color( 0.117647, 0.207843, 0.803922, 1 )
 custom_constants/shadow_offset_x = -1
