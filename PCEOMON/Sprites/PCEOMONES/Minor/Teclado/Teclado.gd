@@ -20,11 +20,15 @@ func _ready():
 	._ready()
 	avatar_path = "res://Sprites/PCEOMONES/Minor/Teclado/Teclado_avatar.png"
 	next_attack_required_stamina = 1300
-	for enemy in foes:
-		enemy.connect("attacked",self,"enemy_attacked")
+
+
+func new_foe(foe):
+	foe.connect("attacked", self, "enemy_attacked")
+	.new_foe(foe)
 
 
 func enemy_attacked(attacker, attacked, damage, type):
+	print(attacker.name + " atacó e hizo " + String(damage) + " daño")
 	self.damage = damage
 	self.attacked = attacked
 
@@ -37,7 +41,7 @@ func next2():
 	next_attack_required_stamina = 500
 #	emit_signal("permanent_announcement", "Selecciona a un PCEOMÓN para [shake]copiarle el ataque[/shake]")
 #	targets.append(yield(select(BOTH), "completed"))
-	yield(select_combat("Selecciona a un PCEOMÓN para [shake]copiarle el ataque[/shake]",BOTH), "completed")
+	select_combat("Selecciona a un PCEOMÓN para [shake]copiarle el ataque[/shake]",BOTH)
 	.next2()
 
 func next3():
@@ -47,19 +51,19 @@ func next3():
 	elif tipo_robado == "Alcohólico":
 #		emit_signal("permanent_announcement", "[wave]Ugh, no voy muy bien.\n¡Hombre, pero si es ...[/wave]")
 #		targets.append(yield(select(ENEMY), "completed"))
-		yield(select_combat("[wave]Ugh, no voy muy bien.\n¡Hombre, pero si es ...[/wave]",ENEMY), "completed")
+		select_combat("[wave]Ugh, no voy muy bien.\n¡Hombre, pero si es ...[/wave]",ENEMY)
 	elif tipo_robado == "Programador":
 #		emit_signal("permanent_announcement","Selecciona al aliado que quieras [tornado]potenciar[/tornado].")
 #		targets = yield(select(ALLY), "completed")
-		yield(select_combat("Selecciona al aliado que quieras [tornado]potenciar[/tornado].",ALLY), "completed")
+		select_combat("Selecciona al aliado que quieras [tornado]potenciar[/tornado].",ALLY)
 	elif tipo_robado == "Gym":
 #		emit_signal("permanent_announcement","ESTOY HIPERTRÓFICO")
 #		targets.append(yield(select(ENEMY), "completed"))
-		yield(select_combat("ESTOY HIPERTRÓFICO",ENEMY), "completed")
+		select_combat("ESTOY HIPERTRÓFICO",ENEMY)
 	elif tipo_robado == "R4":
 #		emit_signal("permanent_announcement","Ahora veo todo desde una nueva perspectiva, mejor protejo a...")
 #		targets.append(yield(select(ALLY), "completed"))
-		yield(select_combat("Ahora veo todo desde una nueva perspectiva, mejor protejo a...",ALLY), "completed")
+		select_combat("Ahora veo todo desde una nueva perspectiva, mejor protejo a...",ALLY)
 	next_attack_required_stamina = 200
 	.next3()
 		
@@ -73,8 +77,7 @@ func next4():
 
 func atk1():
 	if (damage != null):
-		for i in range(attacked.size()):
-			heal(attacked[i], damage[i])
+		heal_custom(attacked, damage)
 		emit_signal("just_attacked",self.name,"Ctrl+Z","","Aquí no ha pasado nada...")
 		damage = null
 		attacked = null
@@ -85,6 +88,7 @@ func atk1():
 
 func atk2():
 	tipo_robado = targets[0].type
+	emit_signal("just_attacked",self.name,"Ctrl+C","","Espero que no nos pille el algoritmo anti-copia...")
 
 func atk3():
 	if tipo_robado == "Alcohólico":

@@ -21,7 +21,7 @@ func _ready():
 
 func next1():
 	next_attack_required_stamina = 500
-	yield(select_combat("Selecciona al PCEOMÓN falto de [shake level=20] cafeína [/shake]",ALLY), "completed")
+	select_combat("Selecciona al PCEOMÓN falto de [shake level=20] cafeína [/shake]",ALLY)
 	.next1()
 func next2():
 	next_attack_required_stamina = 300

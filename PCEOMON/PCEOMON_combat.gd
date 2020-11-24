@@ -283,7 +283,17 @@ func revive(hp):
 	actual_hp = hp
 	emit_signal("revive",self)
 
-
+func heal_custom(healed, hp):
+	var i = 0
+	for hd in healed:
+		if (hd.actual_hp == 0):
+			hd.revive(hp)
+		else:
+			hd.actual_hp = min(hd.actual_hp+hp[i],hd.max_hp)
+		# warning-ignore:integer_division
+			hd.recalculate_hp()
+		i+=1
+	emit_signal("healed", self, healed, hp)
 
 func heal(healed, hp):
 	for hd in healed:
@@ -319,6 +329,11 @@ func unicast_damage(var damage_amount, var scalation, var damage_type, var dst, 
 			emit_signal("just_attacked",self.name,attack,dst[ind].name,"Pero ha fallado")
 		emit_signal("attacked",self,dst,damages,damage_type)
 
+func new_foe(foe):
+	foes.append(foe)
+
+func new_mate(mate):
+	mates.append(mate)
 
 func make_damage(attacked,dmg,scalation,dmg_type):
 	if (dmg_type == PHYSICAL_DMG):

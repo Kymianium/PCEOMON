@@ -16,21 +16,21 @@ func _ready():
 
 func next1():
 	next_attack_required_stamina = 500
-	yield(select_combat("¡Selecciona a quién hay que ensaladillar!",ENEMY), "completed")
+	select_combat("¡Selecciona a quién hay que ensaladillar!",ENEMY)
 	.next1()
 func next2():
 	next_attack_required_stamina = 300
-	yield(select_combat("¡Selecciona quién tiene medida nula!",ALLY), "completed")
+	select_combat("¡Selecciona quién tiene medida nula!",ALLY)
 	.next2()
 
 func next3():
 	next_attack_required_stamina = 400
-	yield(select_combat("Alguien se va a llevar un rosquillazo...",ENEMY), "completed")
+	select_combat("Alguien se va a llevar un rosquillazo...",ENEMY)
 	.next3()
 
 func next4():
 	next_attack_required_stamina = 2000
-	yield(select_combat("Moriré... Por ti...",ALLY), "completed")
+	select_combat("Moriré... Por ti...",ALLY)
 	.next4()
 
 

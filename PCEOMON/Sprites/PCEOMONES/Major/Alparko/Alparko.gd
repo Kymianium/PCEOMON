@@ -21,17 +21,17 @@ func _ready():
 
 func next1():
 	next_attack_required_stamina = 500
-	yield(select_combat("Selecciona al PCEOMÓN al que quieres hacer /kill",ENEMY), "completed")
+	select_combat("Selecciona al PCEOMÓN al que quieres hacer /kill",ENEMY)
 	.next1()
 
 func next2():
 	next_attack_required_stamina = 200
-	yield(select_combat("Selecciona al PCEOMÓN [tornado]ÍGNEO.[/tornado]",ALLY), "completed")
+	select_combat("Selecciona al PCEOMÓN [tornado]ÍGNEO.[/tornado]",ALLY)
 	.next2()
 
 func next3():
 	next_attack_required_stamina = 300
-	yield(select_combat("Selecciona al PCEOMÓN al que quieres proteger", ALLY), "completed")
+	select_combat("Selecciona al PCEOMÓN al que quieres proteger", ALLY)
 	.next3()
 
 func next4():

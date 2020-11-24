@@ -50,6 +50,13 @@ func _ready():
 	for enemy in $"Enemies".get_children():
 		metadata.dimensions["default"].append(enemy)
 		enemy.connect("sprite_pressed",self,"pceomon_pressed")
+		enemy.connect("just_attacked", self, "write_attack_text")
+		enemy.connect("died", self, "pceomon_died")
+		enemy.connect("announcement", self, "incoming_announcement")
+		enemy.connect("permanent_announcement",self,"incoming_permanent_announcement")
+		enemy.connect("target_selected",self,"_on_DialogueBox_input")
+		enemy.connect("particle", self, "draw_particle")
+		enemy.connect("revive",self,"revive")
 		self.connect("pceomon_pressed",enemy,"target_selected")
 	load_pceomones()
 	#Iniciamos los gyms y los R4
@@ -85,15 +92,15 @@ func load_pceomones():
 		enemy.mates = []
 		for enemy2 in $"Enemies".get_children():
 			if enemy2 != enemy:
-				enemy.mates.append(enemy2)
+				enemy.new_mate(enemy2)
 	for mate in $"Party".get_children():
 		mate.foes = []
 		for enemy in $"Enemies".get_children():
-			mate.foes.append(enemy)
-			enemy.foes.append(mate)
+			mate.new_foe(enemy)
+			enemy.new_foe(mate)
 		for mate2 in $"Party".get_children():
 			if mate != mate2:
-				mate.mates.append(mate2)
+				mate.new_mate(mate2)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

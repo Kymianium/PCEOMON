@@ -19,13 +19,13 @@ func _ready():
 func next1():
 	if (alcohol >= 50):
 		next_attack_required_stamina = 200
-		yield(select_combat("¿A quién le quieres enviar tu instastory?",ENEMY), "completed")
+		select_combat("¿A quién le quieres enviar tu instastory?",ENEMY)
 		.next1()
 	else:
 		emit_signal("announcement","No tienes suficiente alcohol en sangre para eso, zagal")
 func next2():
 	if (alcohol >= 80):
-		yield(select_combat("Un caballero hidalgo... ¿Quién lo dijo?", ENEMY), "completed")
+		select_combat("Un caballero hidalgo... ¿Quién lo dijo?", ENEMY)
 		next_attack_required_stamina = 200
 		.next2()
 	else:
@@ -36,7 +36,7 @@ func next3():
 func next4():
 	if (alcohol >= 400):
 		next_attack_required_stamina = 300
-		yield(select_combat("ESTOY EN LA GRIETA. MATAR. MATAR.                               [shake level=30 freq = 1]MATAR. [/shake]", ENEMY), "completed")
+		select_combat("ESTOY EN LA GRIETA. MATAR. MATAR.                               [shake level=30 freq = 1]MATAR. [/shake]", ENEMY)
 		.next4()
 	else:
 		emit_signal("announcement","No tienes suficiente alcohol en sangre para eso, zagal")
