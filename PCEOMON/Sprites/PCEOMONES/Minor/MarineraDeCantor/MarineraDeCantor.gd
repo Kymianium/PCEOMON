@@ -45,13 +45,13 @@ func atk2():
 func atk3():
 	unicast_damage(100, 0.2, CHEMICAL_DMG, targets,"Rosquillazo","... Em... Sí, bueno... Le dió un rosquillazo. Don't mess with Cantor, I guess.")
 func atk4():
-	permanent_buff(targets, CHEMICAL_DMG, 1.5, 50)
-	permanent_buff(targets, PHYSICAL_DMG, 1.5, 50)
-	permanent_buff(targets, PSYCHOLOGYCAL_DMG, 1.5, 50)
-	permanent_buff(targets, CHEMICAL_DFC, 1.5, 50)
-	permanent_buff(targets, PHYSICAL_DFC, 1.5, 50)
-	permanent_buff(targets, PSYCHOLOGYCAL_DFC, 1.5, 50)
-	permanent_buff(targets, SPEED, 1.5, 0)
+	permanent_buff(targets, [CHEMICAL_DMG], 1.5, 50)
+	permanent_buff(targets, [PHYSICAL_DMG], 1.5, 50)
+	permanent_buff(targets, [PSYCHOLOGYCAL_DMG], 1.5, 50)
+	permanent_buff(targets, [CHEMICAL_DFC], 1.5, 50)
+	permanent_buff(targets, [PHYSICAL_DFC], 1.5, 50)
+	permanent_buff(targets, [PSYCHOLOGYCAL_DFC], 1.5, 50)
+	permanent_buff(targets, [SPEED], 1.5, 0)
 	damage(max_hp)
 	emit_signal("just_attacked",self.name,"Aperitivo","","D.E.P., Marinera de Cantor. Siempre guardaremos un huequito de medida nula para ti en nuestro corazón <3")
 
