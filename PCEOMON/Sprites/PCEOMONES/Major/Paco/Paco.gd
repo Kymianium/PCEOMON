@@ -9,6 +9,7 @@ var hacer_jal_required_stamina
 var hacer_jal_stamina 
 var hacer_jal_target
 var haciendo_jal = false
+var delta_acum2 = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$HBoxContainer/StatsSummary/Shield.value = 0
@@ -42,10 +43,10 @@ func next3():
 func next4():
 	if !haciendo_jal:
 		next_attack_required_stamina = 500 #MODIFICAR
-		select_combat("MODIFICAR TEXTO", ENEMY)
+		select_combat("Aquí pongo todos los argumentos y... Y... Joder, se me olvida algo...", ENEMY)
 	else:
 		next_attack_required_stamina = 1
-		emit_signal("announcement", "Ya has heho jal, debes esperar a que se implemente (MODIFICAR)")
+		emit_signal("announcement", "¡Paco aún no se ha dado cuenta de que no ha hecho el JAL!")
 	.next4()
 
 
@@ -75,9 +76,12 @@ func atk4():
 func _process(delta):
 	if haciendo_jal:
 		if (hacer_jal_stamina >= hacer_jal_required_stamina):
-			unicast_damage(1000,0.3, PSYCHOLOGYCAL_DMG, [hacer_jal_target],"No hacer jal","MODIFICAR TEXTO") #MODIFICAR DAÑOS
+			unicast_damage(1000,0.3, PSYCHOLOGYCAL_DMG, [hacer_jal_target],"No hacer JAL","¡¡¡¡¡¡KA-ME-HA-ME-JAL!!!!!!") #MODIFICAR DAÑOS
 			haciendo_jal = false
 			hacer_jal_stamina = 0
 		elif (metadata.time_should_run()):
-			hacer_jal_stamina = hacer_jal_stamina + getstat(SPEED)
+			delta_acum2+=delta
+			if (delta_acum2>=0.1):
+				delta_acum2-=0.1
+				hacer_jal_stamina = hacer_jal_stamina + getstat(SPEED)
 	._process(delta)
