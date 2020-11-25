@@ -445,7 +445,7 @@ func select_combat(var message : String, var target):
 			emit_signal("announcement", "No hay enemigos para seleccionar")
 			next_attack_required_stamina = 1
 	elif target == BOTH:
-		if foes != [] and mates != []:
+		if foes != [] or mates != []:
 			emit_signal("permanent_announcement", message)
 			targets.append(yield(select(BOTH), "completed"))
 		else:

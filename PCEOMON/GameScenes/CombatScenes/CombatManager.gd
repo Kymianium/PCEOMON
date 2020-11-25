@@ -174,6 +174,7 @@ func release_pceomon(dimension, pceomon):
 				else:
 					pceomon.foes.append(pceomones)
 					pceomones.foes.append(pceomon)
+		metadata.dimensions["default"].append(pceomon)
 
 
 
