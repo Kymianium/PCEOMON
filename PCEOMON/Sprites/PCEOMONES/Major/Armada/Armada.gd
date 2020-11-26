@@ -48,6 +48,7 @@ func atk1():
 	alcohol-=50
 	$"HBoxContainer/StatsSummary/Alcohol".value = float(alcohol)/maxalcohol *100
 	unicast_damage(500,0.5, CHEMICAL_DMG, targets,"Postureo","Esta pa [rainbow] mejores amigos [/rainbow].")
+	.atk1()
 func atk2():
 	#El Quijote
 	#Armada lanza al aire la pregunta ¿Qué era el quijote? Al primer enemigo que conteste &quot;Un
@@ -59,6 +60,7 @@ func atk2():
 	$"HBoxContainer/StatsSummary/Alcohol".value = float(alcohol)/maxalcohol *100
 	poison(targets,rng.randi_range(800,1000))
 	emit_signal("just_attacked", "Armada", "Quijote", targets[0].name, "¡Hijo puta el que se deje algo! " + targets[0].name + " va muy ciego")
+	.atk2()
 
 func atk3():
 	#Esto no es na`
@@ -72,6 +74,7 @@ func atk3():
 		alcohol=maxalcohol
 	$"HBoxContainer/StatsSummary/Alcohol".value = float(alcohol)/maxalcohol *100
 	emit_signal("just_attacked", "Armada", "Esto no es na'", "", "[wave] ¡Este hijo de puta quiere emborracharse![/wave]")
+	.atk3()
 
 func atk4():
 	#¿Un lolete?
@@ -89,4 +92,4 @@ func atk4():
 		unicast_damage(1000,1, PHYSICAL_DMG, targets,"¿Un lolete?","¡El lugar está lleno de [shake]VÍSCERAS[/shake]!")
 		alcohol-=400
 		$"HBoxContainer/StatsSummary/Alcohol".value = float(alcohol)/maxalcohol *100
-	
+	.atk4()	

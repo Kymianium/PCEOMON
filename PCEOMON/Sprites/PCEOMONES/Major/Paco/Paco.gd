@@ -30,12 +30,14 @@ func _ready():
 
 func next1():
 	next_attack_required_stamina = 300
-	select_combat_dimension("Selecciona un PCEOMON que esté en Orihuela", BOTH, self.name)
+	if not select_combat_dimension("Selecciona un PCEOMON que esté en Orihuela", BOTH, self.name):
+		return
 	.next1()
 
 func next2():
 	next_attack_required_stamina = 300
-	select_combat_dimension("Selecciona un PCEOMON que no esté en Orihuela", BOTH, "default")
+	if not select_combat_dimension("Selecciona un PCEOMON que no esté en Orihuela", BOTH, "default"):
+		return
 	.next2()
 func next3():
 	next_attack_required_stamina = 800
@@ -53,16 +55,19 @@ func next4():
 func atk1():
 	release(targets[0])
 	emit_signal("just_attacked","Paco","Es hora de marchar",targets[0].name,"Paco ha abandonado a su suerte a " + targets[0].name)
+	.atk1()
 
 func atk2():
 	trap(targets[0])
 	emit_signal("just_attacked","Paco","Inundar",targets[0].name,"Un torrente de agua arrastra a " + targets[0].name + " a las profundidas de [tornado]Orihuela[/tornado]")
+	.atk2()
 ##################################
 ## MODIFICAR VALORES DEL ATAQUE ##
 ##################################
 func atk3():
 	permanent_buff([self], [PHYSICAL_DFC, PSYCHOLOGYCAL_DFC, CHEMICAL_DFC] , 1.2, 0)
 	emit_signal("just_attacked","Paco","F por Algebra","","")
+	.atk3()
 ##################################
 ## MODIFICAR VALORES DEL ATAQUE ##
 ##################################
@@ -72,6 +77,7 @@ func atk4():
 		haciendo_jal = true
 		hacer_jal_target = targets[0]
 		hacer_jal_stamina = 0
+	.atk4()
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if haciendo_jal:

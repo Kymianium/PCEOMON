@@ -80,21 +80,21 @@ margin_bottom = 50.0
 margin_left = 154.0
 margin_right = 304.0
 
-[node name="Exit" parent="Menu/CenterRow" instance=ExtResource( 8 )]
+[node name="Menu Button" parent="Menu/CenterRow" instance=ExtResource( 9 )]
 margin_left = 308.0
 margin_right = 458.0
-
-[node name="Menu Button" parent="Menu/CenterRow" instance=ExtResource( 9 )]
-margin_left = 462.0
-margin_right = 612.0
 margin_bottom = 50.0
 
-[node name="Label" type="Label" parent="Menu"]
-margin_top = 152.0
+[node name="Exit" parent="Menu/CenterRow" instance=ExtResource( 8 )]
+margin_left = 462.0
 margin_right = 612.0
-margin_bottom = 169.0
+
+[node name="Label" type="Label" parent="Menu"]
+margin_top = 150.0
+margin_right = 612.0
+margin_bottom = 167.0
 custom_fonts/font = ExtResource( 4 )
-text = "Version 0.0.3 - Solo disponible para desarrolladores. Combate avanzado."
+text = "Version 0.0.3 - Solo disponible para desarrolladores. Tutorial y QOL."
 align = 1
 
 [node name="FadeIn" parent="." instance=ExtResource( 5 )]

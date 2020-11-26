@@ -83,12 +83,13 @@ func atk1():
 		attacked = null
 	else:
 		emit_signal("just_attacked",self.name,"Ctrl+Z","","¡Pero no había nada que deshacer!")
-	
+	.atk1()
 
 
 func atk2():
 	tipo_robado = targets[0].type
 	emit_signal("just_attacked",self.name,"Ctrl+C","","Espero que no nos pille el algoritmo anti-copia...")
+	.atk2()
 
 func atk3():
 	if tipo_robado == "Alcohólico":
@@ -126,8 +127,6 @@ func atk3():
 			ally.buff(EVASION,2000,1.5,0)
 		buff(self, EVASION,2000,1.5,0)
 		emit_signal("just_attacked",self.name,"Ctrl+V","","Ahora nadie tiene una velocidad natural")
-	elif false:
-		pass
-
+	.atk3()
 
 

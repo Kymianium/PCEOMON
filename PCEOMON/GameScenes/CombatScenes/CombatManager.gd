@@ -131,7 +131,7 @@ func adjust_dimension(dimension, pceomon):
 		elif pceomon in pceomones.foes:
 			pceomones.foes.erase(pceomon)
 	if pceomon in $Party.get_children():
-		for pceomones in metadata.dimensions[dimension]:
+		for pceomones in metadata.dimensions[dimension.name]:
 			if pceomones in $Party.get_children():
 				pceomon.mates.append(pceomones)
 				pceomones.mates.append(pceomon)
@@ -139,21 +139,22 @@ func adjust_dimension(dimension, pceomon):
 				pceomon.foes.append(pceomones)
 				pceomones.foes.append(pceomon)
 	else:
-		for pceomones in metadata.dimensions[dimension]:
+		for pceomones in metadata.dimensions[dimension.name]:
 			if pceomones in $Enemies.get_children():
 				pceomon.mates.append(pceomones)
 				pceomones.mates.append(pceomon)
 			else:
 				pceomon.foes.append(pceomones)
 				pceomones.foes.append(pceomon)
-	metadata.dimensions[dimension].append(pceomon)
+	metadata.dimensions[dimension.name].append(pceomon)
+	check_targets(pceomon, dimension)
 
 func release_pceomon(dimension, pceomon):
 	pceomon.foes = []
 	pceomon.mates = []
-	if pceomon in metadata.dimensions[dimension]:
+	if pceomon in metadata.dimensions[dimension.name]:
 		metadata.dimensions[dimension].erase(pceomon)
-		for pceomones in metadata.dimensions[dimension]:
+		for pceomones in metadata.dimensions[dimension.name]:
 			if pceomon in pceomones.mates:
 				pceomones.mates.erase(pceomon)
 			elif pceomon in pceomones.foes:
@@ -167,7 +168,7 @@ func release_pceomon(dimension, pceomon):
 					pceomon.foes.append(pceomones)
 					pceomones.foes.append(pceomon)
 		else:
-			for pceomones in metadata.dimensions[dimension]:
+			for pceomones in metadata.dimensions[dimension.name]:
 				if pceomones in $Enemies.get_children():
 					pceomon.mates.append(pceomones)
 					pceomones.mates.append(pceomon)
@@ -175,8 +176,23 @@ func release_pceomon(dimension, pceomon):
 					pceomon.foes.append(pceomones)
 					pceomones.foes.append(pceomon)
 		metadata.dimensions["default"].append(pceomon)
+		check_targets(pceomon, dimension)
 
-
+func check_targets(PCEOMON, R4):
+	for pceo in $Party.get_children():
+		if pceo==R4:
+			continue
+		if (PCEOMON in pceo.targets):
+			pceo.target_gone(PCEOMON)
+		if (pceo.type == "Gym" and pceo.selected_foe == PCEOMON):
+			pceo.focus_enemy()
+		if (pceo.type == "Gym" and pceo.selected_foe == null and PCEOMON in pceo.foes):
+			pceo.selected_foe = PCEOMON
+	for pceo in $Enemies.get_children():
+		if PCEOMON in pceo.targets:
+			PCEOMON.actual_stamina = 0
+		if (pceo.type == "Gym" and pceo.selected_foe == null and PCEOMON in pceo.foes):
+			pceo.selected_foe = PCEOMON
 
 func _on_Attack1_pressed():	
 	if (metadata.time_exists.size() != 0):

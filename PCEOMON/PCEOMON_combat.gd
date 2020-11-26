@@ -222,13 +222,21 @@ func attack():
 	targets = []
 #############################
 func atk1():
-	pass
+	targets = []
 func atk2():
-	pass
+	targets = []
 func atk3():
-	pass
+	targets = []
 func atk4():
-	pass
+	targets = []
+
+func target_gone(pceomon):
+	emit_signal("announcement", "¡" + self.name + " ha perdido a " + pceomon.name + "!")
+	targets = []
+	actual_stamina = 0
+	$"HBoxContainer/StatsSummary/Stamina".value = 0
+	metadata.time_exists.append(self)
+
 
 func next1():
 	actual_stamina = 1
@@ -255,13 +263,17 @@ func next4():
 	next_attack = 4
 	metadata.time_exists.erase(self)
 
+func boss_next_attack():
+	pass
 
 func _process(delta):
 	if (actual_hp <= 0):
 		return
-	elif(actual_stamina==0 and not boss):
-		if (not metadata.time_exists.has(self)):
+	elif(actual_stamina==0):
+		if (not metadata.time_exists.has(self) and not boss):
 			metadata.time_exists.append(self)
+		else:
+			boss_next_attack()
 	elif(actual_stamina >= next_attack_required_stamina):
 		attack()
 	elif (metadata.time_should_run()):

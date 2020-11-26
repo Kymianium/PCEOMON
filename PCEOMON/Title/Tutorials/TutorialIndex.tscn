@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Font/ButtonFont.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Font/SmallFont.tres" type="DynamicFont" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://Sprites/Miscelaneous/Bars/Alcohol/Background.png" type="Texture" id=8]
 [ext_resource path="res://Sprites/Miscelaneous/Bars/Health/Fill.png" type="Texture" id=9]
 [ext_resource path="res://Sprites/PCEOMONES/Major/Armada/Armada_sprite.png" type="Texture" id=10]
+[ext_resource path="res://Sprites/Miscelaneous/Types/Alcoholic.png" type="Texture" id=11]
 
 [node name="Tutorials" type="Control"]
 anchor_right = 1.0
@@ -27,8 +28,7 @@ __meta__ = {
 }
 
 [node name="Index" type="VBoxContainer" parent="TutorialsAndText"]
-margin_left = 10.0
-margin_right = 310.0
+margin_right = 300.0
 margin_bottom = 480.0
 rect_min_size = Vector2( 300, 440 )
 alignment = 1
@@ -128,9 +128,6 @@ text = "
 
 [node name="Combat" type="Control" parent="TutorialsAndText/Tutorial"]
 visible = false
-margin_top = 480.0
-margin_right = 300.0
-margin_bottom = 480.0
 
 [node name="VerticalContainter" type="VBoxContainer" parent="TutorialsAndText/Tutorial/Combat"]
 margin_top = 10.0
@@ -199,6 +196,96 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Types" type="Control" parent="TutorialsAndText/Tutorial"]
+visible = false
+
+[node name="VerticalContainter" type="VBoxContainer" parent="TutorialsAndText/Tutorial/Types"]
+margin_top = 10.0
+margin_right = 300.0
+margin_bottom = 434.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TypeExample" type="HBoxContainer" parent="TutorialsAndText/Tutorial/Types/VerticalContainter"]
+margin_right = 300.0
+margin_bottom = 100.0
+alignment = 1
+
+[node name="PCEOMON" type="TextureRect" parent="TutorialsAndText/Tutorial/Types/VerticalContainter/TypeExample"]
+margin_left = 110.0
+margin_right = 160.0
+margin_bottom = 100.0
+texture = ExtResource( 10 )
+
+[node name="Icon" type="TextureRect" parent="TutorialsAndText/Tutorial/Types/VerticalContainter/TypeExample"]
+margin_left = 164.0
+margin_right = 189.0
+margin_bottom = 100.0
+texture = ExtResource( 11 )
+stretch_mode = 4
+
+[node name="Text" type="RichTextLabel" parent="TutorialsAndText/Tutorial/Types/VerticalContainter"]
+margin_top = 104.0
+margin_right = 300.0
+margin_bottom = 384.0
+rect_min_size = Vector2( 300, 280 )
+size_flags_horizontal = 7
+size_flags_vertical = 3
+custom_fonts/mono_font = ExtResource( 2 )
+custom_fonts/bold_italics_font = ExtResource( 2 )
+custom_fonts/italics_font = ExtResource( 2 )
+custom_fonts/bold_font = ExtResource( 1 )
+custom_fonts/normal_font = ExtResource( 2 )
+text = "    El tipo alcohólico se centra en ataques devastadores y muy veloces, sacrificando a cambio una \"moneda de cambio\". Un alcohólico tan sólo podrá atacar si tiene el suficiente alcohol en sangre.
+	
+	+ Buen daño
+	+ Veloces
+	- Frágiles"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ButtonHolder" type="HBoxContainer" parent="TutorialsAndText/Tutorial/Types/VerticalContainter"]
+margin_top = 388.0
+margin_right = 300.0
+margin_bottom = 429.0
+alignment = 1
+
+[node name="Latter" type="Button" parent="TutorialsAndText/Tutorial/Types/VerticalContainter/ButtonHolder"]
+margin_left = 17.0
+margin_right = 143.0
+margin_bottom = 41.0
+custom_fonts/font = ExtResource( 1 )
+text = "Anterior"
+flat = true
+
+[node name="Next" type="Button" parent="TutorialsAndText/Tutorial/Types/VerticalContainter/ButtonHolder"]
+margin_left = 147.0
+margin_right = 282.0
+margin_bottom = 41.0
+custom_fonts/font = ExtResource( 1 )
+text = "Siguiente"
+flat = true
+
+[node name="AttacksAbilities" type="Control" parent="TutorialsAndText/Tutorial"]
+visible = false
+
+[node name="Text" type="RichTextLabel" parent="TutorialsAndText/Tutorial/AttacksAbilities"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 310.0
+margin_bottom = 430.0
+custom_fonts/normal_font = ExtResource( 2 )
+text = "    Cada PCEOMÓN tiene cuatro ataques distintos, además de una habilidad. La habilidad no se usa, sino que está activa de manera pasiva durante el combate.
+	
+	Los tipos del PCEOMÓN determinan qué harán cada uno de sus ataques. Cuando seleccionas tu próximo ataque, deberás esperar a reunir la stamina necesaria para realizarlo. 
+	
+	¡Sólo una vez tu barra de stamina se complete, atacarás!"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Exit" type="Button" parent="."]
 margin_left = 218.814
 margin_top = 437.628
@@ -211,4 +298,8 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 [connection signal="pressed" from="TutorialsAndText/Index/Combat" to="." method="_on_Combat_pressed"]
+[connection signal="pressed" from="TutorialsAndText/Index/Attacks" to="." method="_on_Attacks_pressed"]
+[connection signal="pressed" from="TutorialsAndText/Index/Types" to="." method="_on_Types_pressed"]
+[connection signal="pressed" from="TutorialsAndText/Tutorial/Types/VerticalContainter/ButtonHolder/Latter" to="." method="_on_Latter_pressed"]
+[connection signal="pressed" from="TutorialsAndText/Tutorial/Types/VerticalContainter/ButtonHolder/Next" to="." method="_on_Next_pressed"]
 [connection signal="pressed" from="Exit" to="." method="_on_Exit_pressed"]

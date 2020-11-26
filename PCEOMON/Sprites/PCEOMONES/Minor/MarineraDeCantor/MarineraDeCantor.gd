@@ -37,13 +37,15 @@ func next4():
 func atk1():
 	buff(targets, SPEED, 10000, 0.6, 0)
 	unicast_damage(100, 0.3, CHEMICAL_DMG, targets,"Ensaladillado","¡Mayonesa, huevo, zanahora, yo qué coño sé! ¡Sufre mamón!")
-
+	.atk1()
 	
 func atk2():
 	emit_signal("just_attacked", self.name, "Medida nula", "", "¿¡Dónde se ha metido " + targets[0].name + "!?")
 	buff(targets, EVASION, 3000, 0.5, 0)
+	.atk2()
 func atk3():
 	unicast_damage(100, 0.2, CHEMICAL_DMG, targets,"Rosquillazo","... Em... Sí, bueno... Le dió un rosquillazo. Don't mess with Cantor, I guess.")
+	.atk3()
 func atk4():
 	permanent_buff(targets, [CHEMICAL_DMG], 1.5, 50)
 	permanent_buff(targets, [PHYSICAL_DMG], 1.5, 50)
@@ -54,4 +56,4 @@ func atk4():
 	permanent_buff(targets, [SPEED], 1.5, 0)
 	damage(max_hp)
 	emit_signal("just_attacked",self.name,"Aperitivo","","D.E.P., Marinera de Cantor. Siempre guardaremos un huequito de medida nula para ti en nuestro corazón <3")
-
+	.atk4()

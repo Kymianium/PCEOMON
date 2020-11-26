@@ -26,7 +26,8 @@ func _process(delta):
 		if (delta_acum>0.1):
 			anger_acum+=getstat(SPEED)
 			if anger_acum > 5000/(anger+1):
-				selected_foe.take_physical_damage(calculate_physical_damage(anger/2, 0.1))
+				if selected_foe!=null:
+					selected_foe.take_physical_damage(calculate_physical_damage(anger/2, 0.1))
 				anger_acum -= 5000/(anger+1)
 				anger=max(anger-1,0)
 				$HBoxContainer/StatsSummary/Anger.value = (100*anger)/max_anger
@@ -41,12 +42,20 @@ func _process(delta):
 					emit_signal("announcement","El envenenamiento de " + self.name + " ha terminado")
 				self.damage(poison_damage)
 	
+func focus_enemy():
+	if not foes.empty():
+		emit_signal("permanent_announcement","¡Selecciona el objetivo de " + name + "!")
+		selected_foe = yield(select(ENEMY), "completed")
+		move()
+	else:
+		selected_foe = null
 func move():
 	#var position : Vector2
 	#position = gym.selected_foe.position
 	#position.x = position.x - 50
-	var vector = selected_foe.position
-	vector.x -=50
-	vector.y += 30
-	movement_manager.interpolate_property(self, "position", self.position, vector, 2.0, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
-	movement_manager.start()
+	if selected_foe != null:
+		var vector = selected_foe.position
+		vector.x -=50
+		vector.y += 30
+		movement_manager.interpolate_property(self, "position", self.position, vector, 2.0, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
+		movement_manager.start()

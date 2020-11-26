@@ -55,15 +55,17 @@ func atk1():
 		unicast_damage(targets[0].max_hp,0, TRUE_DMG, targets,"/kill","[shake level = 20] ¡A TU CASA, GORDA PUTA![/shake]")
 		return
 	unicast_damage(300,0.3, PSYCHOLOGYCAL_DMG, targets,"/kill","¡OOF, ESO ESTUVO CERCA!")
+	.atk1()
 	
 func atk2():
 	permanent_buff(targets, PHYSICAL_DMG, 1.2, 0)
 	emit_signal("just_attacked", "Alparko", "Aspecto Ígneo", "", "Ahora " + targets[0].name + " es  [tornado]ÍGNEO.[/tornado]")
-	
+	.atk2()
 
 func atk3():
 	permanent_buff(targets, [PHYSICAL_DFC, CHEMICAL_DFC, PSYCHOLOGYCAL_DFC], 1.1, 0)
 	emit_signal("just_attacked", "Alparko", "Protección", "", "¡" + targets[0].name + " tiene una piel de hierro!")
+	.atk3()
 	
 func atk4():
 	for pceomon in mates:
@@ -103,6 +105,6 @@ func atk4():
 		pceomon.stats[SPEED][2]=0
 		pceomon.stats[SPEED][3]=1
 		pceomon.stats[EVASION][2]=0
-		pceomon.stats[EVASION][3]=1
-		
+		pceomon.stats[EVASION][3]=1	
 	emit_signal("just_attacked", "Alparko", "/weather clear", "", "¡A tomar por culo los bufos!")
+	.atk4()

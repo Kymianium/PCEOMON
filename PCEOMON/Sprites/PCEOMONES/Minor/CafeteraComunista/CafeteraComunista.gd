@@ -24,6 +24,14 @@ func next1():
 	select_combat("Selecciona al PCEOMÓN falto de [shake level=20] cafeína [/shake]",ALLY)
 	.next1()
 func next2():
+	if foes.empty():
+		emit_signal("announcement", "¡No hay enemigos a quien atacar!")
+		next_attack_required_stamina=1
+		return
+	if mates.empty():
+		emit_signal("announcement", "¡No hay aliados a los que sanar!")
+		next_attack_required_stamina=1
+		return
 	next_attack_required_stamina = 300
 	.next2()
 
@@ -32,6 +40,10 @@ func next3():
 	.next3()
 
 func next4():
+	if mates.empty():
+		emit_signal("announcement", "¡No hay aliados a los que sanar!")
+		next_attack_required_stamina=1
+		return
 	next_attack_required_stamina = 200
 	.next4()
 
@@ -42,10 +54,10 @@ func atk1():
 	emit_signal("particle", CoffeeParticle, targets[0].position.x+25, targets[0].position.y+100)
 	emit_signal("just_attacked", "La cafetera comunista", "Café de avellana", "", "Con este manjar, " + targets[0].name + " ahora va más [tornado freq=5]rápido[/tornado]")
 	emit_signal("buffed", self, targets, SPEED)
+	.atk1()
 	
 func atk2():
 	#Roba un poco de vida al enemigo con mas porcentaje de vida y le da una parte al aliado con menor porcentaje de vida
-
 	var more_healed = null
 	var less_healed = []
 	var damage_done : int = 0
@@ -64,9 +76,11 @@ func atk2():
 		emit_signal("attacked", self, [more_healed], [damage_done], PSYCHOLOGYCAL_DMG)
 	else:
 		emit_signal("just_attacked",self.name,"Lucha de clases", more_healed.name,"Pero ha fallado, el comunismo no funciona")
+	.atk2()
 func atk3():
 	buff([self], EVASION, 1000, 0.8, 0)
 	emit_signal("just_attacked","La cafetera comunista", "Reunión de algebristas","","La cafetera se esconde entre profesores. ¡Aumenta su evasión!")
+	.atk3()
 func atk4():
 	#Sana al aliado más herido (por porcentajes)
 	var less_healed = []
@@ -76,4 +90,4 @@ func atk4():
 	heal(less_healed, calculate_chemical_damage(30,0.3))
 	emit_signal("particle", ChocolateParticle, less_healed[0].position.x+25, less_healed[0].position.y+100)
 	emit_signal("just_attacked","La cafetera comunista","Chocolate caliente","","El chocolate caliente revitaliza a " + less_healed[0].name)
-
+	.atk4()

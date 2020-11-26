@@ -36,6 +36,10 @@ func next3():
 	.next3()
 func next4():
 	next_attack_required_stamina = 1000
+	if (selected_foe == null):
+		emit_signal("announcement", "¡No tienes a nadie seleccionado!")
+		return
+	targets.append(selected_foe)
 	.next4()
 	
 	
@@ -43,22 +47,24 @@ func next4():
 	
 func atk1():
 	unicast_damage(100,0.5, PHYSICAL_DMG, targets,"Placaje","¡La puta madre! Eso tuvo que doler...")
+	.atk1()
 func atk2():
 	anger=min(anger+30,max_anger)
 	$HBoxContainer/StatsSummary/Anger.value = (100*anger)/max_anger
 	emit_signal("just_attacked", "Chito", "Cheat Meal", "", "¡AQUÍ LLEGAN LOS [wave][rainbow] MACARRAS DEL PODER! [/rainbow][/wave]")
+	.atk2()
 func atk3():
 	binded_ally = targets[0]
 	emit_signal("just_attacked", "Chito", "Besito en la boca", "", "La pasión se siente en el ambiente entre Chito y " + binded_ally.name + "... ¡Dejadles intimidad!")
-
+	.atk3()
 func atk4():
-	if selected_foe.actual_hp < calculate_physical_damage(1000, 1):
-		unicast_damage(selected_foe.max_hp,0, TRUE_DMG, targets,"911","Hoy cierran los aeropuertos y colapsan las torres")
+	if targets[0].actual_hp < calculate_physical_damage(1000, 1):
+		unicast_damage(targets[0].max_hp,0, TRUE_DMG, targets,"911","Hoy cierran los aeropuertos y colapsan las torres")
 		return
 	else:
-		unicast_damage(selected_foe.max_hp,0, TRUE_DMG, targets,"911","Hoy cierran los aeropuertos y colapsan las torres")
+		unicast_damage(targets[0].max_hp,0, TRUE_DMG, targets,"911","Hoy cierran los aeropuertos y colapsan las torres")
 		return
-
+	.atk4()
 
 
 

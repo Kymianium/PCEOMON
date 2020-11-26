@@ -11,7 +11,8 @@ func _ready():
 	actual_hp = max_hp
 	next_attack_required_stamina = 500
 	rng.randomize()
-	
+
+
 func attack():
 	unicast_damage(10, 0.2, PSYCHOLOGYCAL_DMG, [foes[rng.randi_range(0,foes.size()-1)]],"Malloc()","¡Memory allocate, hijo de puta!")
 	actual_stamina = 1
