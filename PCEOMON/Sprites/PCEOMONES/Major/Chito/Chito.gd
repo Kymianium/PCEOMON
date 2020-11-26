@@ -46,6 +46,8 @@ func next4():
 	#LOS ATAQUES ESTÁN SIN PROGRAMAR
 	
 func atk1():
+	selected_foe = targets[0]
+	move()
 	unicast_damage(100,0.5, PHYSICAL_DMG, targets,"Placaje","¡La puta madre! Eso tuvo que doler...")
 	.atk1()
 func atk2():
