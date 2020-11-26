@@ -66,7 +66,7 @@ func atk2():
 ##################################
 func atk3():
 	permanent_buff([self], [PHYSICAL_DFC, PSYCHOLOGYCAL_DFC, CHEMICAL_DFC] , 1.2, 0)
-	emit_signal("just_attacked","Paco","F por Algebra","","")
+	emit_signal("just_attacked","Paco","F por Algebra","","... ¡Pero F mis putos cojones! ¡PACO SE HA SACADO UN 10!")
 	.atk3()
 ##################################
 ## MODIFICAR VALORES DEL ATAQUE ##
@@ -82,7 +82,7 @@ func atk4():
 func _process(delta):
 	if haciendo_jal:
 		if (hacer_jal_stamina >= hacer_jal_required_stamina):
-			unicast_damage(1000,0.3, PSYCHOLOGYCAL_DMG, [hacer_jal_target],"No hacer JAL","¡¡¡¡¡¡KA-ME-HA-ME-JAL!!!!!!") #MODIFICAR DAÑOS
+			unicast_damage(1000,0.3, PSYCHOLOGYCAL_DMG, [hacer_jal_target],"No hacer JAL"," [shake level = 10]¡¡¡¡¡¡KA-ME-HA-ME-JAL!!!!!!") #MODIFICAR DAÑOS
 			haciendo_jal = false
 			hacer_jal_stamina = 0
 		elif (metadata.time_should_run()):

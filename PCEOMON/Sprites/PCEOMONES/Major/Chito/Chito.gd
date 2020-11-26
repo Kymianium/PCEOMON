@@ -46,7 +46,8 @@ func next4():
 	#LOS ATAQUES ESTÁN SIN PROGRAMAR
 	
 func atk1():
-	selected_foe = targets[0]
+	if not targets.empty():
+		selected_foe = targets[0]
 	move()
 	unicast_damage(100,0.5, PHYSICAL_DMG, targets,"Placaje","¡La puta madre! Eso tuvo que doler...")
 	.atk1()
@@ -61,7 +62,7 @@ func atk3():
 	.atk3()
 func atk4():
 	if targets[0].actual_hp < calculate_physical_damage(1000, 1):
-		unicast_damage(targets[0].max_hp,0, TRUE_DMG, targets,"911","Hoy cierran los aeropuertos y colapsan las torres")
+		unicast_damage(targets[0].max_hp,0, TRUE_DMG, targets,"911","BOOOM, ¡CHEQUEA ESTOS MOVIMIENTOS, GEORGE BUSH!")
 		return
 	else:
 		unicast_damage(targets[0].max_hp,0, TRUE_DMG, targets,"911","Hoy cierran los aeropuertos y colapsan las torres")

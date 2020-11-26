@@ -237,6 +237,10 @@ func target_gone(pceomon):
 	$"HBoxContainer/StatsSummary/Stamina".value = 0
 	metadata.time_exists.append(self)
 
+func get_size():
+	var size = $SpriteContainer/Sprite.texture.get_size()
+	size.y += $HBoxContainer/StatsSummary/HP.texture_under.get_size().y
+	return size
 
 func next1():
 	actual_stamina = 1

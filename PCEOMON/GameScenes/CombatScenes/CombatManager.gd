@@ -7,6 +7,7 @@ var pceo_instance
 var avatar : TextureRect
 var avatars = {}
 var info : String
+var R4 = {}
 
 
 
@@ -122,6 +123,17 @@ func make_interface_visible(visible : bool):
 
 
 func adjust_dimension(dimension, pceomon):
+	var avatar = load("res://Sprites/PCEOMONES/Major/" + dimension.name + "/" + dimension.name + "_avatar.png")
+	var icon = Sprite.new()
+	add_child(icon)
+	icon.texture = avatar
+	icon.position.x = pceomon.position.x + pceomon.get_size().x/2
+	icon.position.y = pceomon.position.y + pceomon.get_size().y
+	icon.modulate.a8 = 200
+	icon.scale.x = 0.5
+	icon.scale.y = 0.5
+	 
+	R4[pceomon] = icon
 	pceomon.foes = []
 	pceomon.mates = []
 	metadata.dimensions["default"].erase(pceomon)
@@ -153,7 +165,7 @@ func release_pceomon(dimension, pceomon):
 	pceomon.foes = []
 	pceomon.mates = []
 	if pceomon in metadata.dimensions[dimension.name]:
-		metadata.dimensions[dimension].erase(pceomon)
+		metadata.dimensions[dimension.name].erase(pceomon)
 		for pceomones in metadata.dimensions[dimension.name]:
 			if pceomon in pceomones.mates:
 				pceomones.mates.erase(pceomon)
@@ -177,6 +189,8 @@ func release_pceomon(dimension, pceomon):
 					pceomones.foes.append(pceomon)
 		metadata.dimensions["default"].append(pceomon)
 		check_targets(pceomon, dimension)
+		R4[pceomon].queue_free()
+		R4.erase(pceomon)
 
 func check_targets(PCEOMON, R4):
 	for pceo in $Party.get_children():
