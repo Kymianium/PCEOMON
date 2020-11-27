@@ -22,6 +22,7 @@ const SPEED = 7
 const EVASION = 8
 const STUN = 9
 const POISON = 10
+const SHIELD = 11
 
 const ALLY = 30
 const ENEMY = 31
@@ -126,6 +127,7 @@ func update_buffs():
 	
 
 # VIDA Y ESTAMINA
+var actual_shield : int
 var actual_hp : int
 var max_hp : int
 var actual_stamina : int
@@ -188,20 +190,16 @@ func target_selected(pceomon,boss):
 			chosen = candidate
 	target = chosen
 	emit_signal("target_selected")
-#	if (selecting and (not boss) == selecting_allied):
-#		if (selecting_allied and mates.has(pceomon)):
-#			for mate in range(mates.size()):
-#				mates[mate].arrow.visible = false
-#				if (mates[mate] == pceomon):
-#					target = mate
-#					emit_signal("target_selected")
-#		elif (not selecting_allied and foes.has(pceomon)):
-#			for enemy in range(foes.size()):
-#				foes[target].arrow.visible = false
-#				if (foes[enemy] == pceomon):
-#					target = enemy
-#					emit_signal("target_selected")
-#					return
+
+
+
+
+func shield(target, amount : int):
+	for tar in target:
+		tar.actual_shield += amount
+		if (tar.actual_shield > target.max_hp):
+			target.actual_shield = target.max_hp
+	emit_signal("shielded", self, target, amount)
 
 
 
@@ -280,6 +278,13 @@ func _process(delta):
 			boss_next_attack()
 	elif(actual_stamina >= next_attack_required_stamina):
 		attack()
+	elif(stun_counter > 0):
+		delta_acum+=delta
+		if (delta_acum > 0.1):
+			delta_acum-=0.1
+			stun_counter-=1
+			if (stun_counter<=0):
+				$HBoxContainer/Status/Confusion.visible = false
 	elif (metadata.time_should_run()):
 		delta_acum+=delta
 		if (delta_acum>0.1):
@@ -287,12 +292,12 @@ func _process(delta):
 			actual_stamina = actual_stamina + getstat(SPEED)
 # warning-ignore:integer_division
 			$"HBoxContainer/StatsSummary/Stamina".value = actual_stamina*100/next_attack_required_stamina
-			
 			if poison_counter > 0 and actual_hp > poison_damage:
 				poison_counter -= poison_damage
 				if (poison_counter <= 0):
 					$"HBoxContainer/Status/Poison".visible = false
 					emit_signal("announcement","El envenenamiento de " + self.name + " ha terminado")
+					return
 				self.damage(poison_damage)
 
 func revive(hp):
@@ -381,13 +386,20 @@ func take_psychological_damage(var damage):
 func damage(var damage : int):
 	if rng.randf() > getstat(EVASION):
 		return 0
-	actual_hp = actual_hp - damage
+	if actual_shield > damage:
+		actual_shield-=damage
+		$"HBoxContainer/StatsSummary/Shield".vale = actual_shield*100/max_hp
+		return
+	else:
+		actual_shield = 0
+		actual_hp = actual_hp - damage
 # warning-ignore:integer_division
-	$"HBoxContainer/StatsSummary/HP".value = actual_hp*100/max_hp
-	if(actual_hp <= 0):
-		self.visible = false
-		emit_signal("died", self)
-		actual_hp = 0
+		$"HBoxContainer/StatsSummary/Shield".vale = actual_shield*100/max_hp
+		$"HBoxContainer/StatsSummary/HP".value = actual_hp*100/max_hp
+		if(actual_hp <= 0):
+			self.visible = false
+			emit_signal("died", self)
+			actual_hp = 0
 	return damage
 	
 func poison(target, damage : int):

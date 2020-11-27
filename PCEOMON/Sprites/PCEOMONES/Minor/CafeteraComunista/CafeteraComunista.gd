@@ -1,4 +1,4 @@
-extends "res://PCEOMON_combat.gd"
+extends "res://PCEOMONES_classes/MINOR.gd"
 
 var CoffeeParticle = "res://Sprites/PCEOMONES/Minor/CafeteraComunista/CoffeeParticle.tscn"
 var ChocolateParticle = "res://Sprites/PCEOMONES/Minor/CafeteraComunista/ChocolateHeal.tscn"

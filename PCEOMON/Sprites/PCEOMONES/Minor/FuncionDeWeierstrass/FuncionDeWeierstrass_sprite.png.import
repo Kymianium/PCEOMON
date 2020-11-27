@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/FuncionDeWeierstrass.png-03e01b11e74bba7f5a089157c45330c2.stex"
+path="res://.import/FuncionDeWeierstrass_sprite.png-a165c47af2851d5e87803cd0094c1535.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/PCEOMONES/Minor/FuncionDeWeierstrass/FuncionDeWeierstrass.png"
-dest_files=[ "res://.import/FuncionDeWeierstrass.png-03e01b11e74bba7f5a089157c45330c2.stex" ]
+source_file="res://Sprites/PCEOMONES/Minor/FuncionDeWeierstrass/FuncionDeWeierstrass_sprite.png"
+dest_files=[ "res://.import/FuncionDeWeierstrass_sprite.png-a165c47af2851d5e87803cd0094c1535.stex" ]
 
 [params]
 

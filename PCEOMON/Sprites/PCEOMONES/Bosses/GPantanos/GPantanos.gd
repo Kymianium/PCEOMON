@@ -7,7 +7,7 @@ func _ready():
 	attack1 = "SOY GPANTANOS"
 	name = "GPantanos"
 	actual_stamina = 1
-	max_hp = 200000
+	max_hp = 50000
 	actual_hp = max_hp
 	next_attack_required_stamina = 500
 	rng.randomize()

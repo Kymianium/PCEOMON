@@ -2,21 +2,21 @@ extends "res://PCEOMONES_classes/MINOR.gd"
 
 
 func _ready():
-	name = "Marinera de Cantor"
-	ability = "No numerable"
-	attack1 = "Ensaladillado"
-	attack2 = "Medida nula"
-	attack3 = "Rosquillazo"
-	attack4 = "Aperitivo"
+	name = "Función de Weierstrass"
+	ability = "Pincho"	#Por hacer
+	attack1 = "Confusión"
+	attack2 = "Paranoia"	#Por hacer
+	attack3 = "Extenuar"	#Por hacer
+	attack4 = "Terror nocturno"	   #Por hacer
 	type = "Menor"
 	._ready()
-	avatar_path = "res://Sprites/PCEOMONES/Minor/MarineraDeCantor/MarineraDeCantor_avatar.png"
+	avatar_path = "res://Sprites/PCEOMONES/Minor/FuncionDeWeierstrass/FuncionDeWeierstrass_avatar.png"
 	next_attack_required_stamina = 1300
 	
 
 func next1():
-	next_attack_required_stamina = 500
-	select_combat("¡Selecciona a quién hay que ensaladillar!",ENEMY)
+	next_attack_required_stamina = 700
+	select_combat("Selecciona a quien quieres confundir",ENEMY)
 	.next1()
 func next2():
 	next_attack_required_stamina = 300
@@ -35,8 +35,8 @@ func next4():
 
 
 func atk1():
-	buff(targets, SPEED, 10000, 0.6, 0)
-	unicast_damage(100, 0.3, CHEMICAL_DMG, targets,"Ensaladillado","¡Mayonesa, huevo, zanahora, yo qué coño sé! ¡Sufre mamón!")
+	targets[0].actual_stamina = 0
+	emit_signal("just_attacked", self.name, "Confusión", targets[0].name, "¡" + targets[0].name + " ha perdido la concentración!")
 	.atk1()
 	
 func atk2():

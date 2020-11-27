@@ -58,7 +58,7 @@ func atk2():
 	#(envenenamiento grave).
 	alcohol-=80
 	$"HBoxContainer/StatsSummary/Alcohol".value = float(alcohol)/maxalcohol *100
-	poison(targets,rng.randi_range(800,1000))
+	poison(targets,rng.randi_range(3800,4000))
 	emit_signal("just_attacked", "Armada", "Quijote", targets[0].name, "¡Hijo puta el que se deje algo! " + targets[0].name + " va muy ciego")
 	.atk2()
 
