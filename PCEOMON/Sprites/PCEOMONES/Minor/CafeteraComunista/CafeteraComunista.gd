@@ -64,7 +64,8 @@ func atk2():
 	for enemy in foes:
 		if (more_healed == null || enemy.actual_hp/enemy.max_hp > more_healed.actual_hp/more_healed.max_hp):
 			more_healed = enemy
-	damage_done = make_damage(more_healed,100,0.5,PSYCHOLOGYCAL_DMG)
+	if more_healed != null:
+		damage_done = make_damage(more_healed,100,0.5,PSYCHOLOGYCAL_DMG)
 	if (damage_done != 0):
 		for ally in mates:
 			if (less_healed == [] || less_healed[0].actual_hp/less_healed[0].max_hp > ally.actual_hp/ally.max_hp):

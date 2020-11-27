@@ -452,18 +452,19 @@ func select_combat(var message : String, var target):
 			targets.append(yield(select(ALLY), "completed"))
 		else:
 			emit_signal("announcement", "No hay aliados para seleccionar")
-			next_attack_required_stamina = 1
+			metadata.time_exists.append(self)
 	elif target == ENEMY:
 		if foes != []:
 			emit_signal("permanent_announcement", message)
 			targets.append(yield(select(ENEMY), "completed"))
 		else:
 			emit_signal("announcement", "No hay enemigos para seleccionar")
-			next_attack_required_stamina = 1
+			metadata.time_exists.append(self)
 	elif target == BOTH:
 		if foes != [] or mates != []:
 			emit_signal("permanent_announcement", message)
 			targets.append(yield(select(BOTH), "completed"))
 		else:
 			emit_signal("announcement", "No hay aliados ni enemigos para seleccionar")
+			metadata.time_exists.append(self)
 	

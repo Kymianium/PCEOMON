@@ -198,6 +198,11 @@ func check_targets(PCEOMON, R4):
 			continue
 		if (PCEOMON in pceo.targets):
 			pceo.target_gone(PCEOMON)
+		if (PCEOMON == pceo):
+			for target in pceo.targets:
+				pceo.target_gone(target)
+			if (pceo.type == "Gym"):
+				pceo.focus_enemy()
 		if (pceo.type == "Gym" and pceo.selected_foe == PCEOMON):
 			pceo.focus_enemy()
 		if (pceo.type == "Gym" and pceo.selected_foe == null and PCEOMON in pceo.foes):
