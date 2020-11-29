@@ -388,13 +388,13 @@ func damage(var damage : int):
 		return 0
 	if actual_shield > damage:
 		actual_shield-=damage
-		$"HBoxContainer/StatsSummary/Shield".vale = actual_shield*100/max_hp
+		$"HBoxContainer/StatsSummary/Shield".value = actual_shield*100/max_hp
 		return
 	else:
 		actual_shield = 0
 		actual_hp = actual_hp - damage
 # warning-ignore:integer_division
-		$"HBoxContainer/StatsSummary/Shield".vale = actual_shield*100/max_hp
+		$"HBoxContainer/StatsSummary/Shield".value = actual_shield*100/max_hp
 		$"HBoxContainer/StatsSummary/HP".value = actual_hp*100/max_hp
 		if(actual_hp <= 0):
 			self.visible = false
