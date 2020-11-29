@@ -1,5 +1,6 @@
 extends "res://PCEOMONES_classes/MINOR.gd"
 
+var selected_mate
 
 func _ready():
 	name = "Función de Weierstrass"
@@ -12,7 +13,10 @@ func _ready():
 	._ready()
 	avatar_path = "res://Sprites/PCEOMONES/Minor/FuncionDeWeierstrass/FuncionDeWeierstrass_avatar.png"
 	next_attack_required_stamina = 1300
-	
+
+func passive(user, target, damage : Array, damage_type):
+	if (selected_mate in target) and damage_type == PHYSICAL_DMG:
+		unicast_damage(100, 0.2, PHYSICAL_DMG, [user],"MODIFICAR TEXTO","MODIFICAR TEXTO")
 
 func next1():
 	next_attack_required_stamina = 700
@@ -20,7 +24,7 @@ func next1():
 	.next1()
 func next2():
 	next_attack_required_stamina = 300
-	select_combat("¡Selecciona quién tiene medida nula!",ALLY)
+	select_combat("¡Selecciona a quién quieres asustar!",ENEMY)
 	.next2()
 
 func next3():
@@ -40,8 +44,8 @@ func atk1():
 	.atk1()
 	
 func atk2():
-	emit_signal("just_attacked", self.name, "Medida nula", "", "¿¡Dónde se ha metido " + targets[0].name + "!?")
-	buff(targets, EVASION, 3000, 0.5, 0)
+	emit_signal("just_attacked", self.name, "Paranoia", "", "MODIFICAR TEXTO") 
+	buff(targets, PSYCHOLOGYCAL_DFC, 3000, 0.5, 0)
 	.atk2()
 func atk3():
 	unicast_damage(100, 0.2, CHEMICAL_DMG, targets,"Rosquillazo","... Em... Sí, bueno... Le dió un rosquillazo. Don't mess with Cantor, I guess.")

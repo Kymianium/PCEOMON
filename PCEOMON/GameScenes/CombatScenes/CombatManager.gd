@@ -67,7 +67,12 @@ func _ready():
 			incoming_permanent_announcement("¡Selecciona el objetivo de " + pceo.name + "!")
 			pceo.selected_foe = yield(pceo.select(pceo.ENEMY), "completed")
 			pceo.move()
-	
+		if pceo.name == "Función de Weierstrass":
+			incoming_permanent_announcement("¡Selecciona al aliado de " + pceo.name + " que quieras proteger!")
+			pceo.selected_mate = yield(pceo.select(pceo.ALLY), "completed")
+			for enemy in $"Enemies".get_children():
+				enemy.connect("attacked",pceo,"passive")
+
 
 func write_attack_text(user: String, attack : String, objective : String, string : String):
 	if $DialogueBox.visible == true:
