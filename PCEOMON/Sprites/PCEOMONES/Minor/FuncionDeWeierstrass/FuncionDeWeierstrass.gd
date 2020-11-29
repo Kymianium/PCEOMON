@@ -35,7 +35,7 @@ func next4():
 
 
 func atk1():
-	targets[0].actual_stamina = 0
+	targets[0].set_stamina(0)
 	emit_signal("just_attacked", self.name, "Confusión", targets[0].name, "¡" + targets[0].name + " ha perdido la concentración!")
 	.atk1()
 	

@@ -43,7 +43,10 @@ func manage_party(pceomon):
 		if not minor:
 			metadata.party_paths.append("res://Sprites/PCEOMONES/Major/" + pceomon + "/" + pceomon +".tscn")
 		else:
-			metadata.party_paths.append("res://Sprites/PCEOMONES/Minor/" + pceomon + "/" + pceomon +".tscn")
+			if pceomon == "FuncióndeWeierstrass":
+				metadata.party_paths.append("res://Sprites/PCEOMONES/Minor/FuncionDeWeierstrass/FuncionDeWeierstrass.tscn")
+			else:
+				metadata.party_paths.append("res://Sprites/PCEOMONES/Minor/" + pceomon + "/" + pceomon +".tscn")
 		var text = $"CenterContainer/MenuDistribution/Miscelaneous/Party".text
 		text = text + ' ' + pceomon
 		$"CenterContainer/MenuDistribution/Miscelaneous/Party".text = text

@@ -480,3 +480,8 @@ func select_combat(var message : String, var target):
 			emit_signal("announcement", "No hay aliados ni enemigos para seleccionar")
 			metadata.time_exists.append(self)
 	
+func set_stamina(value):
+	actual_stamina = min(value, next_attack_required_stamina)
+	$"HBoxContainer/StatsSummary/Stamina".value = actual_stamina*100/next_attack_required_stamina
+	
+
