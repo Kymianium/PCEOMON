@@ -180,7 +180,7 @@ func release_pceomon(dimension, pceomon):
 					pceomon.foes.append(pceomones)
 					pceomones.foes.append(pceomon)
 		else:
-			for pceomones in metadata.dimensions[dimension.name]:
+			for pceomones in metadata.dimensions["default"]:
 				if pceomones in $Enemies.get_children():
 					pceomon.mates.append(pceomones)
 					pceomones.mates.append(pceomon)
