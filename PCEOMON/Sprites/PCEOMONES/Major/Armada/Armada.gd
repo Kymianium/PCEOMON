@@ -83,13 +83,13 @@ func atk4():
 	#daño físico y mucho daño químico. Además si el enemigo tiene el 20% de la vida o menos, le oneshotea.
 	var damage
 	var damage_done
+	print(float(targets[0].actual_hp)/targets[0].max_hp)
 	if float(targets[0].actual_hp)/targets[0].max_hp <= 0.2:
-		unicast_damage(targets[0].max_hp,0, TRUE_DMG, targets,"¿Un lolete?","¡El lugar está lleno de [shake]VÍSCERAS[/shake]!")
+		unicast_damage(targets[0].max_hp,0, TRUE_DMG, targets,"¿Un lolete?","¡SE LO HA [shake level=10]METIDO EN EL BUCHE[/shake]!")
 		alcohol-=400
 		$"HBoxContainer/StatsSummary/Alcohol".value = float(alcohol)/maxalcohol *100
-		return
 	else:
-		unicast_damage(1000,1, PHYSICAL_DMG, targets,"¿Un lolete?","¡El lugar está lleno de [shake]VÍSCERAS[/shake]!")
+		unicast_damage(1000,1, PHYSICAL_DMG, targets,"¿Un lolete?","¡El lugar está lleno de [shake level=10]VÍSCERAS[/shake]!")
 		alcohol-=400
 		$"HBoxContainer/StatsSummary/Alcohol".value = float(alcohol)/maxalcohol *100
 	.atk4()	
