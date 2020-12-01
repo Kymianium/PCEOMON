@@ -192,6 +192,7 @@ func target_selected(pceomon,boss):
 	if selecting:
 		if chosen == null:
 			emit_signal("announcement", "El objetivo seleccionado no es válido")
+			select_candidates[target].arrow.visible = true
 			return
 		target = chosen
 		emit_signal("target_selected")
