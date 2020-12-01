@@ -1,6 +1,7 @@
 extends "res://PCEOMONES_classes/MINOR.gd"
 
 var selected_mate
+var tired_targets = {}
 
 func _ready():
 	name = "Función de Weierstrass"
@@ -29,12 +30,16 @@ func next2():
 
 func next3():
 	next_attack_required_stamina = 400
-	select_combat("Alguien se va a llevar un rosquillazo...",ENEMY)
+	select_combat("Te encuentras cansado, muy cansado...",ENEMY)
 	.next3()
 
 func next4():
-	next_attack_required_stamina = 2000
-	select_combat("Moriré... Por ti...",ALLY)
+	next_attack_required_stamina = 200
+	var sleeping = []
+	for enemy in foes:
+		if enemy.stun_counter > 0:
+			sleeping.append(enemy)
+	select_custom_combat("Bienvenido a tu peor [shake level=20]pesadilla[/shake]",sleeping)
 	.next4()
 
 
@@ -44,20 +49,29 @@ func atk1():
 	.atk1()
 	
 func atk2():
-	emit_signal("just_attacked", self.name, "Paranoia", "", "MODIFICAR TEXTO") 
+	emit_signal("just_attacked", self.name, "Paranoia", targets[0].name, "¡La mente de " + targets[0].name + "ahora está debilitada!") 
 	buff(targets, PSYCHOLOGYCAL_DFC, 3000, 0.5, 0)
 	.atk2()
 func atk3():
-	unicast_damage(100, 0.2, CHEMICAL_DMG, targets,"Rosquillazo","... Em... Sí, bueno... Le dió un rosquillazo. Don't mess with Cantor, I guess.")
+	if targets[0] in tired_targets:
+		tired_targets[targets[0]] += 1
+		if tired_targets[targets[0]] == 3:
+			tired_targets[targets[0]] = 0
+			targets[0].stun_counter = 7000
+			emit_signal("just_attacked",self.name,"Extenuar",targets[0].name,"¡" + targets[0].name + " se ha quedado durmiendo!")
+		#TODO Crear estado durmiendo y dormir aquí si se llega a cierto umbral. Resetar después el valor de tired_targets
+		#Hacer en ese caso el emit signal también. Modificar el otro para que solo pase por un emit signal
+		else:
+			buff(targets, SPEED, 2000, 0.5, 0)
+			emit_signal("just_attacked",self.name, "Extenuar",targets[0].name, targets[0].name + " cada vez está más cansado")
+	else:
+		tired_targets[targets[0]] = 1
+		buff(targets, SPEED, 2000, 0.5, 0)
+		emit_signal("just_attacked",self.name, "Extenuar",targets[0].name, targets[0].name + " cada vez está más cansado")
 	.atk3()
 func atk4():
-	permanent_buff(targets, [CHEMICAL_DMG], 1.5, 50)
-	permanent_buff(targets, [PHYSICAL_DMG], 1.5, 50)
-	permanent_buff(targets, [PSYCHOLOGYCAL_DMG], 1.5, 50)
-	permanent_buff(targets, [CHEMICAL_DFC], 1.5, 50)
-	permanent_buff(targets, [PHYSICAL_DFC], 1.5, 50)
-	permanent_buff(targets, [PSYCHOLOGYCAL_DFC], 1.5, 50)
-	permanent_buff(targets, [SPEED], 1.5, 0)
-	damage(max_hp)
-	emit_signal("just_attacked",self.name,"Aperitivo","","D.E.P., Marinera de Cantor. Siempre guardaremos un huequito de medida nula para ti en nuestro corazón <3")
+	if (targets[0].stun_counter <= 0):
+		emit_signal("just_attacked",self.name,"Terror nocturno",targets[0].name,"¡Pero ya no estaba durmiendo!")
+	else:
+		unicast_damage(500,3, PSYCHOLOGYCAL_DMG, targets,"Terror nocturno","Una sombra puntiaguda acecha en la noche...")
 	.atk4()

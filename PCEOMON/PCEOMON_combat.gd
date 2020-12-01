@@ -23,6 +23,7 @@ const EVASION = 8
 const STUN = 9
 const POISON = 10
 const SHIELD = 11
+const SLEEP = 12
 
 const ALLY = 30
 const ENEMY = 31
@@ -183,11 +184,16 @@ func _input(event):
 
 # warning-ignore:shadowed_variable
 func target_selected(pceomon,boss):
-	var chosen
+	var chosen = null
 	for candidate in select_candidates.size():
 		select_candidates[candidate].arrow.visible = false
 		if (select_candidates[candidate] == pceomon):
 			chosen = candidate
+	if chosen == null:
+		for candidate in select_candidates.size():
+			select_candidates[candidate].arrow.visible = false
+		select_candidates[target].arrow.visible = true
+		return
 	target = chosen
 	emit_signal("target_selected")
 
@@ -285,6 +291,7 @@ func _process(delta):
 			stun_counter-=1
 			if (stun_counter<=0):
 				$HBoxContainer/Status/Confusion.visible = false
+				$HBoxContainer/Status/Sleep.visible = false
 	elif (metadata.time_should_run()):
 		delta_acum+=delta
 		if (delta_acum>0.1):
@@ -408,6 +415,24 @@ func poison(target, damage : int):
 		tar.make_poison_visible()
 	emit_signal("status", self, target, POISON)
 
+func stun(target, duration : int, stun : bool):
+	if not stun:
+		for tar in target:
+			tar.stun_counter = duration
+			tar.make_sleep_visible()
+		emit_signal("status", self, target, SLEEP)
+	else:
+		for tar in target:
+			tar.stun_counter = duration
+			tar.make_stun_visible()
+		emit_signal("status", self, target, STUN)
+
+func make_sleep_visible():
+	$"HBoxContainer/Status/Sleep".visible = true
+
+func make_stun_visible():
+	$"HBoxContainer/Status/Confusion".visible = true
+
 func make_poison_visible():
 	$"HBoxContainer/Status/Poison".visible = true
 	# FUNCIÓN PARA SELECCIONAR UN PCEOMON ALIADO 
@@ -442,7 +467,22 @@ func select(var identity):
 		select_candidates[target].arrow.visible = false
 		selecting = false
 		return select_candidates[target]
-		
+
+func custom_select(var targets):
+	target = 0
+	selecting = true
+	select_candidates = []
+	select_candidates += targets #SI HACES ESTO, GODOT LE AÑADE AL PRIMER ARRAY
+	#LOS ELEMENTOS DEL SEGUNDO, RE LOCO MI REY
+	select_candidates[target].arrow.visible = true
+	print("Seleccionando aliado")
+	yield(self, "target_selected")
+	select_candidates[target].arrow.visible = false
+	selecting = false
+	return select_candidates[target]
+
+
+
 func change_selected(var forward : bool):
 	select_candidates[target].arrow.visible = false
 	if forward:
@@ -479,7 +519,16 @@ func select_combat(var message : String, var target):
 		else:
 			emit_signal("announcement", "No hay aliados ni enemigos para seleccionar")
 			metadata.time_exists.append(self)
-	
+
+
+#Selecciona uno de los pceomones en el array targets
+func select_custom_combat(var message :String, var targets):
+	if targets == []:
+		emit_signal("announcement", "No hay pceomones para seleccionar")
+		metadata.time_exists.append(self)
+	else:
+		targets.append(yield(custom_select(targets), "completed"))
+
 func set_stamina(value):
 	actual_stamina = min(value, next_attack_required_stamina)
 	$"HBoxContainer/StatsSummary/Stamina".value = actual_stamina*100/next_attack_required_stamina
