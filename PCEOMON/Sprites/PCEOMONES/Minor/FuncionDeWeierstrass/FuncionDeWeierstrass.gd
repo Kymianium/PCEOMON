@@ -15,6 +15,10 @@ func _ready():
 	avatar_path = "res://Sprites/PCEOMONES/Minor/FuncionDeWeierstrass/FuncionDeWeierstrass_avatar.png"
 	next_attack_required_stamina = 1300
 
+func new_foe(foe):
+	foe.connect("attacked", self, "passive")
+	.new_foe(foe)
+
 func passive(user, target, damage : Array, damage_type):
 	if (selected_mate in target) and damage_type == PHYSICAL_DMG:
 		unicast_damage(100, 0.2, PHYSICAL_DMG, [user],"MODIFICAR TEXTO","MODIFICAR TEXTO")

@@ -189,13 +189,12 @@ func target_selected(pceomon,boss):
 		select_candidates[candidate].arrow.visible = false
 		if (select_candidates[candidate] == pceomon):
 			chosen = candidate
-	if chosen == null:
-		for candidate in select_candidates.size():
-			select_candidates[candidate].arrow.visible = false
-		select_candidates[target].arrow.visible = true
-		return
-	target = chosen
-	emit_signal("target_selected")
+	if selecting:
+		if chosen == null:
+			emit_signal("announcement", "El objetivo seleccionado no es válido")
+			return
+		target = chosen
+		emit_signal("target_selected")
 
 
 

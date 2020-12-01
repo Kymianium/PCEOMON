@@ -7,5 +7,27 @@
 [node name="PCEOMON" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 
+[node name="StatsSummary" parent="HBoxContainer" index="0"]
+margin_bottom = 50.0
+
+[node name="HP" parent="HBoxContainer/StatsSummary" index="0"]
+margin_top = 0.0
+margin_bottom = 50.0
+
+[node name="Shield" parent="HBoxContainer/StatsSummary" index="1"]
+margin_top = 0.0
+margin_bottom = 50.0
+
+[node name="Stamina" parent="HBoxContainer/StatsSummary" index="2"]
+margin_top = 10.0
+margin_bottom = 40.0
+
+[node name="Alcohol" parent="HBoxContainer/StatsSummary" index="3"]
+margin_top = 15.0
+margin_bottom = 35.0
+
+[node name="Status" parent="HBoxContainer" index="1"]
+margin_bottom = 50.0
+
 [node name="Sprite" parent="SpriteContainer" index="0"]
 texture = ExtResource( 3 )
