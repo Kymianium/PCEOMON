@@ -63,13 +63,8 @@ func _ready():
 	load_pceomones()
 	#Iniciamos los gyms y los R4
 	for pceo in $"Party".get_children():
-		if (pceo.type == "Gym"):
-			incoming_permanent_announcement("¡Selecciona el objetivo de " + pceo.name + "!")
-			pceo.selected_foe = yield(pceo.select(pceo.ENEMY), "completed")
-			pceo.move()
-		if pceo.name == "Función de Weierstrass":
-			incoming_permanent_announcement("¡Selecciona al aliado de " + pceo.name + " que quieras proteger!")
-			pceo.selected_mate = yield(pceo.select(pceo.ALLY), "completed")
+		if (pceo.need_to_select):
+			pceo.needed_select()
 
 
 func write_attack_text(user: String, attack : String, objective : String, string : String):

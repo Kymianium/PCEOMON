@@ -3,6 +3,7 @@ extends Node2D
 var foes = []	#Array de los enemigos
 var mates = []	#Array de los aliados
 var select_candidates = []	#Array de los "candidatos a elección". Esto es útil
+var need_to_select : bool = false
 #cuando hay que seleccionar o bien aliados, o bien enemigos, o bien ambos.
 
 
@@ -532,5 +533,12 @@ func select_custom_combat(var message :String, var targets):
 func set_stamina(value):
 	actual_stamina = min(value, next_attack_required_stamina)
 	$"HBoxContainer/StatsSummary/Stamina".value = actual_stamina*100/next_attack_required_stamina
+	
+func needed_select():
+	if not need_to_select:
+		print("MUERTE")
+		return
+	
+	
 	
 

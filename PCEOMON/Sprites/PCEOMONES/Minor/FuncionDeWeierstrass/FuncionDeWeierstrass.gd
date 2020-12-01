@@ -4,6 +4,7 @@ var selected_mate
 var tired_targets = {}
 
 func _ready():
+	need_to_select = true
 	name = "Función de Weierstrass"
 	ability = "Pincho"	#Por hacer
 	attack1 = "Confusión"
@@ -20,7 +21,7 @@ func new_foe(foe):
 	.new_foe(foe)
 
 func passive(user, target, damage : Array, damage_type):
-	if (selected_mate in target) and damage_type == PHYSICAL_DMG:
+	if (selected_mate in target):# and damage_type == PHYSICAL_DMG:
 		unicast_damage(100, 0.2, PHYSICAL_DMG, [user],"MODIFICAR TEXTO","MODIFICAR TEXTO")
 
 func next1():
@@ -48,7 +49,7 @@ func next4():
 
 
 func atk1():
-	targets[0].set_stamina(0)
+	targets[0].set_stamina(1)
 	emit_signal("just_attacked", self.name, "Confusión", targets[0].name, "¡" + targets[0].name + " ha perdido la concentración!")
 	.atk1()
 	
@@ -79,3 +80,7 @@ func atk4():
 	else:
 		unicast_damage(500,3, PSYCHOLOGYCAL_DMG, targets,"Terror nocturno","Una sombra puntiaguda acecha en la noche...")
 	.atk4()
+	
+func needed_select():
+	emit_signal("permanent_announcement","¡Selecciona al aliado de " + self.name + " que quieras proteger!")
+	selected_mate = yield(select(ALLY), "completed")

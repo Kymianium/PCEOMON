@@ -7,6 +7,7 @@ var movement_manager
 var selected_foe
 
 func _ready():
+	need_to_select = true
 	movement_manager = get_node("Movement")
 	type = "Gym"
 	._ready()
@@ -59,3 +60,8 @@ func move():
 		vector.y += 30
 		movement_manager.interpolate_property(self, "position", self.position, vector, 2.0, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
 		movement_manager.start()
+
+func needed_select():
+	emit_signal("permanent_announcement","¡Selecciona el objetivo de " + self.name + "!")
+	selected_foe = yield(select(ENEMY), "completed")
+	move()
