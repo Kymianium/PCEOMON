@@ -63,10 +63,8 @@ func atk3():
 func atk4():
 	if targets[0].actual_hp < calculate_physical_damage(1000, 1):
 		unicast_damage(targets[0].max_hp,0, TRUE_DMG, targets,"911","BOOOM, [shake level=10]¡CHEQUEA ESTOS MOVIMIENTOS, GEORGE BUSH![/shake]")
-		return
 	else:
 		unicast_damage(targets[0].max_hp,0, TRUE_DMG, targets,"911","Espera, ¿hacia dónde va ese avión...? . . . [shake level=10]OH DIOS MÍO[/shake]")
-		return
 	.atk4()
 
 

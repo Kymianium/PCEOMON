@@ -1,11 +1,11 @@
 Paco
-Un hijo de puta. Es oriolano, por eso siempre trae su remo\ny sus aletas para bucear. Le gusta Sanderson.\n@malditopacomora en Twitter.
+Un hijo de puta. Es oriolano, por eso siempre trae su remo y sus aletas para bucear. Le gusta Sanderson.@malditopacomora en Twitter.
 R4
 Oriolano
 Tiene una pequeña probabilidad de esquivar un ataque.
 Hundido entre las profundidas del Segura, los ataques de los enemigos no pueden alcanzarle.
 ¡Es hora de marchar!
-Saca a los oponentes de Orihuela.\nCausa daño psicológico.
+Saca a los oponentes de Orihuela. Causa daño psicológico.
 Paco se va repentinamente, dejando solos a los oponentes que están en Orihuela. Solos y confusos, vuelven al mundo real.
 Inundar
 Introduce a un enemigo en la Orihuela inundada.
@@ -14,5 +14,5 @@ F por Álgebra
 Aumenta las defensas de Paco.
 Paco se queja de que va a suspender, pero aprueba de todas formas. Se viene arriba y aumentan todos sus tipos de defensa.
 No hacer jal
-Carga un ataque poderoso, pero no lo lanza\nhasta dentro de unos turnos.
+Carga un ataque poderoso, pero no lo lanza hasta dentro de unos turnos.
 Tras preparar un ataque devastador, Paco se olvida de su existencia. Dentro de una cantidad aleatoria de turnos, Paco se acrodará de que lo tiene por ahí y lo usará.

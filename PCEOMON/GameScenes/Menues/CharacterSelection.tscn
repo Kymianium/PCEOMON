@@ -244,6 +244,7 @@ margin_right = 441.0
 margin_bottom = 41.0
 
 [node name="PCEOMONInfo" parent="." instance=ExtResource( 7 )]
+visible = false
 [connection signal="pressed" from="CenterContainer/MenuDistribution/Major/SelectAndNavigate/Column1/Armada" to="." method="_on_Armada_pressed"]
 [connection signal="pressed" from="CenterContainer/MenuDistribution/Major/SelectAndNavigate/Column1/Paco" to="." method="_on_Paco_pressed"]
 [connection signal="pressed" from="CenterContainer/MenuDistribution/Major/SelectAndNavigate/Column2/Alparko" to="." method="_on_Alparko_pressed"]

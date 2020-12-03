@@ -24,6 +24,7 @@ func _input(event):
 func _ready():
 	metadata.dimensions["default"] = [] # es algo así?
 	###TEMPORAL, METER ENEMIGOS
+	$Combatinterface.connect("text", self, "incoming_announcement")
 	for i in range(0, metadata.party.size()):
 		pceomon = load(metadata.party_paths[i])
 		pceo_instance = pceomon.instance()
@@ -70,7 +71,6 @@ func _ready():
 func write_attack_text(user: String, attack : String, objective : String, string : String):
 	if $DialogueBox.visible == true:
 		yield(self,"ended_text")
-	print("Llega la señal just_attacked")
 		
 	var showmessage
 	metadata.freeze_time = true
@@ -109,10 +109,45 @@ func load_pceomones():
 func change_interface(turner):
 	#print("Cambiando la interfaz:\n a la de : ",turner.name)
 	$Combatinterface/CombatGUI/Fight/Avatar.texture = load(turner.avatar_path)
+	var txt = File.new()
+	if turner.type != 'minor':
+		txt.open("res://GameScenes/Menues/Selection/PCEOMONES/Major/" + turner.name.replace(" ","") +"Info.txt", File.READ)
+	else:
+		txt.open("res://GameScenes/Menues/Selection/PCEOMONES/Minor/" + turner.name.replace(" ","") +"Info.txt", File.READ)
+	txt.get_line().replace("\\n","\n")
+	txt.get_line().replace("\\n","\n")
+	txt.get_line().replace("\\n","\n")
+	var abilityname = txt.get_line().replace("\\n","\n")
+	txt.get_line().replace("\\n","\n")
+	var abilitydesc = txt.get_line().replace("\\n","\n")
+	var att1name = txt.get_line().replace("\\n","\n")
+	txt.get_line().replace("\\n","\n")
+	var att1desc = txt.get_line().replace("\\n","\n")
+	var att2name = txt.get_line().replace("\\n","\n")
+	txt.get_line().replace("\\n","\n")
+	var att2desc = txt.get_line().replace("\\n","\n")
+	var att3name = txt.get_line().replace("\\n","\n")
+	txt.get_line().replace("\\n","\n")
+	var att3desc = txt.get_line().replace("\\n","\n")
+	var att4name = txt.get_line().replace("\\n","\n")
+	txt.get_line().replace("\\n","\n")
+	var att4desc = txt.get_line().replace("\\n","\n")
+	
+	$Combatinterface/CombatGUI/Data/Attacks1/Atk1.text = att1name
+	$Combatinterface/CombatGUI/Data/Attacks1/Atk2.text = att2name
+	$Combatinterface/CombatGUI/Data/Attacks2/Atk3.text = att3name
+	$Combatinterface/CombatGUI/Data/Attacks2/Atk4.text = att4name
+	$Combatinterface/CombatGUI/Data/Passive/Passive.text = abilityname
+	$Combatinterface.atk1 = att1desc
+	$Combatinterface.atk2 = att2desc
+	$Combatinterface.atk3 = att3desc
+	$Combatinterface.atk4 = att4desc
+	$Combatinterface.passive = abilitydesc
+	
 	info = str(turner.name) + "\n" + 'VIDA : ' + str(turner.actual_hp) + '/' + str(turner.max_hp)
 	$"Combatinterface/CombatGUI/Fight/Attacks/Attack1/Attack1".text = turner.attack1
 	$"Combatinterface/CombatGUI/Fight/Attacks/Attack1/Attack2".text = turner.attack2
-	$"Combatinterface/CombatGUI/Fight/Attacks/Attack2/Attack 3".text = turner.attack3
+	$"Combatinterface/CombatGUI/Fight/Attacks/Attack2/Attack3".text = turner.attack3
 	$"Combatinterface/CombatGUI/Fight/Attacks/Attack2/Attack4".text = turner.attack4
 	$"Combatinterface/CombatGUI/MainOptions/Info".text = info
 	
@@ -298,3 +333,5 @@ func revive(pceomon):
 		enemy.foes.append(pceomon)
 	for mate in $"Party".get_children():
 		mate.mates.append(pceomon)
+
+

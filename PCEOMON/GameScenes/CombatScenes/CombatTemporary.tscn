@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://GameScenes/CombatScenes/CombatManager.gd" type="Script" id=1]
 [ext_resource path="res://Font/SmallFont.tres" type="DynamicFont" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Font/VersionFont.tres" type="DynamicFont" id=4]
 [ext_resource path="res://GameScenes/DialogueBox.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Backgrounds/Fondo PCEOMON.png" type="Texture" id=6]
+[ext_resource path="res://GameScenes/CombatScenes/Combatinterface.gd" type="Script" id=7]
 
 [node name="TurnManager" type="Node2D"]
 script = ExtResource( 1 )
@@ -25,6 +26,7 @@ position = Vector2( 500, 20 )
 margin_top = 305.0
 margin_right = 640.0
 margin_bottom = 480.0
+script = ExtResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -40,9 +42,8 @@ __meta__ = {
 }
 
 [node name="MainOptions" type="VBoxContainer" parent="Combatinterface/CombatGUI"]
-visible = false
-margin_left = 198.0
-margin_right = 281.0
+margin_left = 194.0
+margin_right = 277.0
 margin_bottom = 175.0
 custom_constants/separation = 10
 alignment = 1
@@ -76,8 +77,8 @@ text = "Datos"
 
 [node name="Data" type="HBoxContainer" parent="Combatinterface/CombatGUI"]
 visible = false
-margin_left = 247.0
-margin_right = 492.0
+margin_left = 160.0
+margin_right = 405.0
 margin_bottom = 175.0
 custom_constants/separation = 10
 
@@ -87,14 +88,14 @@ margin_bottom = 175.0
 custom_constants/separation = 10
 alignment = 1
 
-[node name="Attack1" type="Button" parent="Combatinterface/CombatGUI/Data/Attacks1"]
+[node name="Atk1" type="Button" parent="Combatinterface/CombatGUI/Data/Attacks1"]
 margin_top = 53.0
 margin_right = 74.0
 margin_bottom = 82.0
 custom_fonts/font = ExtResource( 2 )
 text = "Attack"
 
-[node name="Attack2" type="Button" parent="Combatinterface/CombatGUI/Data/Attacks1"]
+[node name="Atk2" type="Button" parent="Combatinterface/CombatGUI/Data/Attacks1"]
 margin_top = 92.0
 margin_right = 74.0
 margin_bottom = 121.0
@@ -108,14 +109,14 @@ margin_bottom = 175.0
 custom_constants/separation = 10
 alignment = 1
 
-[node name="Attack3" type="Button" parent="Combatinterface/CombatGUI/Data/Attacks2"]
+[node name="Atk3" type="Button" parent="Combatinterface/CombatGUI/Data/Attacks2"]
 margin_top = 53.0
 margin_right = 74.0
 margin_bottom = 82.0
 custom_fonts/font = ExtResource( 2 )
 text = "Attack"
 
-[node name="Attack4" type="Button" parent="Combatinterface/CombatGUI/Data/Attacks2"]
+[node name="Atk4" type="Button" parent="Combatinterface/CombatGUI/Data/Attacks2"]
 margin_top = 92.0
 margin_right = 74.0
 margin_bottom = 121.0
@@ -128,7 +129,7 @@ margin_right = 245.0
 margin_bottom = 175.0
 alignment = 1
 
-[node name="Button" type="Button" parent="Combatinterface/CombatGUI/Data/Passive"]
+[node name="Passive" type="Button" parent="Combatinterface/CombatGUI/Data/Passive"]
 margin_top = 73.0
 margin_right = 77.0
 margin_bottom = 102.0
@@ -136,8 +137,8 @@ custom_fonts/font = ExtResource( 2 )
 text = "Passive"
 
 [node name="Fight" type="VBoxContainer" parent="Combatinterface/CombatGUI"]
-margin_left = 244.0
-margin_right = 402.0
+margin_left = 287.0
+margin_right = 445.0
 margin_bottom = 175.0
 alignment = 1
 
@@ -185,7 +186,7 @@ margin_bottom = 68.0
 custom_constants/separation = 10
 alignment = 1
 
-[node name="Attack 3" type="Button" parent="Combatinterface/CombatGUI/Fight/Attacks/Attack2"]
+[node name="Attack3" type="Button" parent="Combatinterface/CombatGUI/Fight/Attacks/Attack2"]
 margin_right = 74.0
 margin_bottom = 29.0
 custom_fonts/font = ExtResource( 2 )
@@ -227,8 +228,15 @@ text = "Fusión"
 
 [node name="DialogueBox" parent="." instance=ExtResource( 5 )]
 visible = false
+[connection signal="pressed" from="Combatinterface/CombatGUI/MainOptions/Fight" to="Combatinterface" method="_on_Fight_pressed"]
+[connection signal="pressed" from="Combatinterface/CombatGUI/MainOptions/Data" to="Combatinterface" method="_on_Data_pressed"]
+[connection signal="pressed" from="Combatinterface/CombatGUI/Data/Attacks1/Atk1" to="Combatinterface" method="_on_Atk1_pressed"]
+[connection signal="pressed" from="Combatinterface/CombatGUI/Data/Attacks1/Atk2" to="Combatinterface" method="_on_Atk2_pressed"]
+[connection signal="pressed" from="Combatinterface/CombatGUI/Data/Attacks2/Atk3" to="Combatinterface" method="_on_Atk3_pressed"]
+[connection signal="pressed" from="Combatinterface/CombatGUI/Data/Attacks2/Atk4" to="Combatinterface" method="_on_Atk4_pressed"]
+[connection signal="pressed" from="Combatinterface/CombatGUI/Data/Passive/Passive" to="Combatinterface" method="_on_Passive_pressed"]
 [connection signal="pressed" from="Combatinterface/CombatGUI/Fight/Attacks/Attack1/Attack1" to="." method="_on_Attack1_pressed"]
 [connection signal="pressed" from="Combatinterface/CombatGUI/Fight/Attacks/Attack1/Attack2" to="." method="_on_Attack2_pressed"]
-[connection signal="pressed" from="Combatinterface/CombatGUI/Fight/Attacks/Attack2/Attack 3" to="." method="_on_Attack_3_pressed"]
+[connection signal="pressed" from="Combatinterface/CombatGUI/Fight/Attacks/Attack2/Attack3" to="." method="_on_Attack_3_pressed"]
 [connection signal="pressed" from="Combatinterface/CombatGUI/Fight/Attacks/Attack2/Attack4" to="." method="_on_Attack4_pressed"]
 [connection signal="input" from="DialogueBox" to="." method="_on_DialogueBox_input"]

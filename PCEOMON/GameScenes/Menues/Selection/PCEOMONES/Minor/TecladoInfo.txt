@@ -1,5 +1,5 @@
 Teclado
-Un teclado. Tiene atajos de teclado. No sé.\nDale un ctrl+z mi loco. Esto necesita\nun nerf.
+Un teclado. Tiene atajos de teclado. No sé. Dale un ctrl+z mi loco. Esto necesita un nerf.
 Menor
 Snippet
 Otorga bufos en función de los dos últimos ataques.
@@ -9,10 +9,10 @@ Anula un ataque enemigo.
 Anula un ataque enemigo.
 Ctrl+C
 Memoriza un ataque del tipo de un enemigo.
-El teclado copia el tipo de un enemigo, al usar Ctrl+V\n ahora, se hará un ataque distinto dependiendo del tipo que has\n robado.
+El teclado copia el tipo de un enemigo, al usar Ctrl+V ahora, se hará un ataque distinto dependiendo del tipo que has robado.
 Ctrl+V
 Ataca con su ataque memorizado.
-Ataca con su ataque memorizado.\nAlcohólico: Eructa en la cara de un enemigo, causa daño químico\nProgramador: Sube un tipo de ataque aleatorio de un aliado\nMenor: Cura un poco a todos los aliados.\nGym: Le da un puñetazo (¿tecladazo...?) \na un enemigo, causa daño físico.\nR4: Sube un tipo de defensa aleatorio de un aliado.\nCeronaturalista:Aumenta un 50% la evasión de todos los PCEOMONES\ndurante un tiempo. \nCopista: Dota de un gran escudo a los aliados.\nFIUMER: Baja dos estadísticas aleatorias\na un enemigo aleatorio.
+Ataca con su ataque memorizado.\nAlcohólico: Eructa en la cara de un enemigo, causa daño químico\nProgramador: Sube un tipo de ataque aleatorio de un aliado\nMenor: Cura un poco a todos los aliados.\nGym: Le da un puñetazo (¿tecladazo...?) a un enemigo, causa daño físico.\nR4: Sube un tipo de defensa aleatorio de un aliado.\nCeronaturalista:Aumenta un 50% la evasión de todos los PCEOMONES durante un tiempo. \nCopista: Dota de un gran escudo a los aliados.\nFIUMER: Baja dos estadísticas aleatorias a un enemigo aleatorio.
 Ctrl+Alt+Suprimir
 Aturde a todos los PCEOMONES en combate.
 ¡Rápido! ¡Al administrador de tareas!

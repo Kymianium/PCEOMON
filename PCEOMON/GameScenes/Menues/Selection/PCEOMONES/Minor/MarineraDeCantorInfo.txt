@@ -1,18 +1,18 @@
 Marinera De Cantor
-Marinera de la región\nLa anchoa tiene medida nula pero no es numerable.
+Marinera de la región. La anchoa tiene medida nula pero no es numerable.
 Menor
 No numerable
-¡Rompe tus límites! ¡Puedes subir\ntus estadísticas aún más!
-Las estadísticas de los PCEOMONES ven su límite de mejora\nincrementado.
-Ensaladillado\n
-Llena de ensaladilla a un enemigo. Reduce su velocidad y\nhace daño químico.
-Si bien la reducción de velocidad no es permanente, es de\nlarga duración.
+¡Rompe tus límites! ¡Puedes subir tus estadísticas aún más!
+Las estadísticas de los PCEOMONES ven su límite de mejora incrementado.
+Ensaladillado
+Llena de ensaladilla a un enemigo. Reduce su velocidad y hace daño químico.
+Si bien la reducción de velocidad no es permanente, es de larga duración.
 Medida nula
 No hay por dónde pillarte. Aumenta la evasión de un aliado.
 Poco más que añadir, aumenta la evasión de manera temporal.
 Rosquilla puntiaguda
-Haces daño físico a un enemigo.\n
+Haces daño físico a un enemigo.
 Qué rosquilla más traicionera...
 Aperitivo
-Aumenta todas las características de un aliado.\nMuere en el proceso.
-Que su sacrificio quede en nuestra memoria.\n\nD.E.P., Marinera de Cantor.
+Aumenta todas las características de un aliado.Muere en el proceso.
+Que su sacrificio quede en nuestra memoria. D.E.P., Marinera de Cantor.

@@ -7,7 +7,6 @@
 [ext_resource path="res://Font/ButtonFont.tres" type="DynamicFont" id=5]
 
 [node name="PCEOMONInfo" type="Control"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 4 )
@@ -21,33 +20,36 @@ anchor_bottom = 1.0
 margin_left = 20.0
 margin_top = 20.0
 margin_right = -20.0
-margin_bottom = -20.0
+margin_bottom = -16.0
 custom_constants/separation = 20
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MainInfo" type="HBoxContainer" parent="VBoxGlobal"]
-margin_top = 33.0
+[node name="Miscelaneus" type="HBoxContainer" parent="VBoxGlobal"]
+margin_top = 10.0
 margin_right = 600.0
-margin_bottom = 104.0
-custom_constants/separation = 20
-alignment = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
+margin_bottom = 100.0
 
-[node name="SpriteName" type="VBoxContainer" parent="VBoxGlobal/MainInfo"]
-margin_left = 87.0
-margin_right = 155.0
-margin_bottom = 71.0
+[node name="Type" type="Label" parent="VBoxGlobal/Miscelaneus"]
+margin_top = 36.0
+margin_right = 128.0
+margin_bottom = 53.0
+custom_fonts/font = ExtResource( 1 )
+text = "TIpo Tu puta madre"
+
+[node name="SpriteName" type="VBoxContainer" parent="VBoxGlobal/Miscelaneus"]
+margin_left = 132.0
+margin_right = 200.0
+margin_bottom = 90.0
 size_flags_vertical = 3
 alignment = 1
 
-[node name="Sprite" type="TextureRect" parent="VBoxGlobal/MainInfo/SpriteName"]
+[node name="Sprite" type="TextureRect" parent="VBoxGlobal/Miscelaneus/SpriteName"]
+margin_top = 9.0
 margin_right = 68.0
-margin_bottom = 50.0
+margin_bottom = 59.0
 rect_min_size = Vector2( 50, 50 )
 texture = ExtResource( 3 )
 stretch_mode = 4
@@ -55,10 +57,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Name" type="Label" parent="VBoxGlobal/MainInfo/SpriteName"]
-margin_top = 54.0
+[node name="Name" type="Label" parent="VBoxGlobal/Miscelaneus/SpriteName"]
+margin_top = 63.0
 margin_right = 68.0
-margin_bottom = 71.0
+margin_bottom = 80.0
 custom_fonts/font = ExtResource( 1 )
 text = "PCEOMON"
 align = 1
@@ -66,137 +68,125 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Descripcion" type="Label" parent="VBoxGlobal/MainInfo"]
-margin_left = 175.0
-margin_top = 24.0
-margin_right = 513.0
-margin_bottom = 47.0
-custom_fonts/font = ExtResource( 2 )
-text = "Aquí va una increíble cantidad de texto"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Miscelaneus" type="HBoxContainer" parent="VBoxGlobal"]
-margin_top = 124.0
+[node name="Descripcion" type="RichTextLabel" parent="VBoxGlobal/Miscelaneus"]
+margin_left = 204.0
 margin_right = 600.0
-margin_bottom = 141.0
-
-[node name="Type" type="Label" parent="VBoxGlobal/Miscelaneus"]
-margin_right = 128.0
-margin_bottom = 17.0
-custom_fonts/font = ExtResource( 1 )
-text = "TIpo Tu puta madre"
+margin_bottom = 90.0
+rect_min_size = Vector2( 350, 0 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/normal_font = ExtResource( 2 )
+text = "Aquí va una increíble cantidad de texto"
 
 [node name="AbilityAttacks" type="VBoxContainer" parent="VBoxGlobal"]
-margin_top = 161.0
+margin_top = 101.0
 margin_right = 600.0
-margin_bottom = 346.0
-custom_constants/separation = 10
+margin_bottom = 373.0
+custom_constants/separation = 18
 
 [node name="Ability" type="HBoxContainer" parent="VBoxGlobal/AbilityAttacks"]
 margin_right = 600.0
-margin_bottom = 29.0
+margin_bottom = 40.0
 custom_constants/separation = 10
 
 [node name="AbName" type="Button" parent="VBoxGlobal/AbilityAttacks/Ability"]
 margin_right = 86.0
-margin_bottom = 29.0
+margin_bottom = 40.0
 custom_fonts/font = ExtResource( 2 )
 text = "Habilidad"
 
-[node name="AbDesc" type="Label" parent="VBoxGlobal/AbilityAttacks/Ability"]
+[node name="AbDesc" type="RichTextLabel" parent="VBoxGlobal/AbilityAttacks/Ability"]
 margin_left = 96.0
-margin_top = 3.0
-margin_right = 182.0
-margin_bottom = 26.0
-custom_fonts/font = ExtResource( 2 )
+margin_right = 576.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 480, 40 )
+custom_fonts/normal_font = ExtResource( 2 )
 text = "Las pajas"
 
 [node name="Attack1" type="HBoxContainer" parent="VBoxGlobal/AbilityAttacks"]
-margin_top = 39.0
+margin_top = 58.0
 margin_right = 600.0
-margin_bottom = 68.0
+margin_bottom = 98.0
 custom_constants/separation = 10
 
 [node name="At1Name" type="Button" parent="VBoxGlobal/AbilityAttacks/Attack1"]
 margin_right = 90.0
-margin_bottom = 29.0
+margin_bottom = 40.0
 custom_fonts/font = ExtResource( 2 )
 text = "Ataque 1"
 
-[node name="At1Desc" type="Label" parent="VBoxGlobal/AbilityAttacks/Attack1"]
+[node name="At1Desc" type="RichTextLabel" parent="VBoxGlobal/AbilityAttacks/Attack1"]
 margin_left = 100.0
-margin_top = 3.0
-margin_right = 166.0
-margin_bottom = 26.0
-custom_fonts/font = ExtResource( 2 )
+margin_right = 580.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 480, 40 )
+custom_fonts/normal_font = ExtResource( 2 )
 text = "La paja"
 
 [node name="Attack2" type="HBoxContainer" parent="VBoxGlobal/AbilityAttacks"]
-margin_top = 78.0
+margin_top = 116.0
 margin_right = 600.0
-margin_bottom = 107.0
+margin_bottom = 156.0
 custom_constants/separation = 10
 
 [node name="At2Name" type="Button" parent="VBoxGlobal/AbilityAttacks/Attack2"]
 margin_right = 94.0
-margin_bottom = 29.0
+margin_bottom = 40.0
 custom_fonts/font = ExtResource( 2 )
 text = "Ataque 2"
 
-[node name="At2Desc" type="Label" parent="VBoxGlobal/AbilityAttacks/Attack2"]
+[node name="At2Desc" type="RichTextLabel" parent="VBoxGlobal/AbilityAttacks/Attack2"]
 margin_left = 104.0
-margin_top = 3.0
-margin_right = 170.0
-margin_bottom = 26.0
-custom_fonts/font = ExtResource( 2 )
+margin_right = 584.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 480, 40 )
+custom_fonts/normal_font = ExtResource( 2 )
 text = "La paja"
 
 [node name="Attack3" type="HBoxContainer" parent="VBoxGlobal/AbilityAttacks"]
-margin_top = 117.0
+margin_top = 174.0
 margin_right = 600.0
-margin_bottom = 146.0
+margin_bottom = 214.0
 custom_constants/separation = 10
 
 [node name="At3Name" type="Button" parent="VBoxGlobal/AbilityAttacks/Attack3"]
 margin_right = 94.0
-margin_bottom = 29.0
+margin_bottom = 40.0
 custom_fonts/font = ExtResource( 2 )
 text = "Ataque 3"
 
-[node name="At3Desc" type="Label" parent="VBoxGlobal/AbilityAttacks/Attack3"]
+[node name="At3Desc" type="RichTextLabel" parent="VBoxGlobal/AbilityAttacks/Attack3"]
 margin_left = 104.0
-margin_top = 3.0
-margin_right = 170.0
-margin_bottom = 26.0
-custom_fonts/font = ExtResource( 2 )
+margin_right = 584.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 480, 40 )
+custom_fonts/normal_font = ExtResource( 2 )
 text = "La paja"
 
 [node name="Attack4" type="HBoxContainer" parent="VBoxGlobal/AbilityAttacks"]
-margin_top = 156.0
+margin_top = 232.0
 margin_right = 600.0
-margin_bottom = 185.0
+margin_bottom = 272.0
 custom_constants/separation = 10
 
 [node name="At4Name" type="Button" parent="VBoxGlobal/AbilityAttacks/Attack4"]
 margin_right = 95.0
-margin_bottom = 29.0
+margin_bottom = 40.0
 custom_fonts/font = ExtResource( 2 )
 text = "Ataque 4"
 
-[node name="At4Desc" type="Label" parent="VBoxGlobal/AbilityAttacks/Attack4"]
+[node name="At4Desc" type="RichTextLabel" parent="VBoxGlobal/AbilityAttacks/Attack4"]
 margin_left = 105.0
-margin_top = 3.0
-margin_right = 171.0
-margin_bottom = 26.0
-custom_fonts/font = ExtResource( 2 )
+margin_right = 585.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 480, 40 )
+custom_fonts/normal_font = ExtResource( 2 )
 text = "La paja"
 
 [node name="Control" type="HBoxContainer" parent="VBoxGlobal"]
-margin_top = 366.0
+margin_top = 393.0
 margin_right = 600.0
-margin_bottom = 407.0
+margin_bottom = 434.0
 custom_constants/separation = 20
 alignment = 1
 

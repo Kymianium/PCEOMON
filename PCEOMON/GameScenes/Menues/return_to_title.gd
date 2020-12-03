@@ -121,9 +121,9 @@ func getAndSetInfo(pceomon:String):
 	var att4minidesc = file.get_line().replace("\\n","\n")
 	var att4desc = file.get_line().replace("\\n","\n")
 	file.close()
-	$"PCEOMONInfo/VBoxGlobal/MainInfo/SpriteName/Name".text = name
-	$"PCEOMONInfo/VBoxGlobal/MainInfo/SpriteName/Sprite".texture = texture
-	$"PCEOMONInfo/VBoxGlobal/MainInfo/Descripcion".text = description
+	$"PCEOMONInfo/VBoxGlobal/Miscelaneus/SpriteName/Name".text = name
+	$"PCEOMONInfo/VBoxGlobal/Miscelaneus/SpriteName/Sprite".texture = texture
+	$"PCEOMONInfo/VBoxGlobal/Miscelaneus/Descripcion".text = description
 	$"PCEOMONInfo/VBoxGlobal/Miscelaneus/Type".text = type
 	$"PCEOMONInfo/VBoxGlobal/AbilityAttacks/Ability/AbName".text = abilityname
 	$"PCEOMONInfo/VBoxGlobal/AbilityAttacks/Attack1/At1Name".text = att1name
@@ -177,9 +177,9 @@ func getAndSetInfoMinor(pceomon: String):
 	var att4minidesc = file.get_line().replace("\\n","\n")
 	var att4desc = file.get_line().replace("\\n","\n")
 	file.close()
-	$"PCEOMONInfo/VBoxGlobal/MainInfo/SpriteName/Name".text = name
-	$"PCEOMONInfo/VBoxGlobal/MainInfo/SpriteName/Sprite".texture = texture
-	$"PCEOMONInfo/VBoxGlobal/MainInfo/Descripcion".text = description
+	$"PCEOMONInfo/VBoxGlobal/Miscelaneus/SpriteName/Name".text = name
+	$"PCEOMONInfo/VBoxGlobal/Miscelaneus/SpriteName/Sprite".texture = texture
+	$"PCEOMONInfo/VBoxGlobal/Miscelaneus/Descripcion".text = description
 	$"PCEOMONInfo/VBoxGlobal/Miscelaneus/Type".text = type
 	$"PCEOMONInfo/VBoxGlobal/AbilityAttacks/Ability/AbName".text = abilityname
 	$"PCEOMONInfo/VBoxGlobal/AbilityAttacks/Attack1/At1Name".text = att1name
@@ -254,10 +254,10 @@ func change_PCEOMON_button(pceomon):
 
 
 func _on_PCEOMONInfo_seleccionar():
-	if ((metadata.party.size() < 5) or ($"PCEOMONInfo/VBoxGlobal/MainInfo/SpriteName/Name".text.replace(" ","") in metadata.party)):
-		manage_party($"PCEOMONInfo/VBoxGlobal/MainInfo/SpriteName/Name".text.replace(" ",""))
-		change_select_button($"PCEOMONInfo/VBoxGlobal/MainInfo/SpriteName/Name".text.replace(" ",""))
-		change_PCEOMON_button($"PCEOMONInfo/VBoxGlobal/MainInfo/SpriteName/Name".text.replace(" ",""))
+	if ((metadata.party.size() < 5) or ($"PCEOMONInfo/VBoxGlobal/Miscelaneus/SpriteName/Name".text.replace(" ","") in metadata.party)):
+		manage_party($"PCEOMONInfo/VBoxGlobal/Miscelaneus/SpriteName/Name".text.replace(" ",""))
+		change_select_button($"PCEOMONInfo/VBoxGlobal/Miscelaneus/SpriteName/Name".text.replace(" ",""))
+		change_PCEOMON_button($"PCEOMONInfo/VBoxGlobal/Miscelaneus/SpriteName/Name".text.replace(" ",""))
 		_on_PCEOMONInfo_volver()
 
 

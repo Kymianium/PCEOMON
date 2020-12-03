@@ -1,15 +1,15 @@
 Alparko
-Un capo. Liberal en lo económico. \n Seguidlo en twitter: @putogordo69
+Un capo. Liberal en lo económico. Seguidlo en twitter: @putogordo69
 Programador
 Peaceful mode
 No puede ser atacado hasta no atacar
-Alparko juega en peaceful. Sólamente puede ser atacado si\n previamente, él ha usado un ataque o bien ha pasado una \ndeterminada cantidad de tiempo.
+Alparko juega en peaceful. Sólamente puede ser atacado si previamente, él ha usado un ataque o bien ha pasado una determinada cantidad de tiempo.
 /kill
 Daña psicológicamente a un PCEOMÓN
-Este ataque tiene un 0.01% de probabilidad de MATAR al\nPCEOMÓN sobre el que se usa. En caso de no lograrlo, hará\ndaño psicológico igualmente.
+Este ataque tiene un 0.01% de probabilidad de MATAR alPCEOMÓN sobre el que se usa. En caso de no lograrlo, hará daño psicológico igualmente.
 Aspecto ígneo
 Incrementa el daño físico de un PCEOMON.
-Encanta a un aliado, aumentando permanentemente su daño\nfísico.
+Encanta a un aliado, aumentando permanentemente su daño físico.
 Protección
 Aumenta todas las defensas de un PCEOMON
 Un aumento permanente de todas las defensas. Mucho ojito con esto.
