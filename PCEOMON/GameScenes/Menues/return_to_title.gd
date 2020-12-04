@@ -3,6 +3,15 @@ extends Control
 
 var avatars = {}
 
+var type = { "Alcohólico" : load("res://Sprites/Miscelaneous/Types/Alcoholic.png"),
+"Copista" : load("res://Sprites/Miscelaneous/Types/Copy.png"), 
+"FIUMER" : load("res://Sprites/Miscelaneous/Types/FIUMER.png"),
+"Gym" : load("res://Sprites/Miscelaneous/Types/Gym.png"),
+"Programador" : load("res://Sprites/Miscelaneous/Types/Programmer.png"),
+"R4" : load("res://Sprites/Miscelaneous/Types/R4.png"),
+"Ceronaturalista" : load("res://Sprites/Miscelaneous/Types/Zeronaturalist.png")}
+
+
 func _ready():
 	# $Music.volume_db = metadata.volumevalue
 	$"/root/MainScreenMusicController".play_loop("res://OST/IntroAndMenu/character_selection_screen.ogg", true)
@@ -28,9 +37,7 @@ func _ready():
 # Añade el pceomon a la party si no está y lo elimina si está
 func manage_party(pceomon):
 	var avatar = TextureRect.new()
-	var minor = false
-	if $PCEOMONInfo/VBoxGlobal/Miscelaneus/Type.text == "Menor":
-		minor = true
+	var minor = $PCEOMONInfo.minor
 	if !minor:
 		avatar.texture = load("res://Sprites/PCEOMONES/Major/" + pceomon + "/" + pceomon + "_avatar.png")
 	if minor:
@@ -65,9 +72,9 @@ func manage_party(pceomon):
 
 func change_select_button(pceomon):
 	if pceomon in metadata.party:
-		$"PCEOMONInfo/VBoxGlobal/Control/Seleccionar".text = "Quitar"
+		$"PCEOMONInfo/Control/Seleccionar".text = "Quitar"
 	else:
-		$"PCEOMONInfo/VBoxGlobal/Control/Seleccionar".text = "Seleccionar"
+		$"PCEOMONInfo/Control/Seleccionar".text = "Seleccionar"
 
 func _on_Button_pressed():
 	get_tree().change_scene("res://Title/TitleScreen.tscn")
@@ -82,29 +89,14 @@ func _on_Start_pressed():
 		pass	#PONER ALGÚN MENSJE ROLLO "NO HAS ELEGIDO PCEOMONES"
 
 
-func setPCEOMONinfo(name : String, texture, description : String,
- type : String, ability : String, att1 : String, att2 : String, att3 : String, att4 : String):
-	$"CenterContainer".visible = false
-	$"PCEOMONInfo".visible = true
-	$"PCEOMONInfo/VBoxGlobal/MainInfo/SpriteName/Name".text = name
-	$"PCEOMONInfo/VBoxGlobal/MainInfo/SpriteName/Sprite".texture = texture
-	$"PCEOMONInfo/VBoxGlobal/MainInfo/Descripcion".text = description
-	$"PCEOMONInfo/VBoxGlobal/Miscelaneus/Type".text = type
-	$"PCEOMONInfo/VBoxGlobal/AbilityAttacks/Ability".text = ability
-	$"PCEOMONInfo/VBoxGlobal/AbilityAttacks/Attack1".text = att1
-	$"PCEOMONInfo/VBoxGlobal/AbilityAttacks/Attack2".text = att2
-	$"PCEOMONInfo/VBoxGlobal/AbilityAttacks/Attack3".text = att3
-	$"PCEOMONInfo/VBoxGlobal/AbilityAttacks/Attack4".text = att4
-	change_select_button(name)
-
-
 func getAndSetInfo(pceomon:String):
+	$PCEOMONInfo.minor = false
 	var texture = load("res://Sprites/PCEOMONES/Major/" + pceomon + "/" + pceomon + "_avatar.png")
 	var file = File.new()
 	file.open("res://GameScenes/Menues/Selection/PCEOMONES/Major/" + pceomon +"Info.txt", File.READ)
 	var name = file.get_line().replace("\\n","\n")
 	var description = file.get_line().replace("\\n","\n")
-	var type = file.get_line().replace("\\n","\n")
+	var typ = file.get_line().replace("\\n","\n")
 	var abilityname = file.get_line().replace("\\n","\n")
 	var abilityminidesc = file.get_line().replace("\\n","\n")
 	var abilitydesc = file.get_line().replace("\\n","\n")
@@ -121,20 +113,20 @@ func getAndSetInfo(pceomon:String):
 	var att4minidesc = file.get_line().replace("\\n","\n")
 	var att4desc = file.get_line().replace("\\n","\n")
 	file.close()
-	$"PCEOMONInfo/VBoxGlobal/Miscelaneus/SpriteName/Name".text = name
-	$"PCEOMONInfo/VBoxGlobal/Miscelaneus/SpriteName/Sprite".texture = texture
-	$"PCEOMONInfo/VBoxGlobal/Miscelaneus/Descripcion".text = description
-	$"PCEOMONInfo/VBoxGlobal/Miscelaneus/Type".text = type
-	$"PCEOMONInfo/VBoxGlobal/AbilityAttacks/Ability/AbName".text = abilityname
-	$"PCEOMONInfo/VBoxGlobal/AbilityAttacks/Attack1/At1Name".text = att1name
-	$"PCEOMONInfo/VBoxGlobal/AbilityAttacks/Attack2/At2Name".text = att2name
-	$"PCEOMONInfo/VBoxGlobal/AbilityAttacks/Attack3/At3Name".text = att3name
-	$"PCEOMONInfo/VBoxGlobal/AbilityAttacks/Attack4/At4Name".text = att4name
-	$"PCEOMONInfo/VBoxGlobal/AbilityAttacks/Ability/AbDesc".text = abilityminidesc
-	$"PCEOMONInfo/VBoxGlobal/AbilityAttacks/Attack1/At1Desc".text = att1minidesc
-	$"PCEOMONInfo/VBoxGlobal/AbilityAttacks/Attack2/At2Desc".text = att2minidesc
-	$"PCEOMONInfo/VBoxGlobal/AbilityAttacks/Attack3/At3Desc".text = att3minidesc
-	$"PCEOMONInfo/VBoxGlobal/AbilityAttacks/Attack4/At4Desc".text = att4minidesc
+	$"PCEOMONInfo/Scroll/VBoxGlobal/Miscelaneus/SpriteName/Name".text = name
+	$"PCEOMONInfo/Scroll/VBoxGlobal/Miscelaneus/SpriteName/Sprite".texture = texture
+	$"PCEOMONInfo/Scroll/VBoxGlobal/Miscelaneus/Descripcion".text = description
+	$"PCEOMONInfo/Scroll/VBoxGlobal/Miscelaneus/Type".texture = type[typ]
+	$"PCEOMONInfo/Scroll/VBoxGlobal/AbilityAttacks/Ability/AbName".text = abilityname
+	$"PCEOMONInfo/Scroll/VBoxGlobal/AbilityAttacks/Attack1/At1Name".text = att1name
+	$"PCEOMONInfo/Scroll/VBoxGlobal/AbilityAttacks/Attack2/At2Name".text = att2name
+	$"PCEOMONInfo/Scroll/VBoxGlobal/AbilityAttacks/Attack3/At3Name".text = att3name
+	$"PCEOMONInfo/Scroll/VBoxGlobal/AbilityAttacks/Attack4/At4Name".text = att4name
+	$"PCEOMONInfo/Scroll/VBoxGlobal/AbilityAttacks/Ability/AbDesc".text = abilityminidesc
+	$"PCEOMONInfo/Scroll/VBoxGlobal/AbilityAttacks/Attack1/At1Desc".text = att1minidesc
+	$"PCEOMONInfo/Scroll/VBoxGlobal/AbilityAttacks/Attack2/At2Desc".text = att2minidesc
+	$"PCEOMONInfo/Scroll/VBoxGlobal/AbilityAttacks/Attack3/At3Desc".text = att3minidesc
+	$"PCEOMONInfo/Scroll/VBoxGlobal/AbilityAttacks/Attack4/At4Desc".text = att4minidesc
 	$"PCEOMONInfo".AbDesc = abilitydesc
 	$"PCEOMONInfo".At1Desc = att1desc
 	$"PCEOMONInfo".At2Desc = att2desc
@@ -146,7 +138,7 @@ func getAndSetInfo(pceomon:String):
 	#se soluciona un bug que hace que el texto no se centre (ni ide de por qué)
 	$"CenterContainer".visible = false
 	$"PCEOMONInfo".visible = true
-	$"PCEOMONInfo/VBoxGlobal".visible = true
+	$"PCEOMONInfo/Scroll/VBoxGlobal".visible = true
 	$"PCEOMONInfo/RequestedData".visible = false
 	$"CenterContainer".visible = true
 	$"PCEOMONInfo".visible = false
@@ -155,12 +147,13 @@ func getAndSetInfo(pceomon:String):
 	#setPCEOMONinfo(name, texture, description, type, ability, att1, att2, att3, att4)
 
 func getAndSetInfoMinor(pceomon: String):
+	$PCEOMONInfo.minor = true
 	var texture = load("res://Sprites/PCEOMONES/Minor/" + pceomon + "/" + pceomon + "_avatar.png")
 	var file = File.new()
 	file.open("res://GameScenes/Menues/Selection/PCEOMONES/Minor/" + pceomon +"Info.txt", File.READ)
 	var name = file.get_line().replace("\\n","\n")
 	var description = file.get_line().replace("\\n","\n")
-	var type = file.get_line().replace("\\n","\n")
+	var typ = file.get_line().replace("\\n","\n")
 	var abilityname = file.get_line().replace("\\n","\n")
 	var abilityminidesc = file.get_line().replace("\\n","\n")
 	var abilitydesc = file.get_line().replace("\\n","\n")
@@ -177,20 +170,20 @@ func getAndSetInfoMinor(pceomon: String):
 	var att4minidesc = file.get_line().replace("\\n","\n")
 	var att4desc = file.get_line().replace("\\n","\n")
 	file.close()
-	$"PCEOMONInfo/VBoxGlobal/Miscelaneus/SpriteName/Name".text = name
-	$"PCEOMONInfo/VBoxGlobal/Miscelaneus/SpriteName/Sprite".texture = texture
-	$"PCEOMONInfo/VBoxGlobal/Miscelaneus/Descripcion".text = description
-	$"PCEOMONInfo/VBoxGlobal/Miscelaneus/Type".text = type
-	$"PCEOMONInfo/VBoxGlobal/AbilityAttacks/Ability/AbName".text = abilityname
-	$"PCEOMONInfo/VBoxGlobal/AbilityAttacks/Attack1/At1Name".text = att1name
-	$"PCEOMONInfo/VBoxGlobal/AbilityAttacks/Attack2/At2Name".text = att2name
-	$"PCEOMONInfo/VBoxGlobal/AbilityAttacks/Attack3/At3Name".text = att3name
-	$"PCEOMONInfo/VBoxGlobal/AbilityAttacks/Attack4/At4Name".text = att4name
-	$"PCEOMONInfo/VBoxGlobal/AbilityAttacks/Ability/AbDesc".text = abilityminidesc
-	$"PCEOMONInfo/VBoxGlobal/AbilityAttacks/Attack1/At1Desc".text = att1minidesc
-	$"PCEOMONInfo/VBoxGlobal/AbilityAttacks/Attack2/At2Desc".text = att2minidesc
-	$"PCEOMONInfo/VBoxGlobal/AbilityAttacks/Attack3/At3Desc".text = att3minidesc
-	$"PCEOMONInfo/VBoxGlobal/AbilityAttacks/Attack4/At4Desc".text = att4minidesc
+	$"PCEOMONInfo/Scroll/VBoxGlobal/Miscelaneus/SpriteName/Name".text = name
+	$"PCEOMONInfo/Scroll/VBoxGlobal/Miscelaneus/SpriteName/Sprite".texture = texture
+	$"PCEOMONInfo/Scroll/VBoxGlobal/Miscelaneus/Descripcion".text = description
+	$"PCEOMONInfo/Scroll/VBoxGlobal/Miscelaneus/Type".texture = type["R4"]
+	$"PCEOMONInfo/Scroll/VBoxGlobal/AbilityAttacks/Ability/AbName".text = abilityname
+	$"PCEOMONInfo/Scroll/VBoxGlobal/AbilityAttacks/Attack1/At1Name".text = att1name
+	$"PCEOMONInfo/Scroll/VBoxGlobal/AbilityAttacks/Attack2/At2Name".text = att2name
+	$"PCEOMONInfo/Scroll/VBoxGlobal/AbilityAttacks/Attack3/At3Name".text = att3name
+	$"PCEOMONInfo/Scroll/VBoxGlobal/AbilityAttacks/Attack4/At4Name".text = att4name
+	$"PCEOMONInfo/Scroll/VBoxGlobal/AbilityAttacks/Ability/AbDesc".text = abilityminidesc
+	$"PCEOMONInfo/Scroll/VBoxGlobal/AbilityAttacks/Attack1/At1Desc".text = att1minidesc
+	$"PCEOMONInfo/Scroll/VBoxGlobal/AbilityAttacks/Attack2/At2Desc".text = att2minidesc
+	$"PCEOMONInfo/Scroll/VBoxGlobal/AbilityAttacks/Attack3/At3Desc".text = att3minidesc
+	$"PCEOMONInfo/Scroll/VBoxGlobal/AbilityAttacks/Attack4/At4Desc".text = att4minidesc
 	$"PCEOMONInfo".AbDesc = abilitydesc
 	$"PCEOMONInfo".At1Desc = att1desc
 	$"PCEOMONInfo".At2Desc = att2desc
@@ -202,7 +195,7 @@ func getAndSetInfoMinor(pceomon: String):
 	#se soluciona un bug que hace que el texto no se centre (ni idea de por qué)
 	$"CenterContainer".visible = false
 	$"PCEOMONInfo".visible = true
-	$"PCEOMONInfo/VBoxGlobal".visible = true
+	$"PCEOMONInfo/Scroll/VBoxGlobal".visible = true
 	$"PCEOMONInfo/RequestedData".visible = false
 	$"CenterContainer".visible = true
 	$"PCEOMONInfo".visible = false
@@ -233,7 +226,7 @@ func _on_PCEOMONInfo_volver():
 
 #Funcion que cambia el sprite del PCEOMON seleccionado a blanco y negro o a color si se deselecciona
 func change_PCEOMON_button(pceomon):
-	if !($PCEOMONInfo/VBoxGlobal/Miscelaneus/Type.text == "Menor"):
+	if !($PCEOMONInfo.minor):
 		if pceomon == "Armada":
 			$"CenterContainer/MenuDistribution/Major/SelectAndNavigate/Column1/Armada".change_button(pceomon,true)
 		elif pceomon == "Alparko":
@@ -254,10 +247,10 @@ func change_PCEOMON_button(pceomon):
 
 
 func _on_PCEOMONInfo_seleccionar():
-	if ((metadata.party.size() < 5) or ($"PCEOMONInfo/VBoxGlobal/Miscelaneus/SpriteName/Name".text.replace(" ","") in metadata.party)):
-		manage_party($"PCEOMONInfo/VBoxGlobal/Miscelaneus/SpriteName/Name".text.replace(" ",""))
-		change_select_button($"PCEOMONInfo/VBoxGlobal/Miscelaneus/SpriteName/Name".text.replace(" ",""))
-		change_PCEOMON_button($"PCEOMONInfo/VBoxGlobal/Miscelaneus/SpriteName/Name".text.replace(" ",""))
+	if ((metadata.party.size() < 5) or ($"PCEOMONInfo/Scroll/VBoxGlobal/Miscelaneus/SpriteName/Name".text.replace(" ","") in metadata.party)):
+		manage_party($"PCEOMONInfo/Scroll/VBoxGlobal/Miscelaneus/SpriteName/Name".text.replace(" ",""))
+		change_select_button($"PCEOMONInfo/Scroll/VBoxGlobal/Miscelaneus/SpriteName/Name".text.replace(" ",""))
+		change_PCEOMON_button($"PCEOMONInfo/Scroll/VBoxGlobal/Miscelaneus/SpriteName/Name".text.replace(" ",""))
 		_on_PCEOMONInfo_volver()
 
 
