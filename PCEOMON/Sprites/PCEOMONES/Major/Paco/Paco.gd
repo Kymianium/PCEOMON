@@ -91,3 +91,10 @@ func _process(delta):
 				delta_acum2-=0.1
 				hacer_jal_stamina = hacer_jal_stamina + getstat(SPEED)
 	._process(delta)
+
+func damage(var damage: int):
+	if (rng.randf() < 0.1):
+		emit_signal("announcement","¡Esperando el próximo ataque, Paco se ha refugiado en las profundidades del Segura!")
+		return 0
+	else:
+		.damage(damage)

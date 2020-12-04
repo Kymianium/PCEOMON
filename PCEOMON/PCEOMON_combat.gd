@@ -298,6 +298,7 @@ func _process(delta):
 		if (delta_acum>0.1):
 			delta_acum-=0.1
 			actual_stamina = actual_stamina + getstat(SPEED)
+			update_buffs()
 # warning-ignore:integer_division
 			$"HBoxContainer/StatsSummary/Stamina".value = actual_stamina*100/next_attack_required_stamina
 			if poison_counter > 0 and actual_hp > poison_damage:
@@ -400,7 +401,7 @@ func damage(var damage : int):
 		return
 	else:
 		actual_shield = 0
-		actual_hp = actual_hp - damage
+		actual_hp = actual_hp - damage		#????????
 # warning-ignore:integer_division
 		$"HBoxContainer/StatsSummary/Shield".value = actual_shield*100/max_hp
 		$"HBoxContainer/StatsSummary/HP".value = actual_hp*100/max_hp

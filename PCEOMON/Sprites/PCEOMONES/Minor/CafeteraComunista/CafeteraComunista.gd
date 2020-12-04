@@ -4,7 +4,7 @@ var CoffeeParticle = "res://Sprites/PCEOMONES/Minor/CafeteraComunista/CoffeePart
 var ChocolateParticle = "res://Sprites/PCEOMONES/Minor/CafeteraComunista/ChocolateHeal.tscn"
 var CommunismDeb = "res://Sprites/PCEOMONES/Minor/CafeteraComunista/ComunismDebuff.tscn"
 var CommunismBuf = "res://Sprites/PCEOMONES/Minor/CafeteraComunista/ComunismHeal.tscn"
-
+var refill = 5
 
 func _ready():
 	name = "Cafetera Comunista"
@@ -92,3 +92,44 @@ func atk4():
 	emit_signal("particle", ChocolateParticle, less_healed[0].position.x+25, less_healed[0].position.y+100)
 	emit_signal("just_attacked","La cafetera comunista","Chocolate caliente","","El chocolate caliente revitaliza a " + less_healed[0].name)
 	.atk4()
+
+#Redefino esto para poder meter la pasiva
+func _process(delta):
+	if (actual_hp <= 0):
+		return
+	elif(actual_stamina==0):
+		if (not metadata.time_exists.has(self) and not boss):
+			metadata.time_exists.append(self)
+		else:
+			boss_next_attack()
+	elif(actual_stamina >= next_attack_required_stamina):
+		attack()
+	elif(stun_counter > 0):
+		delta_acum+=delta
+		if (delta_acum > 0.1):
+			delta_acum-=0.1
+			stun_counter-=1
+			if (stun_counter<=0):
+				$HBoxContainer/Status/Confusion.visible = false
+				$HBoxContainer/Status/Sleep.visible = false
+	elif (metadata.time_should_run()):
+		delta_acum+=delta
+		if (delta_acum>0.1):
+			delta_acum-=0.1
+			update_buffs()
+			actual_stamina = actual_stamina + getstat(SPEED)
+			refill -= 1
+			if (refill <= 0):
+				emit_signal("announcement","¿Qué hora es?¡Es hora de reponer [shake level=20] cafeína [/shake]!")
+				buff([self], SPEED, 8, 1, 15)
+				refill = 50
+# warning-ignore:integer_division
+			$"HBoxContainer/StatsSummary/Stamina".value = actual_stamina*100/next_attack_required_stamina
+			if poison_counter > 0 and actual_hp > poison_damage:
+				poison_counter -= poison_damage
+				if (poison_counter <= 0):
+					$"HBoxContainer/Status/Poison".visible = false
+					emit_signal("announcement","El envenenamiento de " + self.name + " ha terminado")
+					return
+				self.damage(poison_damage)
+
