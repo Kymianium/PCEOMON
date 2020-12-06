@@ -21,7 +21,7 @@ anchor_bottom = 1.0
 margin_left = 25.0
 margin_top = 25.0
 margin_right = -25.0
-margin_bottom = -25.0
+margin_bottom = -96.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 scroll_horizontal_enabled = false
@@ -30,8 +30,10 @@ __meta__ = {
 }
 
 [node name="VBoxGlobal" type="VBoxContainer" parent="Scroll"]
-margin_right = 585.0
+margin_right = 578.0
 margin_bottom = 363.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 custom_constants/separation = 20
 alignment = 1
 __meta__ = {
@@ -39,8 +41,9 @@ __meta__ = {
 }
 
 [node name="Miscelaneus" type="HBoxContainer" parent="Scroll/VBoxGlobal"]
-margin_right = 585.0
+margin_right = 578.0
 margin_bottom = 71.0
+custom_constants/separation = 10
 alignment = 1
 
 [node name="Type" type="TextureRect" parent="Scroll/VBoxGlobal/Miscelaneus"]
@@ -49,8 +52,8 @@ margin_bottom = 71.0
 texture = ExtResource( 6 )
 
 [node name="SpriteName" type="VBoxContainer" parent="Scroll/VBoxGlobal/Miscelaneus"]
-margin_left = 29.0
-margin_right = 97.0
+margin_left = 35.0
+margin_right = 103.0
 margin_bottom = 71.0
 size_flags_vertical = 3
 alignment = 1
@@ -76,131 +79,140 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Descripcion" type="RichTextLabel" parent="Scroll/VBoxGlobal/Miscelaneus"]
-margin_left = 101.0
-margin_right = 585.0
+[node name="Descripcion" type="Label" parent="Scroll/VBoxGlobal/Miscelaneus"]
+margin_left = 113.0
+margin_right = 578.0
 margin_bottom = 71.0
-rect_min_size = Vector2( 350, 0 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_fonts/normal_font = ExtResource( 2 )
+custom_fonts/font = ExtResource( 2 )
 text = "Aquí va una increíble cantidad de texto"
-scroll_active = false
+autowrap = true
 
 [node name="AbilityAttacks" type="VBoxContainer" parent="Scroll/VBoxGlobal"]
 margin_top = 91.0
-margin_right = 585.0
+margin_right = 578.0
 margin_bottom = 363.0
 custom_constants/separation = 18
 
 [node name="Ability" type="HBoxContainer" parent="Scroll/VBoxGlobal/AbilityAttacks"]
-margin_right = 585.0
+margin_right = 578.0
 margin_bottom = 40.0
 custom_constants/separation = 10
 
 [node name="AbName" type="Button" parent="Scroll/VBoxGlobal/AbilityAttacks/Ability"]
 margin_right = 86.0
 margin_bottom = 40.0
+size_flags_vertical = 3
 custom_fonts/font = ExtResource( 2 )
 text = "Habilidad"
 
-[node name="AbDesc" type="RichTextLabel" parent="Scroll/VBoxGlobal/AbilityAttacks/Ability"]
+[node name="AbDesc" type="Label" parent="Scroll/VBoxGlobal/AbilityAttacks/Ability"]
 margin_left = 96.0
-margin_right = 585.0
+margin_right = 578.0
 margin_bottom = 40.0
-rect_min_size = Vector2( 480, 40 )
+rect_min_size = Vector2( 0, 40 )
 size_flags_horizontal = 3
-custom_fonts/normal_font = ExtResource( 2 )
+size_flags_vertical = 7
+custom_fonts/font = ExtResource( 2 )
 text = "Las pajas"
-scroll_active = false
+autowrap = true
 
 [node name="Attack1" type="HBoxContainer" parent="Scroll/VBoxGlobal/AbilityAttacks"]
 margin_top = 58.0
-margin_right = 585.0
+margin_right = 578.0
 margin_bottom = 98.0
 custom_constants/separation = 10
 
 [node name="At1Name" type="Button" parent="Scroll/VBoxGlobal/AbilityAttacks/Attack1"]
 margin_right = 90.0
 margin_bottom = 40.0
+size_flags_vertical = 3
 custom_fonts/font = ExtResource( 2 )
 text = "Ataque 1"
 
-[node name="At1Desc" type="RichTextLabel" parent="Scroll/VBoxGlobal/AbilityAttacks/Attack1"]
+[node name="At1Desc" type="Label" parent="Scroll/VBoxGlobal/AbilityAttacks/Attack1"]
 margin_left = 100.0
-margin_right = 585.0
+margin_right = 578.0
 margin_bottom = 40.0
-rect_min_size = Vector2( 480, 40 )
+rect_min_size = Vector2( 0, 40 )
 size_flags_horizontal = 3
-custom_fonts/normal_font = ExtResource( 2 )
+size_flags_vertical = 7
+custom_fonts/font = ExtResource( 2 )
 text = "La paja"
-scroll_active = false
+autowrap = true
 
 [node name="Attack2" type="HBoxContainer" parent="Scroll/VBoxGlobal/AbilityAttacks"]
 margin_top = 116.0
-margin_right = 585.0
+margin_right = 578.0
 margin_bottom = 156.0
 custom_constants/separation = 10
 
 [node name="At2Name" type="Button" parent="Scroll/VBoxGlobal/AbilityAttacks/Attack2"]
 margin_right = 94.0
 margin_bottom = 40.0
+size_flags_vertical = 3
 custom_fonts/font = ExtResource( 2 )
 text = "Ataque 2"
 
-[node name="At2Desc" type="RichTextLabel" parent="Scroll/VBoxGlobal/AbilityAttacks/Attack2"]
+[node name="At2Desc" type="Label" parent="Scroll/VBoxGlobal/AbilityAttacks/Attack2"]
 margin_left = 104.0
-margin_right = 585.0
+margin_right = 578.0
 margin_bottom = 40.0
-rect_min_size = Vector2( 480, 40 )
+rect_min_size = Vector2( 0, 40 )
 size_flags_horizontal = 3
-custom_fonts/normal_font = ExtResource( 2 )
+size_flags_vertical = 7
+custom_fonts/font = ExtResource( 2 )
 text = "La paja"
-scroll_active = false
+autowrap = true
 
 [node name="Attack3" type="HBoxContainer" parent="Scroll/VBoxGlobal/AbilityAttacks"]
 margin_top = 174.0
-margin_right = 585.0
+margin_right = 578.0
 margin_bottom = 214.0
 custom_constants/separation = 10
 
 [node name="At3Name" type="Button" parent="Scroll/VBoxGlobal/AbilityAttacks/Attack3"]
 margin_right = 94.0
 margin_bottom = 40.0
+size_flags_vertical = 3
 custom_fonts/font = ExtResource( 2 )
 text = "Ataque 3"
 
-[node name="At3Desc" type="RichTextLabel" parent="Scroll/VBoxGlobal/AbilityAttacks/Attack3"]
+[node name="At3Desc" type="Label" parent="Scroll/VBoxGlobal/AbilityAttacks/Attack3"]
 margin_left = 104.0
-margin_right = 585.0
+margin_right = 578.0
 margin_bottom = 40.0
-rect_min_size = Vector2( 480, 40 )
+rect_min_size = Vector2( 0, 40 )
 size_flags_horizontal = 3
-custom_fonts/normal_font = ExtResource( 2 )
+size_flags_vertical = 7
+custom_fonts/font = ExtResource( 2 )
 text = "La paja"
-scroll_active = false
+autowrap = true
 
 [node name="Attack4" type="HBoxContainer" parent="Scroll/VBoxGlobal/AbilityAttacks"]
 margin_top = 232.0
-margin_right = 585.0
+margin_right = 578.0
 margin_bottom = 272.0
 custom_constants/separation = 10
 
 [node name="At4Name" type="Button" parent="Scroll/VBoxGlobal/AbilityAttacks/Attack4"]
 margin_right = 95.0
 margin_bottom = 40.0
+size_flags_vertical = 3
 custom_fonts/font = ExtResource( 2 )
 text = "Ataque 4"
 
-[node name="At4Desc" type="RichTextLabel" parent="Scroll/VBoxGlobal/AbilityAttacks/Attack4"]
+[node name="At4Desc" type="Label" parent="Scroll/VBoxGlobal/AbilityAttacks/Attack4"]
 margin_left = 105.0
-margin_right = 585.0
+margin_right = 578.0
 margin_bottom = 40.0
-rect_min_size = Vector2( 480, 40 )
+rect_min_size = Vector2( 0, 40 )
 size_flags_horizontal = 3
-custom_fonts/normal_font = ExtResource( 2 )
+size_flags_vertical = 7
+custom_fonts/font = ExtResource( 2 )
 text = "La paja"
-scroll_active = false
+autowrap = true
 
 [node name="Control" type="HBoxContainer" parent="."]
 margin_left = 25.0
@@ -276,7 +288,6 @@ custom_fonts/italics_font = ExtResource( 2 )
 custom_fonts/bold_font = ExtResource( 2 )
 custom_fonts/normal_font = ExtResource( 2 )
 text = "Que buena data me diste amigo pero no recuerdo haber preguntado"
-scroll_active = false
 
 [node name="HBoxContainer" type="HBoxContainer" parent="RequestedData"]
 margin_top = 360.0
