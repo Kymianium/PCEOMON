@@ -17,7 +17,6 @@ func _ready():
 		var contenedor = ITEM.instance()
 		contenedor.setTexture(objectsTexture[nombre])
 		contenedor.setName(nombre)
-		contenedor.setDescription(objectsDescription[nombre])
 		contenedor.connect("itemDescription", self, "showText")
 		$"Items/Objetos".add_child(contenedor)
 

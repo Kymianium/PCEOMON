@@ -13,8 +13,6 @@ func setTexture(texture):
 func setName(nombre):
 	$"Texture&Name/Name".text = nombre
 	
-func setDescription(descripcion):
-	$Description.text = descripcion
 	
 
 func _on_TextureName_mouse_entered():
