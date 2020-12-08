@@ -1,5 +1,6 @@
 extends Control
 
+var seleccionado
 
 var numObjects = 0
 var objectsDescription = {}
@@ -18,7 +19,7 @@ func _ready():
 		contenedor.setName(nombre)
 		contenedor.setDescription(objectsDescription[nombre])
 		contenedor.connect("itemDescription", self, "showText")
-		$"Objetos-Texto/Objetos".add_child(contenedor)
+		$"Items/Objetos".add_child(contenedor)
 
 func getObjects():
 	var i = 0
@@ -32,9 +33,15 @@ func getObjects():
 		i += 1
 		
 		
-func showText(show, description):
+func showText(show, name):
 	if show:
-		$"Objetos-Texto/Texto".text = description 
+		$"Texto".text = objectsDescription[name] 
+	seleccionado = name
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
-#	pass
+	#pass
+
+
+func _on_Volver_pressed():
+	self.visible = false

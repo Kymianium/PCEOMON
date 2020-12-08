@@ -17,6 +17,10 @@ func _on_Fight_pressed():
 func _on_Data_pressed():
 	change_visible($CombatGUI/Data)
 
+
+func _on_Objects_pressed():
+	change_visible(get_parent().get_node("ObjectMenu"))
+
 func change_visible(var path):
 	current.visible = false
 	current = path

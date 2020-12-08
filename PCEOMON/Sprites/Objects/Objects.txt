@@ -1,12 +1,12 @@
 Bocata
-Cura levemente
+Cura levemente la vida del PCEOMON seleccionado. Perfecto para un almuerzo rápido y ligero.
 Ducha bluetooth
-TEXTO
+Limpia efectos de estado y aumenta la defensa qeímica del PCEOMON seleccionado. Si este es un FIUMER le hiere.
 Fuente de macarras
-Cura y reduce velocidad
+Cura y baja la velocidad del PCEOMON seleccionado.
 Garrafa de paellas
-Aumenta el alcohol de los tipo alcohólico
+Aumenta el alcohol en sangre del PCEOMON seleccionado. Si este no es de tipo alcohólico le envenena.
 Monster
-Aumenta la velocidad
+Aumenta la velocidad del PCEOMON seleccionado.
 Pulsera del Murcia
-Nada
+#SOSREALMURCIA. No hace nada.

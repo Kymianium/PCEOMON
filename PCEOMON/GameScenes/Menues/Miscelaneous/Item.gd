@@ -18,7 +18,13 @@ func setDescription(descripcion):
 	
 
 func _on_TextureName_mouse_entered():
-	emit_signal("itemDescription", true, $Description.text)
+	#emit_signal("itemDescription", true, $"Texture&Name/Name".text)
+	pass
 
 func _on_TextureName_mouse_exited():
-	emit_signal("itemDescription", false, $Description.text)
+	#emit_signal("itemDescription", false, $"Texture&Name/Name".text)
+	pass
+
+
+func _on_Button_pressed():
+	emit_signal("itemDescription", true, $"Texture&Name/Name".text)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://GameScenes/CombatScenes/CombatManager.gd" type="Script" id=1]
 [ext_resource path="res://Font/SmallFont.tres" type="DynamicFont" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://GameScenes/DialogueBox.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Backgrounds/Fondo PCEOMON.png" type="Texture" id=6]
 [ext_resource path="res://GameScenes/CombatScenes/Combatinterface.gd" type="Script" id=7]
+[ext_resource path="res://GameScenes/Menues/ObjectMenu.tscn" type="PackedScene" id=8]
 
 [node name="TurnManager" type="Node2D"]
 script = ExtResource( 1 )
@@ -228,7 +229,11 @@ text = "Fusión"
 
 [node name="DialogueBox" parent="." instance=ExtResource( 5 )]
 visible = false
+
+[node name="ObjectMenu" parent="." instance=ExtResource( 8 )]
+visible = false
 [connection signal="pressed" from="Combatinterface/CombatGUI/MainOptions/Fight" to="Combatinterface" method="_on_Fight_pressed"]
+[connection signal="pressed" from="Combatinterface/CombatGUI/MainOptions/Objects" to="Combatinterface" method="_on_Objects_pressed"]
 [connection signal="pressed" from="Combatinterface/CombatGUI/MainOptions/Data" to="Combatinterface" method="_on_Data_pressed"]
 [connection signal="pressed" from="Combatinterface/CombatGUI/Data/Attacks1/Atk1" to="Combatinterface" method="_on_Atk1_pressed"]
 [connection signal="pressed" from="Combatinterface/CombatGUI/Data/Attacks1/Atk2" to="Combatinterface" method="_on_Atk2_pressed"]

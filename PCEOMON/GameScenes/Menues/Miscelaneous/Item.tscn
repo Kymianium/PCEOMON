@@ -57,5 +57,14 @@ text = "La descripción del objeto (este parametro debería ser invisible por de
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Button" type="Button" parent="."]
+margin_right = 610.0
+margin_bottom = 50.0
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="mouse_entered" from="Texture&Name" to="." method="_on_TextureName_mouse_entered"]
 [connection signal="mouse_exited" from="Texture&Name" to="." method="_on_TextureName_mouse_exited"]
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
