@@ -1,0 +1,56 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Font/SmallFont.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Sprites/Objects/ObjectSprites/Bocata.png" type="Texture" id=2]
+
+[node name="Object" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -40.0
+margin_bottom = -405.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Texture&Name" type="HBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = -25.0
+custom_constants/separation = 30
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Texture" type="TextureRect" parent="Texture&Name"]
+margin_right = 50.0
+margin_bottom = 50.0
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Name" type="Label" parent="Texture&Name"]
+margin_left = 80.0
+margin_right = 600.0
+margin_bottom = 50.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+custom_fonts/font = ExtResource( 1 )
+text = "Nombre del objeto"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Description" type="RichTextLabel" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = 10.0
+custom_fonts/normal_font = ExtResource( 1 )
+text = "La descripción del objeto (este parametro debería ser invisible por defecto lol)"
+__meta__ = {
+"_edit_use_anchors_": false
+}
