@@ -1,13 +1,16 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Font/SmallFont.tres" type="DynamicFont" id=1]
-[ext_resource path="res://Sprites/Objects/ObjectSprites/Bocata.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/Objects/ObjectSprites/Bocata.png" type="Texture" id=1]
+[ext_resource path="res://GameScenes/Menues/Miscelaneous/Item.gd" type="Script" id=2]
+[ext_resource path="res://Font/SmallFont.tres" type="DynamicFont" id=3]
 
-[node name="Object" type="Control"]
+[node name="Item" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_right = -40.0
 margin_bottom = -405.0
+rect_min_size = Vector2( 600, 60 )
+script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -25,7 +28,7 @@ __meta__ = {
 [node name="Texture" type="TextureRect" parent="Texture&Name"]
 margin_right = 50.0
 margin_bottom = 50.0
-texture = ExtResource( 2 )
+texture = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -36,7 +39,7 @@ margin_right = 600.0
 margin_bottom = 50.0
 size_flags_horizontal = 3
 size_flags_vertical = 1
-custom_fonts/font = ExtResource( 1 )
+custom_fonts/font = ExtResource( 3 )
 text = "Nombre del objeto"
 valign = 1
 __meta__ = {
@@ -46,11 +49,13 @@ __meta__ = {
 [node name="Description" type="RichTextLabel" parent="."]
 visible = false
 anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_bottom = 6.0
 margin_left = 10.0
-margin_top = 10.0
-custom_fonts/normal_font = ExtResource( 1 )
+margin_top = 350.0
+custom_fonts/normal_font = ExtResource( 3 )
 text = "La descripción del objeto (este parametro debería ser invisible por defecto lol)"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+[connection signal="mouse_entered" from="Texture&Name" to="." method="_on_TextureName_mouse_entered"]
+[connection signal="mouse_exited" from="Texture&Name" to="." method="_on_TextureName_mouse_exited"]

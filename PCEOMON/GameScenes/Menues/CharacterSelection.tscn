@@ -1,11 +1,11 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Font/ButtonFont.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Font/VersionFont.tres" type="DynamicFont" id=2]
 [ext_resource path="res://GameScenes/Menues/return_to_title.gd" type="Script" id=3]
 [ext_resource path="res://GameScenes/Menues/Selection/PCEOMONES/Major/Armada.tscn" type="PackedScene" id=4]
 [ext_resource path="res://GameScenes/Menues/Selection/PCEOMONES/Major/Alparko.tscn" type="PackedScene" id=5]
-[ext_resource path="res://GameScenes/Menues/Selection/Locked.tscn" type="PackedScene" id=6]
+[ext_resource path="res://GameScenes/Menues/Selection/PCEOMONES/Major/Azul42.tscn" type="PackedScene" id=6]
 [ext_resource path="res://GameScenes/Menues/Selection/PCEOMONInfo.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Font/SmallFont.tres" type="DynamicFont" id=8]
 [ext_resource path="res://GameScenes/Menues/Selection/PCEOMONES/Major/Chito.tscn" type="PackedScene" id=9]
@@ -16,6 +16,7 @@
 [ext_resource path="res://GameScenes/Menues/Selection/PCEOMONES/Minor/Teclado.tscn" type="PackedScene" id=14]
 [ext_resource path="res://GameScenes/Menues/Selection/PCEOMONES/Minor/FuncionDeWeierstrass.tscn" type="PackedScene" id=15]
 [ext_resource path="res://GameScenes/Menues/Selection/PCEOMONES/Major/Paco.tscn" type="PackedScene" id=16]
+[ext_resource path="res://GameScenes/Menues/Selection/PCEOMONES/Major/Karbajo.tscn" type="PackedScene" id=17]
 
 [node name="Play" type="Control"]
 anchor_right = 1.0
@@ -69,8 +70,8 @@ custom_constants/separation = 20
 alignment = 1
 
 [node name="LeftArrowContainer" type="VBoxContainer" parent="CenterContainer/MenuDistribution/Major/SelectAndNavigate"]
-margin_left = 40.0
-margin_right = 85.0
+margin_left = 60.0
+margin_right = 105.0
 margin_bottom = 158.0
 alignment = 1
 
@@ -86,8 +87,8 @@ texture_focused = ExtResource( 11 )
 stretch_mode = 3
 
 [node name="Column1" type="VBoxContainer" parent="CenterContainer/MenuDistribution/Major/SelectAndNavigate"]
-margin_left = 105.0
-margin_right = 205.0
+margin_left = 125.0
+margin_right = 225.0
 margin_bottom = 158.0
 
 [node name="Armada" parent="CenterContainer/MenuDistribution/Major/SelectAndNavigate/Column1" instance=ExtResource( 4 )]
@@ -100,40 +101,36 @@ margin_right = 100.0
 margin_bottom = 158.0
 
 [node name="Column2" type="VBoxContainer" parent="CenterContainer/MenuDistribution/Major/SelectAndNavigate"]
-margin_left = 225.0
+margin_left = 245.0
 margin_right = 345.0
 margin_bottom = 158.0
 
 [node name="Alparko" parent="CenterContainer/MenuDistribution/Major/SelectAndNavigate/Column2" instance=ExtResource( 5 )]
-margin_right = 120.0
+margin_right = 100.0
 margin_bottom = 77.0
 
-[node name="Locked3" parent="CenterContainer/MenuDistribution/Major/SelectAndNavigate/Column2" instance=ExtResource( 6 )]
+[node name="Azul42" parent="CenterContainer/MenuDistribution/Major/SelectAndNavigate/Column2" instance=ExtResource( 6 )]
 margin_top = 81.0
-margin_right = 120.0
+margin_right = 100.0
 margin_bottom = 158.0
-rect_rotation = 0.0
-script = null
 
 [node name="Column3" type="VBoxContainer" parent="CenterContainer/MenuDistribution/Major/SelectAndNavigate"]
 margin_left = 365.0
-margin_right = 485.0
+margin_right = 465.0
 margin_bottom = 158.0
 
 [node name="Chito" parent="CenterContainer/MenuDistribution/Major/SelectAndNavigate/Column3" instance=ExtResource( 9 )]
-margin_right = 120.0
+margin_right = 100.0
 margin_bottom = 77.0
 
-[node name="Locked4" parent="CenterContainer/MenuDistribution/Major/SelectAndNavigate/Column3" instance=ExtResource( 6 )]
+[node name="Karbajo" parent="CenterContainer/MenuDistribution/Major/SelectAndNavigate/Column3" instance=ExtResource( 17 )]
 margin_top = 81.0
-margin_right = 120.0
+margin_right = 100.0
 margin_bottom = 158.0
-rect_rotation = 0.0
-script = null
 
 [node name="RightArrowContainer" type="VBoxContainer" parent="CenterContainer/MenuDistribution/Major/SelectAndNavigate"]
-margin_left = 505.0
-margin_right = 550.0
+margin_left = 485.0
+margin_right = 530.0
 margin_bottom = 158.0
 alignment = 1
 

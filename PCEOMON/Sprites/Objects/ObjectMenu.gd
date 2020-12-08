@@ -5,22 +5,19 @@ var numObjects = 0
 var objectsDescription = {}
 var objectsTexture = {}
 
+const ITEM = preload("res://GameScenes/Menues/Miscelaneous/Item.tscn")
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	numObjects = 6
-	var x = 20
-	var y = 20
 	getObjects()
-	for object in objectsDescription.keys():
-		var sprite = TextureButton.new()
-		sprite.expand
-		sprite.texture_normal = objectsTexture[object]
-		var name = Label.new()
-		name.text = object
-		var contenedor = HBoxContainer.new()
-		contenedor.add_child(sprite)
-		contenedor.add_child(name)
+	for nombre in objectsDescription.keys():
+		var contenedor = ITEM.instance()
+		contenedor.setTexture(objectsTexture[nombre])
+		contenedor.setName(nombre)
+		contenedor.setDescription(objectsDescription[nombre])
+		contenedor.connect("itemDescription", self, "showText")
 		$"Objetos-Texto/Objetos".add_child(contenedor)
 
 func getObjects():
@@ -33,6 +30,11 @@ func getObjects():
 		objectsDescription[name] = file.get_line().replace("\\n","\n")
 		objectsTexture[name] = load("res://Sprites/Objects/ObjectSprites/"+name+".png")
 		i += 1
+		
+		
+func showText(show, description):
+	if show:
+		$"Objetos-Texto/Texto".text = description 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
