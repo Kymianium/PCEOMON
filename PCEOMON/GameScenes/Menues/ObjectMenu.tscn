@@ -1,0 +1,28 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Sprites/Objects/ObjectMenu.gd" type="Script" id=1]
+
+[node name="ObjectMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Objetos-Texto" type="VBoxContainer" parent="."]
+margin_left = 30.0
+margin_top = 30.0
+margin_right = 70.0
+margin_bottom = 70.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Objetos" type="VBoxContainer" parent="Objetos-Texto"]
+margin_right = 40.0
+
+[node name="Texto" type="Label" parent="Objetos-Texto"]
+margin_top = 4.0
+margin_right = 40.0
+margin_bottom = 18.0

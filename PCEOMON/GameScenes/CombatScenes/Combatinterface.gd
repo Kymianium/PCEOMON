@@ -40,3 +40,4 @@ func _on_Atk4_pressed():
 
 func _on_Passive_pressed():
 	emit_signal("text", passive)
+
