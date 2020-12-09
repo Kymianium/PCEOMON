@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Karbajo_Sprite.png-5e063bd76f804f372303c8927c9d5bd2.stex"
+path="res://.import/Karbajo_avatar.png-870b05a45f1f23c02fdc06f4074a9966.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/PCEOMONES/Major/Karbajo/Karbajo_Sprite.png"
-dest_files=[ "res://.import/Karbajo_Sprite.png-5e063bd76f804f372303c8927c9d5bd2.stex" ]
+source_file="res://Sprites/PCEOMONES/Major/Karbajo/Karbajo_avatar.png"
+dest_files=[ "res://.import/Karbajo_avatar.png-870b05a45f1f23c02fdc06f4074a9966.stex" ]
 
 [params]
 

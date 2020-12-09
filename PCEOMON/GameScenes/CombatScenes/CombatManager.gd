@@ -110,7 +110,7 @@ func change_interface(turner):
 	#print("Cambiando la interfaz:\n a la de : ",turner.name)
 	$Combatinterface/CombatGUI/Fight/Avatar.texture = load(turner.avatar_path)
 	var txt = File.new()
-	if turner.type != 'minor':
+	if turner.type != "Menor":
 		txt.open("res://GameScenes/Menues/Selection/PCEOMONES/Major/" + turner.name.replace(" ","") +"Info.txt", File.READ)
 	else:
 		txt.open("res://GameScenes/Menues/Selection/PCEOMONES/Minor/" + turner.name.replace(" ","") +"Info.txt", File.READ)
