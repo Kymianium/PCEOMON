@@ -64,6 +64,16 @@ func _ready():
 	- Poco daño
 	"""
 	types_text.append(type_string)
+	#Ceronaturalista
+	types_icon.append(load("res://Sprites/Miscelaneous/Types/Zeronaturalist.png"))
+	types_example.append(load("res://Sprites/PCEOMONES/Major/Azul42/Azul42_avatar.png"))
+	type_string = """
+		Un ceronaturalista será un hijo de la gran puta y cancelará los ataques y habilidades de los PCEOMONES enemigos. Su principal propósito es entorpecer al equipo contrario.
+	
+	+ Puede inutilizar adversarios poderosos
+	- Poco daño (incluso nulo)
+	"""
+	types_text.append(type_string)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

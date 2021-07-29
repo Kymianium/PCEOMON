@@ -198,6 +198,9 @@ __meta__ = {
 
 [node name="Types" type="Control" parent="TutorialsAndText/Tutorial"]
 visible = false
+margin_top = 480.0
+margin_right = 300.0
+margin_bottom = 480.0
 
 [node name="VerticalContainter" type="VBoxContainer" parent="TutorialsAndText/Tutorial/Types"]
 margin_top = 10.0
@@ -270,6 +273,9 @@ flat = true
 
 [node name="AttacksAbilities" type="Control" parent="TutorialsAndText/Tutorial"]
 visible = false
+margin_top = 480.0
+margin_right = 300.0
+margin_bottom = 480.0
 
 [node name="Text" type="RichTextLabel" parent="TutorialsAndText/Tutorial/AttacksAbilities"]
 margin_left = 10.0
