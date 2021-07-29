@@ -1,0 +1,124 @@
+\documentclass[letterpaper]{article}
+\usepackage{geometry}
+\usepackage{xcolor}
+\usepackage{amsmath}
+\usepackage[some]{background}
+\usepackage[spanish]{babel}
+\usepackage{lipsum}
+\input{structure.tex}
+
+\definecolor{titlepagecolor}{cmyk}{1,.60,0,.40}
+
+\backgroundsetup{
+scale=1,
+angle=0,
+opacity=1,
+contents={\begin{tikzpicture}[remember picture,overlay]
+ \path [fill=titlepagecolor] (current page.west)rectangle (current page.north east);
+ \draw [color=white, very thick] (5,0)--(5,0.5\paperheight);
+\end{tikzpicture}}
+}
+
+\makeatletter
+\def\printauthor{%
+    {\large \@author}}
+\makeatother
+
+\author{%
+    \textbf{QQIT} \\
+    Equipo de desarrollo de PCEOMÓN \\
+    \texttt{pceomon@gmail.com}\vspace{40pt} \\
+    }
+
+\begin{document}
+
+\begin{titlepage}
+\BgThispage
+\newgeometry{left=1cm,right=6cm,bottom=2cm}
+\vspace*{0.4\textheight}
+\noindent
+\textcolor{white}{\Huge\textbf{\textsf{PCEODOC: La Biblia de PCEOMÓN}}}
+\vspace*{2cm}\par
+\noindent
+\begin{minipage}{0.35\linewidth}
+    \begin{flushright}
+        \printauthor
+    \end{flushright}
+\end{minipage} \hspace{15pt}
+%
+\begin{minipage}{0.02\linewidth}
+    \rule{1pt}{175pt}
+\end{minipage} \hspace{-10pt}
+%
+\begin{minipage}{0.63\linewidth}
+\vspace{5pt}
+    \begin{abstract}
+PCEOMÓN fue un proyecto pensado para perdurar a través de los años. Han sido a penas unos meses de desarrollo hasta que hemos sido conscientes de la cambiante naturaleza de este programa de estudios, y hemos comprendido el inevitable destino de este videojuego: el olvido.
+
+Es por eso que, en este documento, se recogen tanto las explicaciones pertinentes como biografías y otros datos necesarios para comprender todos los eventos que, a lo largo de la obra, se suceden.
+    \end{abstract}
+\end{minipage}
+\end{titlepage}
+\restoregeometry
+
+\tableofcontents
+\newpage
+
+\section{Introducción}
+
+Bienvenido, desafortunado lector. Hoy es el primer día de Agosto del año 2021, el coronavirus ha causado estragos en nuestras vidas y destruido la sociedad tal y cómo la conocemos. Mientras tanto, un muy selecto grupo de esquizofrénicos se reúnen para trabajar en un proyecto que dejará huella en la historia del PCEO mates+info. ¿Qué proyecto podría ser ese, si no \textbf{PCEOMÓN}?
+
+Esta introducción fue escrita por el primer director del proyecto. Mi nombre es Chito, pero probablemente ya no sepas quién soy. ¿Quién sabe cuánto tiempo habrá estado este documento, vagando por las generaciones del PCEO?
+
+Para evitar que la materia gris de vuestro cerebro colapse sobre ella misma y vuestros encéfalos se conviertan en un poco apetecible puré, hemos decidido hacer una documentación sobre este juego. \textbf{¿Por qué?}
+
+El proceso que nos llevó a juntarnos como grupo fue, realmente, algo que quisimos que quedara para el recuerdo. No sólo eso, sino cómo diseñamos el juego y qué elementos tomamos como inspiración para incorporar en éste. En tan sólo meses, hemos visto desaparecer y caer en el olvido muchas de las referencias sobre las cuáles nos inspiramos para hacer los PCEOMONES menores, así como las personas en las que nos inspiramos para hacer los mayores. Para mantener viva la leyenda del PCEO, debemos tener un modo de recordar \textbf{por qué tomamos esas decisiones}, qué nos llevó a implementar ese PCEOMÓN en concreto, por qué esa persona tiene ese ataque en particular. Todas estas condiciones fueron óptimas para el nacimiento de la abominación que, ahora, estamos redactando.
+
+Sin más dilación, podemos comenzar con \textbf{la historia de PCEOMÓN}.
+
+\section{La historia de PCEOMÓN}
+
+\subsection{Marzo 2019: el nacimiento de una idea}
+
+proyecto de TP de sofía brando, PCEOTALE/PCEOMÓN
+
+\subsection{Nuestros inicios: el equipo.}
+
+\subsection{Octubre 2019: el diseño, el código.}
+
+\subsection{Enero 2020: la primera piedra.}
+
+\subsection{Julio 2020: la resurrección.}
+
+\subsection{Octubre 2020: God comes to our lives}
+
+GODOT
+
+\subsection{El equipo se hace más grande}
+
+\subsection{2021: El desarrollo y PCEODOC.}
+
+\section{El LORE de PCEOMÓN}
+(de lo que trata la historia y sus modos de juego)
+
+\section{PCEOMONES mayores}
+
+\subsection{Chito}
+
+\subsubsection{Biografía}
+
+\subsubsection{Habilidades}
+
+\subsubsection{Trivia}
+
+\section{PCEOMONES menores}
+
+\subsection{Marinera de cantor}
+
+
+
+
+
+
+
+\end{document}

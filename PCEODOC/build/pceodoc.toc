@@ -1,0 +1,20 @@
+\babel@toc {spanish}{}
+\contentsline {section}{\numberline {1}Introducción}{2}{section.1}%
+\contentsline {section}{\numberline {2}La historia de PCEOMÓN}{2}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Marzo 2019: el nacimiento de una idea}{2}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Nuestros inicios: el equipo.}{2}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Octubre 2019: el diseño, el código.}{2}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Enero 2020: la primera piedra.}{2}{subsection.2.4}%
+\contentsline {subsection}{\numberline {2.5}Julio 2020: la resurrección.}{2}{subsection.2.5}%
+\contentsline {subsection}{\numberline {2.6}Octubre 2020: God comes to our lives}{2}{subsection.2.6}%
+\contentsline {subsection}{\numberline {2.7}El equipo se hace más grande}{3}{subsection.2.7}%
+\contentsline {subsection}{\numberline {2.8}2021: El desarrollo y PCEODOC.}{3}{subsection.2.8}%
+\contentsline {section}{\numberline {3}El LORE de PCEOMÓN}{3}{section.3}%
+\contentsline {section}{\numberline {4}PCEOMONES mayores}{3}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Chito}{3}{subsection.4.1}%
+\contentsline {subsubsection}{\numberline {4.1.1}Biografía}{3}{subsubsection.4.1.1}%
+\contentsline {subsubsection}{\numberline {4.1.2}Habilidades}{3}{subsubsection.4.1.2}%
+\contentsline {subsubsection}{\numberline {4.1.3}Trivia}{3}{subsubsection.4.1.3}%
+\contentsline {section}{\numberline {5}PCEOMONES menores}{3}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Marinera de cantor}{3}{subsection.5.1}%
+\contentsfinish 

@@ -1,0 +1,9 @@
+[0] Config.pm:304> INFO - This is Biber 2.14 (beta)
+[0] Config.pm:307> INFO - Logfile is 'build/pceodoc.blg'
+[76] biber:322> INFO - === jue jul 29, 2021, 17:31:11
+[105] Biber.pm:415> INFO - Reading 'build/pceodoc.bcf'
+[162] Biber.pm:943> INFO - Found 0 citekeys in bib section 0
+[211] Utils.pm:293> WARN - The file 'build/pceodoc.bcf' does not contain any citations!
+[224] bbl.pm:652> INFO - Writing 'build/pceodoc.bbl' with encoding 'UTF-8'
+[225] bbl.pm:755> INFO - Output to build/pceodoc.bbl
+[225] Biber.pm:128> INFO - WARNINGS: 1
