@@ -10,7 +10,9 @@ extends Control
 func _ready():
 	$LogoAnimation.play("QAnimation")
 	$IntroMusic.play()
-
+	#ESTOY HAY QUE QUITARLO, LA MUSICA ME ESTABA REVENTANDO LOS OIDOS ESTA MUY ALTA
+	$"/root/MainScreenMusicController".volume = -80
+	$"/root/MainScreenMusicController".music_volume(-80)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
