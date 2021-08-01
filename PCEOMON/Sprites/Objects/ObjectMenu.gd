@@ -1,6 +1,8 @@
 extends Control
 
-var seleccionado
+var selected
+
+signal object_selected
 
 var numObjects = 0
 var objectsDescription = {}
@@ -35,7 +37,7 @@ func getObjects():
 func showText(show, name):
 	if show:
 		$"Texto".text = objectsDescription[name] 
-	seleccionado = name
+	selected = name
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
@@ -44,3 +46,13 @@ func showText(show, name):
 
 func _on_Volver_pressed():
 	self.visible = false
+
+
+func _on_Seleccionar_pressed():
+	if selected != null:
+		#TODO falta escoger el target
+		
+		emit_signal("object_selected",selected)
+		
+	else:
+		return

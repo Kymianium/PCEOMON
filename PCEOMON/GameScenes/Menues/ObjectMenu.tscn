@@ -74,3 +74,4 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 [connection signal="pressed" from="HBoxContainer/Volver" to="." method="_on_Volver_pressed"]
+[connection signal="pressed" from="HBoxContainer/Seleccionar" to="." method="_on_Seleccionar_pressed"]

@@ -66,6 +66,8 @@ func _ready():
 	for pceo in $"Party".get_children():
 		if (pceo.need_to_select):
 			pceo.needed_select()
+	#Conectamos con el objectManager
+	#$ObjectManager.connect("object_selected",self,"Object")
 
 
 func write_attack_text(user: String, attack : String, objective : String, string : String):
@@ -270,6 +272,14 @@ func _on_Attack4_pressed():
 		metadata.time_exists[metadata.time_exists.size()-1].next4()
 		adjusted_interface = metadata.time_exists.size()
 
+
+func _on_ObjectMenu_object_selected(selected):
+	if (metadata.time_exists.size() != 0):
+		var ref = $ObjectManager.get_func_from_name(selected)
+		metadata.time_exists[metadata.time_exists.size()-1].nextobject(ref)
+		adjusted_interface = metadata.time_exists.size()
+
+
 func _process(_delta):
 	#print(str(adjusted_interface) + str(metadata.time_exists.size()))
 	if (metadata.time_exists.size() != 0 ):
@@ -333,6 +343,8 @@ func revive(pceomon):
 		enemy.foes.append(pceomon)
 	for mate in $"Party".get_children():
 		mate.mates.append(pceomon)
+
+
 
 
 

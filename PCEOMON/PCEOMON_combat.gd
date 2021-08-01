@@ -38,6 +38,8 @@ var manager	#Esta función contiene al combat manager
 
 var rng = RandomNumberGenerator.new()
 
+var next_object_ref
+
 signal just_attacked(user, attack, objective, string)
 # warning-ignore:unused_signal						
 signal attacked(user, target, damage, damage_type)
@@ -222,8 +224,10 @@ func attack():
 		atk2()
 	elif(next_attack == 3):
 		atk3()
-	else:
+	elif(next_attack == 4):
 		atk4()
+	else:
+		use_object()
 	targets = []
 #############################
 func atk1():
@@ -234,6 +238,8 @@ func atk3():
 	targets = []
 func atk4():
 	targets = []
+func use_object():
+	pass
 
 func target_gone(pceomon):
 	emit_signal("announcement", "¡" + self.name + " ha perdido a " + pceomon.name + "!")
@@ -271,6 +277,12 @@ func next4():
 	$"HBoxContainer/StatsSummary/Stamina".value = actual_stamina*100/next_attack_required_stamina
 	next_attack = 4
 	metadata.time_exists.erase(self)
+
+func nextobject(ref):
+	next_attack = 5
+	next_object_ref = ref
+	metadata.time_exists.erase(self)
+
 
 func boss_next_attack():
 	pass
