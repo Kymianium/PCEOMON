@@ -448,6 +448,13 @@ func stun(target, duration : int, stun : bool):
 			tar.make_stun_visible()
 		emit_signal("status", self, target, STUN)
 
+func clear_states():
+	stun_counter = 0
+	poison_counter = 0
+	$HBoxContainer/Status/Confusion.visible = false
+	$HBoxContainer/Status/Sleep.visible = false
+	$HBoxContainer/Status/Poison.visible = false
+
 func make_sleep_visible():
 	$"HBoxContainer/Status/Sleep".visible = true
 
