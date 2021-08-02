@@ -2,11 +2,17 @@ extends Control
 
 var selected
 
-signal object_selected
+signal target_selected
+signal object_selected(item,target)
+signal announcement(announce)
+
+
 
 var numObjects = 0
 var objectsDescription = {}
 var objectsTexture = {}
+var selecting
+var target
 
 const ITEM = preload("res://GameScenes/Menues/Miscelaneous/Item.tscn")
 
@@ -50,9 +56,28 @@ func _on_Volver_pressed():
 
 func _on_Seleccionar_pressed():
 	if selected != null:
+		print("Seleccionando target del objecto")
 		#TODO falta escoger el target
-		
-		emit_signal("object_selected",selected)
+		yield(select_combat("Selecciona un PCEOMON"),"completed")
+		print("Se ha sellecionado el objeto ", selected, " en el PCEOMON ", target)
+		emit_signal("object_selected",selected,target)
 		
 	else:
 		return
+
+#Todo el jaleo de la seleccion
+
+func target_selected(pceomon,boss):
+	if selecting:
+		target = pceomon
+		emit_signal("target_selected")
+
+
+func select_combat(var message : String):
+	#print("select_combat")
+	self.visible = false
+	emit_signal("announcement", message)
+	selecting = true
+	yield(self,"target_selected")
+	#print("Pceomon seleccionado",target)
+	selecting = false
