@@ -27,6 +27,7 @@ const SHOWER_DAMAGE = 100
 const MACARRAS_HEAL = 400
 const MACARRAS_SPEED_DEBUFF = 0.5
 const GARRAFA_DAMAGE = 300
+const MONSTER_SPEED_BUFF = 2
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -41,10 +42,11 @@ func _ready():
 	item_map["Ducha bluetooth"] = funcref(self,"ducha")
 	item_map["Fuente de macarras"] = funcref(self,"macarras")
 	item_map["Garrafa de paellas"] = funcref(self,"garrafa")
+	item_map["Monster"] = funcref(self,"monster")
 	item_map["Pulsera del Murcia"] = funcref(self,"pulsera_murcia")
 
 func get_func_from_name(name):
-	if item_map[name] != null:
+	if name in item_map:
 		return item_map[name]
 	print("MUERTE Y DESTRUCCION EN ObjectManager: Objecto no incluido en el mapa de Items")
 
@@ -77,10 +79,14 @@ func garrafa(target):
 
 func pulsera_murcia(target):
 	if target.name != "Mafranpe":
-		emit_signal("announcement",target.name + " se ha comprado la pulsera del Murcia. Mafranpe estaría orgulloso")
+		emit_signal("announcement",target.name + " se ha comprado la pulsera del Murcia. Mafranpe estaría orgulloso.")
 	else:
-		emit_signal("announcement",target.name + " se ha comprado la pulsera del Murcia y se ha puesto a dar la chapa para que te la compres también")
+		emit_signal("announcement",target.name + " se ha comprado la pulsera del Murcia y se ha puesto a dar la chapa para que te la compres tú también.")
 		
+
+func monster(target):
+	target.buff([target], SPEED, 1500, MONSTER_SPEED_BUFF, 0)
+	emit_signal("announcement","Placeholder")#TODO no se me ocurre nada
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
