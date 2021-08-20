@@ -1,10 +1,10 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://PCEOMONES_classes/PCEOMON.tscn" type="PackedScene" id=1]
-[ext_resource path="res://PCEOMONES_classes/ZeroNaturalist.gd" type="Script" id=2]
+[ext_resource path="res://Sprites/PCEOMONES/Major/Azul42/Azul42_sprite.png" type="Texture" id=1]
+[ext_resource path="res://PCEOMONES_classes/ZeroNaturalist.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Sprites/Miscelaneous/Bars/Custom/Fill.png" type="Texture" id=3]
 
-[node name="PCEOMON" instance=ExtResource( 1 )]
-script = ExtResource( 2 )
+[node name="PCEOMON" instance=ExtResource( 2 )]
 
 [node name="StatsSummary" parent="HBoxContainer" index="0"]
 margin_bottom = 50.0
@@ -22,8 +22,13 @@ margin_top = 10.0
 margin_bottom = 40.0
 
 [node name="Alcohol" parent="HBoxContainer/StatsSummary" index="3"]
+visible = true
 margin_top = 15.0
 margin_bottom = 35.0
+texture_progress = ExtResource( 3 )
 
 [node name="Status" parent="HBoxContainer" index="1"]
 margin_bottom = 50.0
+
+[node name="Sprite" parent="SpriteContainer" index="0"]
+texture = ExtResource( 1 )

@@ -241,6 +241,7 @@ script = ExtResource( 9 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
 [connection signal="pressed" from="Combatinterface/CombatGUI/MainOptions/Fight" to="Combatinterface" method="_on_Fight_pressed"]
 [connection signal="pressed" from="Combatinterface/CombatGUI/MainOptions/Objects" to="Combatinterface" method="_on_Objects_pressed"]
 [connection signal="pressed" from="Combatinterface/CombatGUI/MainOptions/Data" to="Combatinterface" method="_on_Data_pressed"]

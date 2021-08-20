@@ -242,9 +242,11 @@ margin_bottom = 41.0
 
 [node name="PCEOMONInfo" parent="." instance=ExtResource( 7 )]
 visible = false
+
 [connection signal="pressed" from="CenterContainer/MenuDistribution/Major/SelectAndNavigate/Column1/Armada" to="." method="_on_Armada_pressed"]
 [connection signal="pressed" from="CenterContainer/MenuDistribution/Major/SelectAndNavigate/Column1/Paco" to="." method="_on_Paco_pressed"]
 [connection signal="pressed" from="CenterContainer/MenuDistribution/Major/SelectAndNavigate/Column2/Alparko" to="." method="_on_Alparko_pressed"]
+[connection signal="pressed" from="CenterContainer/MenuDistribution/Major/SelectAndNavigate/Column2/Azul42" to="." method="_on_Azul42_pressed"]
 [connection signal="pressed" from="CenterContainer/MenuDistribution/Major/SelectAndNavigate/Column3/Chito" to="." method="_on_Chito_pressed"]
 [connection signal="pressed" from="CenterContainer/MenuDistribution/Minor/Minors/Teclado" to="." method="_on_Teclado_pressed"]
 [connection signal="pressed" from="CenterContainer/MenuDistribution/Minor/Minors/CafeteraComunista" to="." method="_on_CafeteraComunista_pressed"]
