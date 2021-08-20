@@ -9,6 +9,8 @@ var avatars = {}
 var info : String
 var R4 = {}
 
+var rng = RandomNumberGenerator.new()
+
 
 
 
@@ -161,6 +163,9 @@ func make_interface_visible(visible : bool):
 
 
 func adjust_dimension(dimension, pceomon):
+	
+	if pceomon.name == "Azul42" and rng.randf() < 0.5:
+		return
 	var avatar = load("res://Sprites/PCEOMONES/Major/" + dimension.name + "/" + dimension.name + "_avatar.png")
 	var icon = Sprite.new()
 	add_child(icon)
