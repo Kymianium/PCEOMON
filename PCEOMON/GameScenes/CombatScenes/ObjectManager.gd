@@ -51,7 +51,6 @@ func get_func_from_name(name):
 	print("MUERTE Y DESTRUCCION EN ObjectManager: Objecto no incluido en el mapa de Items")
 
 func bocata(target):
-	print("bocata")
 	target.heal([target],BOCATA_HEAL)
 	emit_signal("announcement","Qué rico el bocata de la cantina de Economía antes de subir a paellas.")
 
@@ -67,12 +66,12 @@ func ducha(target):
 func macarras(target):
 	target.heal([target],MACARRAS_HEAL)
 	target.buff([target], SPEED, 1500, MACARRAS_SPEED_DEBUFF, 0)
-	emit_signal("announcement","Una fuente entre clase y clase entra bastante bien.")
+	emit_signal("announcement","Una fuente entre clase y clase entra bastante bien. Avilés, perdónanos.")
 
 func garrafa(target):
 	if target is Alcoholic:
 		target.alcohol = target.maxalcohol
-		emit_signal("announcement","Placeholder")#TODO no se me ocurre nada
+		emit_signal("announcement","Esta garrafa contiene: ginebra, fanta, ácido de batería, silicio, zinc, cromos de pokémon del 98 y/o pepperoni... Y apuntes de funciones.")#TODO no se me ocurre nada
 	else:
 		target.poison([target], GARRAFA_DAMAGE)
 		emit_signal("announcement","No ha terminado de sentar bien el vodka de 4 euros...")
@@ -86,7 +85,7 @@ func pulsera_murcia(target):
 
 func monster(target):
 	target.buff([target], SPEED, 1500, MONSTER_SPEED_BUFF, 0)
-	emit_signal("announcement","Placeholder")#TODO no se me ocurre nada
+	emit_signal("announcement","Para ponerte hecho un MONSTRUO. TU DOSIS DE CAFEÍNA SEMANAL EN UN BOTE.")#TODO no se me ocurre nada
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass

@@ -88,7 +88,7 @@ signal revive(pceomon)
 
 var buffs = []
 
-var max_permanent_buff = 4
+var max_permanent_buff = 10
 
 var stats = {CHEMICAL_DMG : [5, 1, 0, 1], PHYSICAL_DMG : [5, 1, 0, 1], 
 PSYCHOLOGYCAL_DMG : [5, 1, 0, 1], CHEMICAL_DFC : [5, 1, 0, 1],
@@ -103,15 +103,15 @@ func buff(target, stat : int, duration : int, product : float, sum : int):
 		tar.stats[stat][2]+=sum
 	emit_signal("buffed", self, target, stat, duration, product, sum)
 	
-func permanent_buff(target, buffstat, product : float, sum : int):
+func permanent_buff(target, buffstats, product : float, sum : int):
 	print(target)
 	for tar in target:
-		for stat in buffstat:
+		for stat in buffstats:
 			tar.stats[stat][0]+=sum
 			tar.stats[stat][3]*=product
 			if tar.stats[stat][3]>max_permanent_buff:
 				tar.stats[stat][3]=max_permanent_buff
-	emit_signal("buffed", self, target, buffstat, 0, product, sum)
+	emit_signal("buffed", self, target, buffstats, 0, product, sum)
 	
 func getstat(stat : int):
 	var rawstat = stats[stat]
@@ -463,8 +463,8 @@ func make_stun_visible():
 
 func make_poison_visible():
 	$"HBoxContainer/Status/Poison".visible = true
-	# FUNCIÓN PARA SELECCIONAR UN PCEOMON ALIADO 
-	
+
+# FUNCIÓN PARA SELECCIONAR UN PCEOMON ALIADO 
 func select(var identity):
 	target = 0
 	selecting = true

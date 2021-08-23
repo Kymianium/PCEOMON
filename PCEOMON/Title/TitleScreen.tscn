@@ -90,11 +90,11 @@ margin_left = 462.0
 margin_right = 612.0
 
 [node name="Label" type="Label" parent="Menu"]
-margin_top = 150.0
+margin_top = 152.0
 margin_right = 612.0
-margin_bottom = 167.0
+margin_bottom = 169.0
 custom_fonts/font = ExtResource( 4 )
-text = "Version 0.0.3 - Solo disponible para desarrolladores. Tutorial y QOL."
+text = "Version 0.0.1.0 - Solo disponible para desarrolladores. El renacer del código."
 align = 1
 
 [node name="FadeIn" parent="." instance=ExtResource( 5 )]
@@ -106,6 +106,7 @@ margin_bottom = 480.0
 
 [node name="Animations" type="AnimationPlayer" parent="."]
 anims/Logo = SubResource( 2 )
+
 [connection signal="pressed" from="Menu/CenterRow/Play" to="." method="_on_Play_pressed"]
 [connection signal="pressed" from="Menu/CenterRow/Exit" to="." method="_on_Exit_pressed"]
 [connection signal="fade_in_finished" from="FadeIn" to="." method="_on_FadeIn_fade_in_finished"]

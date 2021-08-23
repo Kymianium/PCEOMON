@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Font/VersionFont.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Font/SmallFont.tres" type="DynamicFont" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://GameScenes/Menues/Selection/PCEOMONInfo.gd" type="Script" id=4]
 [ext_resource path="res://Font/ButtonFont.tres" type="DynamicFont" id=5]
 [ext_resource path="res://Sprites/Miscelaneous/Types/Alcoholic.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/Miscelaneous/Icons/Passive_icon.png" type="Texture" id=7]
 
 [node name="PCEOMONInfo" type="Control"]
 anchor_right = 1.0
@@ -101,14 +102,15 @@ margin_bottom = 40.0
 custom_constants/separation = 10
 
 [node name="AbName" type="Button" parent="Scroll/VBoxGlobal/AbilityAttacks/Ability"]
-margin_right = 86.0
+margin_right = 118.0
 margin_bottom = 40.0
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 2 )
 text = "Habilidad"
+icon = ExtResource( 7 )
 
 [node name="AbDesc" type="Label" parent="Scroll/VBoxGlobal/AbilityAttacks/Ability"]
-margin_left = 96.0
+margin_left = 128.0
 margin_right = 578.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 0, 40 )
@@ -308,6 +310,7 @@ margin_bottom = 41.0
 size_flags_vertical = 9
 custom_fonts/font = ExtResource( 5 )
 text = "Volver"
+
 [connection signal="pressed" from="Scroll/VBoxGlobal/AbilityAttacks/Ability/AbName" to="." method="_on_AbName_pressed"]
 [connection signal="pressed" from="Scroll/VBoxGlobal/AbilityAttacks/Attack1/At1Name" to="." method="_on_At1Name_pressed"]
 [connection signal="pressed" from="Scroll/VBoxGlobal/AbilityAttacks/Attack2/At2Name" to="." method="_on_At2Name_pressed"]

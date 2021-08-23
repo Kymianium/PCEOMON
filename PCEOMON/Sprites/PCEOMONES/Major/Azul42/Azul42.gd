@@ -5,7 +5,7 @@ extends "res://PCEOMONES_classes/ZeroNaturalist.gd"
 # var a = 2
 # var b = "text"
 
-var hijoputismo :bool = false
+var hijoputismo:bool = false
 
 
 # Called when the node enters the scene tree for the first time.
@@ -26,7 +26,7 @@ func _ready():
 	avatar_path = "res://Sprites/PCEOMONES/Major/Azul42/Azul42_avatar.png"
 
 func next1():
-	next_attack_required_stamina = 1000
+	next_attack_required_stamina = 200
 	.next1()
 
 func next2():
@@ -45,7 +45,7 @@ func atk1():
 	targets = [self]
 	targets += mates
 	targets += foes
-	permanent_buff(targets, EVASION , 0.7, 0)
+	buff(targets, EVASION , 5000, 0.7, 0)
 	if !(hijoputismo):
 		emit_signal("announcement","Azul42 ha disminuido la precisión de todos los PCEOMONES. ¡Qué hijo de puta, a por él!")
 		take_physical_damage(200)

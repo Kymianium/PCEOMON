@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Font/ButtonFont.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Font/VersionFont.tres" type="DynamicFont" id=2]
-[ext_resource path="res://GameScenes/Menues/return_to_title.gd" type="Script" id=3]
+[ext_resource path="res://GameScenes/Menues/CharacterSelection.gd" type="Script" id=3]
 [ext_resource path="res://GameScenes/Menues/Selection/PCEOMONES/Major/Armada.tscn" type="PackedScene" id=4]
 [ext_resource path="res://GameScenes/Menues/Selection/PCEOMONES/Major/Alparko.tscn" type="PackedScene" id=5]
 [ext_resource path="res://GameScenes/Menues/Selection/PCEOMONES/Major/Azul42.tscn" type="PackedScene" id=6]
@@ -35,9 +35,9 @@ __meta__ = {
 
 [node name="MenuDistribution" type="VBoxContainer" parent="CenterContainer"]
 margin_left = 25.0
-margin_top = 35.0
+margin_top = 36.0
 margin_right = 615.0
-margin_bottom = 445.0
+margin_bottom = 444.0
 custom_constants/separation = 20
 
 [node name="CharacterSelection" type="Label" parent="CenterContainer/MenuDistribution"]
@@ -208,21 +208,21 @@ stretch_mode = 3
 [node name="Miscelaneous" type="HBoxContainer" parent="CenterContainer/MenuDistribution"]
 margin_top = 369.0
 margin_right = 590.0
-margin_bottom = 410.0
+margin_bottom = 408.0
 custom_constants/separation = 20
 alignment = 1
 
 [node name="Back" type="Button" parent="CenterContainer/MenuDistribution/Miscelaneous"]
-margin_left = 149.0
-margin_right = 249.0
-margin_bottom = 41.0
+margin_left = 156.0
+margin_right = 250.0
+margin_bottom = 39.0
 custom_fonts/font = ExtResource( 1 )
 text = "Volver"
 
 [node name="Start" type="Button" parent="CenterContainer/MenuDistribution/Miscelaneous"]
-margin_left = 269.0
-margin_right = 421.0
-margin_bottom = 41.0
+margin_left = 270.0
+margin_right = 414.0
+margin_bottom = 39.0
 custom_fonts/font = ExtResource( 1 )
 text = "Comenzar"
 
@@ -236,9 +236,9 @@ custom_fonts/font = ExtResource( 2 )
 text = "Equipo:"
 
 [node name="Avatars" type="HBoxContainer" parent="CenterContainer/MenuDistribution/Miscelaneous"]
-margin_left = 441.0
-margin_right = 441.0
-margin_bottom = 41.0
+margin_left = 434.0
+margin_right = 434.0
+margin_bottom = 39.0
 
 [node name="PCEOMONInfo" parent="." instance=ExtResource( 7 )]
 visible = false
@@ -248,6 +248,7 @@ visible = false
 [connection signal="pressed" from="CenterContainer/MenuDistribution/Major/SelectAndNavigate/Column2/Alparko" to="." method="_on_Alparko_pressed"]
 [connection signal="pressed" from="CenterContainer/MenuDistribution/Major/SelectAndNavigate/Column2/Azul42" to="." method="_on_Azul42_pressed"]
 [connection signal="pressed" from="CenterContainer/MenuDistribution/Major/SelectAndNavigate/Column3/Chito" to="." method="_on_Chito_pressed"]
+[connection signal="pressed" from="CenterContainer/MenuDistribution/Major/SelectAndNavigate/Column3/Karbajo" to="." method="_on_Karbajo_pressed"]
 [connection signal="pressed" from="CenterContainer/MenuDistribution/Minor/Minors/Teclado" to="." method="_on_Teclado_pressed"]
 [connection signal="pressed" from="CenterContainer/MenuDistribution/Minor/Minors/CafeteraComunista" to="." method="_on_CafeteraComunista_pressed"]
 [connection signal="pressed" from="CenterContainer/MenuDistribution/Minor/Minors/MarineraDeCantor" to="." method="_on_MarineraDeCantor_pressed"]
