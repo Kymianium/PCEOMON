@@ -1,32 +1,41 @@
 extends Node2D
 
-
 var adjusted_interface = 0
+
 var pceomon
+
 var pceo_instance
+
 var avatar : TextureRect
+
 var avatars = {}
+
 var info : String
+
 var R4 = {}
 
 var rng = RandomNumberGenerator.new()
 
 
-
-
 signal pceomon_pressed(pceomon,boss)
+
 signal ended_text
 
 
+#Si pulsamos la tecla escape, se cerrará la partida
 func _input(event):
 	if event.is_action_pressed("ui_cancel"):
 		get_tree().quit()
 
 
 func _ready():
-	metadata.dimensions["default"] = [] # es algo así?
-	###TEMPORAL, METER ENEMIGOS
+	#Al comienzo del combate, todos los PCEOMONES están en la dimensión por defecto
+	metadata.dimensions["default"] = []
+	
+	#Utilizaremos esta conexión para que se conecte el cuadro de diálogo
 	$Combatinterface.connect("text", self, "incoming_announcement")
+	
+	#Instanciamos los PCEOMONES que están almancenados en metadata.party
 	for i in range(0, metadata.party.size()):
 		pceomon = load(metadata.party_paths[i])
 		pceo_instance = pceomon.instance()
@@ -34,24 +43,43 @@ func _ready():
 		pceo_instance.position.y = metadata.combat_position[i][1]
 		metadata.dimensions["default"].append(pceo_instance)
 		$Party.add_child(pceo_instance)
+		
+		##
+		##	SEÑALES IMPLEMENTADAS
+		##
+		#Para cuando has atacado y quieres escribir el texto del ataque
 		pceo_instance.connect("just_attacked", self, "write_attack_text")
+		#Para cuando palmas
 		pceo_instance.connect("died", self, "pceomon_died")
+		#Para cuando hay que anunciar algo
 		pceo_instance.connect("announcement", self, "incoming_announcement")
+		#Para cuando hay que anunciar algo y no quieres que se vaya fácilmente
 		pceo_instance.connect("permanent_announcement",self,"incoming_permanent_announcement")
+		#Para cuando pulsas sobre un PCEOMÓN
 		pceo_instance.connect("sprite_pressed",self,"pceomon_pressed")
+		#Cuando seleccionas un adversario, desaparece el cartel de "Selecciona un adversario"
 		pceo_instance.connect("target_selected",self,"_on_DialogueBox_input")
+		#Se le pasan los parámetros donde hay que dibujar y dibuja una partícula
 		pceo_instance.connect("particle", self, "draw_particle")
+		#Te hace una paja (tú qué crees?)
 		pceo_instance.connect("revive",self,"revive")
+		#Cuando presionas un PCEOMÓN, la instancia recibe la señal
 		self.connect("pceomon_pressed",pceo_instance,"target_selected")
+		
+		#Si es un R4, entonces se crea "su dimensión"
 		if (pceo_instance.type == "R4"):
 			metadata.dimensions[pceo_instance.name] = [pceo_instance]
 			pceo_instance.connect("dimension_changed",self,"adjust_dimension")
 			pceo_instance.connect("release_pceomon",self,"release_pceomon")
+			
+		
+		#Algunas cosas misceláneas de los PCEOMONES
 		pceo_instance.manager = self
 		avatar = TextureRect.new()
 		avatar.texture = load(pceo_instance.avatar_path)
 		avatars[pceo_instance]=avatar
-		#$Combatinterface/CombatGUI/Fight/Avatars.add_child(avatar)
+	
+	#Lo mismo para los enemigos
 	for enemy in $"Enemies".get_children():
 		metadata.dimensions["default"].append(enemy)
 		enemy.connect("sprite_pressed",self,"pceomon_pressed")
@@ -63,19 +91,22 @@ func _ready():
 		enemy.connect("particle", self, "draw_particle")
 		enemy.connect("revive",self,"revive")
 		self.connect("pceomon_pressed",enemy,"target_selected")
+		
+		
+	#Inicia los arrays de compañeros y adversarios
 	load_pceomones()
+	
+	
 	self.connect("pceomon_pressed",$ObjectMenu,"target_selected")
 	$ObjectMenu.connect("announcement", self, "incoming_announcement")
 	$ObjectManager.connect("announcement",self,"incoming_announcement")
 	
-	#Iniciamos los gyms y los R4
+	#Iniciamos los gyms y todos los que necesiten seleccionar
 	for pceo in $"Party".get_children():
 		if (pceo.need_to_select):
 			pceo.needed_select()
-	#Conectamos con el objectManager
-	#$ObjectManager.connect("object_selected",self,"Object")
 
-
+#Escribe el texto asociado a los ataques
 func write_attack_text(user: String, attack : String, objective : String, string : String):
 	if $DialogueBox.visible == true:
 		yield(self,"ended_text")
@@ -86,7 +117,7 @@ func write_attack_text(user: String, attack : String, objective : String, string
 	if(objective == ""):
 		showmessage = "¡" + user + " usó " + attack + "! " + string
 	else:
-		showmessage = "¡" + user + " usó " + attack + " contra " + objective + "! " + string
+		showmessage = "¡" + user + " usó " + attack + " sobre " + objective + "! " + string
 	make_interface_visible(false)
 	$DialogueBox.message(showmessage)
 
@@ -110,12 +141,8 @@ func load_pceomones():
 			if mate != mate2:
 				mate.new_mate(mate2)
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-func change_interface(turner):
-	#print("Cambiando la interfaz:\n a la de : ",turner.name)
+#Cuando es el turno de un PCEOMÓN, se cambia la interfaz para mostrar sus ataques.
+func change_interface(turner): #TODO hacer que esto no atente contra los derechos humanos (siempre abre ficheros de texto, almacenar esa info en los PCEOMONES)
 	$Combatinterface/CombatGUI/Fight/Avatar.texture = load(turner.avatar_path)
 	var txt = File.new()
 	if turner.type != "Menor":
@@ -152,21 +179,23 @@ func change_interface(turner):
 	$Combatinterface.atk4 = att4desc
 	$Combatinterface.passive = abilitydesc
 	
+	#Metainformación (vida)
 	info = str(turner.name) + "\n" + 'VIDA : ' + str(turner.actual_hp) + '/' + str(turner.max_hp)
 	$"Combatinterface/CombatGUI/Fight/Attacks/Attack1/Attack1".text = turner.attack1
 	$"Combatinterface/CombatGUI/Fight/Attacks/Attack1/Attack2".text = turner.attack2
 	$"Combatinterface/CombatGUI/Fight/Attacks/Attack2/Attack3".text = turner.attack3
 	$"Combatinterface/CombatGUI/Fight/Attacks/Attack2/Attack4".text = turner.attack4
 	$"Combatinterface/CombatGUI/MainOptions/Info".text = info
-	
+
+
 func make_interface_visible(visible : bool):
 	$"Combatinterface/CombatGUI".visible = visible
 
-
-func adjust_dimension(dimension, pceomon):
-	
+#Cambia de dimensión a los PCEOMONES
+func adjust_dimension(dimension, pceomon): #TODO por qué cojones la primera linea es la que es
 	if pceomon.name == "Azul42" and rng.randf() < 0.5:
 		return
+	#TODO almacenar el avatar de los R4 antes (en el ready)
 	var avatar = load("res://Sprites/PCEOMONES/Major/" + dimension.name + "/" + dimension.name + "_avatar.png")
 	var icon = Sprite.new()
 	add_child(icon)
@@ -176,7 +205,10 @@ func adjust_dimension(dimension, pceomon):
 	icon.modulate.a8 = 200
 	icon.scale.x = 0.5
 	icon.scale.y = 0.5
-	 
+	# Fin del ready 
+	
+	
+	
 	R4[pceomon] = icon
 	pceomon.foes = []
 	pceomon.mates = []
@@ -335,7 +367,6 @@ func incoming_announcement(announce):
 func _on_DialogueBox_input():
 	metadata.freeze_time = false
 	$DialogueBox.visible = false
-	#make_interface_visible(true)
 	emit_signal("ended_text")
 	$DialogueBox.set_permanent_dialog(false)
 	

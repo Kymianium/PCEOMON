@@ -73,7 +73,7 @@ func atk3():
 	if alcohol>maxalcohol:
 		alcohol=maxalcohol
 	$"HBoxContainer/StatsSummary/Alcohol".value = float(alcohol)/maxalcohol *100
-	emit_signal("just_attacked", "Armada", "Esto no es na'", "", "[wave] ¡Este hijo de puta quiere emborracharse![/wave] aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+	emit_signal("just_attacked", "Armada", "Esto no es na'", "", "[wave] ¡Este hijo de puta quiere emborracharse![/wave]")
 	.atk3()
 
 func atk4():
