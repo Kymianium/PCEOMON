@@ -13,8 +13,3 @@ func _ready():
 func useObject(target):
 	target.heal([target],BOCATA_HEAL)
 	emit_signal("announcement","Qué rico el bocata de la cantina de Economía antes de subir a paellas.")
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass

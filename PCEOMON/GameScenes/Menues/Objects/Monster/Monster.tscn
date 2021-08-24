@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://GameScenes/Menues/Miscelaneous/Item.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Sprites/Objects/ObjectSprites/Monster.png" type="Texture" id=2]
+[ext_resource path="res://GameScenes/Menues/Objects/Monster/Monster.gd" type="Script" id=3]
+
+[node name="Item" instance=ExtResource( 1 )]
+script = ExtResource( 3 )
+
+[node name="Texture" parent="Texture&Name" index="0"]
+texture = ExtResource( 2 )
+
+[node name="Name" parent="Texture&Name" index="1"]
+text = "Monster"
