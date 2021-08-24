@@ -79,6 +79,8 @@ func change_select_button(pceomon):
 func _on_Button_pressed():
 	get_tree().change_scene("res://Title/TitleScreen.tscn")
 	$"/root/MainScreenMusicController".play_loop("", false)
+	metadata.party = []
+	metadata.party_paths = []
 
 
 func _on_Start_pressed():
