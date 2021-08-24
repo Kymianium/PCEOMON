@@ -8,7 +8,9 @@ extends Node2D
 # Y LA RUTA A SU OBJETO.
 var party = []
 var party_paths = []
-var objects = []
+var items = ["Bocata","Ducha bluetooth"]
+var item_paths = ["res://GameScenes/Menues/Objects/Bocata/Bocata.tscn",
+		"res://GameScenes/Menues/Objects/Ducha bluetooth/Ducha bluetooth.tscn"]
 var dimensions = {} #ESTO CONTIENE LAS "DIMENSIONES" QUE HAY EN EL JUEGO,
 # DE MODO QUE LOS R4 FUNCIONEN BIEN. La "llave" es el nombre del PCEOMÓN que
 # tiene el mapa y los valores es un array que contiene a los pceomones que están

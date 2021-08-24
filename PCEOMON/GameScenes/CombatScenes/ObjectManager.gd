@@ -22,7 +22,6 @@ const SLEEP = 12
 
 signal announcement(message)
 
-const BOCATA_HEAL = 200
 const SHOWER_DAMAGE = 100
 const MACARRAS_HEAL = 400
 const MACARRAS_SPEED_DEBUFF = 0.5
@@ -50,18 +49,6 @@ func get_func_from_name(name):
 		return item_map[name]
 	print("MUERTE Y DESTRUCCION EN ObjectManager: Objecto no incluido en el mapa de Items")
 
-func bocata(target):
-	target.heal([target],BOCATA_HEAL)
-	emit_signal("announcement","Qué rico el bocata de la cantina de Economía antes de subir a paellas.")
-
-func ducha(target):
-	if target is Fiumer:
-		emit_signal("announcement","¿Agua que cae del techo? [shake]¿Qué es esto?[/shake]")
-		target.take_chemical_damage(SHOWER_DAMAGE)
-	else:	#TODO testear cuando algun enemigo meta cambios de estado
-		emit_signal("announcement","¡Los cambios de estado de " + target.name + " han desaparecido!")
-		target.clear_states()
-	
 
 func macarras(target):
 	target.heal([target],MACARRAS_HEAL)
@@ -71,7 +58,7 @@ func macarras(target):
 func garrafa(target):
 	if target is Alcoholic:
 		target.alcohol = target.maxalcohol
-		emit_signal("announcement","Esta garrafa contiene: ginebra, fanta, ácido de batería, silicio, zinc, cromos de pokémon del 98 y/o pepperoni... Y apuntes de funciones.")#TODO no se me ocurre nada
+		emit_signal("announcement","Esta garrafa contiene: ginebra, fanta, ácido de batería, silicio, zinc, cromos de pokémon del 98 y/o pepperoni... Y apuntes de funciones.")
 	else:
 		target.poison([target], GARRAFA_DAMAGE)
 		emit_signal("announcement","No ha terminado de sentar bien el vodka de 4 euros...")

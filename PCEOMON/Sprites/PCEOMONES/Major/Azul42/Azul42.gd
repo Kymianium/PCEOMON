@@ -17,7 +17,7 @@ func _ready():
 	attack2 = "No ayudar con PCEOMON"
 	attack3 = "No ganar El Juego"
 	attack4 = "Ser un hijo de puta"
-	type = "ZeroNaturalist"
+	type = "CeroNaturalista"
 #	dimension.append("Paco")
 	#if not dimension.has(null):
 	#	dimension.append(null)

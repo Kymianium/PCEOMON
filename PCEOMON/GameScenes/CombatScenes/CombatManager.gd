@@ -67,6 +67,7 @@ func _ready():
 	self.connect("pceomon_pressed",$ObjectMenu,"target_selected")
 	$ObjectMenu.connect("announcement", self, "incoming_announcement")
 	$ObjectManager.connect("announcement",self,"incoming_announcement")
+	
 	#Iniciamos los gyms y los R4
 	for pceo in $"Party".get_children():
 		if (pceo.need_to_select):
@@ -284,7 +285,7 @@ func _on_Attack4_pressed():
 func _on_ObjectMenu_object_selected(selected,pceomon):
 	print("Se va a usar item ", selected, pceomon)
 	if (metadata.time_exists.size() != 0):
-		var ref = $ObjectManager.get_func_from_name(selected)
+		var ref = $ObjectMenu.get_func_from_name(selected)
 		metadata.time_exists[metadata.time_exists.size()-1].nextobject(ref,pceomon)
 		adjusted_interface = metadata.time_exists.size()
 
