@@ -14,13 +14,12 @@ func _ready():
 	._ready()
 
 func useObject(target):
-	#NO SE COMO SE HACE LA COMPROBACION DE TIPOS JAJASALU2
-#	if target.get_type() == "res://PCEOMONES_classes/Alcoholic.gd":
-#		target.alcohol += GARRAFA_ALCOHOL
-#	else:
-	target.poison([target], DAMAGE_VENENO)
-	emit_signal("announcement","Sabe demasiado a alcochol, pero eso no tiene por qué ser algo malo.")
-	#FALTA HACER QUE BAJE LA VELOCIDAD
+	if target.type == "Alcóholico":
+		target.alcohol += GARRAFA_ALCOHOL
+		emit_signal("announcement","Esta garrafa contiene: ginebra, fanta, ácido de batería, silicio, zinc, cromos de pokémon del 98 y/o pepperoni... Y apuntes de funciones.")
+	else:
+		target.poison([target], DAMAGE_VENENO)
+		emit_signal("announcement","No ha terminado de sentar bien el vodka de 4 euros...")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

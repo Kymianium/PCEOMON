@@ -7,7 +7,11 @@ func _ready():
 	._ready()
 
 func useObject(target):
-	emit_signal("announcement","Efectivamente, no hace nada. \n #SOSREALMURCIA")
+	if target.name != "Mafranpe":
+		emit_signal("announcement",target.name + " se ha comprado la pulsera del Murcia. Mafranpe estaría orgulloso.")
+	else:
+		emit_signal("announcement",target.name + " se ha comprado la pulsera del Murcia y se ha puesto a dar la chapa para que te la compres tú también.")
+		
 	
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
