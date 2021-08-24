@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Font/ButtonFont.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Font/SmallFont.tres" type="DynamicFont" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://Sprites/Miscelaneous/Bars/Health/Fill.png" type="Texture" id=9]
 [ext_resource path="res://Sprites/PCEOMONES/Major/Armada/Armada_sprite.png" type="Texture" id=10]
 [ext_resource path="res://Sprites/Miscelaneous/Types/Alcoholic.png" type="Texture" id=11]
+[ext_resource path="res://Sprites/Miscelaneous/States/envenenamiento.png" type="Texture" id=12]
 
 [node name="Tutorials" type="Control"]
 anchor_right = 1.0
@@ -37,31 +38,31 @@ __meta__ = {
 }
 
 [node name="Combat" type="Button" parent="TutorialsAndText/Index"]
-margin_top = 62.0
+margin_top = 70.0
 margin_right = 300.0
-margin_bottom = 103.0
+margin_bottom = 109.0
 custom_fonts/font = ExtResource( 1 )
 text = "Cómo combatir"
 flat = true
 
 [node name="Attacks" type="Button" parent="TutorialsAndText/Index"]
-margin_top = 107.0
+margin_top = 113.0
 margin_right = 300.0
-margin_bottom = 148.0
+margin_bottom = 152.0
 custom_fonts/font = ExtResource( 1 )
 text = "Ataques/habilidades"
 flat = true
 
 [node name="Types" type="Button" parent="TutorialsAndText/Index"]
-margin_top = 152.0
+margin_top = 156.0
 margin_right = 300.0
-margin_bottom = 193.0
+margin_bottom = 195.0
 custom_fonts/font = ExtResource( 1 )
 text = "Tipos de PCEOMÓN"
 flat = true
 
 [node name="Status" type="Button" parent="TutorialsAndText/Index"]
-margin_top = 197.0
+margin_top = 199.0
 margin_right = 300.0
 margin_bottom = 238.0
 custom_fonts/font = ExtResource( 1 )
@@ -71,31 +72,31 @@ flat = true
 [node name="Stats" type="Button" parent="TutorialsAndText/Index"]
 margin_top = 242.0
 margin_right = 300.0
-margin_bottom = 283.0
+margin_bottom = 281.0
 custom_fonts/font = ExtResource( 1 )
 text = "Estadísticas"
 flat = true
 
 [node name="Fusion" type="Button" parent="TutorialsAndText/Index"]
-margin_top = 287.0
+margin_top = 285.0
 margin_right = 300.0
-margin_bottom = 328.0
+margin_bottom = 324.0
 custom_fonts/font = ExtResource( 1 )
 text = "Fusión PCEOMÓN"
 flat = true
 
 [node name="Trascendence" type="Button" parent="TutorialsAndText/Index"]
-margin_top = 332.0
+margin_top = 328.0
 margin_right = 300.0
-margin_bottom = 373.0
+margin_bottom = 367.0
 custom_fonts/font = ExtResource( 1 )
 text = "Trascendencias"
 flat = true
 
 [node name="Objects" type="Button" parent="TutorialsAndText/Index"]
-margin_top = 377.0
+margin_top = 371.0
 margin_right = 300.0
-margin_bottom = 418.0
+margin_bottom = 410.0
 custom_fonts/font = ExtResource( 1 )
 text = "Objetos"
 flat = true
@@ -128,6 +129,9 @@ text = "
 
 [node name="Combat" type="Control" parent="TutorialsAndText/Tutorial"]
 visible = false
+margin_top = 480.0
+margin_right = 300.0
+margin_bottom = 480.0
 
 [node name="VerticalContainter" type="VBoxContainer" parent="TutorialsAndText/Tutorial/Combat"]
 margin_top = 10.0
@@ -198,9 +202,6 @@ __meta__ = {
 
 [node name="Types" type="Control" parent="TutorialsAndText/Tutorial"]
 visible = false
-margin_top = 480.0
-margin_right = 300.0
-margin_bottom = 480.0
 
 [node name="VerticalContainter" type="VBoxContainer" parent="TutorialsAndText/Tutorial/Types"]
 margin_top = 10.0
@@ -252,30 +253,27 @@ __meta__ = {
 [node name="ButtonHolder" type="HBoxContainer" parent="TutorialsAndText/Tutorial/Types/VerticalContainter"]
 margin_top = 388.0
 margin_right = 300.0
-margin_bottom = 429.0
+margin_bottom = 427.0
 alignment = 1
 
 [node name="Latter" type="Button" parent="TutorialsAndText/Tutorial/Types/VerticalContainter/ButtonHolder"]
-margin_left = 17.0
+margin_left = 25.0
 margin_right = 143.0
-margin_bottom = 41.0
+margin_bottom = 39.0
 custom_fonts/font = ExtResource( 1 )
 text = "Anterior"
 flat = true
 
 [node name="Next" type="Button" parent="TutorialsAndText/Tutorial/Types/VerticalContainter/ButtonHolder"]
 margin_left = 147.0
-margin_right = 282.0
-margin_bottom = 41.0
+margin_right = 274.0
+margin_bottom = 39.0
 custom_fonts/font = ExtResource( 1 )
 text = "Siguiente"
 flat = true
 
 [node name="AttacksAbilities" type="Control" parent="TutorialsAndText/Tutorial"]
 visible = false
-margin_top = 480.0
-margin_right = 300.0
-margin_bottom = 480.0
 
 [node name="Text" type="RichTextLabel" parent="TutorialsAndText/Tutorial/AttacksAbilities"]
 margin_left = 10.0
@@ -292,6 +290,78 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="StateChanges" type="Control" parent="TutorialsAndText/Tutorial"]
+visible = false
+
+[node name="VerticalContainer" type="VBoxContainer" parent="TutorialsAndText/Tutorial/StateChanges"]
+margin_top = 7.0
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ChangeExample" type="HBoxContainer" parent="TutorialsAndText/Tutorial/StateChanges/VerticalContainer"]
+margin_right = 300.0
+margin_bottom = 25.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Icon" type="TextureRect" parent="TutorialsAndText/Tutorial/StateChanges/VerticalContainer/ChangeExample"]
+margin_left = 137.0
+margin_right = 162.0
+margin_bottom = 25.0
+texture = ExtResource( 12 )
+stretch_mode = 4
+
+[node name="Text" type="RichTextLabel" parent="TutorialsAndText/Tutorial/StateChanges/VerticalContainer"]
+margin_top = 29.0
+margin_right = 300.0
+margin_bottom = 309.0
+rect_min_size = Vector2( 300, 280 )
+size_flags_horizontal = 7
+size_flags_vertical = 3
+custom_fonts/mono_font = ExtResource( 2 )
+custom_fonts/bold_italics_font = ExtResource( 2 )
+custom_fonts/italics_font = ExtResource( 2 )
+custom_fonts/bold_font = ExtResource( 1 )
+custom_fonts/normal_font = ExtResource( 2 )
+text = "    El tipo alcohólico se centra en ataques devastadores y muy veloces, sacrificando a cambio una \"moneda de cambio\". Un alcohólico tan sólo podrá atacar si tiene el suficiente alcohol en sangre.
+	
+	+ Buen daño
+	+ Veloces
+	- Frágiles"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ButtonHolder" type="HBoxContainer" parent="TutorialsAndText/Tutorial/StateChanges/VerticalContainer"]
+margin_top = 313.0
+margin_right = 300.0
+margin_bottom = 352.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Latter" type="Button" parent="TutorialsAndText/Tutorial/StateChanges/VerticalContainer/ButtonHolder"]
+margin_left = 25.0
+margin_right = 143.0
+margin_bottom = 39.0
+custom_fonts/font = ExtResource( 1 )
+text = "Anterior"
+flat = true
+
+[node name="Next" type="Button" parent="TutorialsAndText/Tutorial/StateChanges/VerticalContainer/ButtonHolder"]
+margin_left = 147.0
+margin_right = 274.0
+margin_bottom = 39.0
+custom_fonts/font = ExtResource( 1 )
+text = "Siguiente"
+flat = true
+
 [node name="Exit" type="Button" parent="."]
 margin_left = 218.814
 margin_top = 437.628
@@ -303,9 +373,13 @@ flat = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
 [connection signal="pressed" from="TutorialsAndText/Index/Combat" to="." method="_on_Combat_pressed"]
 [connection signal="pressed" from="TutorialsAndText/Index/Attacks" to="." method="_on_Attacks_pressed"]
 [connection signal="pressed" from="TutorialsAndText/Index/Types" to="." method="_on_Types_pressed"]
+[connection signal="pressed" from="TutorialsAndText/Index/Status" to="." method="_on_Status_pressed"]
 [connection signal="pressed" from="TutorialsAndText/Tutorial/Types/VerticalContainter/ButtonHolder/Latter" to="." method="_on_Latter_pressed"]
 [connection signal="pressed" from="TutorialsAndText/Tutorial/Types/VerticalContainter/ButtonHolder/Next" to="." method="_on_Next_pressed"]
+[connection signal="pressed" from="TutorialsAndText/Tutorial/StateChanges/VerticalContainer/ButtonHolder/Latter" to="." method="_on_Latter_pressed"]
+[connection signal="pressed" from="TutorialsAndText/Tutorial/StateChanges/VerticalContainer/ButtonHolder/Next" to="." method="_on_Next_pressed"]
 [connection signal="pressed" from="Exit" to="." method="_on_Exit_pressed"]

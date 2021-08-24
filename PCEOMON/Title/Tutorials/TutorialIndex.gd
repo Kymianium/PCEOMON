@@ -9,10 +9,15 @@ var increasing_value = 0
 var delta_accumulated = 0
 var type_string
 var type_index = 0
+var state_string
+var state_index = 0
 
 var types_icon = []
 var types_example = []
 var types_text = []
+
+var states_icon = []
+var states_text = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -74,7 +79,35 @@ func _ready():
 	- Poco daño (incluso nulo)
 	"""
 	types_text.append(type_string)
+	
+	#ENVENENAMIENTO
+	states_icon.append(load("res://Sprites/Miscelaneous/States/envenenamiento.png"))
+	state_string = """
+	Cuando un PCEOMON está envenenado, irá peridendo puntos de vida. Cuando un PCEOMON es envenenado, se fija la cantidad de vida que perderá con el envenenamiento.
+	El PCEOMON se recuperará del veneno cuando pierda esos puntos de vida.
+	"""
+	states_text.append(state_string)
+	
+	#DORMIR
+	states_icon.append(load("res://Sprites/Miscelaneous/States/Dormir.png"))
+	state_string = """
+	Cuando un PCEOMON está dormido, no cargará puntos de stamina.
+	"""
+	states_text.append(state_string)
+	
+	#ATURDIMIENTO
+	states_icon.append(load("res://Sprites/Miscelaneous/States/aturdimiento.png"))
+	state_string = """
+	Mientras dure este estado, el PCEOMON afectado no cargará su stamina.
+	"""
+	states_text.append(state_string)
+	
+	$TutorialsAndText/Tutorial/StateChanges/VerticalContainer/ChangeExample/Icon.texture = states_icon[state_index]
+	$TutorialsAndText/Tutorial/StateChanges/VerticalContainer/Text.text = states_text[state_index]
 
+	
+	
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	delta_accumulated+=delta
@@ -100,6 +133,11 @@ func _on_Attacks_pressed():
 	current = $TutorialsAndText/Tutorial/AttacksAbilities
 	current.visible = true
 
+func _on_Status_pressed():
+	current.visible = false
+	current = $TutorialsAndText/Tutorial/StateChanges
+	current.visible = true
+
 
 func _on_Types_pressed():
 	current.visible = false
@@ -111,19 +149,35 @@ func _on_Types_pressed():
 
 
 func _on_Latter_pressed():
-	type_index-=1
-	if (type_index<0):
-		type_index = types_text.size()-1
-	$TutorialsAndText/Tutorial/Types/VerticalContainter/TypeExample/Icon.texture = types_icon[type_index]
-	$TutorialsAndText/Tutorial/Types/VerticalContainter/TypeExample/PCEOMON.texture = types_example[type_index]
-	$TutorialsAndText/Tutorial/Types/VerticalContainter/Text.text = types_text[type_index]
+	if $TutorialsAndText/Tutorial/Types.visible:
+		type_index-=1
+		if (type_index<0):
+			type_index = types_text.size()-1
+		$TutorialsAndText/Tutorial/Types/VerticalContainter/TypeExample/Icon.texture = types_icon[type_index]
+		$TutorialsAndText/Tutorial/Types/VerticalContainter/TypeExample/PCEOMON.texture = types_example[type_index]
+		$TutorialsAndText/Tutorial/Types/VerticalContainter/Text.text = types_text[type_index]
+	elif $TutorialsAndText/Tutorial/StateChanges.visible:
+		state_index-=1
+		if (state_index<0):
+			state_index = states_text.size()-1
+		$TutorialsAndText/Tutorial/StateChanges/VerticalContainer/ChangeExample/Icon.texture = states_icon[state_index]
+		$TutorialsAndText/Tutorial/StateChanges/VerticalContainer/Text.text = states_text[state_index]
 
 	
 
 
 func _on_Next_pressed():
-	type_index+=1
-	type_index= type_index%types_text.size()
-	$TutorialsAndText/Tutorial/Types/VerticalContainter/TypeExample/Icon.texture = types_icon[type_index]
-	$TutorialsAndText/Tutorial/Types/VerticalContainter/TypeExample/PCEOMON.texture = types_example[type_index]
-	$TutorialsAndText/Tutorial/Types/VerticalContainter/Text.text = types_text[type_index]
+	if $TutorialsAndText/Tutorial/Types.visible:
+		type_index+=1
+		type_index = type_index % types_text.size()
+		$TutorialsAndText/Tutorial/Types/VerticalContainter/TypeExample/Icon.texture = types_icon[type_index]
+		$TutorialsAndText/Tutorial/Types/VerticalContainter/TypeExample/PCEOMON.texture = types_example[type_index]
+		$TutorialsAndText/Tutorial/Types/VerticalContainter/Text.text = types_text[type_index]
+	elif $TutorialsAndText/Tutorial/StateChanges.visible:
+		state_index+=1
+		state_index = state_index % states_text.size()
+		$TutorialsAndText/Tutorial/StateChanges/VerticalContainer/ChangeExample/Icon.texture = states_icon[state_index]
+		$TutorialsAndText/Tutorial/StateChanges/VerticalContainer/Text.text = states_text[state_index]
+
+
+

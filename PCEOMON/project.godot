@@ -35,6 +35,10 @@ window/size/resizable=false
 window/stretch/mode="2d"
 window/stretch/aspect="keep"
 
+[global]
+
+pixel_snap=false
+
 [importer_defaults]
 
 texture={
@@ -60,5 +64,6 @@ texture={
 
 [rendering]
 
+2d/snapping/use_gpu_pixel_snap=true
 environment/default_clear_color=Color( 0.215686, 0.207843, 0.364706, 1 )
 environment/default_environment="res://default_env.tres"

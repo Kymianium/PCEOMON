@@ -21,7 +21,7 @@ func message(message : String):
 	$Background/Text.visible_characters = 0
 func _ready():
 	$Background/Text.visible_characters = 0
-	$Background/Text.rect_clip_content = false
+	#$Background/Text.rect_clip_content = false
 func _process(delta):
 	if ($Background/Text.text.length() > $Background/Text.visible_characters):
 		deltacum+=delta
