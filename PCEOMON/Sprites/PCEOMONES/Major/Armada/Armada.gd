@@ -48,6 +48,7 @@ func atk1():
 	alcohol-=50
 	$"HBoxContainer/StatsSummary/Alcohol".value = float(alcohol)/maxalcohol *100
 	unicast_damage(500,0.5, CHEMICAL_DMG, targets,"Postureo","Esta pa [rainbow] mejores amigos [/rainbow].")
+	$"SpriteContainer/AnimatedSprite".animation = "postureo"
 	.atk1()
 func atk2():
 	#El Quijote
@@ -74,6 +75,7 @@ func atk3():
 		alcohol=maxalcohol
 	$"HBoxContainer/StatsSummary/Alcohol".value = float(alcohol)/maxalcohol *100
 	emit_signal("just_attacked", "Armada", "Esto no es na'", "", "[wave] ¡Este hijo de puta quiere emborracharse![/wave]")
+	$"SpriteContainer/AnimatedSprite".animation = "esto_no_es_na"
 	.atk3()
 
 func atk4():

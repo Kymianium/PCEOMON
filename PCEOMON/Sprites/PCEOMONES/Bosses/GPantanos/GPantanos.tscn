@@ -19,5 +19,5 @@ rotation = 0.0
 [node name="Sprite" parent="SpriteContainer" index="0"]
 texture = ExtResource( 1 )
 
-[node name="Hitbox" parent="SpriteContainer" index="1"]
+[node name="Hitbox" parent="SpriteContainer" index="2"]
 position = Vector2( 52.6054, 153.258 )
