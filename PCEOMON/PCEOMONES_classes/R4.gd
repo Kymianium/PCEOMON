@@ -12,7 +12,6 @@ func select_combat_dimension(var message : String, var target, var dimension):
 		emit_signal("announcement", "¡La dimensión que seleccionas está vacía!")
 		next_attack_required_stamina=1
 		return false
-
 	if target == ALLY:
 		if mates != []:
 			emit_signal("permanent_announcement", message)
