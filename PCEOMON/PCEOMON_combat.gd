@@ -569,3 +569,7 @@ func needed_select():
 	
 	
 
+
+
+func _on_AnimatedSprite_animation_finished():
+	$SpriteContainer/AnimatedSprite.animation = "default"

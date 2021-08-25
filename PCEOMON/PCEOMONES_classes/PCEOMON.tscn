@@ -15,7 +15,7 @@
 [ext_resource path="res://PCEOMONES_classes/SpriteContainer.gd" type="Script" id=13]
 [ext_resource path="res://Sprites/Miscelaneous/States/Dormir.png" type="Texture" id=14]
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 25.0686, 49.5706 )
 
 [node name="PCEOMON" type="Node2D"]
@@ -130,7 +130,8 @@ position = Vector2( 25.028, 110 )
 
 [node name="Hitbox" type="CollisionShape2D" parent="SpriteContainer"]
 position = Vector2( 25.0282, 110.124 )
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 
 [connection signal="input_event" from="SpriteContainer" to="SpriteContainer" method="_on_SpriteContainer_input_event"]
 [connection signal="sprite_pressed" from="SpriteContainer" to="." method="_on_SpriteContainer_sprite_pressed"]
+[connection signal="animation_finished" from="SpriteContainer/AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]

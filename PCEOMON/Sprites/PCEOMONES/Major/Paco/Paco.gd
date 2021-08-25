@@ -1,9 +1,8 @@
 extends "res://PCEOMONES_classes/R4.gd"
 
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+var gotaParticle = "res://Sprites/PCEOMONES/Major/Paco/GotaParticle.tscn"
+
 
 var hacer_jal_required_stamina
 var hacer_jal_stamina 
@@ -54,6 +53,7 @@ func next4():
 
 func atk1():
 	release(targets[0])
+	emit_signal("particle", gotaParticle, targets[0].position.x+60, targets[0].position.y+220)
 	emit_signal("just_attacked","Paco","Es hora de marchar",targets[0].name,"Paco ha abandonado a su suerte a " + targets[0].name)
 	.atk1()
 
