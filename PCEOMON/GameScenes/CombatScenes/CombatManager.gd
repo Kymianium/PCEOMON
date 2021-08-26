@@ -208,7 +208,7 @@ func adjust_dimension(dimension, pceomon): #TODO por qué cojones la primera lin
 	# Fin del ready 
 	
 	
-	
+	#Reajustamos los arrays de mates y foes para no poder seleccionar pceomones de distinta dimension
 	R4[pceomon] = icon
 	pceomon.foes = []
 	pceomon.mates = []
@@ -235,8 +235,9 @@ func adjust_dimension(dimension, pceomon): #TODO por qué cojones la primera lin
 				pceomon.foes.append(pceomones)
 				pceomones.foes.append(pceomon)
 	metadata.dimensions[dimension.name].append(pceomon)
-	check_targets(pceomon, dimension)
+	check_targets(pceomon, dimension)		#Si estamos atacando a alguien y desaparece hay que dejar de atacar (junto con otros casos especiales)
 
+#análogo a la funcion anterior
 func release_pceomon(dimension, pceomon):
 	pceomon.foes = []
 	pceomon.mates = []
@@ -268,6 +269,8 @@ func release_pceomon(dimension, pceomon):
 		R4[pceomon].queue_free()
 		R4.erase(pceomon)
 
+#Para dejar de atacar si un pceomon cambia de dimension etc.
+#TODO: implementar esto en PCEOMON_combat para poder hacer casos especiales allí
 func check_targets(PCEOMON, R4):
 	for pceo in $Party.get_children():
 		if pceo==R4:
@@ -289,12 +292,15 @@ func check_targets(PCEOMON, R4):
 		if (pceo.type == "Gym" and pceo.selected_foe == null and PCEOMON in pceo.foes):
 			pceo.selected_foe = PCEOMON
 
+
+#Las siguientes funciones se llaman al pulsar los botones de ataque o cuando se selecciona un objeto
+
 func _on_Attack1_pressed():	
 	if (metadata.time_exists.size() != 0):
 #		if (metadata.time_exists[1].attack1 != $"Combatinterface/CombatGUI/Fight/Attacks/Attack1/Attack1".text):
 #				print("ERROR: La interfaz no cuadra con el pceomon que está a la espera de atacar")
 		metadata.time_exists[metadata.time_exists.size()-1].next1()
-		adjusted_interface = metadata.time_exists.size()
+		adjusted_interface = metadata.time_exists.size() #TODO: no se que narices es esto
 
 
 func _on_Attack2_pressed():
@@ -315,7 +321,6 @@ func _on_Attack4_pressed():
 
 
 func _on_ObjectMenu_object_selected(selected,pceomon):
-	print("Se va a usar item ", selected, pceomon)
 	if (metadata.time_exists.size() != 0):
 		var ref = $ObjectMenu.get_func_from_name(selected)
 		metadata.time_exists[metadata.time_exists.size()-1].nextobject(ref,pceomon)
@@ -335,7 +340,9 @@ func _process(_delta):
 	else:
 		make_interface_visible(false)
 
+#Conectado a la señal died, elimina el PCEOMON de las listas de PCEOMONES mates y foes.
 func pceomon_died(pceomon):
+	incoming_announcement("¡" + pceomon.name + " se ha debilitado!")
 	if pceomon.boss:
 		for mate in $"Party".get_children():
 			mate.foes.erase(pceomon)
@@ -350,9 +357,10 @@ func pceomon_died(pceomon):
 			enemy.foes.erase(pceomon)
 			print(pceomon.name , " eliminado de la lista de ", enemy.name)
 
-
+#siempre se emite una señal cuando se pulsa a un PCEOMON. Si es necesario, el pceomon seleccionando objetivo recibirña esta señal
 func pceomon_pressed(pceomon,boss):
 	emit_signal("pceomon_pressed",pceomon,boss)
+
 
 func incoming_permanent_announcement(announce):
 	$DialogueBox.set_permanent_dialog(true)
