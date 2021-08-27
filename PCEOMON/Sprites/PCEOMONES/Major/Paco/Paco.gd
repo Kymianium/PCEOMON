@@ -2,6 +2,8 @@ extends "res://PCEOMONES_classes/R4.gd"
 
 
 var gotaParticle = "res://Sprites/PCEOMONES/Major/Paco/GotaParticle.tscn"
+var jalParticle = "res://Sprites/PCEOMONES/Major/Paco/JalParticle.tscn"
+var inundarParticle = "res://Sprites/PCEOMONES/Major/Paco/InundarParticle.tscn"
 
 
 var hacer_jal_required_stamina
@@ -60,6 +62,7 @@ func atk1():
 func atk2():
 	trap(targets[0])
 	emit_signal("just_attacked","Paco","Inundar",targets[0].name,"Un torrente de agua arrastra a " + targets[0].name + " a las profundidas de [tornado]Orihuela[/tornado]")
+	emit_signal("particle", inundarParticle, targets[0].position.x+60, targets[0].position.y+100)
 	.atk2()
 ##################################
 ## MODIFICAR VALORES DEL ATAQUE ##
@@ -67,13 +70,14 @@ func atk2():
 func atk3():
 	permanent_buff([self], [PHYSICAL_DFC, PSYCHOLOGYCAL_DFC, CHEMICAL_DFC] , 1.2, 0)
 	emit_signal("just_attacked","Paco","F por Algebra","","... ¡Pero F mis putos cojones! ¡PACO SE HA SACADO UN 10!")
+	$"SpriteContainer/AnimatedSprite".animation = "f"
 	.atk3()
 ##################################
 ## MODIFICAR VALORES DEL ATAQUE ##
 ##################################
 func atk4():
 	if !haciendo_jal:
-		hacer_jal_required_stamina = rng.randi() % 1000 + 500 #Numero entre 500 y 1500 (MODIFICAR)
+		hacer_jal_required_stamina = 200#rng.randi() % 1000 + 500 #Numero entre 500 y 1500 (MODIFICAR)
 		haciendo_jal = true
 		hacer_jal_target = targets[0]
 		hacer_jal_stamina = 0
@@ -83,6 +87,7 @@ func _process(delta):
 	if haciendo_jal:
 		if (hacer_jal_stamina >= hacer_jal_required_stamina):
 			unicast_damage(1000,0.3, PSYCHOLOGYCAL_DMG, [hacer_jal_target],"No hacer JAL"," [shake level=10]¡¡¡¡¡¡KA-ME-HA-ME-JAL!!!!!!") #MODIFICAR DAÑOS
+			emit_signal("particle", jalParticle, hacer_jal_target.position.x, hacer_jal_target.position.y+150)
 			haciendo_jal = false
 			hacer_jal_stamina = 0
 		elif (metadata.time_should_run()):
