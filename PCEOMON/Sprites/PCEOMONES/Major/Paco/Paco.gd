@@ -70,6 +70,7 @@ func atk2():
 func atk3():
 	permanent_buff([self], [PHYSICAL_DFC, PSYCHOLOGYCAL_DFC, CHEMICAL_DFC] , 1.2, 0)
 	emit_signal("just_attacked","Paco","F por Algebra","","... ¡Pero F mis putos cojones! ¡PACO SE HA SACADO UN 10!")
+	$"SpriteContainer/AnimatedSprite".animation = "f"
 	.atk3()
 ##################################
 ## MODIFICAR VALORES DEL ATAQUE ##
