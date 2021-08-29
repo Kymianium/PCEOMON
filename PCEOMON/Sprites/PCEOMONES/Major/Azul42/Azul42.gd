@@ -30,7 +30,7 @@ func next1():
 	.next1()
 
 func next2():
-	next_attack_required_stamina = 200
+	next_attack_required_stamina = 40
 	.next2()
 
 func next3():
@@ -51,11 +51,15 @@ func atk1():
 		take_physical_damage(200)
 	else:
 		emit_signal("announcement","Azul42 ha disminuido la precisión de todos los PCEOMONES. Es un hijo de puta, pero es nuestro hijo de puta.")
-		hijoputismo = false
+		hijoputismo = true
+	$"SpriteContainer/AnimatedSprite".animation = "trigo"
+	$"SpriteContainer/Manjarito".animation = "trigo"
 	.atk1()
 	
 func atk2():
 	emit_signal("announcement","Se esperaba un movimiento muy poderoso, pero Azul no lo ha programado")
+	$"SpriteContainer/AnimatedSprite".animation = "no_ayudar"
+	$"SpriteContainer/Manjarito".animation = "no_ayudar"
 	.atk2()
 
 func atk3():
@@ -68,15 +72,23 @@ func atk3():
 		take_physical_damage(200)
 	else:
 		emit_signal("announcement","Azul ha gritado \"He perdido\" y todo el mundo ha perdido la concentración. Es un hijo de puta, pero esta se la pasamos.")
-		hijoputismo = false
+		hijoputismo = true
+	$"SpriteContainer/AnimatedSprite".animation = "perder"
+	$"SpriteContainer/Manjarito".animation = "perder"
 	.atk3()
 
 func atk4():
 	hijoputismo = true
 	emit_signal("announcement","Azul se ha cubierto de un manto de hijoputismo. \"Decid todo lo que queráis, pero no me podéis echar del grupo de clase\".")
+	$"SpriteContainer/AnimatedSprite".animation = "hijo_puta"
+	$"SpriteContainer/Manjarito".animation = "hijo_puta"
 	.atk4()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
+
+
+func _on_Manjarito_animation_finished():
+	$SpriteContainer/Manjarito.animation = "default"
