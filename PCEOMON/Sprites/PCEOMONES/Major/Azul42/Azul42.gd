@@ -38,7 +38,7 @@ func next3():
 	.next3()
 
 func next4():
-	next_attack_required_stamina = 600
+	next_attack_required_stamina = 300
 	.next4()
 
 func atk1():
@@ -82,6 +82,7 @@ func atk4():
 	emit_signal("announcement","Azul se ha cubierto de un manto de hijoputismo. \"Decid todo lo que queráis, pero no me podéis echar del grupo de clase\".")
 	$"SpriteContainer/AnimatedSprite".animation = "hijo_puta"
 	$"SpriteContainer/Manjarito".animation = "hijo_puta"
+	emit_signal("camera_zoom",self)
 	.atk4()
 
 

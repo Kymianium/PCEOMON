@@ -63,6 +63,8 @@ func _ready():
 		pceo_instance.connect("particle", self, "draw_particle")
 		#Te hace una paja (tú qué crees?)
 		pceo_instance.connect("revive",self,"revive")
+		#Para hacer zoom a un PCEOMON cuando hace un ataque
+		pceo_instance.connect("camera_zoom",$Camera2D,"zoom_PCEOMON")
 		#Cuando presionas un PCEOMÓN, la instancia recibe la señal
 		self.connect("pceomon_pressed",pceo_instance,"target_selected")
 		

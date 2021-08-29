@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://GameScenes/CombatScenes/CombatManager.gd" type="Script" id=1]
 [ext_resource path="res://Font/SmallFont.tres" type="DynamicFont" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://GameScenes/CombatScenes/Combatinterface.gd" type="Script" id=7]
 [ext_resource path="res://GameScenes/Menues/ObjectMenu.tscn" type="PackedScene" id=8]
 [ext_resource path="res://GameScenes/CombatScenes/ObjectManager.gd" type="Script" id=9]
+[ext_resource path="res://GameScenes/CombatScenes/Camera2D.gd" type="Script" id=10]
 
 [node name="TurnManager" type="Node2D"]
 script = ExtResource( 1 )
@@ -241,6 +242,17 @@ script = ExtResource( 9 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 165.851, 166.461 )
+limit_left = 0
+limit_top = 0
+limit_right = 640
+limit_bottom = 480
+limit_smoothed = true
+smoothing_enabled = true
+smoothing_speed = 2.0
+script = ExtResource( 10 )
 
 [connection signal="pressed" from="Combatinterface/CombatGUI/MainOptions/Fight" to="Combatinterface" method="_on_Fight_pressed"]
 [connection signal="pressed" from="Combatinterface/CombatGUI/MainOptions/Objects" to="Combatinterface" method="_on_Objects_pressed"]

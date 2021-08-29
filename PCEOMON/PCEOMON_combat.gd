@@ -64,6 +64,7 @@ signal sprite_pressed(name,boss)
 # warning-ignore:unused_signal
 signal particle(path, posx, posy)
 signal revive(pceomon)
+signal camera_zoom(pceomon)
 #STATS
 
 ###
