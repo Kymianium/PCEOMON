@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Font/ButtonFont.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Font/VersionFont.tres" type="DynamicFont" id=2]
@@ -17,6 +17,7 @@
 [ext_resource path="res://GameScenes/Menues/Selection/PCEOMONES/Minor/FuncionDeWeierstrass.tscn" type="PackedScene" id=15]
 [ext_resource path="res://GameScenes/Menues/Selection/PCEOMONES/Major/Paco.tscn" type="PackedScene" id=16]
 [ext_resource path="res://GameScenes/Menues/Selection/PCEOMONES/Major/Karbajo.tscn" type="PackedScene" id=17]
+[ext_resource path="res://Backgrounds/Pantalla_de_seleccion.png" type="Texture" id=18]
 
 [node name="Play" type="Control"]
 anchor_right = 1.0
@@ -25,6 +26,11 @@ script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_right = 640.0
+margin_bottom = 480.0
+texture = ExtResource( 18 )
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 anchor_right = 1.0

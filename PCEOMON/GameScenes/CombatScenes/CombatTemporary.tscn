@@ -25,19 +25,13 @@ centered = false
 [node name="GPantanos" parent="Enemies" instance=ExtResource( 3 )]
 position = Vector2( 500, 20 )
 
-[node name="Combatinterface" type="Control" parent="."]
-margin_top = 305.0
-margin_right = 640.0
-margin_bottom = 480.0
+[node name="Combatinterface" type="CanvasLayer" parent="."]
 script = ExtResource( 7 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="CombatGUI" type="HBoxContainer" parent="Combatinterface"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_bottom = 1.52588e-05
+margin_top = 295.0
 custom_constants/separation = 10
 alignment = 1
 __meta__ = {
@@ -47,34 +41,34 @@ __meta__ = {
 [node name="MainOptions" type="VBoxContainer" parent="Combatinterface/CombatGUI"]
 margin_left = 194.0
 margin_right = 277.0
-margin_bottom = 175.0
+margin_bottom = 185.0
 custom_constants/separation = 10
 alignment = 1
 
 [node name="Info" type="Label" parent="Combatinterface/CombatGUI/MainOptions"]
-margin_top = 20.0
+margin_top = 25.0
 margin_right = 83.0
-margin_bottom = 37.0
+margin_bottom = 42.0
 custom_fonts/font = ExtResource( 4 )
 
 [node name="Fight" type="Button" parent="Combatinterface/CombatGUI/MainOptions"]
-margin_top = 47.0
+margin_top = 52.0
 margin_right = 83.0
-margin_bottom = 76.0
+margin_bottom = 81.0
 custom_fonts/font = ExtResource( 2 )
 text = "Luchar"
 
 [node name="Objects" type="Button" parent="Combatinterface/CombatGUI/MainOptions"]
-margin_top = 86.0
+margin_top = 91.0
 margin_right = 83.0
-margin_bottom = 115.0
+margin_bottom = 120.0
 custom_fonts/font = ExtResource( 2 )
 text = "Objetos"
 
 [node name="Data" type="Button" parent="Combatinterface/CombatGUI/MainOptions"]
-margin_top = 125.0
+margin_top = 130.0
 margin_right = 83.0
-margin_bottom = 154.0
+margin_bottom = 159.0
 custom_fonts/font = ExtResource( 2 )
 text = "Datos"
 
@@ -142,13 +136,13 @@ text = "Passive"
 [node name="Fight" type="VBoxContainer" parent="Combatinterface/CombatGUI"]
 margin_left = 287.0
 margin_right = 445.0
-margin_bottom = 175.0
+margin_bottom = 185.0
 alignment = 1
 
 [node name="Avatar" type="TextureRect" parent="Combatinterface/CombatGUI/Fight"]
-margin_top = 51.0
+margin_top = 56.0
 margin_right = 158.0
-margin_bottom = 51.0
+margin_bottom = 56.0
 
 [node name="Avatars" type="HBoxContainer" parent="Combatinterface/CombatGUI/Fight"]
 visible = false
@@ -158,9 +152,9 @@ margin_bottom = 53.0
 alignment = 1
 
 [node name="Attacks" type="HBoxContainer" parent="Combatinterface/CombatGUI/Fight"]
-margin_top = 55.0
+margin_top = 60.0
 margin_right = 158.0
-margin_bottom = 123.0
+margin_bottom = 128.0
 custom_constants/separation = 10
 
 [node name="Attack1" type="VBoxContainer" parent="Combatinterface/CombatGUI/Fight/Attacks"]
@@ -229,13 +223,13 @@ margin_bottom = 68.0
 custom_fonts/font = ExtResource( 2 )
 text = "Fusión"
 
-[node name="DialogueBox" parent="." instance=ExtResource( 5 )]
+[node name="DialogueBox" parent="Combatinterface" instance=ExtResource( 5 )]
 visible = false
 
-[node name="ObjectMenu" parent="." instance=ExtResource( 8 )]
+[node name="ObjectMenu" parent="Combatinterface" instance=ExtResource( 8 )]
 visible = false
 
-[node name="ObjectManager" type="Control" parent="."]
+[node name="ObjectManager" type="Control" parent="Combatinterface"]
 margin_right = 40.0
 margin_bottom = 40.0
 script = ExtResource( 9 )
@@ -244,14 +238,15 @@ __meta__ = {
 }
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( 165.851, 166.461 )
+position = Vector2( 308.879, 261.813 )
+current = true
 limit_left = 0
 limit_top = 0
 limit_right = 640
 limit_bottom = 480
 limit_smoothed = true
 smoothing_enabled = true
-smoothing_speed = 2.0
+smoothing_speed = 20.0
 script = ExtResource( 10 )
 
 [connection signal="pressed" from="Combatinterface/CombatGUI/MainOptions/Fight" to="Combatinterface" method="_on_Fight_pressed"]
@@ -266,5 +261,5 @@ script = ExtResource( 10 )
 [connection signal="pressed" from="Combatinterface/CombatGUI/Fight/Attacks/Attack1/Attack2" to="." method="_on_Attack2_pressed"]
 [connection signal="pressed" from="Combatinterface/CombatGUI/Fight/Attacks/Attack2/Attack3" to="." method="_on_Attack_3_pressed"]
 [connection signal="pressed" from="Combatinterface/CombatGUI/Fight/Attacks/Attack2/Attack4" to="." method="_on_Attack4_pressed"]
-[connection signal="input" from="DialogueBox" to="." method="_on_DialogueBox_input"]
-[connection signal="object_selected" from="ObjectMenu" to="." method="_on_ObjectMenu_object_selected"]
+[connection signal="input" from="Combatinterface/DialogueBox" to="." method="_on_DialogueBox_input"]
+[connection signal="object_selected" from="Combatinterface/ObjectMenu" to="." method="_on_ObjectMenu_object_selected"]

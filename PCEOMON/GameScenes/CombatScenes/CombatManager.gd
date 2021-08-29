@@ -99,9 +99,9 @@ func _ready():
 	load_pceomones()
 	
 	
-	self.connect("pceomon_pressed",$ObjectMenu,"target_selected")
-	$ObjectMenu.connect("announcement", self, "incoming_announcement")
-	$ObjectManager.connect("announcement",self,"incoming_announcement")
+	self.connect("pceomon_pressed",$Combatinterface/ObjectMenu,"target_selected")
+	$Combatinterface/ObjectMenu.connect("announcement", self, "incoming_announcement")
+	$Combatinterface/ObjectManager.connect("announcement",self,"incoming_announcement")
 	
 	#Iniciamos los gyms y todos los que necesiten seleccionar
 	for pceo in $"Party".get_children():
@@ -110,18 +110,18 @@ func _ready():
 
 #Escribe el texto asociado a los ataques
 func write_attack_text(user: String, attack : String, objective : String, string : String):
-	if $DialogueBox.visible == true:
+	if $Combatinterface/DialogueBox.visible == true:
 		yield(self,"ended_text")
 		
 	var showmessage
 	metadata.freeze_time = true
-	$DialogueBox.visible = true
+	$Combatinterface/DialogueBox.visible = true
 	if(objective == ""):
 		showmessage = "¡" + user + " usó " + attack + "! " + string
 	else:
 		showmessage = "¡" + user + " usó " + attack + " sobre " + objective + "! " + string
 	make_interface_visible(false)
-	$DialogueBox.message(showmessage)
+	$Combatinterface/DialogueBox.message(showmessage)
 
 
 
@@ -365,20 +365,22 @@ func pceomon_pressed(pceomon,boss):
 
 
 func incoming_permanent_announcement(announce):
-	$DialogueBox.set_permanent_dialog(true)
+	$Combatinterface/DialogueBox.set_permanent_dialog(true)
 	incoming_announcement(announce)
 
 func incoming_announcement(announce):
 	make_interface_visible(false)
 	metadata.freeze_time = true
-	$DialogueBox.visible = true
-	$DialogueBox.message(announce)
+	$Combatinterface/DialogueBox.visible = true
+	$Combatinterface/DialogueBox.message(announce)
 
 func _on_DialogueBox_input():
+	$Camera2D.zoom = Vector2(1,1)
+	$Camera2D.zooming = false
 	metadata.freeze_time = false
-	$DialogueBox.visible = false
+	$Combatinterface/DialogueBox.visible = false
 	emit_signal("ended_text")
-	$DialogueBox.set_permanent_dialog(false)
+	$Combatinterface/DialogueBox.set_permanent_dialog(false)
 	
 func draw_particle(path, posx, posy):
 	var particle = load(path)
