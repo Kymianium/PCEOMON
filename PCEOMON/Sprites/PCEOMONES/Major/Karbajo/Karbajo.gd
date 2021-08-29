@@ -52,6 +52,7 @@ func atk3():
 	permanent_buff([self], [CHEMICAL_DMG, PHYSICAL_DMG,PSYCHOLOGYCAL_DMG,CHEMICAL_DFC,PHYSICAL_DFC,PSYCHOLOGYCAL_DFC,SPEED], 1 + (alcohol/maxalcohol)*3, 0)
 	
 	$"HBoxContainer/StatsSummary/Alcohol".value = float(alcohol)/maxalcohol *100
+	$"SpriteContainer/AnimatedSprite".animation = "chute"
 	emit_signal("just_attacked", "Karbajo", "Chute", "", " [shake level=10]D R O G A . . .       \nC A N Í B A L . . .[/shake]")
 	.atk3()
 
