@@ -11,10 +11,35 @@
 \contentsline {subsection}{\numberline {2.8}2021: El desarrollo y PCEODOC.}{3}{subsection.2.8}%
 \contentsline {section}{\numberline {3}El LORE de PCEOMÓN}{3}{section.3}%
 \contentsline {section}{\numberline {4}PCEOMONES mayores}{3}{section.4}%
-\contentsline {subsection}{\numberline {4.1}Chito}{3}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.1}Paco}{3}{subsection.4.1}%
 \contentsline {subsubsection}{\numberline {4.1.1}Biografía}{3}{subsubsection.4.1.1}%
 \contentsline {subsubsection}{\numberline {4.1.2}Habilidades}{3}{subsubsection.4.1.2}%
 \contentsline {subsubsection}{\numberline {4.1.3}Trivia}{3}{subsubsection.4.1.3}%
-\contentsline {section}{\numberline {5}PCEOMONES menores}{3}{section.5}%
-\contentsline {subsection}{\numberline {5.1}Marinera de cantor}{3}{subsection.5.1}%
+\contentsline {subsection}{\numberline {4.2}Karbajo}{3}{subsection.4.2}%
+\contentsline {subsubsection}{\numberline {4.2.1}Biografía}{3}{subsubsection.4.2.1}%
+\contentsline {subsubsection}{\numberline {4.2.2}Habilidades}{5}{subsubsection.4.2.2}%
+\contentsline {subsubsection}{\numberline {4.2.3}Trivia}{5}{subsubsection.4.2.3}%
+\contentsline {subsection}{\numberline {4.3}Chito}{5}{subsection.4.3}%
+\contentsline {subsubsection}{\numberline {4.3.1}Biografía}{5}{subsubsection.4.3.1}%
+\contentsline {subsubsection}{\numberline {4.3.2}Habilidades}{5}{subsubsection.4.3.2}%
+\contentsline {subsubsection}{\numberline {4.3.3}Trivia}{5}{subsubsection.4.3.3}%
+\contentsline {subsection}{\numberline {4.4}Azul42}{5}{subsection.4.4}%
+\contentsline {subsubsection}{\numberline {4.4.1}Biografía}{5}{subsubsection.4.4.1}%
+\contentsline {subsubsection}{\numberline {4.4.2}Habilidades}{5}{subsubsection.4.4.2}%
+\contentsline {subsubsection}{\numberline {4.4.3}Trivia}{5}{subsubsection.4.4.3}%
+\contentsline {subsection}{\numberline {4.5}Armada}{5}{subsection.4.5}%
+\contentsline {subsubsection}{\numberline {4.5.1}Biografía}{5}{subsubsection.4.5.1}%
+\contentsline {subsubsection}{\numberline {4.5.2}Habilidades}{5}{subsubsection.4.5.2}%
+\contentsline {subsubsection}{\numberline {4.5.3}Trivia}{5}{subsubsection.4.5.3}%
+\contentsline {subsection}{\numberline {4.6}Alparko}{5}{subsection.4.6}%
+\contentsline {subsubsection}{\numberline {4.6.1}Biografía}{5}{subsubsection.4.6.1}%
+\contentsline {subsubsection}{\numberline {4.6.2}Habilidades}{5}{subsubsection.4.6.2}%
+\contentsline {subsubsection}{\numberline {4.6.3}Trivia}{5}{subsubsection.4.6.3}%
+\contentsline {section}{\numberline {5}PCEOMONES menores}{5}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Cafetera comunista}{5}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Función de Weierstra{\ss }}{6}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}Marinera de cantor}{6}{subsection.5.3}%
+\contentsline {subsection}{\numberline {5.4}Teclado}{6}{subsection.5.4}%
+\contentsline {section}{\numberline {6}Bosses}{6}{section.6}%
+\contentsline {subsection}{\numberline {6.1}GPantanos}{6}{subsection.6.1}%
 \contentsfinish 
