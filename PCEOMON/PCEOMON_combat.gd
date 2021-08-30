@@ -142,7 +142,7 @@ var next_attack : int = 0
 
 #ATAQUES, HABILIDAD Y TIPO
 var type : String
-var attack1 : String
+var attack1 : String	#en desuso, usar attxname y abilityname
 var attack2 : String
 var attack3 : String
 var attack4 : String
@@ -166,6 +166,23 @@ var delta_acum: float = 0
 var arrow #Esta es la flecha que apunta al PCEOMÓN
 
 
+########NOMBRES DE LOS ATAQUES Y HABILIDADES CON SU DESCRIPCION
+
+var abilityname
+var abilitydesc
+var att1name
+var att2name
+var att3name
+var att4name
+var att1desc
+var att2desc
+var att3desc
+var att4desc
+
+
+
+
+
 #############################
 ###########PRUEBAS###########
 func _ready():
@@ -174,6 +191,29 @@ func _ready():
 	actual_hp = max_hp
 	arrow = $Arrow
 	$HBoxContainer/StatsSummary/Shield.value = 0
+	var txt = File.new()
+	if self.type != "Menor":
+		txt.open("res://GameScenes/Menues/Selection/PCEOMONES/Major/" + self.name.replace(" ","") +"Info.txt", File.READ)
+	else:
+		txt.open("res://GameScenes/Menues/Selection/PCEOMONES/Minor/" + self.name.replace(" ","") +"Info.txt", File.READ)
+	txt.get_line().replace("\\n","\n")
+	txt.get_line().replace("\\n","\n")
+	txt.get_line().replace("\\n","\n")
+	abilityname = txt.get_line().replace("\\n","\n")
+	txt.get_line().replace("\\n","\n")
+	abilitydesc = txt.get_line().replace("\\n","\n")
+	att1name = txt.get_line().replace("\\n","\n")
+	txt.get_line().replace("\\n","\n")
+	att1desc = txt.get_line().replace("\\n","\n")
+	att2name = txt.get_line().replace("\\n","\n")
+	txt.get_line().replace("\\n","\n")
+	att2desc = txt.get_line().replace("\\n","\n")
+	att3name = txt.get_line().replace("\\n","\n")
+	txt.get_line().replace("\\n","\n")
+	att3desc = txt.get_line().replace("\\n","\n")
+	att4name = txt.get_line().replace("\\n","\n")
+	txt.get_line().replace("\\n","\n")
+	att4desc = txt.get_line().replace("\\n","\n")
 
 func _input(event):
 	if(selecting):

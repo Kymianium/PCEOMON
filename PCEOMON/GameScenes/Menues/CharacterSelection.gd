@@ -92,6 +92,7 @@ func _on_Start_pressed():
 
 
 func getAndSetInfo(pceomon:String):
+	$Background.visible = false
 	$PCEOMONInfo.minor = false
 	var texture = load("res://Sprites/PCEOMONES/Major/" + pceomon + "/" + pceomon + "_avatar.png")
 	var file = File.new()
@@ -149,6 +150,7 @@ func getAndSetInfo(pceomon:String):
 	#setPCEOMONinfo(name, texture, description, type, ability, att1, att2, att3, att4)
 
 func getAndSetInfoMinor(pceomon: String):
+	$Background.visible = false
 	$PCEOMONInfo.minor = true
 	var texture = load("res://Sprites/PCEOMONES/Minor/" + pceomon + "/" + pceomon + "_avatar.png")
 	var file = File.new()
@@ -223,6 +225,7 @@ func _on_FuncionDeWeierstrass_pressed():
 	getAndSetInfoMinor("FuncionDeWeierstrass")
 
 func _on_PCEOMONInfo_volver():
+	$Background.visible = true
 	$"CenterContainer".visible = true
 	$"PCEOMONInfo".visible = false
 

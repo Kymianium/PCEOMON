@@ -62,7 +62,11 @@ func atk1():
 func atk2():
 	trap(targets[0])
 	emit_signal("just_attacked","Paco","Inundar",targets[0].name,"Un torrente de agua arrastra a " + targets[0].name + " a las profundidas de [tornado]Orihuela[/tornado]")
-	emit_signal("particle", inundarParticle, targets[0].position.x+60, targets[0].position.y+100)
+	if targets[0].boss:
+		emit_signal("particle", inundarParticle, targets[0].position.x+60, targets[0].position.y+100)
+	else:
+		emit_signal("particle", inundarParticle, targets[0].position.x+30, targets[0].position.y+50)
+	emit_signal("camera_zoom",targets[0])
 	.atk2()
 ##################################
 ## MODIFICAR VALORES DEL ATAQUE ##

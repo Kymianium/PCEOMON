@@ -14,10 +14,10 @@ func _ready():
 	attack3 = "Reunión de algebristas"
 	attack4 = "Chocolate caliente"
 	type = "Menor"
-	._ready()
 	avatar_path = "res://Sprites/PCEOMONES/Minor/CafeteraComunista/CafeteraComunista_avatar.png"
 	next_attack_required_stamina = 1300
-	
+	._ready()
+	att3name = "Reunión"
 
 func next1():
 	next_attack_required_stamina = 500

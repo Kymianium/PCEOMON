@@ -23,6 +23,7 @@ func _ready():
 	#	dimension.append(null)
 	#print("lista paco = " + str(dimension))
 	._ready()
+	att2name = "No ayudar"			#ESTA ES LA FORMA DE ACORTAR NOMBRES EN LA INTERFAZ. SIEMPRE DESPUES DE LLAMAR AL READY DEL PADRE
 	avatar_path = "res://Sprites/PCEOMONES/Major/Azul42/Azul42_avatar.png"
 
 func next1():

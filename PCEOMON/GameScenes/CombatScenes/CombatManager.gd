@@ -146,47 +146,47 @@ func load_pceomones():
 #Cuando es el turno de un PCEOMÓN, se cambia la interfaz para mostrar sus ataques.
 func change_interface(turner): #TODO hacer que esto no atente contra los derechos humanos (siempre abre ficheros de texto, almacenar esa info en los PCEOMONES)
 	$Combatinterface/CombatGUI/Fight/Avatar.texture = load(turner.avatar_path)
-	var txt = File.new()
-	if turner.type != "Menor":
-		txt.open("res://GameScenes/Menues/Selection/PCEOMONES/Major/" + turner.name.replace(" ","") +"Info.txt", File.READ)
-	else:
-		txt.open("res://GameScenes/Menues/Selection/PCEOMONES/Minor/" + turner.name.replace(" ","") +"Info.txt", File.READ)
-	txt.get_line().replace("\\n","\n")
-	txt.get_line().replace("\\n","\n")
-	txt.get_line().replace("\\n","\n")
-	var abilityname = txt.get_line().replace("\\n","\n")
-	txt.get_line().replace("\\n","\n")
-	var abilitydesc = txt.get_line().replace("\\n","\n")
-	var att1name = txt.get_line().replace("\\n","\n")
-	txt.get_line().replace("\\n","\n")
-	var att1desc = txt.get_line().replace("\\n","\n")
-	var att2name = txt.get_line().replace("\\n","\n")
-	txt.get_line().replace("\\n","\n")
-	var att2desc = txt.get_line().replace("\\n","\n")
-	var att3name = txt.get_line().replace("\\n","\n")
-	txt.get_line().replace("\\n","\n")
-	var att3desc = txt.get_line().replace("\\n","\n")
-	var att4name = txt.get_line().replace("\\n","\n")
-	txt.get_line().replace("\\n","\n")
-	var att4desc = txt.get_line().replace("\\n","\n")
+#	var txt = File.new()
+#	if turner.type != "Menor":
+#		txt.open("res://GameScenes/Menues/Selection/PCEOMONES/Major/" + turner.name.replace(" ","") +"Info.txt", File.READ)
+#	else:
+#		txt.open("res://GameScenes/Menues/Selection/PCEOMONES/Minor/" + turner.name.replace(" ","") +"Info.txt", File.READ)
+#	txt.get_line().replace("\\n","\n")
+#	txt.get_line().replace("\\n","\n")
+#	txt.get_line().replace("\\n","\n")
+#	var abilityname = txt.get_line().replace("\\n","\n")
+#	txt.get_line().replace("\\n","\n")
+#	var abilitydesc = txt.get_line().replace("\\n","\n")
+#	var att1name = txt.get_line().replace("\\n","\n")
+#	txt.get_line().replace("\\n","\n")
+#	var att1desc = txt.get_line().replace("\\n","\n")
+#	var att2name = txt.get_line().replace("\\n","\n")
+#	txt.get_line().replace("\\n","\n")
+#	var att2desc = txt.get_line().replace("\\n","\n")
+#	var att3name = txt.get_line().replace("\\n","\n")
+#	txt.get_line().replace("\\n","\n")
+#	var att3desc = txt.get_line().replace("\\n","\n")
+#	var att4name = txt.get_line().replace("\\n","\n")
+#	txt.get_line().replace("\\n","\n")
+#	var att4desc = txt.get_line().replace("\\n","\n")
 	
-	$Combatinterface/CombatGUI/Data/Attacks1/Atk1.text = att1name
-	$Combatinterface/CombatGUI/Data/Attacks1/Atk2.text = att2name
-	$Combatinterface/CombatGUI/Data/Attacks2/Atk3.text = att3name
-	$Combatinterface/CombatGUI/Data/Attacks2/Atk4.text = att4name
-	$Combatinterface/CombatGUI/Data/Passive/Passive.text = abilityname
-	$Combatinterface.atk1 = att1desc
-	$Combatinterface.atk2 = att2desc
-	$Combatinterface.atk3 = att3desc
-	$Combatinterface.atk4 = att4desc
-	$Combatinterface.passive = abilitydesc
+	$Combatinterface/CombatGUI/Data/Attacks1/Atk1.text = turner.att1name
+	$Combatinterface/CombatGUI/Data/Attacks1/Atk2.text = turner.att2name
+	$Combatinterface/CombatGUI/Data/Attacks2/Atk3.text = turner.att3name
+	$Combatinterface/CombatGUI/Data/Attacks2/Atk4.text = turner.att4name
+	$Combatinterface/CombatGUI/Data/Passive/Passive.text = turner.abilityname
+	$Combatinterface.atk1 = turner.att1desc
+	$Combatinterface.atk2 = turner.att2desc
+	$Combatinterface.atk3 = turner.att3desc
+	$Combatinterface.atk4 = turner.att4desc
+	$Combatinterface.passive = turner.abilitydesc
 	
 	#Metainformación (vida)
 	info = str(turner.name) + "\n" + 'VIDA : ' + str(turner.actual_hp) + '/' + str(turner.max_hp)
-	$"Combatinterface/CombatGUI/Fight/Attacks/Attack1/Attack1".text = turner.attack1
-	$"Combatinterface/CombatGUI/Fight/Attacks/Attack1/Attack2".text = turner.attack2
-	$"Combatinterface/CombatGUI/Fight/Attacks/Attack2/Attack3".text = turner.attack3
-	$"Combatinterface/CombatGUI/Fight/Attacks/Attack2/Attack4".text = turner.attack4
+	$"Combatinterface/CombatGUI/Fight/Attacks/Attack1/Attack1".text = turner.att1name
+	$"Combatinterface/CombatGUI/Fight/Attacks/Attack1/Attack2".text = turner.att2name
+	$"Combatinterface/CombatGUI/Fight/Attacks/Attack2/Attack3".text = turner.att3name
+	$"Combatinterface/CombatGUI/Fight/Attacks/Attack2/Attack4".text = turner.att4name
 	$"Combatinterface/CombatGUI/MainOptions/Info".text = info
 
 
