@@ -54,12 +54,14 @@ func atk1():
 		hijoputismo = true
 	$"SpriteContainer/AnimatedSprite".animation = "trigo"
 	$"SpriteContainer/Manjarito".animation = "trigo"
+	emit_signal("camera_zoom",self)
 	.atk1()
 	
 func atk2():
 	emit_signal("announcement","Se esperaba un movimiento muy poderoso, pero Azul no lo ha programado")
 	$"SpriteContainer/AnimatedSprite".animation = "no_ayudar"
 	$"SpriteContainer/Manjarito".animation = "no_ayudar"
+	emit_signal("camera_zoom",self)
 	.atk2()
 
 func atk3():
@@ -75,6 +77,7 @@ func atk3():
 		hijoputismo = true
 	$"SpriteContainer/AnimatedSprite".animation = "perder"
 	$"SpriteContainer/Manjarito".animation = "perder"
+	emit_signal("camera_zoom",self)
 	.atk3()
 
 func atk4():

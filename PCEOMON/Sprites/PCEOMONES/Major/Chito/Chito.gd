@@ -50,21 +50,25 @@ func atk1():
 		selected_foe = targets[0]
 	move()
 	unicast_damage(100,0.5, PHYSICAL_DMG, targets,"Placaje","¡La puta madre! Eso tuvo que doler...")
+	emit_signal("camera_zoom",self)
 	.atk1()
 func atk2():
 	anger=min(anger+30,max_anger)
 	$HBoxContainer/StatsSummary/Anger.value = (100*anger)/max_anger
 	emit_signal("just_attacked", "Chito", "Cheat Meal", "", "¡AQUÍ LLEGAN LOS [wave][rainbow] MACARRAS DEL PODER! [/rainbow][/wave]")
+	emit_signal("camera_zoom",self)
 	.atk2()
 func atk3():
 	binded_ally = targets[0]
 	emit_signal("just_attacked", "Chito", "Besito en la boca", "", "La pasión se siente en el ambiente entre Chito y " + binded_ally.name + "... ¡Dejadles intimidad!")
+	emit_signal("camera_zoom",self)
 	.atk3()
 func atk4():
 	if targets[0].actual_hp < calculate_physical_damage(1000, 1):
 		unicast_damage(targets[0].max_hp,0, TRUE_DMG, targets,"911","BOOOM, [shake level=10]¡CHEQUEA ESTOS MOVIMIENTOS, GEORGE BUSH![/shake]")
 	else:
 		unicast_damage(targets[0].max_hp,0, TRUE_DMG, targets,"911","Espera, ¿hacia dónde va ese avión...? . . . [shake level=10]OH DIOS MÍO[/shake]")
+	emit_signal("camera_zoom",self)
 	.atk4()
 
 

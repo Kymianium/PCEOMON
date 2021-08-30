@@ -81,6 +81,7 @@ func atk2():
 func atk3():
 	buff([self], EVASION, 1000, 0.8, 0)
 	emit_signal("just_attacked","La cafetera comunista", "Reunión de algebristas","","La cafetera se esconde entre profesores. ¡Aumenta su evasión!")
+	emit_signal("camera_zoom",self)
 	.atk3()
 func atk4():
 	#Sana al aliado más herido (por porcentajes)
