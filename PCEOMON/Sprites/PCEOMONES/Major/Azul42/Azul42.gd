@@ -5,7 +5,7 @@ extends "res://PCEOMONES_classes/ZeroNaturalist.gd"
 # var a = 2
 # var b = "text"
 
-var hijoputismo:bool = false
+export var hijoputismo:int = 0
 
 
 # Called when the node enters the scene tree for the first time.
@@ -47,12 +47,12 @@ func atk1():
 	targets += mates
 	targets += foes
 	buff(targets, EVASION , 5000, 0.7, 0)
-	if !(hijoputismo):
+	if hijoputismo == 0:
 		emit_signal("announcement","Azul42 ha disminuido la precisión de todos los PCEOMONES. ¡Qué hijo de puta, a por él!")
-		take_physical_damage(200)
+		damage(25)
 	else:
 		emit_signal("announcement","Azul42 ha disminuido la precisión de todos los PCEOMONES. Es un hijo de puta, pero es nuestro hijo de puta.")
-		hijoputismo = true
+		update_hijoputismo(hijoputismo-25)
 	$"SpriteContainer/AnimatedSprite".animation = "trigo"
 	$"SpriteContainer/Manjarito".animation = "trigo"
 	emit_signal("camera_zoom",self)
@@ -70,21 +70,21 @@ func atk3():
 		mat.set_stamina(1)
 	for foe in foes:
 		foe.set_stamina(1)
-	if !(hijoputismo):
+	if hijoputismo <= 0:
 		emit_signal("announcement","Azul ha gritado \"He perdido\" y todo el mundo ha perdido la concentración. ¡Qué hijo de puta, a por él!")
-		take_physical_damage(200)
+		damage(25)
 	else:
 		emit_signal("announcement","Azul ha gritado \"He perdido\" y todo el mundo ha perdido la concentración. Es un hijo de puta, pero esta se la pasamos.")
-		hijoputismo = true
+		update_hijoputismo(hijoputismo-25)
 	$"SpriteContainer/AnimatedSprite".animation = "perder"
 	$"SpriteContainer/Manjarito".animation = "perder"
 	emit_signal("camera_zoom",self)
 	.atk3()
 
 func atk4():
-	hijoputismo = true
-	emit_signal("just_attacked",self.name, "hijoputismo", "","\"Decid todo lo que queráis, pero no me podéis echar del grupo de clase\"")
-	#emit_signal("announcement","Azul se ha cubierto de un manto de hijoputismo. \"Decid todo lo que queráis, pero no me podéis echar del grupo de clase\".")
+	update_hijoputismo(100)
+	#emit_signal("just_attacked",self.name, "hijoputismo", "","\"Decid todo lo que queráis, pero no me podéis echar del grupo de clase\"")
+	emit_signal("announcement","Azul se ha cubierto de un manto de hijoputismo. \"Decid todo lo que queráis, pero no me podéis echar del grupo de clase\".")
 	$"SpriteContainer/AnimatedSprite".animation = "hijo_puta"
 	$"SpriteContainer/Manjarito".animation = "hijo_puta"
 	emit_signal("camera_zoom",self)
@@ -95,6 +95,9 @@ func atk4():
 #func _process(delta):
 #	pass
 
+func update_hijoputismo(value):
+	hijoputismo = value
+	$HBoxContainer/StatsSummary/Alcohol.value = value
 
 func _on_Manjarito_animation_finished():
 	$SpriteContainer/Manjarito.animation = "default"

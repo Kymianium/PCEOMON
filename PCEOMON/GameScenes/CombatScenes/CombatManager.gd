@@ -376,18 +376,22 @@ func incoming_permanent_announcement(announce):
 	incoming_announcement(announce)
 
 func incoming_announcement(announce):
-	print("incoming announcement")
-	make_interface_visible(false)
+	if $Combatinterface/DialogueBox.visible == true:
+		yield(self,"ended_text")
+		
+	var showmessage
 	metadata.freeze_time = true
 	$Combatinterface/DialogueBox.visible = true
+	make_interface_visible(false)
 	$Combatinterface/DialogueBox.message(announce)
 
 func _on_DialogueBox_input():
+	
+	$Camera2D.zoom = Vector2(1,1)
+	$Camera2D.zooming = false
 	if !can_attack:
 		can_attack = true
 		emit_signal("can_attack_unlocked")
-	$Camera2D.zoom = Vector2(1,1)
-	$Camera2D.zooming = false
 	metadata.freeze_time = false
 	$Combatinterface/DialogueBox.visible = false
 	emit_signal("ended_text")
