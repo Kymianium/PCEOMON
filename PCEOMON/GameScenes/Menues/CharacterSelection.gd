@@ -2,6 +2,16 @@ extends Control
 #Cargamos los sprites de los PCEOMONES
 
 var avatars = {}
+var major_column1
+var major_column2
+var major_column3
+var major_current_page = 0
+var major_max_pages = 2
+
+var minor_list
+var minor_current_page = 0
+var minor_max_pages = 2
+
 
 var type = { "Alcohólico" : load("res://Sprites/Miscelaneous/Types/Alcoholic.png"),
 "Copista" : load("res://Sprites/Miscelaneous/Types/Copy.png"), 
@@ -14,7 +24,15 @@ var type = { "Alcohólico" : load("res://Sprites/Miscelaneous/Types/Alcoholic.pn
 
 func _ready():
 	# $Music.volume_db = metadata.volumevalue
+	major_column1 = $CenterContainer/MenuDistribution/Major/SelectAndNavigate/Column1.get_children()
+	major_column2 = $CenterContainer/MenuDistribution/Major/SelectAndNavigate/Column2.get_children()
+	major_column3 = $CenterContainer/MenuDistribution/Major/SelectAndNavigate/Column3.get_children()
+	
+	minor_list =  $CenterContainer/MenuDistribution/Minor/Minors.get_children()
+	
 	$"/root/MainScreenMusicController".play_loop("res://OST/IntroAndMenu/character_selection_screen.ogg", true)
+	
+	
 	
 	$CenterContainer/MenuDistribution/Miscelaneous/Party.text = "Equipo: "
 	for pceomon in metadata.party:
@@ -294,3 +312,50 @@ func _on_Karbajo_pressed():
 
 func _on_Azul42_pressed():
 	getAndSetInfo("Azul42")
+
+
+func _on_LeftArrow_pressed():
+	major_current_page = (major_current_page-1)
+	if major_current_page == -1:
+		major_current_page = major_max_pages-1
+	adjust_major_page()
+
+func _on_RightArrow_pressed():
+	major_current_page = (major_current_page+1)%major_max_pages
+	adjust_major_page()
+
+func adjust_major_page():
+	for pceomon in major_column1:
+		pceomon.visible = false
+	major_column1[major_current_page*2].visible = true
+	major_column1[major_current_page*2+1].visible = true
+	for pceomon in major_column2:
+		pceomon.visible = false
+	major_column2[major_current_page*2].visible = true
+	major_column2[major_current_page*2+1].visible = true
+	for pceomon in major_column3:
+		pceomon.visible = false
+	major_column3[major_current_page*2].visible = true
+	major_column3[major_current_page*2+1].visible = true
+
+
+func _on_MinorRightArrow_pressed():
+	minor_current_page = (minor_current_page+1)%minor_max_pages
+	print("right arrow minor " + String(minor_current_page))
+	adjust_minor_page()
+	
+
+func _on_MinorLeftArrow_pressed():
+	print("left arrow minor")
+	minor_current_page = (minor_current_page-1)
+	if minor_current_page == -1:
+		minor_current_page = minor_max_pages-1
+	print(minor_current_page)
+	adjust_minor_page()
+
+
+func adjust_minor_page():
+	for pceomon in minor_list:
+		pceomon.visible = false
+	for i in range(4):
+		minor_list[4*minor_current_page+i].visible = true

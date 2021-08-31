@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Font/ButtonFont.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Font/VersionFont.tres" type="DynamicFont" id=2]
@@ -18,6 +18,7 @@
 [ext_resource path="res://GameScenes/Menues/Selection/PCEOMONES/Major/Paco.tscn" type="PackedScene" id=16]
 [ext_resource path="res://GameScenes/Menues/Selection/PCEOMONES/Major/Karbajo.tscn" type="PackedScene" id=17]
 [ext_resource path="res://Backgrounds/Pantalla_de_seleccion.png" type="Texture" id=18]
+[ext_resource path="res://GameScenes/Menues/Selection/Locked.tscn" type="PackedScene" id=19]
 
 [node name="Play" type="Control"]
 anchor_right = 1.0
@@ -40,14 +41,14 @@ __meta__ = {
 }
 
 [node name="MenuDistribution" type="VBoxContainer" parent="CenterContainer"]
-margin_left = 25.0
+margin_left = 90.0
 margin_top = 36.0
-margin_right = 615.0
-margin_bottom = 466.0
+margin_right = 550.0
+margin_bottom = 444.0
 custom_constants/separation = 20
 
 [node name="CharacterSelection" type="Label" parent="CenterContainer/MenuDistribution"]
-margin_right = 590.0
+margin_right = 460.0
 margin_bottom = 17.0
 custom_fonts/font = ExtResource( 2 )
 text = "¡Selecciona qué PCEOMONES quieres en tu equipo!"
@@ -55,11 +56,11 @@ align = 1
 
 [node name="Major" type="VBoxContainer" parent="CenterContainer/MenuDistribution"]
 margin_top = 37.0
-margin_right = 590.0
+margin_right = 460.0
 margin_bottom = 222.0
 
 [node name="MajorText" type="Label" parent="CenterContainer/MenuDistribution/Major"]
-margin_right = 590.0
+margin_right = 460.0
 margin_bottom = 23.0
 custom_fonts/font = ExtResource( 8 )
 text = "Mayores"
@@ -70,31 +71,14 @@ __meta__ = {
 
 [node name="SelectAndNavigate" type="HBoxContainer" parent="CenterContainer/MenuDistribution/Major"]
 margin_top = 27.0
-margin_right = 590.0
+margin_right = 460.0
 margin_bottom = 185.0
 custom_constants/separation = 20
 alignment = 1
 
-[node name="LeftArrowContainer" type="VBoxContainer" parent="CenterContainer/MenuDistribution/Major/SelectAndNavigate"]
-margin_left = 60.0
-margin_right = 105.0
-margin_bottom = 158.0
-alignment = 1
-
-[node name="LeftArrow" type="TextureButton" parent="CenterContainer/MenuDistribution/Major/SelectAndNavigate/LeftArrowContainer"]
-margin_top = 56.0
-margin_right = 45.0
-margin_bottom = 101.0
-texture_normal = ExtResource( 11 )
-texture_pressed = ExtResource( 11 )
-texture_hover = ExtResource( 11 )
-texture_disabled = ExtResource( 11 )
-texture_focused = ExtResource( 11 )
-stretch_mode = 3
-
 [node name="Column1" type="VBoxContainer" parent="CenterContainer/MenuDistribution/Major/SelectAndNavigate"]
-margin_left = 125.0
-margin_right = 225.0
+margin_left = 60.0
+margin_right = 160.0
 margin_bottom = 158.0
 
 [node name="Armada" parent="CenterContainer/MenuDistribution/Major/SelectAndNavigate/Column1" instance=ExtResource( 4 )]
@@ -106,9 +90,23 @@ margin_top = 81.0
 margin_right = 100.0
 margin_bottom = 158.0
 
+[node name="Locked" parent="CenterContainer/MenuDistribution/Major/SelectAndNavigate/Column1" instance=ExtResource( 19 )]
+visible = false
+margin_top = 162.0
+margin_right = 120.0
+margin_bottom = 239.0
+rect_rotation = 0.0
+
+[node name="Locked2" parent="CenterContainer/MenuDistribution/Major/SelectAndNavigate/Column1" instance=ExtResource( 19 )]
+visible = false
+margin_top = 162.0
+margin_right = 120.0
+margin_bottom = 239.0
+rect_rotation = 0.0
+
 [node name="Column2" type="VBoxContainer" parent="CenterContainer/MenuDistribution/Major/SelectAndNavigate"]
-margin_left = 245.0
-margin_right = 345.0
+margin_left = 180.0
+margin_right = 280.0
 margin_bottom = 158.0
 
 [node name="Alparko" parent="CenterContainer/MenuDistribution/Major/SelectAndNavigate/Column2" instance=ExtResource( 5 )]
@@ -120,9 +118,23 @@ margin_top = 81.0
 margin_right = 100.0
 margin_bottom = 158.0
 
+[node name="Locked" parent="CenterContainer/MenuDistribution/Major/SelectAndNavigate/Column2" instance=ExtResource( 19 )]
+visible = false
+margin_top = 162.0
+margin_right = 120.0
+margin_bottom = 239.0
+rect_rotation = 0.0
+
+[node name="Locked2" parent="CenterContainer/MenuDistribution/Major/SelectAndNavigate/Column2" instance=ExtResource( 19 )]
+visible = false
+margin_top = 162.0
+margin_right = 120.0
+margin_bottom = 239.0
+rect_rotation = 0.0
+
 [node name="Column3" type="VBoxContainer" parent="CenterContainer/MenuDistribution/Major/SelectAndNavigate"]
-margin_left = 365.0
-margin_right = 465.0
+margin_left = 300.0
+margin_right = 400.0
 margin_bottom = 158.0
 
 [node name="Chito" parent="CenterContainer/MenuDistribution/Major/SelectAndNavigate/Column3" instance=ExtResource( 9 )]
@@ -134,30 +146,27 @@ margin_top = 81.0
 margin_right = 100.0
 margin_bottom = 158.0
 
-[node name="RightArrowContainer" type="VBoxContainer" parent="CenterContainer/MenuDistribution/Major/SelectAndNavigate"]
-margin_left = 485.0
-margin_right = 530.0
-margin_bottom = 158.0
-alignment = 1
+[node name="Locked" parent="CenterContainer/MenuDistribution/Major/SelectAndNavigate/Column3" instance=ExtResource( 19 )]
+visible = false
+margin_top = 162.0
+margin_right = 120.0
+margin_bottom = 239.0
+rect_rotation = 0.0
 
-[node name="RightArrow" type="TextureButton" parent="CenterContainer/MenuDistribution/Major/SelectAndNavigate/RightArrowContainer"]
-margin_top = 56.0
-margin_right = 45.0
-margin_bottom = 101.0
-texture_normal = ExtResource( 10 )
-texture_pressed = ExtResource( 10 )
-texture_hover = ExtResource( 10 )
-texture_disabled = ExtResource( 10 )
-texture_focused = ExtResource( 10 )
-stretch_mode = 3
+[node name="Locked2" parent="CenterContainer/MenuDistribution/Major/SelectAndNavigate/Column3" instance=ExtResource( 19 )]
+visible = false
+margin_top = 162.0
+margin_right = 120.0
+margin_bottom = 239.0
+rect_rotation = 0.0
 
 [node name="Minor" type="VBoxContainer" parent="CenterContainer/MenuDistribution"]
 margin_top = 242.0
-margin_right = 590.0
+margin_right = 460.0
 margin_bottom = 349.0
 
 [node name="MinorText" type="Label" parent="CenterContainer/MenuDistribution/Minor"]
-margin_right = 590.0
+margin_right = 460.0
 margin_bottom = 23.0
 custom_fonts/font = ExtResource( 8 )
 text = "Menores"
@@ -168,66 +177,68 @@ __meta__ = {
 
 [node name="Minors" type="HBoxContainer" parent="CenterContainer/MenuDistribution/Minor"]
 margin_top = 27.0
-margin_right = 590.0
+margin_right = 460.0
 margin_bottom = 107.0
 rect_min_size = Vector2( 100, 80 )
 custom_constants/separation = 20
 alignment = 1
 
-[node name="LeftArrow" type="TextureButton" parent="CenterContainer/MenuDistribution/Minor/Minors"]
-margin_right = 45.0
-margin_bottom = 80.0
-texture_normal = ExtResource( 11 )
-texture_pressed = ExtResource( 11 )
-texture_hover = ExtResource( 11 )
-texture_disabled = ExtResource( 11 )
-texture_focused = ExtResource( 11 )
-stretch_mode = 3
-
 [node name="Teclado" parent="CenterContainer/MenuDistribution/Minor/Minors" instance=ExtResource( 14 )]
-margin_left = 65.0
-margin_right = 165.0
+margin_right = 100.0
 
 [node name="CafeteraComunista" parent="CenterContainer/MenuDistribution/Minor/Minors" instance=ExtResource( 13 )]
-margin_left = 185.0
-margin_right = 285.0
+margin_left = 120.0
+margin_right = 220.0
 
 [node name="MarineraDeCantor" parent="CenterContainer/MenuDistribution/Minor/Minors" instance=ExtResource( 12 )]
-margin_left = 305.0
-margin_right = 405.0
+margin_left = 240.0
+margin_right = 340.0
 
 [node name="FuncionDeWeierstrass" parent="CenterContainer/MenuDistribution/Minor/Minors" instance=ExtResource( 15 )]
-margin_left = 425.0
-margin_right = 525.0
+margin_left = 360.0
+margin_right = 460.0
 
-[node name="RightArrow" type="TextureButton" parent="CenterContainer/MenuDistribution/Minor/Minors"]
-margin_left = 545.0
-margin_right = 590.0
-margin_bottom = 80.0
-texture_normal = ExtResource( 10 )
-texture_pressed = ExtResource( 10 )
-texture_hover = ExtResource( 10 )
-texture_disabled = ExtResource( 10 )
-texture_focused = ExtResource( 10 )
-stretch_mode = 3
+[node name="PCEOMON" parent="CenterContainer/MenuDistribution/Minor/Minors" instance=ExtResource( 19 )]
+visible = false
+margin_left = 480.0
+margin_right = 600.0
+rect_rotation = 0.0
+
+[node name="PCEOMON2" parent="CenterContainer/MenuDistribution/Minor/Minors" instance=ExtResource( 19 )]
+visible = false
+margin_left = 480.0
+margin_right = 600.0
+rect_rotation = 0.0
+
+[node name="PCEOMON3" parent="CenterContainer/MenuDistribution/Minor/Minors" instance=ExtResource( 19 )]
+visible = false
+margin_left = 480.0
+margin_right = 600.0
+rect_rotation = 0.0
+
+[node name="PCEOMON4" parent="CenterContainer/MenuDistribution/Minor/Minors" instance=ExtResource( 19 )]
+visible = false
+margin_left = 480.0
+margin_right = 600.0
+rect_rotation = 0.0
 
 [node name="Miscelaneous" type="HBoxContainer" parent="CenterContainer/MenuDistribution"]
 margin_top = 369.0
-margin_right = 590.0
+margin_right = 460.0
 margin_bottom = 408.0
 custom_constants/separation = 20
 alignment = 1
 
 [node name="Back" type="Button" parent="CenterContainer/MenuDistribution/Miscelaneous"]
-margin_left = 156.0
-margin_right = 250.0
+margin_left = 91.0
+margin_right = 185.0
 margin_bottom = 39.0
 custom_fonts/font = ExtResource( 1 )
 text = "Volver"
 
 [node name="Start" type="Button" parent="CenterContainer/MenuDistribution/Miscelaneous"]
-margin_left = 270.0
-margin_right = 414.0
+margin_left = 205.0
+margin_right = 349.0
 margin_bottom = 39.0
 custom_fonts/font = ExtResource( 1 )
 text = "Comenzar"
@@ -242,8 +253,8 @@ custom_fonts/font = ExtResource( 2 )
 text = "Equipo:"
 
 [node name="Avatars" type="HBoxContainer" parent="CenterContainer/MenuDistribution/Miscelaneous"]
-margin_left = 434.0
-margin_right = 434.0
+margin_left = 369.0
+margin_right = 369.0
 margin_bottom = 39.0
 __meta__ = {
 "_edit_use_anchors_": false
@@ -251,6 +262,60 @@ __meta__ = {
 
 [node name="PCEOMONInfo" parent="." instance=ExtResource( 7 )]
 visible = false
+
+[node name="MinorLeftArrow" type="TextureButton" parent="."]
+margin_left = 15.0
+margin_top = 309.944
+margin_right = 60.0
+margin_bottom = 389.944
+texture_normal = ExtResource( 11 )
+texture_pressed = ExtResource( 11 )
+texture_hover = ExtResource( 11 )
+texture_disabled = ExtResource( 11 )
+texture_focused = ExtResource( 11 )
+stretch_mode = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MinorRightArrow" type="TextureButton" parent="."]
+margin_left = 580.0
+margin_top = 309.0
+margin_right = 625.0
+margin_bottom = 389.0
+texture_normal = ExtResource( 10 )
+texture_pressed = ExtResource( 10 )
+texture_hover = ExtResource( 10 )
+texture_disabled = ExtResource( 10 )
+texture_focused = ExtResource( 10 )
+stretch_mode = 3
+
+[node name="MajorLeftArrow" type="TextureButton" parent="."]
+margin_left = 40.0
+margin_top = 160.0
+margin_right = 85.0
+margin_bottom = 205.0
+texture_normal = ExtResource( 11 )
+texture_pressed = ExtResource( 11 )
+texture_hover = ExtResource( 11 )
+texture_disabled = ExtResource( 11 )
+texture_focused = ExtResource( 11 )
+stretch_mode = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MajorRightArrow" type="TextureButton" parent="."]
+margin_left = 555.0
+margin_top = 161.888
+margin_right = 600.0
+margin_bottom = 206.888
+texture_normal = ExtResource( 10 )
+texture_pressed = ExtResource( 10 )
+texture_hover = ExtResource( 10 )
+texture_disabled = ExtResource( 10 )
+texture_focused = ExtResource( 10 )
+stretch_mode = 3
 
 [connection signal="pressed" from="CenterContainer/MenuDistribution/Major/SelectAndNavigate/Column1/Armada" to="." method="_on_Armada_pressed"]
 [connection signal="pressed" from="CenterContainer/MenuDistribution/Major/SelectAndNavigate/Column1/Paco" to="." method="_on_Paco_pressed"]
@@ -266,3 +331,7 @@ visible = false
 [connection signal="pressed" from="CenterContainer/MenuDistribution/Miscelaneous/Start" to="." method="_on_Start_pressed"]
 [connection signal="seleccionar" from="PCEOMONInfo" to="." method="_on_PCEOMONInfo_seleccionar"]
 [connection signal="volver" from="PCEOMONInfo" to="." method="_on_PCEOMONInfo_volver"]
+[connection signal="pressed" from="MinorLeftArrow" to="." method="_on_MinorLeftArrow_pressed"]
+[connection signal="pressed" from="MinorRightArrow" to="." method="_on_MinorRightArrow_pressed"]
+[connection signal="pressed" from="MajorLeftArrow" to="." method="_on_LeftArrow_pressed"]
+[connection signal="pressed" from="MajorRightArrow" to="." method="_on_RightArrow_pressed"]
