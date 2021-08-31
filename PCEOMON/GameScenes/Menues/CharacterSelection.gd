@@ -69,6 +69,11 @@ func manage_party(pceomon):
 		text = text.replace(' ' + pceomon,"")
 		$"CenterContainer/MenuDistribution/Miscelaneous/Party".text = text
 		$"CenterContainer/MenuDistribution/Miscelaneous/Avatars".remove_child(avatars[pceomon])
+		avatars.erase(pceomon)
+	if !avatars.empty():
+		$Background.rect_position.y = -6
+	if avatars.empty():
+		$Background.rect_position.y = 0
 
 func change_select_button(pceomon):
 	if pceomon in metadata.party:
