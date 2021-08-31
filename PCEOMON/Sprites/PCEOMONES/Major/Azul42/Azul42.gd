@@ -83,7 +83,8 @@ func atk3():
 
 func atk4():
 	hijoputismo = true
-	emit_signal("announcement","Azul se ha cubierto de un manto de hijoputismo. \"Decid todo lo que queráis, pero no me podéis echar del grupo de clase\".")
+	emit_signal("just_attacked",self.name, "hijoputismo", "","\"Decid todo lo que queráis, pero no me podéis echar del grupo de clase\"")
+	#emit_signal("announcement","Azul se ha cubierto de un manto de hijoputismo. \"Decid todo lo que queráis, pero no me podéis echar del grupo de clase\".")
 	$"SpriteContainer/AnimatedSprite".animation = "hijo_puta"
 	$"SpriteContainer/Manjarito".animation = "hijo_puta"
 	emit_signal("camera_zoom",self)

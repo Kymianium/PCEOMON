@@ -180,6 +180,9 @@ var att3desc
 var att4desc
 
 
+##Semáforo para que no ataquen dos PCEOMONES a la vez (WIP)
+var waiting_to_attack = false
+
 
 
 
@@ -258,6 +261,12 @@ func shield(target, amount : int):
 
 # HACER UN CASE CON EL SIGUIENTE ATAQUE
 func attack():
+	while !manager.can_attack:
+		waiting_to_attack = true
+		yield(manager,"can_attack_unlocked")
+		print("se ha metidio can_attack_unlocked")
+	manager.can_attack = false
+	waiting_to_attack = false
 	actual_stamina = 0
 	$"HBoxContainer/StatsSummary/Stamina".value = 0
 	if(next_attack == 1):
@@ -344,7 +353,8 @@ func _process(delta):
 		else:
 			boss_next_attack()
 	elif(actual_stamina >= next_attack_required_stamina):
-		attack()
+		if !waiting_to_attack:
+			attack()
 	elif(stun_counter > 0):
 		delta_acum+=delta
 		if (delta_acum > 0.1):

@@ -17,6 +17,10 @@ var R4 = {}
 var rng = RandomNumberGenerator.new()
 
 
+var can_attack:bool = true #la primera semana de PCD me dice que eso no deberia de ir, pero estoy desperado
+
+signal can_attack_unlocked()
+
 signal pceomon_pressed(pceomon,boss)
 
 signal ended_text
@@ -34,6 +38,8 @@ func _ready():
 	
 	#Utilizaremos esta conexión para que se conecte el cuadro de diálogo
 	$Combatinterface.connect("text", self, "incoming_announcement")
+	
+	
 	
 	#Instanciamos los PCEOMONES que están almancenados en metadata.party
 	for i in range(0, metadata.party.size()):
@@ -67,6 +73,7 @@ func _ready():
 		pceo_instance.connect("camera_zoom",$Camera2D,"zoom_PCEOMON")
 		#Cuando presionas un PCEOMÓN, la instancia recibe la señal
 		self.connect("pceomon_pressed",pceo_instance,"target_selected")
+		
 		
 		#Si es un R4, entonces se crea "su dimensión"
 		if (pceo_instance.type == "R4"):
@@ -369,12 +376,16 @@ func incoming_permanent_announcement(announce):
 	incoming_announcement(announce)
 
 func incoming_announcement(announce):
+	print("incoming announcement")
 	make_interface_visible(false)
 	metadata.freeze_time = true
 	$Combatinterface/DialogueBox.visible = true
 	$Combatinterface/DialogueBox.message(announce)
 
 func _on_DialogueBox_input():
+	if !can_attack:
+		can_attack = true
+		emit_signal("can_attack_unlocked")
 	$Camera2D.zoom = Vector2(1,1)
 	$Camera2D.zooming = false
 	metadata.freeze_time = false

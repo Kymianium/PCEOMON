@@ -117,4 +117,5 @@ func atk4():
 	$"SpriteContainer/AnimatedSprite".animation = "ataque"
 	emit_signal("particle", weatherParticle, 0, 0)
 	emit_signal("just_attacked", "Alparko", "/weather clear", "", "¡A tomar por culo los bufos!")
+
 	.atk4()
