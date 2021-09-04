@@ -160,6 +160,10 @@ func getAndSetInfo(pceomon:String):
 	$"PCEOMONInfo".At4Desc = att4desc
 	$"PCEOMONInfo/RequestedData/SpriteName/Sprite".texture = texture
 	change_select_button(name.replace(" ", ""))
+	$MinorLeftArrow.visible = false
+	$MinorRightArrow.visible = false
+	$MajorLeftArrow.visible = false
+	$MajorRightArrow.visible = false
 	#Puede parecer que en las siguientes lineas hay un mareo increíble, pero de esta forma
 	#se soluciona un bug que hace que el texto no se centre (ni ide de por qué)
 	$"CenterContainer".visible = false
@@ -218,6 +222,10 @@ func getAndSetInfoMinor(pceomon: String):
 	$"PCEOMONInfo".At4Desc = att4desc
 	$"PCEOMONInfo/RequestedData/SpriteName/Sprite".texture = texture
 	change_select_button(name.replace(" ", ""))
+	$MinorLeftArrow.visible = false
+	$MinorRightArrow.visible = false
+	$MajorLeftArrow.visible = false
+	$MajorRightArrow.visible = false
 	#Puede parecer que en las siguientes lineas hay un mareo increíble, pero de esta forma
 	#se soluciona un bug que hace que el texto no se centre (ni idea de por qué)
 	$"CenterContainer".visible = false
@@ -251,6 +259,10 @@ func _on_PCEOMONInfo_volver():
 	$Background.visible = true
 	$"CenterContainer".visible = true
 	$"PCEOMONInfo".visible = false
+	$MinorLeftArrow.visible = true
+	$MinorRightArrow.visible = true
+	$MajorLeftArrow.visible = true
+	$MajorRightArrow.visible = true
 
 #Funcion que cambia el sprite del PCEOMON seleccionado a blanco y negro o a color si se deselecciona
 func change_PCEOMON_button(pceomon):
@@ -341,16 +353,13 @@ func adjust_major_page():
 
 func _on_MinorRightArrow_pressed():
 	minor_current_page = (minor_current_page+1)%minor_max_pages
-	print("right arrow minor " + String(minor_current_page))
 	adjust_minor_page()
 	
 
 func _on_MinorLeftArrow_pressed():
-	print("left arrow minor")
 	minor_current_page = (minor_current_page-1)
 	if minor_current_page == -1:
 		minor_current_page = minor_max_pages-1
-	print(minor_current_page)
 	adjust_minor_page()
 
 
