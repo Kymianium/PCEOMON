@@ -8,6 +8,10 @@ extends Node2D
 # Y LA RUTA A SU OBJETO.
 var party = []
 var party_paths = []
+
+var enemy_party_path = []
+
+#PACO ESTO QUÉ ES
 var items = ["Bocata","Ducha bluetooth","Fuente de macarras","Garrafa de paellas", "Monster","Pulsera del Murcia"]
 var item_paths = ["res://GameScenes/Menues/Objects/Bocata/Bocata.tscn",
 		"res://GameScenes/Menues/Objects/Ducha bluetooth/Ducha bluetooth.tscn",
@@ -15,6 +19,7 @@ var item_paths = ["res://GameScenes/Menues/Objects/Bocata/Bocata.tscn",
 		"res://GameScenes/Menues/Objects/Garrafa de paellas/Garrafa de paellas.tscn",
 		"res://GameScenes/Menues/Objects/Monster/Monster.tscn",
 		"res://GameScenes/Menues/Objects/Pulsera del Murcia/Pulsera del Murcia.tscn"]
+
 var dimensions = {} #ESTO CONTIENE LAS "DIMENSIONES" QUE HAY EN EL JUEGO,
 # DE MODO QUE LOS R4 FUNCIONEN BIEN. La "llave" es el nombre del PCEOMÓN que
 # tiene el mapa y los valores es un array que contiene a los pceomones que están

@@ -33,4 +33,5 @@ rect_min_size = Vector2( 100, 0 )
 custom_fonts/font = ExtResource( 2 )
 text = "Nombre"
 align = 1
+
 [connection signal="pressed" from="Sprite" to="." method="_on_Sprite_pressed"]

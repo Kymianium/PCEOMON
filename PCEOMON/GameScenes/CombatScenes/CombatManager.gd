@@ -89,6 +89,11 @@ func _ready():
 		avatars[pceo_instance]=avatar
 	
 	#Lo mismo para los enemigos
+	
+	################
+	### IMPORTANTE #    Hay un array en metadata que se llama enemy_party, cambiar esto para que se inicialice desde ahí
+	################
+	
 	for enemy in $"Enemies".get_children():
 		metadata.dimensions["default"].append(enemy)
 		enemy.connect("sprite_pressed",self,"pceomon_pressed")

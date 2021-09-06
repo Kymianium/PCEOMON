@@ -16,7 +16,7 @@
 [ext_resource path="res://Sprites/Miscelaneous/States/Dormir.png" type="Texture" id=14]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 25.0686, 49.5706 )
+extents = Vector2( 25.8425, 53.2808 )
 
 [node name="PCEOMON" type="Node2D"]
 position = Vector2( 20, 10 )
