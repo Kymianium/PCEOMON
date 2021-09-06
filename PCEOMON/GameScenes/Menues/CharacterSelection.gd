@@ -108,7 +108,7 @@ func _on_Button_pressed():
 
 func _on_Start_pressed():
 	if (metadata.party.size()>0):
-		get_tree().change_scene("res://GameScenes/CombatScenes/CombatTemporary.tscn")
+		get_tree().change_scene("res://GameScenes/Maps/World Maps/Campus.tscn")
 		$"/root/MainScreenMusicController".play_loop("", false)
 	else:
 		pass	#PONER ALGÚN MENSJE ROLLO "NO HAS ELEGIDO PCEOMONES"

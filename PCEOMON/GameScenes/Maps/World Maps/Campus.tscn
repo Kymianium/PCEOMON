@@ -1,0 +1,75 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Sprites/Map textures/World maps/Campus.png" type="Texture" id=1]
+[ext_resource path="res://Font/ButtonFont.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Font/VersionFont.tres" type="DynamicFont" id=3]
+[ext_resource path="res://GameScenes/Maps/World Maps/Campus.gd" type="Script" id=4]
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Map" type="TextureRect" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Select message" type="RichTextLabel" parent="."]
+margin_top = 420.0
+margin_right = 640.0
+margin_bottom = 490.0
+size_flags_horizontal = 3
+custom_fonts/mono_font = ExtResource( 2 )
+custom_fonts/bold_italics_font = ExtResource( 2 )
+custom_fonts/normal_font = ExtResource( 2 )
+bbcode_enabled = true
+bbcode_text = "[center][shake rate=10 level=15]¡Selecciona una ubicación![/shake][/center]
+"
+text = "¡Selecciona una ubicación!
+"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AG" type="Button" parent="."]
+margin_left = 100.0
+margin_top = 184.0
+margin_right = 302.0
+margin_bottom = 223.0
+custom_fonts/font = ExtResource( 2 )
+text = "Aulario general"
+
+[node name="FIUM" type="Button" parent="."]
+margin_left = 438.0
+margin_top = 44.0
+margin_right = 518.0
+margin_bottom = 83.0
+custom_fonts/font = ExtResource( 2 )
+text = "FIUM"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TEMPORAL" type="RichTextLabel" parent="."]
+margin_right = 640.0
+margin_bottom = 55.0
+custom_fonts/normal_font = ExtResource( 3 )
+bbcode_enabled = true
+bbcode_text = "[center]
+TEMPORAL TEMPORAL TEMPORAL ESTO ES TEMPORAL TEMPORAL!!
+[/center]"
+text = "
+TEMPORAL TEMPORAL TEMPORAL ESTO ES TEMPORAL TEMPORAL!!
+"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="FIUM" to="." method="_on_FIUM_pressed"]
