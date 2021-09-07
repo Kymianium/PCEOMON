@@ -34,6 +34,6 @@ func damage(damage):
 	elif actual_hp-damage < 5000 and phase==2:
 		$SpriteContainer/Sprite.texture = phase3
 		phase+=1
-		heal(10000)
+		heal(self, 10000)
 		next_attack_required_stamina = 100
 	.damage(damage)

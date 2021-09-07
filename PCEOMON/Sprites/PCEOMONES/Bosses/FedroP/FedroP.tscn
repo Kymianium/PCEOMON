@@ -6,7 +6,6 @@
 
 [node name="PCEOMON" instance=ExtResource( 1 )]
 script = ExtResource( 3 )
-avatar_path = null
 
 [node name="HBoxContainer" parent="." index="0"]
 margin_left = 20.0
