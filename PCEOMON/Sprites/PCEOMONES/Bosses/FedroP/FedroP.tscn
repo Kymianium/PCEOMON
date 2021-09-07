@@ -8,6 +8,9 @@
 [node name="HBoxContainer" parent="." index="0"]
 margin_left = 20.0
 
+[node name="Shield" parent="HBoxContainer/StatsSummary" index="1"]
+visible = false
+
 [node name="Sprite" parent="SpriteContainer" index="0"]
 texture = ExtResource( 2 )
 

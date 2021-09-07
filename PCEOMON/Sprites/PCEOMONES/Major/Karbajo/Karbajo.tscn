@@ -132,5 +132,5 @@ texture = ExtResource( 2 )
 
 [node name="AnimatedSprite" parent="SpriteContainer" index="1"]
 frames = SubResource( 27 )
-frame = 4
+frame = 5
 playing = true

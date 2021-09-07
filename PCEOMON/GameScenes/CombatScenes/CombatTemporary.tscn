@@ -1,8 +1,7 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://GameScenes/CombatScenes/CombatManager.gd" type="Script" id=1]
 [ext_resource path="res://Font/SmallFont.tres" type="DynamicFont" id=2]
-[ext_resource path="res://Sprites/PCEOMONES/Bosses/GPantanos/GPantanos.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Font/VersionFont.tres" type="DynamicFont" id=4]
 [ext_resource path="res://GameScenes/DialogueBox.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Backgrounds/Fondo PCEOMON.png" type="Texture" id=6]
@@ -21,9 +20,6 @@ centered = false
 [node name="Party" type="Node2D" parent="."]
 
 [node name="Enemies" type="Node2D" parent="."]
-
-[node name="GPantanos" parent="Enemies" instance=ExtResource( 3 )]
-position = Vector2( 500, 20 )
 
 [node name="Combatinterface" type="CanvasLayer" parent="."]
 script = ExtResource( 7 )

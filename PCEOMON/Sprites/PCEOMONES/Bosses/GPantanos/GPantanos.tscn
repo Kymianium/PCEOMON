@@ -53,6 +53,9 @@ margin_left = 20.0
 margin_right = 86.0
 margin_bottom = 50.0
 
+[node name="Shield" parent="HBoxContainer/StatsSummary" index="1"]
+visible = false
+
 [node name="Arrow" parent="." index="1"]
 position = Vector2( -10, 150 )
 rotation = 0.0
@@ -64,7 +67,6 @@ texture = ExtResource( 1 )
 [node name="AnimatedSprite" parent="SpriteContainer" index="1"]
 position = Vector2( 50, 150 )
 frames = SubResource( 9 )
-frame = 7
 playing = true
 
 [node name="Hitbox" parent="SpriteContainer" index="2"]

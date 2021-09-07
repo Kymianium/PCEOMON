@@ -17,5 +17,12 @@ func _ready():
 
 
 func _on_FIUM_pressed():
+	metadata.enemy_party_path = []
+	metadata.enemy_party_path.append("res://Sprites/PCEOMONES/Bosses/GPantanos/GPantanos.tscn")
 	get_tree().change_scene("res://GameScenes/CombatScenes/CombatTemporary.tscn")
-	pass # Replace with function body.
+
+
+func _on_AG_pressed():
+	metadata.enemy_party_path = []
+	metadata.enemy_party_path.append("res://Sprites/PCEOMONES/Bosses/FedroP/FedroP.tscn")
+	get_tree().change_scene("res://GameScenes/CombatScenes/CombatTemporary.tscn")

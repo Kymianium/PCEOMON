@@ -11,7 +11,6 @@ var target = 0
 var selecting : bool = false
 var targets = []
 
-
 const CHEMICAL_DMG = 0
 const PHYSICAL_DMG = 1
 const PSYCHOLOGYCAL_DMG = 2
@@ -189,34 +188,36 @@ var waiting_to_attack = false
 #############################
 ###########PRUEBAS###########
 func _ready():
-	actual_stamina = 0
+	if name=="PCEOMON":
+		return
 	max_hp = 100
 	actual_hp = max_hp
+	actual_stamina=0
 	arrow = $Arrow
-	$HBoxContainer/StatsSummary/Shield.value = 0
 	var txt = File.new()
-	if self.type != "Menor":
-		txt.open("res://GameScenes/Menues/Selection/PCEOMONES/Major/" + self.name.replace(" ","") +"Info.txt", File.READ)
-	else:
-		txt.open("res://GameScenes/Menues/Selection/PCEOMONES/Minor/" + self.name.replace(" ","") +"Info.txt", File.READ)
-	txt.get_line().replace("\\n","\n")
-	txt.get_line().replace("\\n","\n")
-	txt.get_line().replace("\\n","\n")
-	abilityname = txt.get_line().replace("\\n","\n")
-	txt.get_line().replace("\\n","\n")
-	abilitydesc = txt.get_line().replace("\\n","\n")
-	att1name = txt.get_line().replace("\\n","\n")
-	txt.get_line().replace("\\n","\n")
-	att1desc = txt.get_line().replace("\\n","\n")
-	att2name = txt.get_line().replace("\\n","\n")
-	txt.get_line().replace("\\n","\n")
-	att2desc = txt.get_line().replace("\\n","\n")
-	att3name = txt.get_line().replace("\\n","\n")
-	txt.get_line().replace("\\n","\n")
-	att3desc = txt.get_line().replace("\\n","\n")
-	att4name = txt.get_line().replace("\\n","\n")
-	txt.get_line().replace("\\n","\n")
-	att4desc = txt.get_line().replace("\\n","\n")
+	if not boss:
+		if self.type != "Menor":
+			txt.open("res://GameScenes/Menues/Selection/PCEOMONES/Major/" + self.name.replace(" ","") +"Info.txt", File.READ)
+		else:
+			txt.open("res://GameScenes/Menues/Selection/PCEOMONES/Minor/" + self.name.replace(" ","") +"Info.txt", File.READ)
+		txt.get_line().replace("\\n","\n")
+		txt.get_line().replace("\\n","\n")
+		txt.get_line().replace("\\n","\n")
+		abilityname = txt.get_line().replace("\\n","\n")
+		txt.get_line().replace("\\n","\n")
+		abilitydesc = txt.get_line().replace("\\n","\n")
+		att1name = txt.get_line().replace("\\n","\n")
+		txt.get_line().replace("\\n","\n")
+		att1desc = txt.get_line().replace("\\n","\n")
+		att2name = txt.get_line().replace("\\n","\n")
+		txt.get_line().replace("\\n","\n")
+		att2desc = txt.get_line().replace("\\n","\n")
+		att3name = txt.get_line().replace("\\n","\n")
+		txt.get_line().replace("\\n","\n")
+		att3desc = txt.get_line().replace("\\n","\n")
+		att4name = txt.get_line().replace("\\n","\n")
+		txt.get_line().replace("\\n","\n")
+		att4desc = txt.get_line().replace("\\n","\n")
 
 func _input(event):
 	if(selecting):

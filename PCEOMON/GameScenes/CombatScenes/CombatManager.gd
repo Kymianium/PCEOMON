@@ -94,17 +94,22 @@ func _ready():
 	### IMPORTANTE #    Hay un array en metadata que se llama enemy_party, cambiar esto para que se inicialice desde ahí
 	################
 	
-	for enemy in $"Enemies".get_children():
-		metadata.dimensions["default"].append(enemy)
-		enemy.connect("sprite_pressed",self,"pceomon_pressed")
-		enemy.connect("just_attacked", self, "write_attack_text")
-		enemy.connect("died", self, "pceomon_died")
-		enemy.connect("announcement", self, "incoming_announcement")
-		enemy.connect("permanent_announcement",self,"incoming_permanent_announcement")
-		enemy.connect("target_selected",self,"_on_DialogueBox_input")
-		enemy.connect("particle", self, "draw_particle")
-		enemy.connect("revive",self,"revive")
-		self.connect("pceomon_pressed",enemy,"target_selected")
+	for j in range(0, metadata.enemy_party_path.size()):
+		pceomon = load(metadata.enemy_party_path[j])
+		pceo_instance = pceomon.instance()
+		pceo_instance.position.x = 540 - metadata.combat_position[j][0]
+		pceo_instance.position.y = metadata.combat_position[j][1]
+		metadata.dimensions["default"].append(pceo_instance)
+		$Enemies.add_child(pceo_instance)
+		pceo_instance.connect("sprite_pressed",self,"pceomon_pressed")
+		pceo_instance.connect("just_attacked", self, "write_attack_text")
+		pceo_instance.connect("died", self, "pceomon_died")
+		pceo_instance.connect("announcement", self, "incoming_announcement")
+		pceo_instance.connect("permanent_announcement",self,"incoming_permanent_announcement")
+		pceo_instance.connect("target_selected",self,"_on_DialogueBox_input")
+		pceo_instance.connect("particle", self, "draw_particle")
+		pceo_instance.connect("revive",self,"revive")
+		self.connect("pceomon_pressed",pceo_instance,"target_selected")
 		
 		
 	#Inicia los arrays de compañeros y adversarios
@@ -311,8 +316,6 @@ func check_targets(PCEOMON, R4):
 
 func _on_Attack1_pressed():	
 	if (metadata.time_exists.size() != 0):
-#		if (metadata.time_exists[1].attack1 != $"Combatinterface/CombatGUI/Fight/Attacks/Attack1/Attack1".text):
-#				print("ERROR: La interfaz no cuadra con el pceomon que está a la espera de atacar")
 		metadata.time_exists[metadata.time_exists.size()-1].next1()
 		adjusted_interface = metadata.time_exists.size() #TODO: no se que narices es esto
 
@@ -342,14 +345,10 @@ func _on_ObjectMenu_object_selected(selected,pceomon):
 
 
 func _process(_delta):
-	#print(str(adjusted_interface) + str(metadata.time_exists.size()))
 	if (metadata.time_exists.size() != 0 ):
 		make_interface_visible(true)
-		#print(metadata.time_exists[metadata.time_exists.size()-1].name)
 		change_interface(metadata.time_exists[metadata.time_exists.size()-1])
 		if adjusted_interface != metadata.time_exists.size(): 
-#			print(metadata.time_exists[metadata.time_exists.size()-1].name)
-#			adjust_dimension(metadata.time_exists[metadata.time_exists.size()-1])
 			adjusted_interface = metadata.time_exists.size()
 	else:
 		make_interface_visible(false)

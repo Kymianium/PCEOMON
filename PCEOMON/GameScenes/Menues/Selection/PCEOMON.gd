@@ -9,13 +9,15 @@ func _ready():
 	var texture_pceomon_byn
 	var nombre_carpeta = $Name.text
 	var nombre_real = $Name.text
+	if $Name.text == "BLOQUEADO":
+		return
 	if $Name.text == "Caf. Com.":
 		nombre_carpeta = "CafeteraComunista"
 		nombre_real = "CafeteraComunista"
-	if $Name.text == "Weierstr.":
+	elif $Name.text == "Weierstr.":
 		nombre_carpeta = "FuncionDeWeierstrass"
 		nombre_real = "FuncióndeWeierstrass"
-	if $Name.text == "Marinera":
+	elif $Name.text == "Marinera":
 		nombre_carpeta = "MarineraDeCantor"
 		nombre_real = "MarineraDeCantor"
 	if minor == false:

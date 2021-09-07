@@ -3,7 +3,7 @@ extends "res://PCEOMONES_classes/Alcoholic.gd"
 
 func _ready():
 	$HBoxContainer/StatsSummary/Shield.value = 0
-	arrow = $Arrow
+	name = "Karbajo"
 	maxalcohol = 500
 	alcohol = 0
 	name = "Karbajo"

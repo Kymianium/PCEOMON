@@ -45,6 +45,9 @@ margin_right = 302.0
 margin_bottom = 223.0
 custom_fonts/font = ExtResource( 2 )
 text = "Aulario general"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="FIUM" type="Button" parent="."]
 margin_left = 438.0
@@ -72,4 +75,5 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[connection signal="pressed" from="AG" to="." method="_on_AG_pressed"]
 [connection signal="pressed" from="FIUM" to="." method="_on_FIUM_pressed"]
