@@ -615,7 +615,6 @@ func set_stamina(value):
 	
 func needed_select():
 	if not need_to_select:
-		print("MUERTE")
 		return
 	
 	

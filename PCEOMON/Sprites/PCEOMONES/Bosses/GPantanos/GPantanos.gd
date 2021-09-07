@@ -10,6 +10,7 @@ func _ready():
 	max_hp = 50000
 	actual_hp = max_hp
 	next_attack_required_stamina = 500
+	arrow = $Arrow
 	rng.randomize()
 
 

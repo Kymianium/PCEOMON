@@ -48,6 +48,7 @@ radial_initial_angle = 180.0
 nine_patch_stretch = true
 
 [node name="Shield" type="TextureProgress" parent="HBoxContainer/StatsSummary"]
+visible = false
 margin_right = 50.0
 margin_bottom = 50.0
 rect_min_size = Vector2( 50, 50 )
