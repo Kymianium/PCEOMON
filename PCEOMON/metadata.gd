@@ -11,6 +11,9 @@ var party_paths = []
 
 var enemy_party_path = []
 
+#ESTA VARIABLE CONTIENE EN LUGAR EN EL QUE SE PELEA
+var ubicacion
+
 #PACO ESTO QUÉ ES
 var items = ["Bocata","Ducha bluetooth","Fuente de macarras","Garrafa de paellas", "Monster","Pulsera del Murcia"]
 var item_paths = ["res://GameScenes/Menues/Objects/Bocata/Bocata.tscn",

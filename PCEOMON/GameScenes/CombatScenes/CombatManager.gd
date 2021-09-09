@@ -39,7 +39,9 @@ func _ready():
 	#Utilizaremos esta conexión para que se conecte el cuadro de diálogo
 	$Combatinterface.connect("text", self, "incoming_announcement")
 	
-	
+	#Se eligirá el background dependiendo de la ubicacion del combate
+	var background = load(metadata.ubicacion)
+	$Sprite.texture = background
 	
 	#Instanciamos los PCEOMONES que están almancenados en metadata.party
 	for i in range(0, metadata.party.size()):
